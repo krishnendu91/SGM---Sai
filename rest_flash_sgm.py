@@ -16,7 +16,7 @@ mysql.init_app(app)
 def welcome():
 	print ("Welcome to Amrita Smart-Grid Middleware")
 	print ("kindly use one of the APIs to get data")
-	return "\tWelcome to Amrita Smart Energy Systems and Solutions.\n\n \tKindly use one of the APIs to get data"
+	return "\tWelcome to Amrita Smart Energy Systems and Solutions Server.\n\n \tKindly use one of the APIs to get data"
 
 
 @app.route('/recent')
