@@ -8,7 +8,8 @@ from urllib.request import urlopen
 
 #Define the url (http://<node ip>:5000/api)
 ip=sys.argv[1]
-url='http://'+str(ip)+':5000/recentGM'
+api_req=sys.argv[2]
+url='http://'+str(ip)+':5000/'+str(api_req)
 print (url)
 #Read the url and save to a variable
 # api_page=opener.open(url) For Python 2
