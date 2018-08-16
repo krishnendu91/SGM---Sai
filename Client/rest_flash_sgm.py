@@ -14,13 +14,27 @@ mysql.init_app(app)
 
 @app.route('/')
 def welcome():
-	print "Welcome to Amrita Smart-Grid Middleware"
-	print "kindly use one of the APIs to get data"
+#	print "Welcome to Amrita Smart-Grid Middleware"
+#	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
 
-@app.route('/recent')
-def recent():
+@app.route('/recentgm')
+def recentgm():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from node_data ORDER BY id DESC LIMIT 1')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/recentlm1')
+def recentlm1():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from node_data ORDER BY id DESC LIMIT 1')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/recentlm2')
+def recentlm2():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from node_data ORDER BY id DESC LIMIT 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
