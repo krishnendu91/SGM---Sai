@@ -1,13 +1,14 @@
 #!/usr/bin/python
 #Import required libraries
 import  urllib2,json,time,pymysql
-
+import sys
 
 #Define a page opener using inbuilt function from urllib2
 opener=urllib2.build_opener()
 
 #Define the url (http://<node ip>:5000/api)
-url='http://192.168.179.231:5000/recentGM'
+ip=sys.argv[1]
+url='http://'+str(ip)+':5000/recentGM'
 
 #Read the url and save to a variable
 api_page=opener.open(url)
