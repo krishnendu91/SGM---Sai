@@ -1,3 +1,4 @@
+#!usr/bin/python
 from flask import Flask, jsonify
 from flaskext.mysql import MySQL
 
