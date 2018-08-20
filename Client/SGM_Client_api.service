@@ -1,0 +1,13 @@
+[Unit]
+Description= Smart Grid Middleware Client API Startup Service
+After=mariadb.service network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/pi/SGM_Local/rest_flash_sgm.py
+
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
