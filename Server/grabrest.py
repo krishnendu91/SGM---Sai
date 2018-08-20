@@ -26,9 +26,9 @@ print ("Website grabbed")
 print (data)
 
 #insert to DB (Requires pymysql package) (install it by sudo pip pymysql)
-#conn =pymysql.connect(database="AmritaSGM",user="root",password="amma",host="localhost")
-#cur=conn.cursor()
-#cur.execute("INSERT INTO server_data(nodeid, METER,v1, v2, v3, i1, i2, i3, w1,w2,w3,va1,va2,va3,var1,var2,var3,wh,vah,varh,wh1,wh2,wh3$
-#conn.commit()
-#conn.close()
+conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+cur=conn.cursor()
+cur.execute("INSERT INTO nodeData(nodeid,meterType,v1, v2, v3, i1, i2, i3, w1,w2,w3,va1,va2,va3,var1,var2,var3,wh,vah,varh,wh1,wh2,wh3$
+conn.commit()
+conn.close()
 print ("DB Dump success")
