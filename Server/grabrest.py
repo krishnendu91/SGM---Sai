@@ -34,9 +34,3 @@ conn.commit()
 conn.close()
 print ("DB Dump success")
 #value=json.dumps(value)
-
-
-
-conn.commit()
-conn.close()
-print ("DB Dump success")
