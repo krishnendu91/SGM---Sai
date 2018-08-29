@@ -10,7 +10,7 @@ def on_message(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	if payload['message'] == "DONE":
 		ip_wlan0= payload['ip']
-		api=latestgm
+		api='latestgm'
 		grabrest.grab(ip,api)
 	else:
 		status=msg.payload.decode()
