@@ -6,9 +6,11 @@ def on_connect(client, userdata, flags, rc):
 	client.subscribe("SGM/datafetch")
 
 def on_message(client, userdata, msg):
-	#if msg.payload.decode() == "Hello world!":
-	status=msg.payload.decode()
-	print(status)
+	if msg.payload.decode() == "DONE":
+		print("done")
+	else:
+		status=msg.payload.decode()
+		print(status)
   #todb(data)
     #client.disconnect()
     
