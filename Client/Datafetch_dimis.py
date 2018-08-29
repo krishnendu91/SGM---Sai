@@ -3,7 +3,7 @@
 # Version 1.0a
 #Real time data collection from Evoleo Dimis Energy Meter
 
-import socket
+import socket,mqttservice
 import time,json
 from datetime import datetime
 import pymysql
@@ -144,5 +144,7 @@ conn.commit()
 conn.close()
 print ("DB Dump success")
 #value=json.dumps(value)
+mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch","DONE",ip_wlan0)
+print("MQTT Success")
 
 
