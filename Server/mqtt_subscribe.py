@@ -1,5 +1,5 @@
 import paho.mqtt.client as mqtt
-import json
+import json,grabrest
 # This is the Subscriber
 
 def on_connect(client, userdata, flags, rc):
@@ -9,7 +9,9 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	if payload['message'] == "DONE":
-		print("done")
+		ip_wlan0= payload['ip']
+		api=latestgm
+		grabrest.grab(ip,api)
 	else:
 		status=msg.payload.decode()
 		print(status)
