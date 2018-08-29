@@ -10,6 +10,9 @@ def on_message(client, userdata, msg):
 		print("done")
 	else:
 		status=msg.payload.decode()
+		if status["message"]=="DONE":
+			print("Else Done")
+		
 		print(status)
   #todb(data)
     #client.disconnect()
