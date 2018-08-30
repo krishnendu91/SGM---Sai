@@ -4,7 +4,7 @@
 
 while [ true ]; do
 {
-data
+date
 ./home/pi/SGM_Local/Client/Datafetch_dimis.py
 sleep 5
 } >> /home/pi/SGM_log/datafetch.log
