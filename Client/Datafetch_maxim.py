@@ -24,8 +24,7 @@ def zon():
 			l[0:3]=[]
 		rcv="".join(l)
 		cmnd2+=1
-  
-  		if cmnd2 == 4
+		if cmnd2 == 4:
 			cmnd2=6
 		elif cmnd2 ==8:
 			cmnd2=11
