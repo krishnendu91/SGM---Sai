@@ -24,21 +24,21 @@ def welcome():
 @app.route('/recentgm')
 def recentgm():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData ORDER BY id DESC LIMIT 1')
+	cur.execute('select * from nodeData where meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
 @app.route('/recentlm1')
 def recentlm1():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData ORDER BY id DESC LIMIT 1')
+	cur.execute('select * from nodeData where meterType=2 ORDER BY id DESC LIMIT 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
 @app.route('/recentlm2')
 def recentlm2():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData ORDER BY id DESC LIMIT 1')
+	cur.execute('select * from nodeData where meterType=3 ORDER BY id DESC LIMIT 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
