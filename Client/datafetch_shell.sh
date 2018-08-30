@@ -2,7 +2,7 @@
 
 #script to keep dimis alive
 
-while [true]; do
+while [ true ]; do
 {
 data
 ./home/pi/SGM_Local/Client/Datafetch_dimis.py
