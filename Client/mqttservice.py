@@ -30,5 +30,4 @@ def mqtt_publish(broker,port,topic,payload,ip_wlan0):
 	client = mqtt.Client()
 	client.connect(broker,port,60)
 	client.publish(topic,payload);
-	mqttack()
 	client.disconnect();
