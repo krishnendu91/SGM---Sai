@@ -17,20 +17,19 @@ def on_message(client, userdata, msg):
 		grabrest.grab(ip_wlan0,api)
 		reply="SUCCESS"
 		print(reply)
-		mqttack(broker,reply)
+		
 		
 	else:
 		status=msg.payload.decode()
 		print(status)
 		reply="FAIL"
 		print(reply)
-		mqttack(broker,reply)
-
+	mqttack(broker,reply)
 def mqttack(broker,reply):
-	client = mqtt.Client()
-	client.connect(broker,1883,60)
-	client.publish("SGM/ack",reply);
-	client.disconnect()
+	client1 = mqtt.Client()
+	client1.connect(broker,1883,60)
+	client1.publish("SGM/ack",reply);
+	client1.disconnect()
 	print('acksent')
 	
 	
