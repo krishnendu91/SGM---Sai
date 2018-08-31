@@ -2,18 +2,18 @@ import paho.mqtt.client as mqtt
 import json
 
 #acknowledgement 
-def on_connect(client, userdata, flags, rc):
+def on_connect(client1, userdata, flags, rc):
 	print("Connected with result code "+str(rc))
-	client.subscribe("SGM/ack")
-def on_message(client, userdata, msg):
+	client1.subscribe("SGM/ack")
+def on_message(client1, userdata, msg):
 	payload=msg.payload.decode()
 	print(payload)
 def mqttack():
-	client = mqtt.Client()
-	client.connect("0.0.0.0",1883,60)
+	client1 = mqtt.Client()
+	client1.connect("0.0.0.0",1883,60)
 	#client.subscribe("SGM/ack")
-	client.on_connect = on_connect
-	client.on_message = on_message
+	client1.on_connect = on_connect
+	client1.on_message = on_message
 	print("ack received")
 	
   #client.disconnect()
@@ -31,3 +31,5 @@ def mqtt_publish(broker,port,topic,payload,ip_wlan0):
 	client.connect(broker,port,60)
 	client.publish(topic,payload);
 	client.disconnect();
+	mqttack()
+
