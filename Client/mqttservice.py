@@ -12,7 +12,7 @@ def mqtt_publish(broker,port,topic,payload,ip_wlan0):
   client = mqtt.Client()
   client.connect(broker,port,60)
   (rc,mid)=client.publish(topic,payload,qos=1);
-  
+  mqtt_ack()
   print(str(rc))
   print(str(mid))
   client.loop()
@@ -26,7 +26,7 @@ def on_message(client, userdata, msg):
 	print(payload)
 def mqtt_ack():
   client = mqtt.Client()
-  client.connect("0.0.0.0",1883,60)
+  client.connect("192.168.112.110",1883,60)
   client.on_connect = on_connect
   client.on_message = on_message
   print("ack received")
