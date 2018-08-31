@@ -12,7 +12,8 @@ def mqtt_publish(broker,port,topic,payload,ip_wlan0):
 	topic="SGM/"+topic
 	client = mqtt.Client()
 	client.connect(broker,port,60)
-	client.publish(topic,payload);
+	(rc,mid)=client.publish(topic,payload);
 	client.disconnect();
 	mqtt_reply.mqttack()
-
+	print('rc:'+str(rc))
+	print('mid:'+str(mid))

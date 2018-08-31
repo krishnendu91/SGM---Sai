@@ -4,8 +4,9 @@ import paho.mqtt.client as mqtt
 import json,grabrest,mqtt_reply
 # This is the Subscriber
 
-def on_connect(client, userdata, flags, rc):
+def on_connect(client, userdata, mid, rc):
 	print("Connected with result code "+str(rc))
+	print(str(mid))
 	client.subscribe("SGM/datafetch")
 
 def on_message(client, userdata, msg):
