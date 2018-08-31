@@ -13,7 +13,7 @@ def mqtt_publish(broker,port,topic,payload,ip_wlan0):
   print(payload)
   client = mqtt.Client()
   client.connect(broker,port,60)
-  (rc,mid)=client.publish(topic,payload);
+  (rc,mid)=client.publish(topic,payload,qos=1);
   print(str(rc))
   print(str(mid))
   client.disconnect();
