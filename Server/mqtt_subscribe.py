@@ -10,6 +10,7 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
+	broker=payload['ip']
 	if payload['message'] == "DONE":
 		ip_wlan0= payload['ip']
 		api='recentgm'
@@ -23,9 +24,9 @@ def on_message(client, userdata, msg):
 		print(status)
 		reply="FAIL"
 		print(reply)
-		mqttack(reply)
+		mqttack(broker,reply)
 
-def mqttack(reply):
+def mqttack(broker,reply):
 	client = mqtt.Client()
 	client.connect(broker,port,60)
 	client.publish("SGM/ack",reply);
