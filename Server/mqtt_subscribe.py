@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import paho.mqtt.client as mqtt
-import json,grabrest
+import json,grabrest,mqtt_reply
 # This is the Subscriber
 
 def on_connect(client, userdata, flags, rc):
@@ -24,14 +24,7 @@ def on_message(client, userdata, msg):
 		print(status)
 		reply="FAIL"
 		print(reply)
-	mqttack(broker,reply)
-def mqttack(broker,reply):
-	client1 = mqtt.Client()
-	client1.connect(broker,1883,60)
-	client1.publish("SGM/ack",reply);
-	client1.disconnect()
-	print('acksent')
-	
+	mqtt_reply.mqttack(broker,reply)
 	
 client = mqtt.Client()
 client.connect("0.0.0.0",1883,60)
