@@ -23,7 +23,7 @@ def on_connect(client, userdata, flags, rc):
 	client.subscribe("SGM/ack")
 def on_message(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
-  print(payload)
+	print(payload)
 def mqtt_ack():
   client = mqtt.Client()
   client.connect("0.0.0.0",1883,60)
