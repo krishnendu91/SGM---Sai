@@ -19,16 +19,16 @@ def mqtt_publish(broker,port,topic,payload,ip_wlan0):
   client.disconnect();
 #acknowledgement 
 def on_connect(client, userdata, flags, rc):
-	#print("Connected with result code "+str(rc))
+	print("Connected with result code "+str(rc))
 	client.subscribe("SGM/ack")
 def on_message(client, userdata, msg):
-	payload=json.loads(msg.payload.decode())
+	payload=msg.payload.decode()
 	print(payload)
 def mqtt_ack():
   client = mqtt.Client()
-  client.connect("192.168.112.110",1883,60)
+  client.connect("0.0.0.0",1883,60)
   client.on_connect = on_connect
   client.on_message = on_message
   print("ack received")
-  client.disconnect()
+  #client.disconnect()
  
