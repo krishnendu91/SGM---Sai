@@ -28,7 +28,7 @@ def on_message(client, userdata, msg):
 
 def mqttack(broker,reply):
 	client = mqtt.Client()
-	client.connect(broker,port,60)
+	client.connect(broker,1883,60)
 	client.publish("SGM/ack",reply);
 	client.disconnect()
 	print('acksent')
