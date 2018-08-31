@@ -13,12 +13,25 @@ def on_message(client, userdata, msg):
 		ip_wlan0= payload['ip']
 		api='recentgm'
 		grabrest.grab(ip_wlan0,api)
+		reply="SUCCESS"
+		print(reply)
+		mqttack(reply)
+		
 	else:
 		status=msg.payload.decode()
 		print(status)
-  #todb(data)
-    #client.disconnect()
-    
+		reply="FAIL"
+		print(reply)
+		mqttack(reply)
+
+def mqttack(reply):
+	client = mqtt.Client()
+	client.connect(broker,port,60)
+	client.publish("SGM/ack",reply);
+	client.disconnect()
+	print('acksent')
+	
+	
 client = mqtt.Client()
 client.connect("0.0.0.0",1883,60)
 
