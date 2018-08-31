@@ -9,11 +9,11 @@ def mqtt_publish(broker,port,topic,payload,ip_wlan0):
   payload={'message':payload,"ip":ip_wlan0}
   payload=json.dumps(payload)
   topic="SGM/"+topic
-  print(topic)
-  print(payload)
   client = mqtt.Client()
   client.connect(broker,port,60)
   (rc,mid)=client.publish(topic,payload,qos=1);
+  
   print(str(rc))
   print(str(mid))
+  client.loop()
   client.disconnect();
