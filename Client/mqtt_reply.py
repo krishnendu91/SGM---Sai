@@ -9,7 +9,7 @@ def on_message(client1, userdata, msg):
 	reply = payload['message']
 	txId = payload['id']
 
-	if payload == "SUCCESS":
+	if reply == "SUCCESS":
 		dbclear(txId)
 		print("ack received")
 	else:
