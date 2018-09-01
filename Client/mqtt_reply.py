@@ -3,10 +3,13 @@ import paho.mqtt.client as mqtt
 
 
 def on_message(client1, userdata, msg):
-	payload=msg.payload.decode()
+	payload=json.loads(msg.payload.decode())
 	print(payload)
+	reply = payload['message']
+	txId = payload['id']
+
 	if payload == "SUCCESS":
-		dbclear(time)
+		dbclear(txId)
 		print("ack received")
 	else:
 		print("ack failed")
