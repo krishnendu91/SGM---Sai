@@ -25,6 +25,7 @@ def grab(ip,api_req):
 #Optional: Print required data
   print ("Website grabbed")
   print (data)
+  txId=data['id']
 
 #insert to DB (Requires pymysql package) (install it by sudo pip pymysql)
   conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
@@ -35,3 +36,4 @@ def grab(ip,api_req):
   conn.close()
   print ("DB Dump success")
   #value=json.dumps(value)
+  return txId
