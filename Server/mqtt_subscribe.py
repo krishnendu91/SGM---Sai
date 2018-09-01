@@ -9,8 +9,9 @@ def on_message(client, userdata, msg):
 	ip_wlan0 = payload['ip']
 	if payload['message'] == "DONE":
 		api='recentgm'
-		grabrest.grab(ip_wlan0,api)
-		reply="SUCCESS"
+		txId=grabrest.grab(ip_wlan0,api)
+		reply={'message':'SUCCESS',"id":txId}
+		
 		print(reply)
 		
 		
@@ -19,6 +20,7 @@ def on_message(client, userdata, msg):
 		print(status)
 		reply="FAIL"
 		print(reply)
+	reply=json.dumps(reply)
 	mqtt_reply.mqttack(ip_wlan0,reply)
 	
 client = mqtt.Client()
