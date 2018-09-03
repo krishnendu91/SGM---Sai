@@ -40,7 +40,7 @@ while a:
 		if '\r\n' in data.decode():
 			# when a full message is received
 			val = data.decode().split('\r\n')
-#			print('received %s' % val)
+			print('received %s' % val)
 			time.sleep(0.5)
 			if count == 0:
 				connection.sendall(
