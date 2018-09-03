@@ -43,12 +43,13 @@ while a:
 			print('received %s' % val)
 			time.sleep(0.5)
 			if count == 0:
+				print('if')
 				connection.sendall(
 					('{"opt":"RC","GTW":{"protV":"Core-1A_Energy-1A","PN":"DA01-0021","SN":"170092"},timestamp":'+ str(round(time.time() * 1000)) + '}').encode())
 			else:
-				
+				print('else') 
 				connection.sendall(
-					('{"opt":"W","GTW":{"protV":"Core-1A_Energy-1A","PN":"DA01-0021","SN":"170092"},"devs":["PN": "DA01-0021","SN": "170092","dataID": [38,39,40,41,42,43,44,45],"data":   [1,1,0,0,1,0,0,0]]},"timestamp":'+ str(round(time.time() * 1000)) + '}').encode())
+					('{"opt":"W","GTW":{"protV":"Core-1A_Energy-1A","PN":"DA01-0021","SN":"170084"},"devs":[{"PN": "DA01-0021","SN": "170084","dataID":[38,39,40,41,42,43,44,45],"data":[1,1,0,0,1,0,0,0]]},"timestamp":'+ str(round(time.time() * 1000)) + '}').encode())
 			count += 1
 			if len(val[1]) > 0:
 				data = val[1].encode()
