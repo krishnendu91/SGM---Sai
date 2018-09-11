@@ -5,7 +5,7 @@ After=mariadb.service network.target
 [Service]
 Type=simple
 User=root
-ExecStart=/home/pi/SGM/Server/rest.py
+ExecStart=/home/cs/SGM/Server/rest.py
 
 Restart=on-abort
 

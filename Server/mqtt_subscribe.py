@@ -9,7 +9,7 @@ def on_message(client, userdata, msg):
 	ip_wlan0 = payload['ip']
 	if payload['message'] == "DONE":
 		api='recentgm'
-		txId=grabrest.grab(ip_wlan0,api)
+		txId=grabrest.grab(ip_wlan0,api,1)
 		reply={'message':'SUCCESS',"id":txId}
 		
 		print(reply)
