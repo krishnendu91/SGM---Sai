@@ -41,20 +41,6 @@ cur.execute("INSERT INTO inverterData(nodeid,type,port,battVoltage,aux,error,dev
 conn.commit()
 
 conn.close()
-print "inv1"
-print inv1
-print "inv2"
-print inv2
-print "inv3"
-print inv3
-print "cc1"
-print cc1
-print "cc2"
-print cc2
-print "cc3"
-print cc3
-
-
 
 mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch","DONE",ip_wlan0)
 print("MQTT Success")
