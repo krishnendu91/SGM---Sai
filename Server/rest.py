@@ -76,6 +76,12 @@ def yhistory():
         cur.execute('select * from nodeData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 YEAR)')
         r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
         return jsonify({'Last one year' : r})
+@app.route('/event')
+def yhistory():
+        cur = mysql.connect().cursor()
+        cur.execute('select * from event ORDER BY id DESC LIMIT 1)')
+        r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+        return jsonify({'Last one year' : r})
 
 
 if __name__ == '__main__':
