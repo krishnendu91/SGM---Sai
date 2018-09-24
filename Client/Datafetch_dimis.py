@@ -12,7 +12,7 @@ from subprocess import check_output
 scanoutput=check_output(["hostname -I"],shell=1)
 ip_eth0=scanoutput.decode().split()[0]
 ip_wlan0=scanoutput.decode().split()[1]
-port= sys.argv[0]
+port= int(sys.argv[0])
 port_GM=10001
 port_LM1=10002
 port_LM2=10003
