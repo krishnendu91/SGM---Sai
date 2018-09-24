@@ -2,7 +2,7 @@
 
 # Version 1.0a
 #Real time data collection from Evoleo Dimis Energy Meter
-
+import sys
 import socket,mqttservice
 import time,json
 from datetime import datetime
@@ -12,6 +12,7 @@ from subprocess import check_output
 scanoutput=check_output(["hostname -I"],shell=1)
 ip_eth0=scanoutput.decode().split()[0]
 ip_wlan0=scanoutput.decode().split()[1]
+port= sys.argv[0]
 port_GM=10001
 port_LM1=10002
 port_LM2=10003
@@ -21,7 +22,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 # Bind the socket to the server port
-server_address = (ip_eth0, port_GM)
+server_address = (ip_eth0, port)
 print('Starting up on %s port %s' % server_address)
 sock.bind(server_address)
 
