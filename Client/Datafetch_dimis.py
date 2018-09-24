@@ -17,7 +17,7 @@ id_scanoutput=check_output(["hostname"],shell=1)
 id_node=id_scanoutput.decode().split()[0]
 if len(id_node)<10:
 	nodeId=id_node[-2:]
-else
+else:
 	nodeId=id_node[-1:]
 print(nodeId)
 
