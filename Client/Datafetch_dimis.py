@@ -9,10 +9,19 @@ from datetime import datetime
 import pymysql
 from subprocess import check_output
 
-scanoutput=check_output(["hostname -I"],shell=1)
-ip_eth0=scanoutput.decode().split()[0]
-ip_wlan0=scanoutput.decode().split()[1]
-port= int(sys.argv[1])
+ip_scanoutput=check_output(["hostname -I"],shell=1)
+ip_eth0=ip_scanoutput.decode().split()[0]
+ip_wlan0=ip_scanoutput.decode().split()[1]
+
+id_scanoutput=check_output(["hostname"],shell=1)
+id_node=id_scanoutput.decode().split()[0]
+if len(id_node)<10:
+	nodeId=id_node[-2:]
+else
+	nodeId=id_node[-1:]
+print(nodeId)
+
+#port= int(sys.argv[1])
 port_GM=10001
 port_LM1=10002
 port_LM2=10003
@@ -22,7 +31,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 # Bind the socket to the server port
-server_address = (ip_eth0, port)
+server_address = (ip_eth0, port_GM)
 print('Starting up on %s port %s' % server_address)
 sock.bind(server_address)
 
