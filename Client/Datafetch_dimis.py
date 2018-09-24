@@ -16,7 +16,7 @@ ip_wlan0=ip_scanoutput.decode().split()[1]
 id_scanoutput=check_output(["hostname"],shell=1)
 id_node=id_scanoutput.decode().split()[0]
 print(len(id_node))
-if len(id_node)<10:
+if len(id_node)>9:
 	nodeId=id_node[-2:]
 else:
 	nodeId=id_node[-1:]
