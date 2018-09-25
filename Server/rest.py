@@ -70,18 +70,122 @@ def mhistory():
         r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
         return jsonify({'Last one month' : r})
 
+#One year
 @app.route('/year')
 def yhistory():
         cur = mysql.connect().cursor()
         cur.execute('select * from nodeData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 YEAR)')
         r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
         return jsonify({'Last one year' : r})
+
+#Event API
 @app.route('/event')
 def event():
         cur = mysql.connect().cursor()
         cur.execute('select * from event ORDER BY id DESC LIMIT 1')
         r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
         return jsonify({'Event Data' : r})
+
+#API for node level filtering
+@app.route('/1')
+def 1():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=1  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/2')
+def 2():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=2  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/3')
+def 3():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=3  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/4')
+def 4():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=4  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/5')
+def 5():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=5  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/6')
+def 6():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=6  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/7')
+def 7():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=7  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/8')
+def 8():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=8  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/9')
+def 9():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=9  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/10')
+def 10():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=10  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/11')
+def 11():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=11  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/12')
+def 12():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=12  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/13')
+def 13():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=13  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/14')
+def 14():
+        cur = mysql.connect().cursor()
+	cur.execute('select * from nodeData where nodeId=14  ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+
 
 
 if __name__ == '__main__':
