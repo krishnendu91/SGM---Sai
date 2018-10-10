@@ -45,7 +45,7 @@ def recentlm2():
 @app.route('/outbackrecent')
 def outbackrecent():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from inverterData ORDER BY id DESC LIMIT 1')
+	cur.execute('select * from inverterData ORDER BY id DESC LIMIT 6')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
@@ -76,6 +76,13 @@ def yhistory():
         cur.execute('select * from nodeData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 YEAR)')
         r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
         return jsonify({'Last one year' : r})
+
+@app.route('/alive')
+def alive():
+        cur = mysql.connect().cursor()
+        cur.execute('select * from nodeHealth ORDER BY id DESC LIMIT 5 )')
+        r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+        return jsonify({'node Health' : r})
 
 
 if __name__ == '__main__':
