@@ -26,7 +26,7 @@ else:
 dataHealth={'nodeid':nodeId,'alive':1,'temp':temp}
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
-cur.execute("INSERT INTO nodeHealth(nodeid,alive,temp) VALUES(%(nodeid)s,%(alive)s,,%(temp)s);",dataHealth)
+cur.execute("INSERT INTO nodeHealth(nodeid,alive,temp) VALUES(%(nodeid)s,%(alive)s,%(temp)s);",dataHealth)
 conn.commit()
 conn.close()
 print ("DB Dump success")
