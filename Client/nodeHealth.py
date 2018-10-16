@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import pymysql,sys
+import pymysql,sys,subprocess
 from subprocess import check_output
 
 #get IP addresses
