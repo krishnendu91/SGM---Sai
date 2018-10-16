@@ -9,8 +9,10 @@ ip_eth0=ip_scanoutput.decode().split()[0]
 ip_wlan0=ip_scanoutput.decode().split()[1]
 
 temp=subprocess.check_output(["vcgencmd","measure_temp"])
-temp=temp.replace(b'"temp=","").replace("'C\n","")
+temp=temp.replace("temp=","")
+#temp=temp.replace("'C\n","")
 
+		
 #get node ID
 id_scanoutput=check_output(["hostname"],shell=1)
 id_node=id_scanoutput.decode().split()[0]
