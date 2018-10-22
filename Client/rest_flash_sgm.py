@@ -94,7 +94,7 @@ def yhistory():
 @app.route('/alive')
 def alive():
         cur = mysql.connect().cursor()
-        cur.execute('SELECT * FROM nodeHealth where timestamp >= DATE_SUB(NOW(),INTERVAL 24 HOUR)')
+        cur.execute('SELECT * FROM nodeHealth where timestamp ORDER BY id DESC LIMIT 150')
         r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
         return jsonify({'node Health' : r})
 
