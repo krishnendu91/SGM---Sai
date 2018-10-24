@@ -107,4 +107,27 @@ def switchstatus():
   i2c=check_output(["i2cget -y 1 0x3b"],shell=1)
   i2c=i2c.decode().split()[0]
   i2c=i2c[3:]
+  
+  if i2c==f:
+    switch={'C1':1,'C2':0,'C3':0,'C4':0}
+  elif i2c==e:
+    switch={'C1':1,'C2':0,'C3':0,'C4':1}
+  elif i2c=='d':
+    switch={'C1':1,'C2':0,'C3':1,'C4':0}
+  elif i2c=='c':
+    switch={'C1':1,'C2':0,'C3':1,'C4':1}
+  elif i2c=='b':
+    switch={'C1':1,'C2':1,'C3':0,'C4':0}
+  elif i2c=='a':
+    switch={'C1':1,'C2':1,'C3':0,'C4':1}
+  elif i2c=='9':
+    switch={'C1':1,'C2':1,'C3':1,'C4':0}
+  elif i2c=='8':
+    switch={'C1':1,'C2':1,'C3':1,'C4':1}
+  else:
+    switch={'C1':0,'C2':0,'C3':0,'C4':0}
+  
+
   print(i2c)
+  
+  print(switch)
