@@ -102,32 +102,41 @@ def todbdimis(data):
   conn.close()
   print ("DB Dump success")
 
-  #Contactor status
+  #Contactor status update to DB
 def switchstatus():
+  
+  ip_eth0,ip_wlan0,nodeId=sysinfo()
   i2c=check_output(["i2cget -y 1 0x3b"],shell=1)
   i2c=i2c.decode().split()[0]
   i2c=i2c[3:]
   
   if i2c=='f':
-    switch={'C1':1,'C2':0,'C3':0,'C4':0}
+    switch={'nodeid':nodeId,'C1':1,'C2':0,'C3':0,'C4':0}
   elif i2c=='e':
-    switch={'C1':1,'C2':0,'C3':0,'C4':1}
+    switch={'nodeid':nodeId,'C1':1,'C2':0,'C3':0,'C4':1}
   elif i2c=='d':
-    switch={'C1':1,'C2':0,'C3':1,'C4':0}
+    switch={'nodeid':nodeId,'C1':1,'C2':0,'C3':1,'C4':0}
   elif i2c=='c':
-    switch={'C1':1,'C2':0,'C3':1,'C4':1}
+    switch={'nodeid':nodeId,'C1':1,'C2':0,'C3':1,'C4':1}
   elif i2c=='b':
-    switch={'C1':1,'C2':1,'C3':0,'C4':0}
+    switch={'nodeid':nodeId,'C1':1,'C2':1,'C3':0,'C4':0}
   elif i2c=='a':
-    switch={'C1':1,'C2':1,'C3':0,'C4':1}
+    switch={'nodeid':nodeId,'C1':1,'C2':1,'C3':0,'C4':1}
   elif i2c=='9':
-    switch={'C1':1,'C2':1,'C3':1,'C4':0}
+    switch={'nodeid':nodeId,'C1':1,'C2':1,'C3':1,'C4':0}
   elif i2c=='8':
-    switch={'C1':1,'C2':1,'C3':1,'C4':1}
+    switch={'nodeid':nodeId,'C1':1,'C2':1,'C3':1,'C4':1}
   else:
-    switch={'C1':0,'C2':0,'C3':0,'C4':0}
+    switch={'nodeid':nodeId,'C1':0,'C2':0,'C3':0,'C4':0}
   
 
   print(i2c)
   
   print(switch)
+
+  conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+  cur=conn.cursor()
+  cur.execute("INSERT INTO switchState(nodeid,C1, C2, C3, C4) VALUES(%(nodeid)s,%(C1)s,%(C2)s,%(C3)s,%(C4)s);",switch)
+  conn.commit()
+  conn.close()
+  print ("Switch State - DB Dump success")
