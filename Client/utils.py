@@ -105,5 +105,5 @@ def todbdimis(data):
   #Contactor status
 def switchstatus():
   i2c=check_output(["i2cget -y 1 0x3b"],shell=1)
-  i2c=i2c.decode()
+  i2c=i2c.decode().split()[0]
   print(i2c)
