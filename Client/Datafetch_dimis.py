@@ -12,7 +12,7 @@ import utils
 
 #get IP addresses & Node ID
 ip_eth0,ip_wlan0,id_node=utils.sysinfo()
-print "Starting Data fetch for Node"+str(id_node)+"connected at eth0" +str(ip_eth0) + "and WLan0" + str(ip_wlan0)
+print ("Starting Data fetch for Node"+str(id_node)+"connected at eth0" +str(ip_eth0) + "and WLan0" + str(ip_wlan0))
 #get Port nos
 #port= int(sys.argv[1])
 port_GM=10001
