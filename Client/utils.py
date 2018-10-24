@@ -20,7 +20,7 @@ def sysinfo():
     nodeId=int(id_node[-1:])
   return(ip_eth0,ip_wlan0,nodeId)
 def dimisdecode(val):
-  json_val=json.loads(val[0])
+  json_val=json.loads(val)
   data=json_val['devs'][-1]['data']
 #Voltage
   v1=data[0]
