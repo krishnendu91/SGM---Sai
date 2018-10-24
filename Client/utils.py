@@ -101,3 +101,10 @@ def todbdimis(data):
   conn.commit()
   conn.close()
   print ("DB Dump success")
+
+  #Contactor status
+  def switchstatus():
+    i2c=check_output(["i2cdetect -y 1"],shell=1)
+    print(i2c)
+    i2c=check_output(["i2cget -y 1 0x3b"],shell=1)
+    print(i2c)
