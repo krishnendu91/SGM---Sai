@@ -111,21 +111,21 @@ def switchstatus():
   i2c=i2c[3:]
   
   if i2c=='f':
-    switch={'nodeid':nodeId,'C1':1,'C2':0,'C3':0,'C4':0}
+    switch={'nodeid':nodeId,'C1':0,'C2':0,'C3':0,'C4':0}
   elif i2c=='e':
-    switch={'nodeid':nodeId,'C1':1,'C2':0,'C3':0,'C4':1}
+    switch={'nodeid':nodeId,'C1':0,'C2':0,'C3':0,'C4':1}
   elif i2c=='d':
-    switch={'nodeid':nodeId,'C1':1,'C2':0,'C3':1,'C4':0}
+    switch={'nodeid':nodeId,'C1':0,'C2':0,'C3':1,'C4':0}
   elif i2c=='c':
-    switch={'nodeid':nodeId,'C1':1,'C2':0,'C3':1,'C4':1}
+    switch={'nodeid':nodeId,'C1':0,'C2':0,'C3':1,'C4':1}
   elif i2c=='b':
-    switch={'nodeid':nodeId,'C1':1,'C2':1,'C3':0,'C4':0}
+    switch={'nodeid':nodeId,'C1':0,'C2':1,'C3':0,'C4':0}
   elif i2c=='a':
-    switch={'nodeid':nodeId,'C1':1,'C2':1,'C3':0,'C4':1}
+    switch={'nodeid':nodeId,'C1':0,'C2':1,'C3':0,'C4':1}
   elif i2c=='9':
-    switch={'nodeid':nodeId,'C1':1,'C2':1,'C3':1,'C4':0}
+    switch={'nodeid':nodeId,'C1':0,'C2':1,'C3':1,'C4':0}
   elif i2c=='8':
-    switch={'nodeid':nodeId,'C1':1,'C2':1,'C3':1,'C4':1}
+    switch={'nodeid':nodeId,'C1':0,'C2':1,'C3':1,'C4':1}
   else:
     switch={'nodeid':nodeId,'C1':0,'C2':0,'C3':0,'C4':0}
   
