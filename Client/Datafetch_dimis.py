@@ -72,7 +72,7 @@ value_GM1=utils.dimisdecode(val[0])
 print (value_GM1)
 
 #DB Dump
-utils.todb(value_GM1)
+utils.todbdimis(value_GM1)
 
 #Data trasfer to CS Service
 mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch","DONE",ip_wlan0)
