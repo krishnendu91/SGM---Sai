@@ -108,9 +108,9 @@ def switchstatus():
   i2c=i2c.decode().split()[0]
   i2c=i2c[3:]
   
-  if i2c==f:
+  if i2c=='f':
     switch={'C1':1,'C2':0,'C3':0,'C4':0}
-  elif i2c==e:
+  elif i2c=='e':
     switch={'C1':1,'C2':0,'C3':0,'C4':1}
   elif i2c=='d':
     switch={'C1':1,'C2':0,'C3':1,'C4':0}
