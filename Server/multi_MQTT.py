@@ -25,5 +25,5 @@ def test2():
   
 mqttclient.message_callback_add("Commands/test1", test1)
 mqttclient.message_callback_add("Commands/test2", test2)
-client.loop_forever()
+mqttclient.loop_forever()
 
