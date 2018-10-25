@@ -16,10 +16,10 @@ mqttclient = paho.Client(client_uniq, False) #nocleanstart
 mqttclient.connect(broker, port, 60)
 mqttclient.subscribe("Commands/#")
 
-def test1:
+def test1():
   print("test1")
   
-def test2:
+def test2():
   print("test2")
   
 mqttclient.message_callback_add("Commands/test1", test1)
