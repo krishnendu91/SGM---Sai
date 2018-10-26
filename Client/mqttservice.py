@@ -15,5 +15,3 @@ def mqtt_publish(broker,port,topic,payload,ip_wlan0):
 	(rc,mid)=client.publish(topic,payload);
 	client.disconnect();
 	mqtt_reply.mqttack()
-	print('rc:'+str(rc))
-	print('mid:'+str(mid))
