@@ -77,7 +77,7 @@ def datafetch_gsm(client, userdata, msg):
 
 #Subscribed Topics  
 mqttclient.message_callback_add("SGM/test1", test1)
-mqttclient.message_callback_add("SGM/datafetch_dimis_gm", datafetch_dimis_gm)
+mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm1", datafetch_dimis_lm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm2", datafetch_dimis_lm2)
 mqttclient.message_callback_add("SGM/datafetch_maxim", datafetch_maxim)
