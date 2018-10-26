@@ -39,7 +39,6 @@ def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'recentgm',1)
-	datagrab(payload,'recentlm1',1)
 	
 def datafetch_dimis_lm1(client, userdata, msg):
 	print("Dimis Data received")
