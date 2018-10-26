@@ -85,7 +85,7 @@ mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_
 if (id_node == 7|9):
 	value_LM2=dimishelper(ip_eth0,port_LM2)
 	utils.todbdimis(value_LM2)
-	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
+	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm2","DONE",ip_wlan0)
 
 
 #utils.switchstatus()
