@@ -24,9 +24,9 @@ port_LM3=10004
 def dimishelper(ip, port):
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-	print('Dimis polling begins')
+	print('Dimis polling begins for ' +str(port))
 # Bind the socket to the server port
-	server_address = (ip_eth0, port_GM)
+	server_address = (ip, port)
 #	print('Starting up on %s port %s' % server_address)
 	sock.bind(server_address)
 
