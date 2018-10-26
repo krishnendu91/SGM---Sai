@@ -26,7 +26,7 @@ def datafetch_dimis(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	
 	if payload['ip']:
-		print payload['ip']
+		print(payload['ip'])
 
 	ip_wlan0 = payload['ip']
 	if payload['message'] == "DONE":
