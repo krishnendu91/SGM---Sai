@@ -35,11 +35,21 @@ def test1(client, userdata, message):
 	print("Test Channel")
 	print("Received message '" + str(message.payload) + "' on topic '" + message.topic + "' with QoS " + str(message.qos))
   
-def datafetch_dimis(client, userdata, msg):
+def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'recentgm',1)
 	datagrab(payload,'recentlm1',1)
+	
+def datafetch_dimis_lm1(client, userdata, msg):
+	print("Dimis Data received")
+	payload=json.loads(msg.payload.decode())
+	datagrab(payload,'recentlm1',1)
+
+def datafetch_dimis_lm2(client, userdata, msg):
+	print("Dimis Data received")
+	payload=json.loads(msg.payload.decode())
+	datagrab(payload,'recentlm2',1)
 
 def datafetch_maxim(client, userdata, msg):
 	print("Maxim Data received")
@@ -67,7 +77,9 @@ def datafetch_gsm(client, userdata, msg):
 
 #Subscribed Topics  
 mqttclient.message_callback_add("SGM/test1", test1)
-mqttclient.message_callback_add("SGM/datafetch_dimis", datafetch_dimis)
+mqttclient.message_callback_add("SGM/datafetch_dimis_gm", datafetch_dimis_gm)
+mqttclient.message_callback_add("SGM/datafetch_dimis_lm1", datafetch_dimis_lm1)
+mqttclient.message_callback_add("SGM/datafetch_dimis_lm2", datafetch_dimis_lm2)
 mqttclient.message_callback_add("SGM/datafetch_maxim", datafetch_maxim)
 mqttclient.message_callback_add("SGM/datafetch_outback", datafetch_outback)
 mqttclient.message_callback_add("SGM/datafetch_navsemi", datafetch_navsemi)
