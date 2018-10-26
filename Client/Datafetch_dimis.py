@@ -77,13 +77,13 @@ utils.todbdimis(value_GM)
 mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
 
 
-value_LM1=dishelper(ip_eth0,port_LM1)
+value_LM1=dimishelper(ip_eth0,port_LM1)
 utils.todbdimis(value_LM1)
 mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
 
 
 if (id_node == 7|9):
-	value_LM2=dishelper(ip_eth0,port_LM2)
+	value_LM2=dimishelper(ip_eth0,port_LM2)
 	utils.todbdimis(value_LM2)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
 
