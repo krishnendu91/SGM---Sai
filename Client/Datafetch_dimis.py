@@ -21,61 +21,73 @@ port_LM2=10003
 port_LM3=10004
 
 # Create a TCP/IP socket
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
+def dimishelper(ip, port):
+	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+	print('Dimis polling begins')
 # Bind the socket to the server port
-server_address = (ip_eth0, port_GM)
-print('Starting up on %s port %s' % server_address)
-sock.bind(server_address)
+	server_address = (ip_eth0, port_GM)
+#	print('Starting up on %s port %s' % server_address)
+	sock.bind(server_address)
 
 # Listen for incoming connections
-sock.listen(1)
-a=1
-b=1
-while a:
+	sock.listen(1)
+	a=1
+	b=1
+	while a:
 	# Wait for a connection
-	print('waiting for a connection')
-	connection, client_address = sock.accept()
-	count = 0
-	print('Starting up on %s port %s' % server_address)
-	data = bytearray()
-	while b:
+		print('waiting for a connection')
+		connection, client_address = sock.accept()
+		count = 0
+		print('Starting up on %s port %s' % server_address)
+		data = bytearray()
+		while b:
 		# Receive the data in small chunks
-		data += connection.recv(16)
-		if '\r\n' in data.decode():
+			data += connection.recv(16)
+			if '\r\n' in data.decode():
 			# when a full message is received
-			val = data.decode().split('\r\n')
+				val = data.decode().split('\r\n')
 #			print('received %s' % val
-			time.sleep(0.5)
-			if count == 0:
-				connection.sendall(
-					('{"opt":"RC","GTW":{"protV":"Core-1A_Energy-1A","PN":"DA01-0021","SN":"170092"},timestamp":'+ str(round(time.time() * 1000)) + '}').encode())
-			else:
-				
-				connection.sendall(
-					('{"opt":"R","GTW":{"protV":"Core-1A_Energy-1A","PN":"DA01-0021","SN":"170092"},"timestamp":'+ str(round(time.time() * 1000)) + '}').encode())
-			count += 1
-			if len(val[1]) > 0:
-				data = val[1].encode()
-			else:
-				data = bytearray()
 				time.sleep(0.5)
-			if count >2:
-				b=0
-	a=0
-# Clean up the connection
-connection.close()
+				if count == 0:
+					connection.sendall(
+						('{"opt":"RC","GTW":{"protV":"Core-1A_Energy-1A","PN":"DA01-0021","SN":"170092"},timestamp":'+ str(round(time.time() * 1000)) + '}').encode())
+				else:
+				
+					connection.sendall(
+						('{"opt":"R","GTW":{"protV":"Core-1A_Energy-1A","PN":"DA01-0021","SN":"170092"},"timestamp":'+ str(round(time.time() * 1000)) + '}').encode())
+				count += 1
+				if len(val[1]) > 0:
+					data = val[1].encode()
+				else:
+					data = bytearray()
+					time.sleep(0.5)
+				if count >2:
+					b=0
+		a=0
+	# Clean up the connection
+	connection.close()
 
-#decode dimis to match ASGM format
-value_GM1=utils.dimisdecode(val[0])
-print (value_GM1)
+	#decode dimis to match ASGM format
+	value=utils.dimisdecode(val[0])
+	return value
+#Read from GM1
+value_GM=dimishelper(ip_eth0,port_GM)
+utils.todbdimis(value_GM)
+mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
+g
 
-#DB Dump
-utils.todbdimis(value_GM1)
+value_LM1=dishelper(ip_eth0,port_LM1)
+utils.todbdimis(value_LM1)
+mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
+
+
+if (id_node = 7|9):
+	value_LM2=dishelper(ip_eth0,port_LM2)
+	utils.todbdimis(value_LM2)
+	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
+
 
 #utils.switchstatus()
-#Data trasfer to CS Service
-mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis","DONE",ip_wlan0)
 print("MQTT Success")
 
