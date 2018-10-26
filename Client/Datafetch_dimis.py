@@ -22,6 +22,12 @@ port_LM3=10004
 
 # Create a TCP/IP socket
 def dimishelper(ip, port):
+	if port==10001:
+		meterType=1
+	elif port==10002:
+		meterType=2
+	elif port==10003:
+		meterType=3
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 	print('Dimis polling begins for ' +str(port))
@@ -69,7 +75,7 @@ def dimishelper(ip, port):
 	connection.close()
 
 	#decode dimis to match ASGM format
-	value=utils.dimisdecode(val[0])
+	value=utils.dimisdecode(val[0],meterType)
 	return value
 #Read from GM1
 value_GM=dimishelper(ip_eth0,port_GM)
