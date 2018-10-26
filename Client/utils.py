@@ -19,7 +19,8 @@ def sysinfo():
   else:
     nodeId=int(id_node[-1:])
   return(ip_eth0,ip_wlan0,nodeId)
-def dimisdecode(val):
+
+def dimisdecode(val,meterType):
   ip_eth0,ip_wlan0,nodeId=sysinfo()
   json_val=json.loads(val)
   data=json_val['devs'][-1]['data']
@@ -90,7 +91,7 @@ def dimisdecode(val):
   D8=data[44]
   timestamp=datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 #Jsonify decoded values
-  data={'nodeid':nodeId,'meterType':1,'time':timestamp,'v1':v1,'v2':v2,'v3':v3,'i1':i1,'i2':i2,'i3':i3,'w1':w1,'w2':w2,'w3':w3,'var1':var1,'var2':var2,'var3':var3,'va1':va1,'va2':va2,'va3':va3,'pf1':pf1,'pf2':pf2,'pf3':pf3,'f1':f1,'f2':f2,'f3':f3,'wh':wh,'vah':vah,'varh':varh,'wh1':wh1,'wh2':wh2,'wh3':wh3,'varh1':varh1,'varh2':varh2,'varh3':varh3,'vah1':vah1,'vah2':vah2,'vah3':vah3,'D1':D1,'D2':D2,'D3':D3,'D4':D4,'D5':D5,'D6':D6,'D7':D7,'D8':D8}
+  data={'nodeid':nodeId,'meterType':meterType,'time':timestamp,'v1':v1,'v2':v2,'v3':v3,'i1':i1,'i2':i2,'i3':i3,'w1':w1,'w2':w2,'w3':w3,'var1':var1,'var2':var2,'var3':var3,'va1':va1,'va2':va2,'va3':va3,'pf1':pf1,'pf2':pf2,'pf3':pf3,'f1':f1,'f2':f2,'f3':f3,'wh':wh,'vah':vah,'varh':varh,'wh1':wh1,'wh2':wh2,'wh3':wh3,'varh1':varh1,'varh2':varh2,'varh3':varh3,'vah1':vah1,'vah2':vah2,'vah3':vah3,'D1':D1,'D2':D2,'D3':D3,'D4':D4,'D5':D5,'D6':D6,'D7':D7,'D8':D8}
   return data
 
 #DB Dump for Dimis
