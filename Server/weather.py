@@ -12,9 +12,9 @@ api_page = urlopen(url)
 api=api_page.read()
 json_api=json.loads(api)
 data= json_api['currently']
-print(data)
-
+#print(data)
 cur.execute("INSERT INTO weather(time,summary,icon, precipIntensity, precipProbability, precipType, temperature, apparentTemperature,dewPoint,humidity,pressure,windSpeed,windGust,windBearing,cloudCover,uvIndex,visibility,ozone)VALUES(%(time)s,%(summary)s,%(icon)s, %(precipIntensity)s, %(precipProbability)s, %(precipType)s, %(temperature)s, %(apparentTemperature)s,%(dewPoint)s,%(humidity)s,%(pressure)s,%(windSpeed)s,%(windGust)s,%(windBearing)s,%(cloudCover)s,%(uvIndex)s,%(visibility)s,%(ozone)s);",data)
 cur.close()
 conn.commit()
 conn.close()
+print("DB Update completed")
