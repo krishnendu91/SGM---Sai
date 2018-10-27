@@ -21,7 +21,7 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
-@app.route('weather')
+@app.route('/weather')
 def weather():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from weather ORDER BY id DESC LIMIT 1 ')
