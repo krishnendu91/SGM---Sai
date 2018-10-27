@@ -21,9 +21,16 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
+@app.route('weather')
+def weather():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from weather ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'current weather' : r})
+
 
 @app.route('/dimis/recentgm')
-def recent():
+def recentgm():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
