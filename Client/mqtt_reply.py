@@ -22,12 +22,20 @@ def mqttack():
 	client1.on_message = on_message
 	client1.loop_forever()
 
-def dbclear(txId):
-	conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
-	cur=conn.cursor()
-	cur.execute("DELETE FROM nodeData where id = %s;",txId)
-	cur.close()
-	conn.commit()
-	conn.close()
-	print ("DB clear success")
-	
+def dbclear(txId,dev):
+	if (dev ==1):
+		conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+		cur=conn.cursor()
+		cur.execute("DELETE FROM nodeData where id = %s;",txId)
+		cur.close()
+		conn.commit()
+		conn.close()
+		print ("DB clear success")
+	elif(dev==0):
+		conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+		cur=conn.cursor()
+		cur.execute("DELETE FROM event where id = %s;",txId)
+		cur.close()
+		conn.commit()
+		conn.close()
+		print ("DB clear success")
