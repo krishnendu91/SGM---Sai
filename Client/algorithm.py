@@ -5,7 +5,7 @@ cur=conn.cursor()
 def poweroutage(v1,v2,v3):
   if (v1&v2&v3==0):
     print("no input voltage supply")
-    INSERT INTO `event` (`nodeId`, `errorId`, `errorMsg`, `errorVal`) VALUES ('5', '1', 'no input voltage supply', '230')    
+   cur.execute(INSERT INTO `event` (`nodeId`, `errorId`, `errorMsg`, `errorVal`) VALUES ('5', '1', 'no input voltage supply', '230');)
     #return 
   if (v1|v2|v3==0):
     print("Line fault")
@@ -17,4 +17,4 @@ def frequency(f1,f2,f3):
   if(f1|f2|f3 >50.5):
     print("High Frequency")
     
-INSERT INTO `event` (`id`, `nodeId`, `errorTime`, `errorId`, `errorMsg`, `errorVal`) VALUES ('1', '5', CURRENT_TIMESTAMP, '1', 'Low Voltage', '230')
+#INSERT INTO `event` (`id`, `nodeId`, `errorTime`, `errorId`, `errorMsg`, `errorVal`) VALUES ('1', '5', CURRENT_TIMESTAMP, '1', 'Low Voltage', '230')
