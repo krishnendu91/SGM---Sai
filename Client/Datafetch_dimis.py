@@ -84,13 +84,13 @@ if(id_node ==2|3|4|5|6|8|10|11|13):
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
-	algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],ip_wlan0)
+	algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],id_node,ip_wlan0)
 	
 	#Fetch LM1
 	value_LM1=dimishelper(ip_eth0,port_LM1)
 	utils.todbdimis(value_LM1)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
-	algorithm.poweroutage(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],ip_wlan0)
+	algorithm.poweroutage(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],id_node,ip_wlan0)
 
 
 elif (id_node == 7|9|12):
@@ -98,26 +98,26 @@ elif (id_node == 7|9|12):
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
-	algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],ip_wlan0)
+	algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],id_node,ip_wlan0)
 
 	#Fetch LM1
 	value_LM1=dimishelper(ip_eth0,port_LM1)
 	utils.todbdimis(value_LM1)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
-	algorithm.poweroutage(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],ip_wlan0)
+	algorithm.poweroutage(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],id_node,ip_wlan0)
 
 	#Fetch LM2
 	value_LM2=dimishelper(ip_eth0,port_LM2)
 	utils.todbdimis(value_LM2)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm2","DONE",ip_wlan0)
-	algorithm.poweroutage(value_LM2['v1'],value_LM2['v2'],value_LM2['v3'],ip_wlan0)
+	algorithm.poweroutage(value_LM2['v1'],value_LM2['v2'],value_LM2['v3'],id_node,ip_wlan0)
 
 else:#for source node
 	#Fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
-	algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],id_node.ip_wlan0)
+	algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],id_node,ip_wlan0)
 	
 
 #utils.switchstatus()
