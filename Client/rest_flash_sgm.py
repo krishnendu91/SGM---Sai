@@ -104,6 +104,14 @@ def switchstatus():
 	cur.execute('select * from switchState ORDER BY id DESC LIMIT 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Switch Status' : r})
+
+@app.route('/events')
+def events():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from event ORDER BY id DESC LIMIT 1')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Event Data' : r})
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug=1)
 
