@@ -2,12 +2,13 @@ import pymysql,mqtt_reply,mqttservice
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
 
-def poweroutage(v1,v2,v3,ip_wlan0):
+def poweroutage(v1,v2,v3,nodeId,ip_wlan0):
   check = v1 or v2 or v3 
-  print(check)
-  if (v1 or v2 or v3 ==0):
-    print("no input voltage supply")
-    cur.execute("INSERT INTO `event` (`nodeId`, `errorId`, `errorMsg`, `errorVal`) VALUES ('5', '1', 'no input voltage supply', '230');")
+  print type((check))
+  if (check == 0):
+    data={'nodeId':nodeId,'errorId':1,'errorMsg':'no input voltage supply','errorVal':check}
+    print(data)
+    cur.execute("INSERT INTO `event` (`nodeId`, `errorId`, `errorMsg`, `errorVal`) VALUES (%(nodeId)s, %(errorId)s, %(errorMsg)s, %(errorVal)s);",data)
     mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_events","DONE",ip_wlan0)
     #return 
   #if (v1|v2|v3==0):
