@@ -3,7 +3,7 @@
 # Version 1.0a
 #Real time data collection from Evoleo Dimis Energy Meter
 import sys
-import socket,mqttservice
+import socket,mqttservice,algorithm
 import time,json
 from datetime import datetime
 import pymysql
