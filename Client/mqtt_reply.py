@@ -7,9 +7,10 @@ def on_message(client1, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	reply = payload['message']
 	txId = payload['id']
+	
 
 	if reply == "SUCCESS":
-		dbclear(txId)
+		#dbclear(txId)
 		print("ack received")
 	else:
 		print("ack failed")
