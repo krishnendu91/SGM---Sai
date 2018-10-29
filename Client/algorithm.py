@@ -4,8 +4,8 @@ cur=conn.cursor()
 
 def poweroutage(v1,v2,v3,nodeId,ip_wlan0):
   check = v1 or v2 or v3 
-  print(type(check))
-  if (check == 0):
+  print(check)
+  if (check > 0):
     data={'nodeId':nodeId,'errorId':1,'errorMsg':'no input voltage supply','errorVal':check}
     print(data)
     cur.execute("INSERT INTO event(`nodeId`, `errorId`, `errorMsg`, `errorVal`) VALUES (%(nodeId)s, %(errorId)s, %(errorMsg)s, %(errorVal)s);",data)
