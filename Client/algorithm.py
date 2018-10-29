@@ -8,8 +8,8 @@ def poweroutage(v1,v2,v3,ip_wlan0):
     cur.execute("INSERT INTO `event` (`nodeId`, `errorId`, `errorMsg`, `errorVal`) VALUES ('5', '1', 'no input voltage supply', '230');")
     mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_events","DONE",ip_wlan0)
     #return 
-  if (v1|v2|v3==0):
-    print("Line fault")
+  #if (v1|v2|v3==0):
+   # print("Line fault")
 
 def frequency(f1,f2,f3):
   if(f1|f2|f3 <49.5):
