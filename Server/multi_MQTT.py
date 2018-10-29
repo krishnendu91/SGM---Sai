@@ -2,12 +2,13 @@
 import sys
 import os
 import paho.mqtt.client as paho
-import json,grabrest,mqtt_reply
+import json,grabrest,mqtt_reply,pymysql
 
 global mqttclient;
 global broker;
 global port;
-
+conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+cur=conn.cursor()
 broker = "192.168.112.110";
 port = 1883;
 mypid = os.getpid()
@@ -16,6 +17,7 @@ client_uniq = "pubclient_"+str(mypid)
 mqttclient = paho.Client(client_uniq, False) #nocleanstart
 mqttclient.connect(broker, port, 60)
 mqttclient.subscribe("SGM/#")
+
 
 def datagrab(payload,api,dev):
 	ip_wlan0 = payload['ip']
@@ -73,6 +75,11 @@ def datafetch_navsemi(client, userdata, msg):
 def datafetch_gsm(client, userdata, msg):
 	print("GSM Data received")
 	#TBD
+def datafetch_events(client, userdata, msg):
+	print("Event Data received")
+	payload=json.loads(msg.payload.decode())
+	datagrab(payload,'event',0) 
+	
 
 #Subscribed Topics  
 mqttclient.message_callback_add("SGM/test1", test1)
@@ -83,6 +90,7 @@ mqttclient.message_callback_add("SGM/datafetch_maxim", datafetch_maxim)
 mqttclient.message_callback_add("SGM/datafetch_outback", datafetch_outback)
 mqttclient.message_callback_add("SGM/datafetch_navsemi", datafetch_navsemi)
 mqttclient.message_callback_add("SGM/datafetch_gsm", datafetch_gsm)
+mqttclient.message_callback_add("SGM/datafetch_events", datafetch_events)
 
 
 mqttclient.loop_forever()
