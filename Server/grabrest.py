@@ -30,7 +30,7 @@ def grab(ip,api_req,dev):
     print ("Website grabbed")
     print (data)
     txId=data['id']
-    weatherID = cur.execute("SELECT id from weather ORDER BY id DESC LIMIT 1")
+    weatherID = cur.execute("SELECT id FROM weather ORDER BY id DESC LIMIT 1")
     data['weatherID']=weatherID
     cur.execute("INSERT INTO `event` (nodeId, errorId, errorMsg, errorVal,errorTime,weatherID) VALUES(%(nodeId)s,%(errorId)s,%(errorMsg)s,%(errorVal)s,%(errorTime)s,%(weatherID)s);",data)
     print(data)
