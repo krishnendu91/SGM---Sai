@@ -79,7 +79,7 @@ def dimishelper(ip, port):
 	return value
 #Read from GM1
 
-if(id_node ==2|3|4|5|6|8|10|11|13):
+if(id_node ==2 or 3 or 4 or 5 or 6 or 8 or 10 or 11 or 13):
 	#fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
@@ -93,7 +93,7 @@ if(id_node ==2|3|4|5|6|8|10|11|13):
 	algorithm.poweroutage(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],id_node,ip_wlan0)
 
 
-elif (id_node == 7|9|12):
+elif (id_node == 7 or 9 or 12):
 	#Fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
