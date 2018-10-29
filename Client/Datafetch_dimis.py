@@ -81,7 +81,7 @@ def dimishelper(ip, port):
 value_GM=dimishelper(ip_eth0,port_GM)
 utils.todbdimis(value_GM)
 mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
-algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],ip_wlan0
+algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],ip_wlan0)
 
 value_LM1=dimishelper(ip_eth0,port_LM1)
 utils.todbdimis(value_LM1)
