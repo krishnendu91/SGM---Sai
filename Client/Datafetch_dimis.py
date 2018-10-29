@@ -79,7 +79,7 @@ def dimishelper(ip, port):
 	return value
 #Read from GM1
 
-if(id_node ==2|3|4|5|6|8|10|11|13)
+if(id_node ==2|3|4|5|6|8|10|11|13):
 	#fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
