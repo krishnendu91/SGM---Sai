@@ -6,6 +6,8 @@ def poweroutage(v1,v2,v3,meterId,nodeId,ip_wlan0):
   check = v1 or v2 or v3 
   print(check)
   if (check > 0):
+    conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+    cur=conn.cursor()
     data={'nodeId':nodeId,'errorId':1,'errorMsg':'no input voltage supply','errorVal':check,'meterId':meterId}
     print(data)
     cur.execute("INSERT INTO event(nodeId, meterId, errorId, errorMsg, errorVal) VALUES(%(nodeId)s, %(meterId)s, %(errorId)s, %(errorMsg)s, %(errorVal)s );",data)
