@@ -9,6 +9,9 @@ def poweroutage(v1,v2,v3,meterId,nodeId,ip_wlan0):
     data={'nodeId':nodeId,'errorId':1,'errorMsg':'no input voltage supply','errorVal':check,'meterId':meterId}
     print(data)
     cur.execute("INSERT INTO event(nodeId, meterId, errorId, errorMsg, errorVal) VALUES(%(nodeId)s, %(meterId)s, %(errorId)s, %(errorMsg)s, %(errorVal)s );",data)
+    conn.commit()
+    conn.close()
+    
     print("Event table updated")
     mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_events","DONE",ip_wlan0)
     #return 
