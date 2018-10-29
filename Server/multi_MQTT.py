@@ -78,7 +78,7 @@ def datafetch_gsm(client, userdata, msg):
 def datafetch_events(client, userdata, msg):
 	print("Event Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'event',0) 
+	datagrab(payload,'events',0) 
 	
 
 #Subscribed Topics  
