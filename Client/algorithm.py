@@ -6,7 +6,7 @@ def poweroutage(v1,v2,v3,ip_wlan0):
   if (v1&v2&v3==0):
     print("no input voltage supply")
     cur.execute(INSERT INTO `event` (`nodeId`, `errorId`, `errorMsg`, `errorVal`) VALUES ('5', '1', 'no input voltage supply', '230');)
-    mqttservice.mqtt_publish("192.168.112.110",1883,"event","DONE",ip_wlan0)
+    mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_events","DONE",ip_wlan0)
     #return 
   if (v1|v2|v3==0):
     print("Line fault")
