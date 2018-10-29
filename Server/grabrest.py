@@ -32,7 +32,7 @@ def grab(ip,api_req,dev):
     txId=data['id']
     weatherID = cur.execute("SELECT id from weather ORDER BY id DESC LIMIT 1")
     data['weatherID']=weatherID
-    cur.execute("INSERT INTO `event` (nodeId, errorId, errorMsg, errorVal,errorTime,weatherID) VALUES(%(nodeId)s,%(errorID)s,%(errorMsg)s,%(errorVal)s,%(errorTime)s,%(weatherID)s);",data)
+    cur.execute("INSERT INTO `event` (nodeId, errorId, errorMsg, errorVal,errorTime,weatherID) VALUES(%(nodeId)s,%(errorId)s,%(errorMsg)s,%(errorVal)s,%(errorTime)s,%(weatherID)s);",data)
     print(data)
   else:
     print("none")
