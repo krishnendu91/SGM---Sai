@@ -67,9 +67,9 @@ def frequency(f1,f2,f3,meterId,nodeId,ip_wlan0):
     conn.commit()
     conn.close() 
  
-def powerquality(v1,v2,v3,meterId,nodeId,ip_wlan0)
+#def powerquality(v1,v2,v3,meterId,nodeId,ip_wlan0)
   
-def current(i1,i2,i3,meterId,nodeId,ip_wlan0)
+#def current(i1,i2,i3,meterId,nodeId,ip_wlan0)
 
     
 #INSERT INTO `event` (`id`, `nodeId`, `errorTime`, `errorId`, `errorMsg`, `errorVal`) VALUES ('1', '5', CURRENT_TIMESTAMP, '1', 'Low Voltage', '230')
