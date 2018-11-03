@@ -1,7 +1,7 @@
 import pymysql,mqtt_reply,mqttservice
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
-
+errorVal=0
 def poweroutage(v1,v2,v3,meterId,nodeId,ip_wlan0):
   if (v1 and v2 and v3 < 0):
     errorVal= v1 and v2 and v3
@@ -32,7 +32,7 @@ def poweroutage(v1,v2,v3,meterId,nodeId,ip_wlan0):
     conn.commit()
     conn.close()
 
-def frequency(f1,f2,f3):
+def frequency(f1,f2,f3,meterId,nodeId,ip_wlan0):
   if (f1 or f2 or f3 <49.3):
     if(f1==0):
       errorVal=f1  
@@ -66,5 +66,10 @@ def frequency(f1,f2,f3):
     cur.execute("INSERT INTO event(nodeId, meterId, errorId, errorMsg, errorVal) VALUES(%(nodeId)s, %(meterId)s, %(errorId)s, %(errorMsg)s, %(errorVal)s );",data)
     conn.commit()
     conn.close() 
+ 
+def powerquality(v1,v2,v3,meterId,nodeId,ip_wlan0)
+  
+def current(i1,i2,i3,meterId,nodeId,ip_wlan0)
+
     
 #INSERT INTO `event` (`id`, `nodeId`, `errorTime`, `errorId`, `errorMsg`, `errorVal`) VALUES ('1', '5', CURRENT_TIMESTAMP, '1', 'Low Voltage', '230')
