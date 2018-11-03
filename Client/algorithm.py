@@ -1,7 +1,7 @@
 import pymysql,mqtt_reply,mqttservice
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
-errorVal=0
+global errorVal=0
 def poweroutage(v1,v2,v3,meterId,nodeId,ip_wlan0):
   if (v1 and v2 and v3 < 0):
     errorVal= v1 and v2 and v3
