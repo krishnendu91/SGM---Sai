@@ -109,7 +109,7 @@ def current(i1,i2,i3,meterId,nodeId,ip_wlan0):
       conn.close()
       print("Event table updated")
       mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_events","DONE",ip_wlan0)
-    else
+    else:
       errorVal_i=0
     
 
