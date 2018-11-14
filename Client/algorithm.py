@@ -81,7 +81,7 @@ def frequency(f1,f2,f3,meterId,nodeId,ip_wlan0):
     print("Event table updated")
     mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_events","DONE",ip_wlan0)
  
-def powerquality(v1,v2,v3,meterId,nodeId,ip_wlan0)
+def powerquality(v1,v2,v3,meterId,nodeId,ip_wlan0):
     if (200<v1 or v2 or v3 >250):
       errorVal_pq=v1 or v2 or v3
       conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
@@ -96,7 +96,7 @@ def powerquality(v1,v2,v3,meterId,nodeId,ip_wlan0)
     else:
       errorVal_pq=0
     
-def current(i1,i2,i3,meterId,nodeId,ip_wlan0)
+def current(i1,i2,i3,meterId,nodeId,ip_wlan0):
     if (i1 or i2 or i3 >5):
       errorVal_i=i1 or i2 or i3
       conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
