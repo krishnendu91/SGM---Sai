@@ -90,7 +90,7 @@ def yhistory():
 @app.route('/dimis/event')
 def event():
         cur = mysql.connect().cursor()
-        cur.execute('select * from event where errorTime >= DATE_SUB(NOW(),INTERVAL 1 YEAR)')
+        cur.execute('select * from event where errorTime >= DATE_SUB(NOW(),INTERVAL 1 DAY)')
         r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
         return jsonify({'Event Data' : r})
 
