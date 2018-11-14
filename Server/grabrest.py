@@ -36,7 +36,7 @@ def grab(ip,api_req,dev):
     weatherID=weatherID[0]
     data['weatherID']=weatherID
     print(weatherID)
-    cur.execute("INSERT INTO `event` (nodeId, errorId, errorMsg, errorVal,errorTime,weatherID) VALUES(%(nodeId)s,%(errorId)s,%(errorMsg)s,%(errorVal)s,%(errorTime)s,%(weatherID)s);",data)
+    cur.execute("INSERT INTO `event` (nodeId,meterId, errorId, errorMsg, errorVal,errorTime,weatherID) VALUES(%(nodeId)s,%(meterId)s,%(errorId)s,%(errorMsg)s,%(errorVal)s,%(errorTime)s,%(weatherID)s);",data)
     print(data)
   else:
     print("none")
