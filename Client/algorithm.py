@@ -42,6 +42,7 @@ def poweroutage(v1,v2,v3,meterId,nodeId,ip_wlan0):
     print("Event table updated")
     mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_events","DONE",ip_wlan0)
 
+    
 def frequency(f1,f2,f3,meterId,nodeId,ip_wlan0):
   if (f1 or f2 or f3 <49.3):
     if(f1==0):
