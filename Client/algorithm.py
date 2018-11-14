@@ -54,7 +54,7 @@ def frequency(f1,f2,f3,meterId,nodeId,ip_wlan0):
       errorVal_f=0
     conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
     cur=conn.cursor()
-    data={'nodeId':nodeId,'errorId':1,'errorMsg':'Low Frequency Error','errorVal':errorVal,'meterId':meterId}
+    data={'nodeId':nodeId,'errorId':1,'errorMsg':'Low Frequency Error','errorVal':errorVal_f,'meterId':meterId}
     print(data)
     cur.execute("INSERT INTO event(nodeId, meterId, errorId, errorMsg, errorVal) VALUES(%(nodeId)s, %(meterId)s, %(errorId)s, %(errorMsg)s, %(errorVal)s );",data)
     conn.commit()
