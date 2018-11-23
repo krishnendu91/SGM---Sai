@@ -9,7 +9,7 @@ def getmeterid(nodeid,metertype):
   conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
   cur=conn.cursor()
   cur.execute("SELECT meterID FROM `Meter` WHERE nodeId=%s and meterType=%s;",(nodeid,metertype))
-  meterid=cur.ferchall()
+  meterid=cur.fetchall()
   meterid=int(meterid)
   print(meterid)
 
