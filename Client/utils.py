@@ -5,6 +5,12 @@ from datetime import datetime
 import pymysql
 from subprocess import check_output
 
+def getmeterid()
+  conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+  cur=conn.cursor()
+  
+return meterid
+
 def sysinfo():
 #get IP addresses
   ip_scanoutput=check_output(["hostname -I"],shell=1)
