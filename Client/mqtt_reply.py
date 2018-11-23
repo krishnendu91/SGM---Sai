@@ -10,7 +10,7 @@ def on_message(client1, userdata, msg):
 	
 
 	if reply == "SUCCESS":
-		#dbclear(txId)
+		#dbclear(txId,dev)
 		print("ack received")
 	else:
 		print("ack failed")
