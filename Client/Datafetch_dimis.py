@@ -20,14 +20,22 @@ port_LM1=10002
 port_LM2=10003
 port_LM3=10004
 
+#Get Meter ID with respect to the node
+meterId_GM1=utils.getmeterid(id_node,'GM1')
+meterId_GM2=utils.getmeterid(id_node,'GM2')
+meterId_LM=utils.getmeterid(id_node,'LM')
+
 # Create a TCP/IP socket
 def dimishelper(ip, port):
 	if port==10001:
 		meterType=1
+		meterId=meterId_GM1
 	elif port==10002:
 		meterType=2
+		meterId=meterId_LM
 	elif port==10003:
 		meterType=3
+		meterId=meterId_GM2
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 	print('Dimis polling begins for ' +str(port))
@@ -75,7 +83,7 @@ def dimishelper(ip, port):
 	connection.close()
 
 	#decode dimis to match ASGM format
-	value=utils.dimisdecode(val[0],meterType)
+	value=utils.dimisdecode(val[0],meterType,meterId)
 	return value
 #Read from GM1
 
