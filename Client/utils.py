@@ -12,7 +12,7 @@ def getmeterid(nodeid,metertype):
   cur=conn.cursor()
   cur.execute("SELECT meterID FROM `Meter` WHERE nodeId=%s and meterType=%s;",(nodeid,metertype))
   meterid=cur.fetchone()
-  meterid=int(meterid[1])
+  meterid=int(meterid[0])
   print(meterid)
   print(type(meterid))
 
