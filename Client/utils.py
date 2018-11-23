@@ -6,6 +6,8 @@ import pymysql
 from subprocess import check_output
 
 def getmeterid(nodeid,metertype):
+  nodeid=str(nodeid)
+  metertype=str(metertype)
   conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
   cur=conn.cursor()
   cur.execute("SELECT meterID FROM `Meter` WHERE nodeId=%s and meterType=%s;",(nodeid,metertype))
