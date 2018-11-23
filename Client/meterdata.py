@@ -2,4 +2,4 @@
 
 import utils
 
-utils.getmeterid(5,LM)
+utils.getmeterid(5,"LM")
