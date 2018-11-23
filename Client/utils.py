@@ -13,8 +13,8 @@ def getmeterid(nodeid,metertype):
   cur.execute("SELECT meterID FROM `Meter` WHERE nodeId=%s and meterType=%s;",(nodeid,metertype))
   meterid=cur.fetchone()
   meterid=int(meterid[0])
-  print(meterid)
-  print(type(meterid))
+  #print(meterid)
+  return meterid
 
 def sysinfo():
 #get IP addresses
