@@ -83,7 +83,7 @@ def datafetch_events(client, userdata, msg):
 def node_alive(client, userdata, msg):
 	print("Alive beacon received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'alive',0)
+	datagrab(payload,'alive',100)
 	
 
 #Subscribed Topics  
