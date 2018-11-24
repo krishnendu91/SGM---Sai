@@ -18,7 +18,7 @@ temp=temp.replace("'C\n","")
 #signal=subprocess.check_output(["iwconfig", "wlan0", "|" "grep "Signal""])
 s=subprocess.check_output(["iwconfig", "wlan0"])
 s=s.decode()
-ss=s.split()[27]
+ss=s.split()[28]
 ssid=s.split()[3]
 ssid=ssid.replace("ESSID:","")
 ss=ss.replace("level=","")	
