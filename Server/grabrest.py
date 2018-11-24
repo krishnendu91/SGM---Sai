@@ -38,6 +38,14 @@ def grab(ip,api_req,dev):
     print(weatherID)
     cur.execute("INSERT INTO `event` (nodeId,meterId, errorId, errorMsg, errorVal,errorTime,weatherID) VALUES(%(nodeId)s,%(meterId)s,%(errorId)s,%(errorMsg)s,%(errorVal)s,%(errorTime)s,%(weatherID)s);",data)
     print(data)
+  elif dev==100:
+    json_api=json.loads(api)
+    data= json_api['Alive'][-1]
+    print ("Website grabbed")
+    print (data)
+    cur.execute("INSERT INTO nodeHealth(nodeid,alive,temp,SSID,wlan_ss) VALUES(%(nodeid)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",dataHealth)
+    conn.commit()
+    conn.close()
   else:
     print("none")
   
