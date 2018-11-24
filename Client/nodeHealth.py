@@ -21,7 +21,8 @@ s=s.decode()
 ss=s.split()[27]
 ssid=s.split()[3]
 ssid=ssid.replace("ESSID:","")
-ss=ss.replace("level=","")		
+ss=ss.replace("level=","")	
+print(ssid,ss)
 #get node ID
 id_scanoutput=check_output(["hostname"],shell=1)
 id_node=id_scanoutput.decode().split()[0]
