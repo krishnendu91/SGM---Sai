@@ -26,7 +26,7 @@ def alive():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeHealth ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	return jsonify({'Recent data' : r})
+	return jsonify({'Alive' : r})
 
 
 @app.route('/weather')
