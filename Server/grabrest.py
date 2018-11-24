@@ -43,7 +43,7 @@ def grab(ip,api_req,dev):
     data= json_api['Alive'][-1]
     print ("Website grabbed")
     print (data)
-    cur.execute("INSERT INTO nodeHealth(nodeid,alive,temp,SSID,wlan_ss) VALUES(%(nodeid)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",dataHealth)
+    cur.execute("INSERT INTO nodeHealth(nodeid,alive,temp,SSID,wlan_ss) VALUES(%(nodeid)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",data)
     conn.commit()
     conn.close()
   else:
