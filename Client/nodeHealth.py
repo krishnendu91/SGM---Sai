@@ -18,7 +18,7 @@ temp=temp.replace("'C\n","")
 #signal=subprocess.check_output(["iwconfig", "wlan0", "|" "grep "Signal""])
 s=subprocess.check_output(["iwconfig", "wlan0"])
 s=s.decode()
-ss=s.split()[30]
+ss=s.split()[29]
 ssid=s.split()[3]
 ssid=ssid.replace("ESSID:","")
 ss=ss.replace("level=","")	
@@ -32,10 +32,10 @@ else:
 	nodeId=int(id_node[-1:])
 
 #Store to DB
-dataHealth={'nodeid':nodeId,'alive':1,'temp':temp}
+dataHealth={'nodeid':nodeId,'alive':1,'temp':temp,'ssid':ssid,'ss':ss}
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
-cur.execute("INSERT INTO nodeHealth(nodeid,alive,temp) VALUES(%(nodeid)s,%(alive)s,%(temp)s);",dataHealth)
+cur.execute("INSERT INTO nodeHealth(nodeid,alive,temp,SSID,wlan_ss) VALUES(%(nodeid)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",dataHealth)
 conn.commit()
 conn.close()
 print ("DB Dump success")
