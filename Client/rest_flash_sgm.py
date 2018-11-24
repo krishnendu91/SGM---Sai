@@ -25,7 +25,7 @@ def alive():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeHealth ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	return jsonify({'Recent data' : r})
+	return jsonify({'Alive' : r})
 
 
 @app.route('/recentgm')
@@ -98,12 +98,7 @@ def yhistory():
         r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
         return jsonify({'Last one year' : r})
 
-@app.route('/alive')
-def alive():
-        cur = mysql.connect().cursor()
-        cur.execute('SELECT * FROM nodeHealth where timestamp ORDER BY id DESC LIMIT 150')
-        r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-        return jsonify({'node Health' : r})
+
 
 @app.route('/switchstatus')
 def switchstatus():
