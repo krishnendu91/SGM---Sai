@@ -79,6 +79,11 @@ def datafetch_events(client, userdata, msg):
 	print("Event Data received")
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'events',0) 
+
+def node_alive(client, userdata, msg):
+	print("Alive beacon received")
+	payload=json.loads(msg.payload.decode())
+	datagrab(payload,'alive',0)
 	
 
 #Subscribed Topics  
@@ -91,6 +96,8 @@ mqttclient.message_callback_add("SGM/datafetch_outback", datafetch_outback)
 mqttclient.message_callback_add("SGM/datafetch_navsemi", datafetch_navsemi)
 mqttclient.message_callback_add("SGM/datafetch_gsm", datafetch_gsm)
 mqttclient.message_callback_add("SGM/datafetch_events", datafetch_events)
+mqttclient.message_callback_add("SGM/node_alive", node_alive)
+
 
 
 mqttclient.loop_forever()
