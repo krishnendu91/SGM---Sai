@@ -13,7 +13,12 @@ temp=temp.decode()
 temp=temp.replace("temp=","")
 temp=temp.replace("'C\n","")
 
-		
+#signal=subprocess.check_output(["iwconfig", "wlan0", "|" "grep "Signal""])
+s=subprocess.check_output("iwconfig", "wlan0"])
+ss=s.split()[27]
+ssid=s.split()[3]
+ssid=ssid.replace("ESSID:","")
+ss=ss.replace("level=","")		
 #get node ID
 id_scanoutput=check_output(["hostname"],shell=1)
 id_node=id_scanoutput.decode().split()[0]
