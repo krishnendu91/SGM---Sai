@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import pymysql,sys,subprocess
+import pymysql,sys,subprocess,mqttservice
 from subprocess import check_output
 
 #get IP addresses
@@ -41,3 +41,4 @@ conn.close()
 print ("DB Dump success")
 
 #MQTT to server
+mqttservice.mqtt_publish("192.168.112.110",1883,"node_alive","DONE",ip_wlan0)
