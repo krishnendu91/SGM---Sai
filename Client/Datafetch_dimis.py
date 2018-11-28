@@ -134,7 +134,7 @@ elif (id_node == 7 | id_node == 9 |id_node == 12):
 	algorithm.frequency(value_GM2['v1'],value_GM2['v2'],value_GM2['v3'],value_GM2['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_GM2['v1'],value_GM2['v2'],value_GM2['v3'],value_GM2['meterType'],id_node,ip_wlan0)
 	algorithm.current(value_GM2['i1'],value_GM2['i2'],value_GM2['i3'],value_GM2['meterType'],id_node,ip_wlan0)
-elif (id_node == 1)::#for source node
+elif (id_node == 1):#for source node
 	#Fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
