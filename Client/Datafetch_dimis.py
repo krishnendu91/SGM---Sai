@@ -87,7 +87,7 @@ def dimishelper(ip, port):
 	return value
 #Read from GM1
 
-if(id_node ==2 or 3 or 4 or 5 or 6 or 8 or 10 or 11 or 13):
+if(1<id_node <9   | 9<id_node <12 | id_node ==13):
 	#fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
@@ -107,7 +107,7 @@ if(id_node ==2 or 3 or 4 or 5 or 6 or 8 or 10 or 11 or 13):
 	algorithm.current(value_LM1['i1'],value_LM1['i2'],value_LM1['i3'],value_LM1['meterType'],id_node,ip_wlan0)
 
 
-elif (id_node == 7 or 9 or 12):
+elif (id_node == 7 | id_node == 9 |id_node == 12):
 	#Fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
