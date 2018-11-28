@@ -21,7 +21,7 @@ s=s.decode()
 ss=s.split()[29]
 ssid=s.split()[3]
 ssid=ssid.replace("ESSID:","")
-ssid=ssid.replace("\","")
+ssid=ssid.replace("\n","")
 ss=ss.replace("level=","")	
 print(ssid,ss)
 #get node ID
