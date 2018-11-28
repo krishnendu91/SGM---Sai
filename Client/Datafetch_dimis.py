@@ -145,6 +145,6 @@ elif (id_node == 1):#for source node
 	algorithm.current(value_GM['i1'],value_GM['i2'],value_GM['i3'],value_GM['meterType'],id_node,ip_wlan0)
 	
 
-#utils.switchstatus()
+utils.switchstatus()
 print("MQTT Success")
 
