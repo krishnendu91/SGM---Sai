@@ -53,7 +53,7 @@ def dimishelper(ip, port):
 		print('waiting for a connection')
 		connection, client_address = sock.accept()
 		count = 0
-		print('Starting up on %s port %s' % server_address)
+		#print('Starting up on %s port %s' % server_address)
 		data = bytearray()
 		while b:
 		# Receive the data in small chunks
@@ -126,15 +126,15 @@ elif (id_node == 7 or 9 or 12):
 	algorithm.powerquality(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.current(value_LM1['i1'],value_LM1['i2'],value_LM1['i3'],value_LM1['meterType'],id_node,ip_wlan0)
 	
-	#Fetch LM2
-	value_LM2=dimishelper(ip_eth0,port_LM2)
-	utils.todbdimis(value_LM2)
-	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm2","DONE",ip_wlan0)
-	algorithm.poweroutage(value_LM2['v1'],value_LM2['v2'],value_LM2['v3'],value_LM2['meterType'],id_node,ip_wlan0)
-	algorithm.frequency(value_LM2['v1'],value_LM2['v2'],value_LM2['v3'],value_LM2['meterType'],id_node,ip_wlan0)
-	algorithm.powerquality(value_LM2['v1'],value_LM2['v2'],value_LM2['v3'],value_LM2['meterType'],id_node,ip_wlan0)
-	algorithm.current(value_LM2['i1'],value_LM2['i2'],value_LM2['i3'],value_LM2['meterType'],id_node,ip_wlan0)
-else:#for source node
+	#Fetch GM2
+	value_GM2=dimishelper(ip_eth0,port_GM2)
+	utils.todbdimis(value_GM2)
+	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm2","DONE",ip_wlan0)
+	algorithm.poweroutage(value_GM2['v1'],value_GM2['v2'],value_GM2['v3'],value_GM2['meterType'],id_node,ip_wlan0)
+	algorithm.frequency(value_GM2['v1'],value_GM2['v2'],value_GM2['v3'],value_GM2['meterType'],id_node,ip_wlan0)
+	algorithm.powerquality(value_GM2['v1'],value_GM2['v2'],value_GM2['v3'],value_GM2['meterType'],id_node,ip_wlan0)
+	algorithm.current(value_GM2['i1'],value_GM2['i2'],value_GM2['i3'],value_GM2['meterType'],id_node,ip_wlan0)
+elif (id_node == 1)::#for source node
 	#Fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
