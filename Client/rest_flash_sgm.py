@@ -27,6 +27,12 @@ def alive():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Alive' : r})
 
+@app.route('/switchState')
+def switchState():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from switchState ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'switchState' : r})
 
 @app.route('/recentgm')
 def recentgm():
