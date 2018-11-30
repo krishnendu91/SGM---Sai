@@ -45,6 +45,14 @@ def grab(ip,api_req,dev):
     print (data)
     cur.execute("INSERT INTO nodeHealth(nodeId,alive,temp,SSID,wlan_ss) VALUES(%(nodeId)s,%(alive)s,%(temp)s,%(SSID)s,%(wlan_ss)s);",data)
     txId=1
+  elif dev==101:
+    json_api=json.loads(api)
+    data= json_api['switchState'][-1]
+    print ("Website grabbed")
+    print (data)
+    cur.execute("INSERT INTO switchState(nodeId,C1,C2,C3,C4) VALUES(%(nodeId)s,%(C1)s,%(C2)s,%(C3)s,%(C4)s);",data)
+    txId=1
+  
   else:
     print("none")
   
