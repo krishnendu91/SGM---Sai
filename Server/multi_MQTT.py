@@ -85,6 +85,12 @@ def node_alive(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'alive',100)
 	
+def datafetch_switch(client, userdata, msg):
+	print("Switch Status received")
+	payload=json.loads(msg.payload.decode())
+	datagrab(payload,'switchState',101)
+
+	
 
 #Subscribed Topics  
 mqttclient.message_callback_add("SGM/test1", test1)
@@ -97,6 +103,7 @@ mqttclient.message_callback_add("SGM/datafetch_navsemi", datafetch_navsemi)
 mqttclient.message_callback_add("SGM/datafetch_gsm", datafetch_gsm)
 mqttclient.message_callback_add("SGM/datafetch_events", datafetch_events)
 mqttclient.message_callback_add("SGM/node_alive", node_alive)
+mqttclient.message_callback_add("SGM/datafetch_switch", datafetch_switch)
 
 
 
