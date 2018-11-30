@@ -48,8 +48,14 @@ def metertype():
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT * FROM `Meter` ORDER BY meterID ASC')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	return jsonify({'Project Sites' : r})
+	return jsonify({'Available Meters' : r})
 
+@app.route('/dimis/switchstate')
+def switchState():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from switchState ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'switchState' : r})
 
 @app.route('/dimis/recentgm')
 def recentgm():
