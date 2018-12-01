@@ -29,4 +29,4 @@ data={"dbtime":dbtime,"alive":alive,"timedrift":timedrift,"nodeid":nodeid}
 cur.execute("INSERT INTO `lastseen` (dbtime,alive,timedrift,nodeid) VALUES (%(dbtime)s,%(alive)s,%(timedrift)s,%(nodeid)s);",data)
 conn.commit()
 conn.close()
-print("DB Updated with alive state: " +str(alive))
+print("DB Updated with alive state: " +str(alive) + "for Node "+str(nodeid))
