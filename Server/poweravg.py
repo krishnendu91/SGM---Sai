@@ -4,9 +4,10 @@ import datetime
 
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
-cur.execute("SELECT timestamp FROM `nodeHealth` order by id desc limit 1;")
-dbtime=cur.fetchone()
-dbtime=dbtime[0]
+cur.execute("SELECT timestamp,nodeid FROM `nodeHealth` order by id desc limit 1;")
+data=cur.fetchone()
+dbtime=data[0]
+nodeid=data[1]
 print(dbtime)
 dbtimeE=dbtime.timestamp() #Epoch conversion
 print(dbtimeE)
