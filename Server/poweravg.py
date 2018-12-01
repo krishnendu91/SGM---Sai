@@ -25,8 +25,8 @@ if timedrift<1000:
 else:
   alive=0
 
-data={"dbtime":dbtime,"alive":alive,"timedrift":timedrift}
-cur.execute("INSERT INTO `lastseen` (dbtime,alive,timedrift) VALUES (%(dbtime)s,%(alive)s,%(timedrift)s);",data)
+data={"dbtime":dbtime,"alive":alive,"timedrift":timedrift,"nodeid":nodeid}
+cur.execute("INSERT INTO `lastseen` (dbtime,alive,timedrift,nodeid) VALUES (%(dbtime)s,%(alive)s,%(timedrift)s,%(nodeid)s);",data)
 conn.commit()
 conn.close()
 print("DB Updated with alive state: " +str(alive))
