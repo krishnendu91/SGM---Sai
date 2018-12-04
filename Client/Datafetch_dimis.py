@@ -137,6 +137,9 @@ elif (id_node == 7 | id_node == 9 |id_node == 12):
 elif (id_node == 1):#for source node
 	#Fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
+	value_GM['i1']=value_GM['i1']*16
+	value_GM['i2']=value_GM['i2']*16
+	value_GM['i3']=value_GM['i3']*16
 	utils.todbdimis(value_GM)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
 	algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
