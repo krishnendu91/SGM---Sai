@@ -96,7 +96,7 @@ if(1<id_node <9   | 9<id_node <12 | id_node ==13):
 	algorithm.frequency(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	algorithm.current(value_GM['i1'],value_GM['i2'],value_GM['i3'],value_GM['meterType'],id_node,ip_wlan0)
-	
+	print("GM1 Fetch Complete")
 	#Fetch LM1
 	value_LM1=dimishelper(ip_eth0,port_LM1)
 	utils.todbdimis(value_LM1)
@@ -105,7 +105,7 @@ if(1<id_node <9   | 9<id_node <12 | id_node ==13):
 	algorithm.frequency(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.current(value_LM1['i1'],value_LM1['i2'],value_LM1['i3'],value_LM1['meterType'],id_node,ip_wlan0)
-
+	print("LM1 Fetch Complete")
 
 elif (id_node == 7 | id_node == 9 |id_node == 12):
 	#Fetch GM
@@ -116,6 +116,7 @@ elif (id_node == 7 | id_node == 9 |id_node == 12):
 	algorithm.frequency(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	algorithm.current(value_GM['i1'],value_GM['i2'],value_GM['i3'],value_GM['meterType'],id_node,ip_wlan0)
+	print("GM1 Fetch Complete")
 	
 	#Fetch LM1
 	value_LM1=dimishelper(ip_eth0,port_LM1)
@@ -125,6 +126,7 @@ elif (id_node == 7 | id_node == 9 |id_node == 12):
 	algorithm.frequency(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.current(value_LM1['i1'],value_LM1['i2'],value_LM1['i3'],value_LM1['meterType'],id_node,ip_wlan0)
+	print("LM1 Fetch Complete")
 	
 	#Fetch GM2
 	value_GM2=dimishelper(ip_eth0,port_GM2)
@@ -134,6 +136,8 @@ elif (id_node == 7 | id_node == 9 |id_node == 12):
 	algorithm.frequency(value_GM2['v1'],value_GM2['v2'],value_GM2['v3'],value_GM2['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_GM2['v1'],value_GM2['v2'],value_GM2['v3'],value_GM2['meterType'],id_node,ip_wlan0)
 	algorithm.current(value_GM2['i1'],value_GM2['i2'],value_GM2['i3'],value_GM2['meterType'],id_node,ip_wlan0)
+	print("GM2 Fetch Complete")
+	
 elif (id_node == 1):#for source node
 	#Fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
@@ -146,7 +150,7 @@ elif (id_node == 1):#for source node
 	algorithm.frequency(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	algorithm.current(value_GM['i1'],value_GM['i2'],value_GM['i3'],value_GM['meterType'],id_node,ip_wlan0)
-	
+	print("GM1 Fetch Complete")
 
 utils.switchstatus()
 mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_switch","DONE",ip_wlan0)
