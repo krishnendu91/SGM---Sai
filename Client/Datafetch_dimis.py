@@ -86,7 +86,7 @@ def dimishelper(ip, port):
 	value=utils.dimisdecode(val[0],meterType,meterId)
 	return value
 #Read from GM1
-
+print (id_node)
 if(1<id_node <9   | 9<id_node <12 | id_node ==13):
 	#fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
