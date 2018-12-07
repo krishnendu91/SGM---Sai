@@ -28,7 +28,7 @@ print(nodeId)
 if(nodeId==5):
 	ssid=subprocess.check_output(["iwgetid","-r"])
 	ssid=ssid.decode()
-	ss=-60
+	ss=-60 #iw dev wlan1 link | grep 'signal'
 else:
 	s=subprocess.check_output(["iwconfig", "wlan0"])
 	s=s.decode()
