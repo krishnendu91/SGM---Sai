@@ -20,7 +20,7 @@ print(timedrift)
 #timedrift=datetime.datetime.fromtimestamp(timedrift).strftime('%s')
 #print(timedrift)
 
-if timedrift<1000:
+if timedrift<400:
   alive=1
 else:
   alive=0
