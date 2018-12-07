@@ -32,6 +32,20 @@ if len(id_node)>9:
 else:
 	nodeId=int(id_node[-1:])
 
+#Obtain Signal strength of RPi WLan and WLan SSID
+#signal=subprocess.check_output(["iwconfig", "wlan0", "|" "grep "Signal""])
+if(id_node==5):
+	s=subprocess.check_output(["iwconfig", "wlan1"])
+else:
+	s=subprocess.check_output(["iwconfig", "wlan0"])
+s=s.decode()
+ss=s.split()[29]
+ssid=s.split()[3]
+ssid=ssid.replace("ESSID:","")
+ssid=ssid.replace("\n","")
+ss=ss.replace("level=","")	
+print(ssid,ss)
+	
 #Store to DB
 dataHealth={'nodeid':nodeId,'alive':1,'temp':temp,'ssid':ssid,'ss':ss}
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
