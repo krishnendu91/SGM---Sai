@@ -24,8 +24,8 @@ else:
 
 #Obtain Signal strength of RPi WLan and WLan SSID
 #signal=subprocess.check_output(["iwconfig", "wlan0", "|" "grep "Signal""])
-print(id_node)
-if(id_node=='5'):
+print(nodeId)
+if(nodeId==5):
 	s=subprocess.check_output(["iwgetid","-r"])
 	s=s.decode()
 	ss=-60
