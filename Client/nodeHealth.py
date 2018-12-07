@@ -25,15 +25,17 @@ else:
 #Obtain Signal strength of RPi WLan and WLan SSID
 #signal=subprocess.check_output(["iwconfig", "wlan0", "|" "grep "Signal""])
 if(id_node==5):
-	s=subprocess.check_output(["iwconfig", "wlan1"])
+	s=subprocess.check_output(["iwgetid","-r"])
+	s=s.decode()
+	ss=-60
 else:
 	s=subprocess.check_output(["iwconfig", "wlan0"])
-s=s.decode()
-ss=s.split()[29]
-ssid=s.split()[3]
-ssid=ssid.replace("ESSID:","")
-ssid=ssid.replace("\n","")
-ss=ss.replace("level=","")	
+	s=s.decode()
+	ss=s.split()[29]
+	ssid=s.split()[3]
+	ssid=ssid.replace("ESSID:","")
+	ssid=ssid.replace("\n","")
+	ss=ss.replace("level=","")	
 print(ssid,ss)
 	
 #Store to DB
