@@ -26,8 +26,8 @@ else:
 #signal=subprocess.check_output(["iwconfig", "wlan0", "|" "grep "Signal""])
 print(nodeId)
 if(nodeId==5):
-	s=subprocess.check_output(["iwgetid","-r"])
-	s=s.decode()
+	ssid=subprocess.check_output(["iwgetid","-r"])
+	ssid=ssid.decode()
 	ss=-60
 else:
 	s=subprocess.check_output(["iwconfig", "wlan0"])
