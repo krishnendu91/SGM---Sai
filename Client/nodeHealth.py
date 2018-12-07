@@ -28,8 +28,6 @@ print(nodeId)
 ssid=subprocess.check_output(["iwgetid","-r"])
 ssid=ssid.decode()
 ss=-60 
-hh=subprocess.check_output(["iw", "dev", "wlan1","link", "|", "grep", "'signal'"],shell=1)
-print(hh)
 print(ssid,ss)
 	
 #Store to DB
