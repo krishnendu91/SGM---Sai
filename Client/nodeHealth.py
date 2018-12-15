@@ -13,10 +13,10 @@ temp=temp.decode()
 temp=temp.replace("temp=","")
 temp=temp.replace("'C\n","")
 
-
 #get node ID
 id_scanoutput=check_output(["hostname"],shell=1)
 id_node=id_scanoutput.decode().split()[0]
+
 if len(id_node)>9:
 	nodeId=int(id_node[-2:])
 else:
@@ -24,10 +24,18 @@ else:
 
 #Obtain Signal strength of RPi WLan and WLan SSID
 #signal=subprocess.check_output(["iwconfig", "wlan0", "|" "grep "Signal""])
-print(nodeId)
-ssid=subprocess.check_output(["iwgetid","-r"])
-ssid=ssid.decode()
-ss=-60 
+try:
+	ssid=subprocess.check_output(["iwgetid","-r"])
+	ssid=ssid.decode()
+	ss=subprocess.check_output(["iwconfig", "wlan0"])
+	ss=ss.decode()
+	ss=s.split()[29] 
+	ss=ss.replace("level=","")
+except:
+	ssid="not connected"
+	ss=0
+	pass
+
 print(ssid,ss)
 	
 #Store to DB
