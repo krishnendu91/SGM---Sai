@@ -24,17 +24,14 @@ else:
 
 #Obtain Signal strength of RPi WLan and WLan SSID
 #signal=subprocess.check_output(["iwconfig", "wlan0", "|" "grep "Signal""])
-try:
-	ssid=subprocess.check_output(["iwgetid","-r"])
-	ssid=ssid.decode()
-	ss=subprocess.check_output(["iwconfig", "wlan0"])
-	ss=ss.decode()
-	ss=s.split()[29] 
-	ss=ss.replace("level=","")
-except:
-	ssid="not connected"
-	ss=0
-	pass
+ssid=subprocess.check_output(["iwgetid","-r"])
+ssid=ssid.decode()
+ss=subprocess.check_output(["iwconfig", "wlan0"])
+ss=ss.decode()
+ss=s.split()[29] 
+ss=ss.replace("level=","")
+#ssid="not connected"
+#ss=0
 
 print(ssid,ss)
 	
