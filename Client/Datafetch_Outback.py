@@ -15,7 +15,7 @@ mate=urlopen('http://192.168.0.64/Dev_status.cgi?&Port=0')
 mate=mate.read()
 #print(mate)
 mate=json.loads(mate.decode())
-print(mate)
+#print(mate)
 
 inv1= mate['devstatus']['ports'][0]
 inv1['nodeid']=14
