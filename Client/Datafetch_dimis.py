@@ -86,10 +86,10 @@ def dimishelper(ip, port):
 	value=utils.dimisdecode(val[0],meterType,meterId)
 	return value
 #Read from GM1
-print (id_node)
+#print (id_node)
 #if(1<id_node <9   | 9<id_node <12 | id_node ==13):
 
-if(id_node ==5):
+if(1<id_node <7 | id_node ==8 | id_node ==13 ): # For Node 2,3,4,5,6,8,13
 	#fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
@@ -109,7 +109,7 @@ if(id_node ==5):
 	algorithm.current(value_LM1['i1'],value_LM1['i2'],value_LM1['i3'],value_LM1['meterType'],id_node,ip_wlan0)
 	print("LM1 Fetch Complete")
 
-elif(9<id_node <12):
+elif(9<id_node <12): #For node 10 & 11
 	#fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
@@ -129,7 +129,7 @@ elif(9<id_node <12):
 	algorithm.current(value_LM1['i1'],value_LM1['i2'],value_LM1['i3'],value_LM1['meterType'],id_node,ip_wlan0)
 	print("LM1 Fetch Complete")
 
-elif (id_node == 7 | id_node == 9 |id_node == 12):
+elif (id_node == 7 | id_node == 9 |id_node == 12): #For node 7, 9, 12
 	#Fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
