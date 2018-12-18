@@ -89,7 +89,7 @@ def dimishelper(ip, port):
 #print (id_node)
 #if(1<id_node <9   | 9<id_node <12 | id_node ==13):
 
-if(1<id_node <7 | id_node ==8 | id_node ==13 ): # For Node 2,3,4,5,6,8,13
+if(1<id_node <7 or id_node ==8 or id_node ==13 ): # For Node 2,3,4,5,6,8,13
 	#fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
