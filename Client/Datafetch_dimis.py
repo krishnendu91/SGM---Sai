@@ -89,11 +89,11 @@ def dimishelper(ip, port):
 #print (id_node)
 #if(1<id_node <9   | 9<id_node <12 | id_node ==13):
 
-if(1<id_node <7 or id_node ==8 or id_node ==13 ): # For Node 2,3,4,5,6,8,13
+if(1<id_node <7 or id_node ==8 or id_node ==13 or 9<id_node <12): # For Node 2,3,4,5,6,8,10,11, 13
 	#fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
-	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
+	
 	algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	algorithm.frequency(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
@@ -102,38 +102,20 @@ if(1<id_node <7 or id_node ==8 or id_node ==13 ): # For Node 2,3,4,5,6,8,13
 	#Fetch LM1
 	value_LM1=dimishelper(ip_eth0,port_LM1)
 	utils.todbdimis(value_LM1)
-	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
+	
 	algorithm.poweroutage(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.frequency(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.current(value_LM1['i1'],value_LM1['i2'],value_LM1['i3'],value_LM1['meterType'],id_node,ip_wlan0)
-	print("LM1 Fetch Complete")
-
-elif(9<id_node <12): #For node 10 & 11
-	#fetch GM
-	value_GM=dimishelper(ip_eth0,port_GM)
-	utils.todbdimis(value_GM)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
-	algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
-	algorithm.frequency(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
-	algorithm.powerquality(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
-	algorithm.current(value_GM['i1'],value_GM['i2'],value_GM['i3'],value_GM['meterType'],id_node,ip_wlan0)
-	print("GM1 Fetch Complete")
-	#Fetch LM1
-	value_LM1=dimishelper(ip_eth0,port_LM1)
-	utils.todbdimis(value_LM1)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
-	algorithm.poweroutage(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
-	algorithm.frequency(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
-	algorithm.powerquality(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
-	algorithm.current(value_LM1['i1'],value_LM1['i2'],value_LM1['i3'],value_LM1['meterType'],id_node,ip_wlan0)
 	print("LM1 Fetch Complete")
 
 elif (id_node == 7 | id_node == 9 |id_node == 12): #For node 7, 9, 12
 	#Fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
-	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
+	
 	algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	algorithm.frequency(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
@@ -143,13 +125,14 @@ elif (id_node == 7 | id_node == 9 |id_node == 12): #For node 7, 9, 12
 	#Fetch LM1
 	value_LM1=dimishelper(ip_eth0,port_LM1)
 	utils.todbdimis(value_LM1)
-	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
+	
 	algorithm.poweroutage(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.frequency(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.powerquality(value_LM1['v1'],value_LM1['v2'],value_LM1['v3'],value_LM1['meterType'],id_node,ip_wlan0)
 	algorithm.current(value_LM1['i1'],value_LM1['i2'],value_LM1['i3'],value_LM1['meterType'],id_node,ip_wlan0)
 	print("LM1 Fetch Complete")
-	
+	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
+	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
 	#Fetch GM2
 	value_GM2=dimishelper(ip_eth0,port_GM2)
 	utils.todbdimis(value_GM2)
