@@ -29,13 +29,23 @@ port_LM3=10004
 def dimishelper(ip, port):
 	if port==10001:
 		meterType=1
-		meterId=utils.getmeterid(id_node,'GM1')
+		try:
+			meterId=utils.getmeterid(id_node,'GM1')
+		except:
+			pass
 	elif port==10002:
 		meterType=2
-		meterId=utils.getmeterid(id_node,'LM')
+		try:
+			meterId=utils.getmeterid(id_node,'LM')
+		except:
+			pass
 	elif port==10003:
 		meterType=3
-		meterId=utils.getmeterid(id_node,'GM2')
+		try:
+			meterId=utils.getmeterid(id_node,'GM2')
+		except:
+			pass
+	
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 	print('Dimis polling begins for ' +str(port))
