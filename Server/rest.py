@@ -21,13 +21,103 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
-@app.route('/alive')
-def alive():
+@app.route('/alive/1')
+def alive_1():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeHealth ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from nodeHealth where nodeid=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Alive' : r})
 
+@app.route('/alive/2')
+def alive_2():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=2 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/3')
+def alive_3():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=3 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/4')
+def alive_4():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=4 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/5')
+def alive_5():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=5 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/6')
+def alive_6():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=6 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/7')
+def alive_7():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=7 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/8')
+def alive_8():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=8 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/9')
+def alive_9():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=9 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/10')
+def alive_10():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=10 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/11')
+def alive_11():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=11 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/12')
+def alive_12():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=12 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/13')
+def alive_13():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=13 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
+@app.route('/alive/14')
+def alive_14():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth where nodeid=14 ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
 
 @app.route('/weather')
 def weather():
