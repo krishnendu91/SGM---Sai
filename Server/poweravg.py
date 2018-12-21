@@ -39,7 +39,7 @@ while(a<14):
     conn.close()
     a=a+1
   except:
-    pass
+    continue
 
 
 
