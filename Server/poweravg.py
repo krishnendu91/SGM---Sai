@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import pymysql
 import datetime
+a=1
 
 def tdcalc(nodeId,dbtime):
   dbtimeE=dbtime.timestamp() #Epoch conversion
@@ -25,17 +26,20 @@ def tdcalc(nodeId,dbtime):
   conn.commit()
   conn.close()
   print("DB Updated with alive state: " +str(alive) + " for Node "+str(nodeid))
+while(a<14):
+  try:
+    conn = pymysql.connect(database="AmritaSGM",user="grafana",password="grafana",host="localhost")
+    cur=conn.cursor()
+    cur.execute("SELECT timestamp,nodeid FROM `nodeHealth` where nodeid=%s order by id desc limit 1;",a)
+    data=cur.fetchone() #fetch all
 
-conn = pymysql.connect(database="AmritaSGM",user="grafana",password="grafana",host="localhost")
-cur=conn.cursor()
-cur.execute("SELECT timestamp,nodeid FROM `nodeHealth` where nodeid=%s order by id desc limit 1;",1)
-data=cur.fetchone() #fetch all
-
-dbtime=data[0]
-nodeid=data[1]
-tdcalc(nodeid,dbtime)
-conn.close()
-
+    dbtime=data[0]
+    nodeid=data[1]
+    tdcalc(nodeid,dbtime)
+    conn.close()
+    a=a+1
+  except:
+    pass
 
 
 
