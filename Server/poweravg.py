@@ -37,3 +37,5 @@ while(a<15):
     tdcalc(nodeid,dbtime)
     conn.close()
     a=a+1
+  except:
+    pass
