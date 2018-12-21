@@ -3,12 +3,12 @@ import pymysql
 import datetime
 
 def tdcalc(nodeId,dbtime):
-  dbtime=dbtime.timestamp() #Epoch conversion
+  dbtimeE=dbtime.timestamp() #Epoch conversion
   timenow=datetime.datetime.now()
   print(timenow)
   timenow=datetime.datetime.now().timestamp() #get current time in Epoch
   print(timenow)
-  timedrift=timenow-dbtime
+  timedrift=timenow-dbtimeE
   print(timedrift)
   #timedrift=datetime.datetime.fromtimestamp(timedrift).strftime('%s')
   #print(timedrift)
