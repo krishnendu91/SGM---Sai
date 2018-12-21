@@ -27,13 +27,11 @@ def tdcalc(nodeId,dbtime,temp,ssid,wlan_ss):
   conn.close()
   print("DB Updated with alive state: " +str(alive) + " for Node "+str(nodeid))
 while(a<15):
-  print(a)
   try:
     conn = pymysql.connect(database="AmritaSGM",user="grafana",password="grafana",host="localhost")
     cur=conn.cursor()
     cur.execute("SELECT timestamp,nodeid,temp,ssid,wlan_ss FROM `nodeHealth` where nodeid=%s order by id desc limit 1;",a)
     data=cur.fetchone() #fetch all
-    print(data)
     dbtime=data[0]
     nodeid=data[1]
     temp=data[2]
