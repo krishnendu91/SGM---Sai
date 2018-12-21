@@ -28,7 +28,7 @@ def tdcalc(nodeId,dbtime):
 
 conn = pymysql.connect(database="AmritaSGM",user="grafana",password="grafana",host="localhost")
 cur=conn.cursor()
-cur.execute("SELECT timestamp,nodeid FROM `nodeHealth` order by id desc limit 1;")
+cur.execute("SELECT timestamp,nodeid FROM `nodeHealth` where nodeid=1 order by id desc limit 1;")
 data=cur.fetchone() #fetch all
 
 dbtime=data[0]
