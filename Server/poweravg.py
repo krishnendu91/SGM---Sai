@@ -30,7 +30,7 @@ while(a<14):
   try:
     conn = pymysql.connect(database="AmritaSGM",user="grafana",password="grafana",host="localhost")
     cur=conn.cursor()
-    cur.execute("SELECT timestamp,nodeid FROM `nodeHealth` where nodeid=%s order by id desc limit 1;",7)
+    cur.execute("SELECT timestamp,nodeid FROM `nodeHealth` where nodeid=%s order by id desc limit 1;",a)
     data=cur.fetchone() #fetch all
 
     dbtime=data[0]
