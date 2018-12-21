@@ -26,7 +26,7 @@ def tdcalc(nodeId,dbtime):
   conn.commit()
   conn.close()
   print("DB Updated with alive state: " +str(alive) + " for Node "+str(nodeid))
-while(a<14):
+while(a<7 or a =10):
   try:
     conn = pymysql.connect(database="AmritaSGM",user="grafana",password="grafana",host="localhost")
     cur=conn.cursor()
@@ -38,6 +38,8 @@ while(a<14):
     tdcalc(nodeid,dbtime)
     conn.close()
     a=a+1
+    if a == 7:
+       a=10
   except:
     continue
 
