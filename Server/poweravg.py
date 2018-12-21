@@ -8,7 +8,7 @@ def tdcalc(nodeId,dbtime):
   print(timenow)
   timenow=datetime.datetime.now().timestamp() #get current time in Epoch
   print(timenow)
-  timedrift=timenow-dbtimeE
+  timedrift=timenow-dbtime
   print(timedrift)
   #timedrift=datetime.datetime.fromtimestamp(timedrift).strftime('%s')
   #print(timedrift)
