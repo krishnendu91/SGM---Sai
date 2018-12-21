@@ -3,7 +3,7 @@ import pymysql
 import datetime
 a=1
 
-def tdcalc(nodeId,dbtime):
+def tdcalc(nodeId,dbtime,temp,ssid,wlan_ss):
   dbtimeE=dbtime.timestamp() #Epoch conversion
   timenow=datetime.datetime.now()
   print(timenow)
