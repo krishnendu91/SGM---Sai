@@ -18,7 +18,7 @@ def tdcalc(nodeId,dbtime):
   else:
     alive=0
 
-  conn = pymysql.connect(database="AmritaSGM",user="grafana",password="grafana",host="localhost")
+  conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
   cur=conn.cursor()
   data={"dbtime":dbtime,"alive":alive,"timedrift":timedrift,"nodeid":nodeid}
   cur.execute("INSERT INTO `lastseen` (dbtime,alive,timedrift,nodeid) VALUES (%(dbtime)s,%(alive)s,%(timedrift)s,%(nodeid)s);",data)
