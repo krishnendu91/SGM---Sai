@@ -32,7 +32,7 @@ while(a<14):
     cur=conn.cursor()
     cur.execute("SELECT timestamp,nodeid FROM `nodeHealth` where nodeid=%s order by id desc limit 1;",a)
     data=cur.fetchone() #fetch all
-
+    print (data)
     dbtime=data[0]
     nodeid=data[1]
     tdcalc(nodeid,dbtime)
