@@ -9,7 +9,7 @@ data=cur.fetchone() #fetch all
 
 dbtime=data[0]
 nodeid=data[1]
-tdcalc(dbtime)
+tdcalc(nodeid,dbtime)
 conn.close()
 
 
