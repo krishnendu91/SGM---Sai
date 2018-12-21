@@ -40,17 +40,26 @@ def test1(client, userdata, message):
 def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'recentgm',1)
+	try:
+		datagrab(payload,'recentgm',1)
+	except:
+		pass
 	
 def datafetch_dimis_lm1(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'recentlm1',1)
+	try:
+		datagrab(payload,'recentlm1',1)
+	except:
+		pass
 
 def datafetch_dimis_lm2(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'recentlm2',1)
+	try:
+		datagrab(payload,'recentlm2',1)
+	except:
+		pass
 
 def datafetch_maxim(client, userdata, msg):
 	print("Maxim Data received")
