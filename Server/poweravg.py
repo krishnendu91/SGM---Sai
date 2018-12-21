@@ -32,7 +32,7 @@ while(a<14):
     cur=conn.cursor()
     cur.execute("SELECT timestamp,nodeid FROM `nodeHealth` where nodeid=%s order by id desc limit 1;",a)
     data=cur.fetchone() #fetch all
-    if data == "None":
+    if data == None:
       exit
     print (type(data))
     dbtime=data[0]
