@@ -36,7 +36,7 @@ def grab(ip,api_req,dev):
     data= json_api['Recent data'][-1]
     print ("Website grabbed")
     print (data)
-    txId=data['id']
+    txId=0
     cur.execute("INSERT INTO inverterData(nodeid,type,port,battVoltage,aux,error,dev,cc_mode,aux_mode,in_i,out_i,in_v,out_kwh,out_ah ) VALUES(%(nodeid)s,%(type)s,%(port)s,%(battVoltage)s,%(aux)s,%(error)s,%(dev)s,%(cc_mode)s,%(aux_mode)s,%(in_i)s,%(out_i)s,%(in_v)s,%(out_kwh)s,%(out_ah)s);",data)
 
 
