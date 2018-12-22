@@ -26,7 +26,7 @@ def grab(ip,api_req,dev):
   
   elif dev==41: #Outback Inverter
     json_api=json.loads(api)
-    data= json_api['Event Data'][-1]
+    data= json_api['Recent data'][-1]
     print ("Website grabbed")
     print (data)
     txId=data['id']
@@ -34,7 +34,7 @@ def grab(ip,api_req,dev):
 
   elif dev==42: #Outback CC
     json_api=json.loads(api)
-    data= json_api['Event Data'][-1]
+    data= json_api['Recent data'][-1]
     print ("Website grabbed")
     print (data)
     txId=data['id']
