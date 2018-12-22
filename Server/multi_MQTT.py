@@ -71,10 +71,15 @@ def datafetch_sch(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'recentsch',3)
 	
-def datafetch_outback(client, userdata, msg):
+def datafetch_outback_inv(client, userdata, msg):
 	print("Outback Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'outback',4)
+	datagrab(payload,'outbackinv',41)
+
+def datafetch_outback_cc(client, userdata, msg):
+	print("Outback Data received")
+	payload=json.loads(msg.payload.decode())
+	datagrab(payload,'outbackcc',42)
 
 def datafetch_navsemi(client, userdata, msg):
 	print("Navsemi Data received")
@@ -107,7 +112,8 @@ mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm1", datafetch_dimis_lm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm2", datafetch_dimis_lm2)
 mqttclient.message_callback_add("SGM/datafetch_maxim", datafetch_maxim)
-mqttclient.message_callback_add("SGM/datafetch_outback", datafetch_outback)
+mqttclient.message_callback_add("SGM/datafetch_outback_inv", datafetch_outback_inv)
+mqttclient.message_callback_add("SGM/datafetch_outback_cc", datafetch_outback_cc)
 mqttclient.message_callback_add("SGM/datafetch_navsemi", datafetch_navsemi)
 mqttclient.message_callback_add("SGM/datafetch_gsm", datafetch_gsm)
 mqttclient.message_callback_add("SGM/datafetch_events", datafetch_events)
