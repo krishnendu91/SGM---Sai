@@ -24,6 +24,24 @@ def grab(ip,api_req,dev):
     txId=data['id']  
     cur.execute("INSERT INTO nodeData(meterId,nodeId,meterType,V1, V2, V3, I1, I2, I3,F1,F2,F3,PF1,PF2,PF3,W1,W2,W3,VA1,VA2,VA3,VAR1,VAR2,VAR3,WH,VAH,VARH,WH1,WH2,WH3,VAH1,VAH2,VAH3,VARH1,VARH2,VARH3,D1,D2,D3,D4,D5,D6,D7,D8)VALUES( %(meterId)s,%(nodeId)s,%(meterType)s,%(V1)s,%(V2)s,%(V3)s,%(I1)s,%(I2)s,%(I3)s,%(F1)s,%(F2)s,%(F3)s,%(PF1)s,%(PF2)s,%(PF3)s,%(W1)s,%(W2)s,%(W3)s,%(VA1)s,%(VA2)s,%(VA3)s,%(VAR1)s,%(VAR2)s,%(VAR3)s,%(WH)s,%(VAH)s,%(VARH)s,%(WH1)s,%(WH2)s,%(WH3)s,%(VAH1)s,%(VAH2)s,%(VAH3)s,%(VARH1)s,%(VARH2)s,%(VARH3)s,%(D1)s,%(D2)s,%(D3)s,%(D4)s,%(D5)s,%(D6)s,%(D7)s,%(D8)s);",data)
   
+  elif dev==41: #Outback Inverter
+    json_api=json.loads(api)
+    data= json_api['Event Data'][-1]
+    print ("Website grabbed")
+    print (data)
+    txId=data['id']
+    cur.execute("INSERT INTO inverterData(nodeid,type,port,battVoltage,aux,error,dev,vac1_in_l2,ac_input,vac_out_l2,inv_mode,inv_i_l2,warn,buy_i_l2,vac_in_l2,sell_i_l2,chg_i_l2,ac_mode) VALUES(%(nodeid)s,%(Type)s,%(Port)s,%(Batt_V)s,%(AUX)s,%(Error)s,%(Dev)s,%(VAC1_in_L2)s,%(AC_Input)s,%(VAC_out_L2)s,%(INV_mode)s,%(Inv_I_L2)s,%(Warn)s,%(Buy_I_L2)s,%(VAC2_in_L2)s,%(Sell_I_L2)s,%(Chg_I_L2)s,%(AC_mode)s);",data)
+
+  elif dev==42: #Outback CC
+    json_api=json.loads(api)
+    data= json_api['Event Data'][-1]
+    print ("Website grabbed")
+    print (data)
+    txId=data['id']
+    cur.execute("INSERT INTO inverterData(nodeid,type,port,battVoltage,aux,error,dev,cc_mode,aux_mode,in_i,out_i,in_v,out_kwh,out_ah ) VALUES(%(nodeid)s,%(Type)s,%(Port)s,%(Batt_V)s,%(AUX)s,%(Error)s,%(Dev)s,%(CC_mode)s,%(Aux_mode)s,%(In_I)s,%(Out_I)s,%(In_V)s,%(Out_kWh)s,%(Out_AH)s);",data)
+
+  
+  
   elif dev==0: #events
     json_api=json.loads(api)
     data= json_api['Event Data'][-1]
