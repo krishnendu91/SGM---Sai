@@ -65,14 +65,14 @@ def outbackrecent():
 @app.route('/outbackinv')
 def outbackinv():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from inverterData where dev="FXR" ORDER BY id DESC LIMIT 1')
+	cur.execute('select nodeid,type,port,battVoltage,aux,error,dev,vac1_in_l2,ac_input,vac_out_l2,inv_mode,inv_i_l2,warn,buy_i_l2,vac_in_l2,sell_i_l2,chg_i_l2,ac_mode from inverterData where dev="FXR" ORDER BY id DESC LIMIT 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
 @app.route('/outbackcc')
 def outbackcc():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from inverterData where dev="CC" ORDER BY id DESC LIMIT 1')
+	cur.execute('select nodeid,type,port,battVoltage,aux,error,dev,cc_mode,aux_mode,in_i,out_i,in_v,out_kwh,out_ah  from inverterData where dev="CC" ORDER BY id DESC LIMIT 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
