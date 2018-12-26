@@ -71,7 +71,7 @@ def grab(ip,api_req,dev):
     cur.execute("INSERT INTO maximData(nodeId,C1,C2,C3,C4) VALUES(%(nodeId)s,%(C1)s,%(C2)s,%(C3)s,%(C4)s);",data)
     txId=1
     
- elif dev==2:
+  elif dev==2:
     json_api=json.loads(api)
     data= json_api['Recent data'][-1]
     print ("Website grabbed")
