@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 #Libary file to read maxim Zon series ev kit
 #Build: 2018-05-15-V1
 #decoding by Sreevalsa
@@ -9,7 +9,7 @@ def zon():
 	port=serial.Serial("/dev/ttyUSB0",baudrate=9600,timeout=.1)
 	testarr=[]
 	cmnd1='m'
-	cmnd2=2
+	cmnd2=0
 	cmnd3="\r"
 	
 
