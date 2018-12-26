@@ -13,8 +13,8 @@ def zon():
 	cmnd=cmnd1+str(cmnd2)
 	j=0
 	for i in range(9):
-		port.write(cmnd)
-		port.write("\r")
+		port.write(cmnd.encode())
+		port.write("\r".encode())
 		rcv =port.read(90)
 		rcv=rcv.replace('L1','')
 		l=list(rcv)
