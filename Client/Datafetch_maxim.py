@@ -10,12 +10,12 @@ testarr=[]
 cmnd1='m'
 cmnd2=0
 cmnd3="\r"
-cmnd=cmnd1+str(cmnd2)+cmnd3
+cmnd=cmnd1+str(cmnd2)
 j=0
 while 1:
 	for i in range(9):
 		port.write(cmnd.encode())
-	#port.write("\r".encode())
+		port.write(str.encode("\r"))
 		rcv =port.read(90)
 		#print(rcv.decode())
 		rcv=rcv.decode()
