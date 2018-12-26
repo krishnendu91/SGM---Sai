@@ -3,7 +3,7 @@
 #Build: 2018-05-15-V1
 #decoding by Sreevalsa
 
-import serial,time,re,operator,math
+import serial,time,re,operator,math,utils,mqttservice
 from functools import reduce
 port=serial.Serial("/dev/ttyUSB0",baudrate=9600,timeout=.1)
 testarr=[]
@@ -13,6 +13,8 @@ cmnd3="\r"
 cmnd=cmnd1+str(cmnd2)
 j=0
 a=1
+eth0,wlan0,nodeId=utils.sysinfo()
+print("initiating Datafetch for Maxim Meter at " + str(nodeId))
 while a:
 	for i in range(9):
 		port.write(cmnd.encode())
@@ -63,6 +65,8 @@ while a:
 		reactivepower=0
 
 	apparentpower=m15_data*m16_data
-	zon_data={'Meter':m0_data,'temp':m1_data,'f':m2_data,'P_eng':m3_data,'Q_eng':m6_data,'S_eng':m7_data,'pf':m11_data,'I':m15_data,'V':m16_data,'P_pwr':realpower,'Q_pwr':reactivepower,'S_pwr':apparentpower}
+	zon_data={'Meter':m0_data,'temp':m1_data,'f1':m2_data,'wh1':m3_data,'varh1':m6_data,'vah1':m7_data,'pf1':m11_data,'i1':m15_data,'v1':m16_data,'w1':realpower,'var1':reactivepower,'va1':apparentpower,'nodeId':nodeId}
 	print(zon_data)
+	utils.todbmaxim(zon_data)
+	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_maxim","DONE",ip_wlan0)
 	a=0
