@@ -4,7 +4,7 @@
 #decoding by Sreevalsa
 
 import serial,time,re,operator,math
-from functools import reduce
+from functools import reduce,map
 def zon():
 	port=serial.Serial("/dev/ttyUSB0",baudrate=9600,timeout=.1)
 	testarr=[]
@@ -17,7 +17,7 @@ def zon():
 		port.write(cmnd.encode())
 		port.write("\r".encode())
 		rcv =port.read(90)
-		print(rcv.decode())
+		#print(rcv.decode())
 		rcv=rcv.decode()
 		rcv=rcv.replace('L1','')
 		l=list(rcv)
