@@ -64,7 +64,7 @@ def datafetch_dimis_lm2(client, userdata, msg):
 def datafetch_maxim(client, userdata, msg):
 	print("Maxim Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'recentmax',2)
+	datagrab(payload,'maxim',2)
 
 def datafetch_sch(client, userdata, msg):
 	print("Schneider Data received")
