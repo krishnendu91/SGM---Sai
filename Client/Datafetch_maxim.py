@@ -5,19 +5,17 @@
 
 import serial,time,re,operator,math
 from functools import reduce
-def zon():
-	port=serial.Serial("/dev/ttyUSB0",baudrate=9600,timeout=.1)
-	testarr=[]
-	cmnd1='m'
-	cmnd2=0
-	cmnd3="\r"
-	
-
-	cmnd=cmnd1+str(cmnd2)+cmnd3
-	j=0
+port=serial.Serial("/dev/ttyUSB0",baudrate=9600,timeout=.1)
+testarr=[]
+cmnd1='m'
+cmnd2=0
+cmnd3="\r"
+cmnd=cmnd1+str(cmnd2)+cmnd3
+j=0
+while 1
 	for i in range(9):
 		port.write(cmnd.encode())
-		#port.write("\r".encode())
+	#port.write("\r".encode())
 		rcv =port.read(90)
 		#print(rcv.decode())
 		rcv=rcv.decode()
@@ -25,7 +23,7 @@ def zon():
 		l=list(rcv)
 		print(l)
 		if cmnd2<10:
-			l[0:2]=[]
+		l[0:2]=[]
 		if cmnd2>9:
 			l[0:3]=[]
 		rcv="".join(l)
@@ -38,9 +36,9 @@ def zon():
 			cmnd2=15
 		elif cmnd2==17:
 			cmnd2=0
-	cmnd=cmnd1+str(cmnd2)
-	g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
-	testarr.append(g)
+		cmnd=cmnd1+str(cmnd2)
+		g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
+		testarr.append(g)
 	test = reduce(operator.add, testarr)
 	print(test)
 	
@@ -65,5 +63,4 @@ def zon():
 
 	apparentpower=m15_data*m16_data
 	zon_data={'Meter':m0_data,'temp':m1_data,'f':m2_data,'P_eng':m3_data,'Q_eng':m6_data,'S_eng':m7_data,'pf':m11_data,'I':m15_data,'V':m16_data,'P_pwr':realpower,'Q_pwr':reactivepower,'S_pwr':apparentpower}
-	return zon_data
-print(zon())
+	print(zon_data)
