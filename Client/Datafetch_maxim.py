@@ -10,17 +10,20 @@ def zon():
 	testarr=[]
 	cmnd1='m'
 	cmnd2=0
+	cmnd3="\r"
+	
 
-	cmnd=cmnd1+str(cmnd2)
+	cmnd=cmnd1+str(cmnd2)+cmnd3
 	j=0
 	for i in range(9):
 		port.write(cmnd.encode())
-		port.write("\r".encode())
+		#port.write("\r".encode())
 		rcv =port.read(90)
 		#print(rcv.decode())
 		rcv=rcv.decode()
 		rcv=rcv.replace('L1','')
 		l=list(rcv)
+		print(l)
 		if cmnd2<10:
 			l[0:2]=[]
 		if cmnd2>9:
