@@ -4,7 +4,7 @@
 #decoding by Sreevalsa
 
 import serial,time,re,operator,math
-from functools import reduce,map
+from functools import reduce
 def zon():
 	port=serial.Serial("/dev/ttyUSB0",baudrate=9600,timeout=.1)
 	testarr=[]
