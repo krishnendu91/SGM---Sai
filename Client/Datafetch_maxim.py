@@ -23,7 +23,7 @@ while 1:
 		l=list(rcv)
 		print(l)
 		if cmnd2<10:
-		l[0:2]=[]
+			l[0:2]=[]
 		if cmnd2>9:
 			l[0:3]=[]
 		rcv="".join(l)
