@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 #Libary file to read maxim Zon series ev kit
 #Build: 2018-05-15-V1
 #decoding by Sreevalsa
