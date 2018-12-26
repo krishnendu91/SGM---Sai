@@ -9,7 +9,7 @@ def zon():
 	port=serial.Serial("/dev/ttyUSB0",baudrate=9600,timeout=.1)
 	testarr=[]
 	cmnd1='m'
-	cmnd2=0
+	cmnd2=2
 	cmnd3="\r"
 	
 
