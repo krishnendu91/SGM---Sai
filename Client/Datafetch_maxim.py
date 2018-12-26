@@ -16,7 +16,8 @@ def zon():
 		port.write(cmnd.encode())
 		port.write("\r".encode())
 		rcv =port.read(90)
-		print(rcv)
+		print(rcv.decode())
+		rcv=rcv.decode()
 		rcv=rcv.replace('L1','')
 		l=list(rcv)
 		if cmnd2<10:
