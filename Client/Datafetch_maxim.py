@@ -12,7 +12,7 @@ cmnd2=0
 cmnd3="\r"
 cmnd=cmnd1+str(cmnd2)+cmnd3
 j=0
-while 1
+while 1:
 	for i in range(9):
 		port.write(cmnd.encode())
 	#port.write("\r".encode())
