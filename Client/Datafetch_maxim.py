@@ -39,6 +39,7 @@ def zon():
 	g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
 	testarr.append(g)
 	test = reduce(operator.add, testarr)
+	print(test)
 #meter data stored in variables
 	m0_data=test[0]
 	m1_data=test[1]
