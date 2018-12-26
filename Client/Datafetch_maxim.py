@@ -13,7 +13,7 @@ cmnd3="\r"
 cmnd=cmnd1+str(cmnd2)
 j=0
 a=1
-eth0,wlan0,nodeId=utils.sysinfo()
+eth0,ip_wlan0,nodeId=utils.sysinfo()
 print("initiating Datafetch for Maxim Meter at " + str(nodeId))
 while a:
 	for i in range(9):
