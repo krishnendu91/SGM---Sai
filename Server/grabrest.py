@@ -68,7 +68,7 @@ def grab(ip,api_req,dev):
     data= json_api['switchState'][-1]
     print ("Website grabbed")
     print (data)
-    cur.execute("INSERT INTO maximData(nodeId,C1,C2,C3,C4) VALUES(%(nodeId)s,%(C1)s,%(C2)s,%(C3)s,%(C4)s);",data)
+    cur.execute("INSERT INTO switchState(nodeId,C1,C2,C3,C4) VALUES(%(nodeId)s,%(C1)s,%(C2)s,%(C3)s,%(C4)s);",data)
     txId=1
     
   elif dev==2:
