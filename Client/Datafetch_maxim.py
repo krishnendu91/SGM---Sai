@@ -12,7 +12,8 @@ cmnd2=0
 cmnd3="\r"
 cmnd=cmnd1+str(cmnd2)
 j=0
-while 1:
+a=1
+while a:
 	for i in range(9):
 		port.write(cmnd.encode())
 		port.write(str.encode("\r"))
@@ -21,7 +22,7 @@ while 1:
 		rcv=rcv.decode()
 		rcv=rcv.replace('L1','')
 		l=list(rcv)
-		print(l)
+		#print(l)
 		if cmnd2<10:
 			l[0:2]=[]
 		if cmnd2>9:
@@ -40,7 +41,7 @@ while 1:
 		g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
 		testarr.append(g)
 	test = reduce(operator.add, testarr)
-	print(test)
+	#print(test)
 	
 #meter data stored in variables
 	m0_data=test[0]
@@ -64,3 +65,4 @@ while 1:
 	apparentpower=m15_data*m16_data
 	zon_data={'Meter':m0_data,'temp':m1_data,'f':m2_data,'P_eng':m3_data,'Q_eng':m6_data,'S_eng':m7_data,'pf':m11_data,'I':m15_data,'V':m16_data,'P_pwr':realpower,'Q_pwr':reactivepower,'S_pwr':apparentpower}
 	print(zon_data)
+	a=0
