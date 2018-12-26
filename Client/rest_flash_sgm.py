@@ -27,6 +27,13 @@ def alive():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Alive' : r})
 
+@app.route('/maxim')
+def alive():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from maximData ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
 @app.route('/switchState')
 def switchState():
 	cur = mysql.connect().cursor()
