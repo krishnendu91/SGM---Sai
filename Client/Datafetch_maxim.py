@@ -36,7 +36,7 @@ def zon():
 		elif cmnd2==17:
 			cmnd2=0
 	cmnd=cmnd1+str(cmnd2)
-	g=map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv))
+	g=list(map(lambda v: float(v) if '.' in v else int(v),re.findall(r'\d+(?:\.\d+)?',rcv)))
 	testarr.append(g)
 	test = reduce(operator.add, testarr)
 #meter data stored in variables
