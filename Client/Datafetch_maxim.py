@@ -58,3 +58,4 @@ def zon():
 	apparentpower=m15_data*m16_data
 	zon_data={'Meter':m0_data,'temp':m1_data,'f':m2_data,'P_eng':m3_data,'Q_eng':m6_data,'S_eng':m7_data,'pf':m11_data,'I':m15_data,'V':m16_data,'P_pwr':realpower,'Q_pwr':reactivepower,'S_pwr':apparentpower}
 	return zon_data
+print(zon())
