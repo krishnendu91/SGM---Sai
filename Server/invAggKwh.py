@@ -5,14 +5,15 @@ conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="l
 cur=conn.cursor()
 cur.execute("SELECT out_kwh from inverterData where port=2 or 3 or 5 order by id desc limit 3")
 data=cur.fetchall()
-print(data)
+#print(data)
 for item in data:
   kwh1=data[0]
   kwh2=data[1]
   kwh3=data[2]
 kwh=kwh1[0]+kwh2[0]+kwh3[0]
-print(kwh)
-cur.execute("Insert into inverterData (totalKwh) values(%s);",kwh)
+#print(kwh)
+avgData={'nodeId':14,'kwh':kwh}
+cur.execute("Insert into inverterData (nodeId,totalKwh) values(%(nodeId)s,%(kwh)s);",avgData)
 conn.commit()
 conn.close()
 
