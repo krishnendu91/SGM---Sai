@@ -10,7 +10,7 @@ for item in data:
   kwh1=data[0]
   kwh2=data[1]
   kwh3=data[2]
-kwh=kwh1+kwh2+kwh3
+kwh=kwh1[0]+kwh2[0]+kwh3[0]
 print(kwh)
 cur.execute("Insert into inverterData (totalKwh) values(%s);",kwh)
 conn.commit()
