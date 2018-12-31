@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import pymysql
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
