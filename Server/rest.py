@@ -21,6 +21,13 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
+@app.route('/mqtttest')
+def mqtttest():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from mqttTest ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'mqtt Test data' : r})
+
 @app.route('/alive/1')
 def alive_1():
 	cur = mysql.connect().cursor()
