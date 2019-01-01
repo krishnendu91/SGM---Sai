@@ -36,9 +36,13 @@ def datagrab(payload,api,dev):
 def test(client, userdata, message):
 	print("Test Channel")
 	print("Received message '" + str(message.payload) + "' on topic '" + message.topic + "' with QoS " + str(message.qos))
+	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+	cur1=conn1.cursor()
 	mqttData={'message':str(message.payload),'topic':message.topic,'qos':str(message.qos)}
-	cur.execute("INSERT INTO mqttTest(message,topic,qos) VALUES(%(message)s,%(topic)s,%(qos)s);",mqttData)
-	conn.commit
+	cur1.execute("INSERT INTO mqttTest(message,topic,qos) VALUES(%(message)s,%(topic)s,%(qos)s);",mqttData)
+	conn1.commit
+	conn1.close
+	print("DB DUMP suceess for MQTT Test")
 def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
