@@ -40,8 +40,8 @@ def test(client, userdata, message):
 	cur1=conn1.cursor()
 	mqttData={'message':str(message.payload),'topic':message.topic,'qos':str(message.qos)}
 	cur1.execute("INSERT INTO mqttTest(message,topic,qos) VALUES(%(message)s,%(topic)s,%(qos)s);",mqttData)
-	conn1.commit
-	conn1.close
+	conn1.commit()
+	conn1.close()
 	print("DB DUMP suceess for MQTT Test")
 def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
