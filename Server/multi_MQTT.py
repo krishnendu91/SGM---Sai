@@ -36,7 +36,7 @@ def datagrab(payload,api,dev):
 def test(client, userdata, message):
 	print("Test Channel")
 	print("Received message '" + str(message.payload) + "' on topic '" + message.topic + "' with QoS " + str(message.qos))
-  	mqttData={'message':str(message.payload),'topic':message.topic,'qos':str(message.qos)}
+	mqttData={'message':str(message.payload),'topic':message.topic,'qos':str(message.qos)}
 	cur.execute("INSERT INTO mqttTest(message,topic,qos) VALUES(%(message)s,%(topic)s,%(qos)s);",mqttData)
 	conn.commit
 def datafetch_dimis_gm1(client, userdata, msg):
