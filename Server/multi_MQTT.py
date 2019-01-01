@@ -33,10 +33,12 @@ def datagrab(payload,api,dev):
 	reply=json.dumps(reply)
 	mqtt_reply.mqttack(ip_wlan0,reply)
 
-def test1(client, userdata, message):
+def test(client, userdata, message):
 	print("Test Channel")
 	print("Received message '" + str(message.payload) + "' on topic '" + message.topic + "' with QoS " + str(message.qos))
-  
+  	mqttData={'message':str(message.payload),'topic':message.topic,'qos':str(message.qos)}
+	cur.execute("INSERT INTO mqttTest(message,topic,qos) VALUES(%(message)s,%(topic)s,%(qos)s);",mqttData)
+	conn.commit
 def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
@@ -107,7 +109,7 @@ def datafetch_switch(client, userdata, msg):
 	
 
 #Subscribed Topics  
-mqttclient.message_callback_add("SGM/test1", test1)
+mqttclient.message_callback_add("SGM/test", test)
 mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm1", datafetch_dimis_lm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm2", datafetch_dimis_lm2)
