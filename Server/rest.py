@@ -408,6 +408,62 @@ def n13_lm():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
+@app.route('/maxim/1')
+def maxim():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from maximData where nodeId='IL_1' ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/maxim/2')
+def maxim():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from maximData where nodeId='IL_2' ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/maxim/3')
+def maxim():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from maximData where nodeId='IL_3' ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/maxim/4')
+def maxim():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from maximData where nodeId='IL_4' ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/maxim/5')
+def maxim():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from maximData where nodeId='IL_5' ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/maxim/6')
+def maxim():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from maximData where nodeId='IL_6' ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/outbackinv')
+def outbackinv():
+	cur = mysql.connect().cursor()
+	cur.execute('select nodeid,type,port,battVoltage,aux,error,dev,vac1_in_l2,ac_input,vac_out_l2,inv_mode,inv_i_l2,warn,buy_i_l2,vac_in_l2,sell_i_l2,chg_i_l2,ac_mode from inverterData where dev="FXR" ORDER BY id DESC LIMIT 3')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
+@app.route('/outbackcc')
+def outbackcc():
+	cur = mysql.connect().cursor()
+	cur.execute('select nodeid,type,port,battVoltage,aux,error,dev,cc_mode,aux_mode,in_i,out_i,in_v,out_kwh,out_ah  from inverterData where dev="CC" ORDER BY id DESC LIMIT 3')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Recent data' : r})
+
 
 
 
