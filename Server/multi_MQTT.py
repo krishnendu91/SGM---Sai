@@ -130,6 +130,7 @@ mqttclient.message_callback_add("SGM/datafetch_gsm", datafetch_gsm)
 mqttclient.message_callback_add("SGM/datafetch_events", datafetch_events)
 mqttclient.message_callback_add("SGM/node_alive", node_alive)
 mqttclient.message_callback_add("SGM/datafetch_switch", datafetch_switch)
+mqttclient.message_callback_add("SGM/agg_alive", agg_alive)
 
 
 
