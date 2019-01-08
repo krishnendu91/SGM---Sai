@@ -134,14 +134,14 @@ def alive_100():
 	return jsonify({'Alive' : r})
 
 @app.route('/alive/200')
-def alive_100():
+def alive_200():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where aggid=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Alive' : r})
 
 @app.route('/alive/300')
-def alive_100():
+def alive_300():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where aggid=3 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
