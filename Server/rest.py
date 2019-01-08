@@ -411,42 +411,42 @@ def n13_lm():
 @app.route('/maxim/1')
 def maxim():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from maximData where nodeId='IL_1' ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from maximData where nodeId="IL_1" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/2')
 def maxim1():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from maximData where nodeId='IL_2' ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from maximData where nodeId="IL_2" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/3')
 def maxim2():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from maximData where nodeId='IL_3' ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from maximData where nodeId="IL_3" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/4')
 def maxim3():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from maximData where nodeId='IL_4' ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from maximData where nodeId="IL_4" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/5')
 def maxim4():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from maximData where nodeId='IL_5' ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from maximData where nodeId="IL_5" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/6')
 def maxim5():
 	cur = mysql.connect().cursor()
-	cur.execute('select * from maximData where nodeId='IL_6' ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from maximData where nodeId="IL_6" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
