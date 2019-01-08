@@ -51,7 +51,7 @@ dataHealth={'aggid':nodeId,'alive':1,'temp':temp,'ssid':ssid,'ss':ss}
 print(dataHealth)
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
-cur.execute("INSERT INTO nodeHealth(aggid,alive,temp,SSID,wlan_ss) VALUES(%(nodeid)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",dataHealth)
+cur.execute("INSERT INTO nodeHealth(aggid,alive,temp,SSID,wlan_ss) VALUES(%(aggid)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",dataHealth)
 conn.commit()
 conn.close()
 print ("DB Dump success")
