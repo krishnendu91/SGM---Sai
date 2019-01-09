@@ -16,7 +16,7 @@ from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 from pymodbus.transaction import ModbusRtuFramer
 
 from pymodbus.constants import Endian
-from pymodbus.payload import BinaryPayloadDecoder as decode
+from pymodbus.payload import BinaryPayloadDecoder as payloadDecode
 from pymodbus.payload import BinaryPayloadBuilder as builder
 
 def meter():
@@ -82,7 +82,8 @@ def meter():
 	return data
 
 def decode(value_d):
-	value_d = decode.fromRegisters(value.registers, endian=Endian.Little)
+	print(value_d)
+	value_d = payloadDecode.fromRegisters(value.registers, endian=Endian.Little)
 	value_d ={'float':A_d.decode_32bit_float(),}
 	for i, value in value_d.iteritems():
 	      value=value
