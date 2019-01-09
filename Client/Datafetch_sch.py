@@ -19,6 +19,8 @@ from pymodbus.constants import Endian
 from pymodbus.payload import BinaryPayloadDecoder as payloadDecode
 from pymodbus.payload import BinaryPayloadBuilder as builder
 
+eth0,ip_wlan0,nodeId=utils.sysinfo()
+
 def meter():
 	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=0.05) 
 	client.connect()
@@ -78,7 +80,7 @@ def meter():
 	WH=valDecode(WH)
 	intr=client.read_holding_registers(3998,2,unit=1) 
 	intr=valDecode(intr)
-	data={'nodeId':"IL0",'A':A,'A1':A1,'A2':A2,'A3':A3,'VLL':VLL,'VLN':VLN,'V1':V1,'V2':V2,'V3':V3,'V12':V12,'V23':V23,'V31':V31,'W':W,'W1':W1,'W2':W2,'W3':W3,'VA':VA,'VA1':VA1,'VA2':VA2,'VA3':VA3,'PF':PF,'PF1':PF1,'PF2':PF2,'PF3':PF3,'F':F,'VAH':VAH,'WH':WH,'INTR':intr}
+	data={'nodeId':nodeId,'A':A,'A1':A1,'A2':A2,'A3':A3,'VLL':VLL,'VLN':VLN,'V1':V1,'V2':V2,'V3':V3,'V12':V12,'V23':V23,'V31':V31,'W':W,'W1':W1,'W2':W2,'W3':W3,'VA':VA,'VA1':VA1,'VA2':VA2,'VA3':VA3,'PF':PF,'PF1':PF1,'PF2':PF2,'PF3':PF3,'F':F,'VAH':VAH,'WH':WH,'INTR':intr}
 	return data
 
 def valDecode(value_d):
