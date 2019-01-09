@@ -12,10 +12,12 @@ def grab(ip,api_req,dev):
   conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
   cur=conn.cursor()
 # api_page=opener.open(url) For Python 2
-  api_page = urlopen(url) #Python 3
+  try:
+    api_page = urlopen(url) #Python 3
 #Read the api output from the variable 
-  api=api_page.read()
-
+    api=api_page.read()
+  except:
+    pass
   if dev==1: #Dimis
     json_api=json.loads(api)
     data= json_api['Recent data'][-1]
@@ -31,6 +33,7 @@ def grab(ip,api_req,dev):
     print (data)
     txId=0
     cur.execute("INSERT INTO inverterData(nodeid,type,port,battVoltage,aux,error,dev,vac1_in_l2,ac_input,vac_out_l2,inv_mode,inv_i_l2,warn,buy_i_l2,vac_in_l2,sell_i_l2,chg_i_l2,ac_mode) VALUES(%(nodeid)s,%(type)s,%(port)s,%(battVoltage)s,%(aux)s,%(error)s,%(dev)s,%(vac1_in_l2)s,%(ac_input)s,%(vac_out_l2)s,%(inv_mode)s,%(inv_i_l2)s,%(warn)s,%(buy_i_l2)s,%(vac_in_l2)s,%(sell_i_l2)s,%(chg_i_l2)s,%(ac_mode)s);",data)
+ 
   elif dev==42: #Outback CC
     json_api=json.loads(api)
     data= json_api['Recent data'][-1]
@@ -39,9 +42,6 @@ def grab(ip,api_req,dev):
     txId=0
     cur.execute("INSERT INTO inverterData(nodeid,type,port,battVoltage,aux,error,dev,cc_mode,aux_mode,in_i,out_i,in_v,out_kwh,out_ah ) VALUES(%(nodeid)s,%(type)s,%(port)s,%(battVoltage)s,%(aux)s,%(error)s,%(dev)s,%(cc_mode)s,%(aux_mode)s,%(in_i)s,%(out_i)s,%(in_v)s,%(out_kwh)s,%(out_ah)s);",data)
 
-
-  
-  
   elif dev==0: #events
     json_api=json.loads(api)
     data= json_api['Event Data'][-1]
@@ -84,6 +84,14 @@ def grab(ip,api_req,dev):
     print ("Website grabbed")
     print (data)
     cur.execute("INSERT INTO maximData(nodeid,v1,i1, w1,va1,var1,wh1,vah1,varh1,pf1,f1) VALUES(%(nodeId)s,%(v1)s,%(i1)s,%(w1)s,%(va1)s,%(var1)s,%(wh1)s,%(vah1)s,%(varh1)s,%(pf1)s,%(f1)s);",data)
+    txId=1 
+  
+  elif dev==3:
+    json_api=json.loads(api)
+    data= json_api['Recent data'][-1]
+    print ("Website grabbed")
+    print (data)
+    cur.execute("INSERT INTO schData(nodeId, A, A1, A2, A3, VLL, VLN, V1, V2, V3, V12, V23, V31, F, PF, PF1, PF2, PF3, W, W1, W2, W3, VA, VA1, VA2, VA3, WH, VAH, INTR) VALUES (%(nodeId)s, %(A)s, %(A1)s, %(A2)s, %(A3)s, %(VLL)s, %(VLN)s, %(V1)s, %(V2)s, %(V3)s, %(V12)s, %(V23)s, %(V31)s, %(F)s, %(PF)s, %(PF1)s, %(PF2)s, %(PF3)s, %(W)s, %(W1)s, %(W2)s, %(W3)s, %(VA)s, %(VA1)s, %(VA2)s, %(VA3)s, %(WH)s, %(VAH)s, %(INTR)s);",schData)
     txId=1 
   
   else:
