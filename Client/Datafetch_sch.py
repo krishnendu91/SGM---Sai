@@ -93,3 +93,7 @@ def valDecode(value_d):
 
 schData=meter()
 print(schData)
+utils.todbsch(schData)
+#mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_maxim","DONE",ip_wlan0)
+
+
