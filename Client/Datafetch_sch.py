@@ -87,3 +87,5 @@ def decode(value):
 	for i, value in value_d.iteritems():
 	      value=value
 	return value
+schData=meter()
+print(schData)
