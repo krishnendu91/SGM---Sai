@@ -43,6 +43,7 @@ def test(client, userdata, message):
 	conn1.commit()
 	conn1.close()
 	print("DB DUMP suceess for MQTT Test")
+
 def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
@@ -75,7 +76,7 @@ def datafetch_maxim(client, userdata, msg):
 def datafetch_sch(client, userdata, msg):
 	print("Schneider Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'recentsch',3)
+	datagrab(payload,'sch',3)
 	
 def datafetch_outback_inv(client, userdata, msg):
 	print("Outback Data received")
@@ -123,6 +124,7 @@ mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm1", datafetch_dimis_lm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm2", datafetch_dimis_lm2)
 mqttclient.message_callback_add("SGM/datafetch_maxim", datafetch_maxim)
+mqttclient.message_callback_add("SGM/datafetch_sch", datafetch_sch)
 mqttclient.message_callback_add("SGM/datafetch_outback_inv", datafetch_outback_inv)
 mqttclient.message_callback_add("SGM/datafetch_outback_cc", datafetch_outback_cc)
 mqttclient.message_callback_add("SGM/datafetch_navsemi", datafetch_navsemi)
