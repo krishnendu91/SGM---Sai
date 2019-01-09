@@ -91,7 +91,7 @@ def grab(ip,api_req,dev):
     data= json_api['Recent data'][-1]
     print ("Website grabbed")
     print (data)
-    cur.execute("INSERT INTO schData(nodeId, A, A1, A2, A3, VLL, VLN, V1, V2, V3, V12, V23, V31, F, PF, PF1, PF2, PF3, W, W1, W2, W3, VA, VA1, VA2, VA3, WH, VAH, INTR) VALUES (%(nodeId)s, %(A)s, %(A1)s, %(A2)s, %(A3)s, %(VLL)s, %(VLN)s, %(V1)s, %(V2)s, %(V3)s, %(V12)s, %(V23)s, %(V31)s, %(F)s, %(PF)s, %(PF1)s, %(PF2)s, %(PF3)s, %(W)s, %(W1)s, %(W2)s, %(W3)s, %(VA)s, %(VA1)s, %(VA2)s, %(VA3)s, %(WH)s, %(VAH)s, %(INTR)s);",schData)
+    cur.execute("INSERT INTO schData(nodeId, A, A1, A2, A3, VLL, VLN, V1, V2, V3, V12, V23, V31, F, PF, PF1, PF2, PF3, W, W1, W2, W3, VA, VA1, VA2, VA3, WH, VAH, INTR) VALUES (%(nodeId)s, %(A)s, %(A1)s, %(A2)s, %(A3)s, %(VLL)s, %(VLN)s, %(V1)s, %(V2)s, %(V3)s, %(V12)s, %(V23)s, %(V31)s, %(F)s, %(PF)s, %(PF1)s, %(PF2)s, %(PF3)s, %(W)s, %(W1)s, %(W2)s, %(W3)s, %(VA)s, %(VA1)s, %(VA2)s, %(VA3)s, %(WH)s, %(VAH)s, %(INTR)s);",data)
     txId=1 
   
   else:
