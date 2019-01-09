@@ -83,8 +83,8 @@ def meter():
 
 def decode(value_d):
 	print(value_d)
-	value_d = payloadDecode.fromRegisters(value.registers, endian=Endian.Little)
-	value_d ={'float':A_d.decode_32bit_float(),}
+	value_d = payloadDecode.fromRegisters(value_d.registers, endian=Endian.Little)
+	value_d ={'float':value_d.decode_32bit_float(),}
 	for i, value in value_d.iteritems():
 	      value=value
 	return value
