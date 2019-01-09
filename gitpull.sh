@@ -12,7 +12,9 @@ echo "Github update completed"
 echo "updating local repository"
 {
 chmod 777 /home/cs/SGM/Client/*
+chmod 777 /home/cs/SGM/AGG/*
 cp /home/cs/SGM/Client/* /home/cs/SGM_Local/Client/
+cp /home/cs/SGM/AGG/* /home/cs/SGM_Local/AGG/
 sleep 1
 } >> /home/cs/updatelogs/local_copy.log
 
