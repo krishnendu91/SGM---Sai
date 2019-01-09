@@ -10,7 +10,7 @@
 
 import time
 import pymodbus 
-import serial,utils
+import serial,utils,mqttservice
 from pymodbus.pdu import ModbusRequest
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 from pymodbus.transaction import ModbusRtuFramer
