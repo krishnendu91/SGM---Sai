@@ -23,7 +23,7 @@ def meter():
 	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=0.05) 
 	client.connect()
 	A=client.read_holding_registers(3912,2,unit=1)
-	A=decode(A)
+	A=valDecode(A)
 	A1=client.read_holding_registers(3928,2,unit=1) 
 	A1=decode(A1)
 	A2=client.read_holding_registers(3942,2,unit=1) 
@@ -81,7 +81,7 @@ def meter():
 	data={'A':A,'A1':A1,'A2':A2,'A3':A3,'VLL':VLL,'VLN':VLN,'V1':V1,'V2':V2,'V3':V3,'V12':V12,'V23':V23,'V31':V31,'W':W,'W1':W1,'W2':W2,'W3':W3,'VA':VA,'VA1':VA1,'VA2':VA2,'VA3':VA3,'PF':PF,'PF1':PF1,'PF2':PF2,'PF3':PF3,'F':F,'VAH':VAH,'WH':WH,'intr':intr}
 	return data
 
-def decode(value_d):
+def valDecode(value_d):
 	print(value_d)
 	value_d = payloadDecode.fromRegisters(value_d.registers, endian=Endian.Little)
 	value_d ={'float':value_d.decode_32bit_float(),}
