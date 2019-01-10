@@ -470,9 +470,9 @@ def sch():
 	cur.execute('select * from schData ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	s=jsonify({'Recent data' : r})
-	dbtimeE=r['timestamp']
+	#dbtimeE=r['timestamp']
 	print(r)
-	print(dbtimeE)
+	#print(dbtimeE)
 	return s
 
 
