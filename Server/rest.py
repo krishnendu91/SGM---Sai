@@ -224,9 +224,9 @@ def outbackrecent():
 #Event API
 @app.route('/dimis/event')
 def event():
-        cur = mysql.connect().cursor()
-        cur.execute('select * from event ORDER BY id DESC LIMIT 15')
-        r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	cur = mysql.connect().cursor()
+	cur.execute('select * from event ORDER BY id DESC LIMIT 15')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['updateTime'].timestamp()
 	return jsonify({'Event Data' : r})
 
