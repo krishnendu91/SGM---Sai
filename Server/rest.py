@@ -471,6 +471,7 @@ def sch():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	s=jsonify({'Recent data' : r})
 	dbtimeE=r['timestamp']
+	print(r)
 	print(dbtimeE)
 	return s
 
