@@ -186,7 +186,7 @@ def metertype():
 	return jsonify({'Available Meters' : r})
 
 @app.route('/dimis/switchstate/1')
-def switchState():
+def n1switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -194,7 +194,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/2')
-def switchState():
+def n2switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -202,7 +202,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/3')
-def switchState():
+def n3switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=3 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -210,7 +210,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/4')
-def switchState():
+def n4switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=4 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -218,7 +218,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/5')
-def switchState():
+def n5switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=5 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -226,7 +226,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/6')
-def switchState():
+def n6switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=6 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -234,7 +234,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/7')
-def switchState():
+def n7switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=7 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -242,7 +242,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/8')
-def switchState():
+def n8switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=8 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -250,7 +250,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/9')
-def switchState():
+def n9switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=9 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -258,7 +258,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/10')
-def switchState():
+def n10switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=10 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -266,7 +266,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/11')
-def switchState():
+def n11switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=11 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -274,7 +274,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/12')
-def switchState():
+def n12switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=12 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -282,7 +282,7 @@ def switchState():
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/switchstate/13')
-def switchState():
+def n13switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=13 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
