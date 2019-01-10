@@ -173,6 +173,7 @@ def switchState():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/recentgm1')
@@ -217,6 +218,7 @@ def n1():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=1 and meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()
 	return jsonify({'Recent data' : r})
 
 @app.route('/dimis/2/gm1')
