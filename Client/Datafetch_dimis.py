@@ -146,7 +146,7 @@ elif (id_node == 7 or id_node == 9 or id_node == 12): #For node 7, 9, 12
 	#Fetch GM2
 	value_GM2=dimishelper(ip_eth0,port_GM2)
 	utils.todbdimis(value_GM2)
-	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm2","DONE",ip_wlan0)
+	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm2","DONE",ip_wlan0)
 	#algorithm.poweroutage(value_GM2['v1'],value_GM2['v2'],value_GM2['v3'],value_GM2['meterType'],id_node,ip_wlan0)
 	#algorithm.frequency(value_GM2['v1'],value_GM2['v2'],value_GM2['v3'],value_GM2['meterType'],id_node,ip_wlan0)
 	#algorithm.powerquality(value_GM2['v1'],value_GM2['v2'],value_GM2['v3'],value_GM2['meterType'],id_node,ip_wlan0)
