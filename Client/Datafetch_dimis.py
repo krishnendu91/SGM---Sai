@@ -121,7 +121,7 @@ if(1<id_node <7 or id_node ==8 or id_node ==13 or 9<id_node <12): # For Node 2,3
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_lm1","DONE",ip_wlan0)
 	print("LM1 Fetch Complete")
 
-elif (id_node == 7 | id_node == 9 |id_node == 12): #For node 7, 9, 12
+elif (id_node == 7 or id_node == 9 or id_node == 12): #For node 7, 9, 12
 	#Fetch GM
 	value_GM=dimishelper(ip_eth0,port_GM)
 	utils.todbdimis(value_GM)
