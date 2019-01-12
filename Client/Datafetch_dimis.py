@@ -17,7 +17,7 @@ print ("Starting Data fetch for Node "+str(id_node) +" connected at eth0 " +str(
 #port= int(sys.argv[1])
 port_GM=10001
 port_LM1=10002
-port_LM2=10003
+port_GM2=10003
 port_LM3=10004
 
 #Get Meter ID with respect to the node
