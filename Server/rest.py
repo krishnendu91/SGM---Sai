@@ -503,7 +503,7 @@ def n11_gm1():
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()
 	return jsonify({'Recent data' : r})
 
-@app.route('/dimis/2/lm')
+@app.route('/dimis/11/lm')
 def n11_lm():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=11 and meterType=2 ORDER BY id DESC LIMIT 1 ')
@@ -527,7 +527,7 @@ def n12_lm():
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()
 	return jsonify({'Recent data' : r})
 
-@app.route('/dimis/2/gm2')
+@app.route('/dimis/12/gm2')
 def n12_gm2():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=12 and meterType=3 ORDER BY id DESC LIMIT 1 ')
