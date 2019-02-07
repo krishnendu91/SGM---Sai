@@ -153,7 +153,7 @@ def alive_200():
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT * FROM `nodeHealth` WHERE aggId =2 ORDER BY `id` DESC limit 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()
+	r[0]['timestampEpoch']=(r[0]['timestamp'].timestamp())*10
 	return jsonify({'Alive' : r})
 
 @app.route('/alive/300')
