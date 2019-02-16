@@ -35,8 +35,8 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
-@app.route('/dimis/switch/<node>/<switch>')
-def welcome(node,switch):
+@app.route('/dimis/switchcontrol/<node>/<switch>')
+def switchcontrol(node,switch):
 	dURL=str(nodeId[node]['url'])+'/'+str(switch)
 	print(dURL)
 	return str(dURL)+ " Triggered successfully"
