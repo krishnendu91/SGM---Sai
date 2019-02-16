@@ -47,6 +47,13 @@ for pin in pins:
 def welcome():
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
+@app.route('/alive')
+def alive():
+	cur = mysql.connect().cursor()
+	cur.execute('select * from nodeHealth ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Alive' : r})
+
 @app.route('/<pinId>')
 def action(pinId):
 	#state=int(state)
@@ -57,13 +64,6 @@ def action(pinId):
 	time.sleep(0.3)
 	GPIO.output(int(device),GPIO.LOW)
 	return (str(device)+ " Activated")
-
-@app.route('/alive')
-def alive():
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeHealth ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	return jsonify({'Alive' : r})
 
 @app.route('/maxim')
 def maxim():
