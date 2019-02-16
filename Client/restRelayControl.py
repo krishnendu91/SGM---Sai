@@ -46,6 +46,7 @@ def action(pinId, state):
 	device=pinsID[pinId]['gpio']
 	print(device)
 	print(pinsID[pinId]['state'])
+	return device
 	
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=2000,debug=1)
