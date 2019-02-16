@@ -46,9 +46,9 @@ def action(pinId, state):
 	device=pinsID[pinId]['gpio']
 	print(device)
 	print(pinsID[pinId]['state'])
-	GPIO.output(device,GPIO.HIGH)
+	GPIO.output(int(device),GPIO.HIGH)
 	time.sleep(1)
-	GPIO.output(device,GPIO.LOW)
+	GPIO.output(int(device),GPIO.LOW)
 	return device
 	
 if __name__ == '__main__':
