@@ -15,19 +15,19 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 mysql.init_app(app)
 
-nodeId={1:{'url':"http://192.168.179.231:2000/"},
-	2:{'url':"http://192.168.179.232:2000/"},
-	3:{'url':"http://192.168.179.233:2000/"},
-	4:{'url':"http://192.168.179.234:2000/"},
-	5:{'url':"http://192.168.179.235:2000/"},
-	6:{'url':"http://192.168.179.236:2000/"},
-	7:{'url':"http://192.168.179.237:2000/"},
-	8:{'url':"http://192.168.179.238:2000/"},
-	9:{'url':"http://192.168.179.239:2000/"},
-	10:{'url':"http://192.168.179.240:2000/"},
-	11:{'url':"http://192.168.179.241:2000/"},
-	12:{'url':"http://192.168.179.242:2000/"},
-	13:{'url':"http://192.168.179.243:2000/"},}
+nodeId={'1':{'url':"http://192.168.179.231:2000/"},
+	'2':{'url':"http://192.168.179.232:2000/"},
+	'3':{'url':"http://192.168.179.233:2000/"},
+	'4':{'url':"http://192.168.179.234:2000/"},
+	'5':{'url':"http://192.168.179.235:2000/"},
+	'6':{'url':"http://192.168.179.236:2000/"},
+	'7':{'url':"http://192.168.179.237:2000/"},
+	'8':{'url':"http://192.168.179.238:2000/"},
+	'9':{'url':"http://192.168.179.239:2000/"},
+	'10':{'url':"http://192.168.179.240:2000/"},
+	'11':{'url':"http://192.168.179.241:2000/"},
+	'12':{'url':"http://192.168.179.242:2000/"},
+	'13':{'url':"http://192.168.179.243:2000/"},}
 
 @app.route('/')
 def welcome():
@@ -38,8 +38,9 @@ def welcome():
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 def switchcontrol(node,switch):
 	dURL='192.168.179.23'+str(node)+':2000/'+str(switch)
-	#dURL=str(nodeId[node]['url'])+'/'+str(switch)
+	sURL=str(nodeId[node]['url'])+'/'+str(switch)
 	print(dURL)
+	print(sURL)
 	return str(dURL)+ " Triggered successfully"
 
 @app.route('/mqtttest')
