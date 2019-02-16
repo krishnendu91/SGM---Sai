@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import datetime
+from urllib.request import urlopen
 from flask import Flask, jsonify
 from flaskext.mysql import MySQL
 
@@ -38,10 +39,17 @@ def welcome():
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 def switchcontrol(node,switch):
 	dURL='192.168.179.23'+str(node)+':2000/'+str(switch)
-	sURL=str(nodeId[node]['url'])+'/'+str(switch)
+	sURL=str(nodeId[node]['url'])+str(switch)
 	print(dURL)
 	print(sURL)
-	return str(dURL)+ " Triggered successfully"
+	try:
+		api_page = urlopen(url) #Python 3
+		api=api_page.read()
+		message=str(dURL)+ " Triggered successfully"
+	except:
+		pass
+		message="Error accessing URL"
+	return message
 
 @app.route('/mqtttest')
 def mqtttest():
