@@ -40,12 +40,12 @@ for pin in pins:
 def welcome():
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
-@app.route('/<pinId>/<state>')
-def action(pinId, state):
-	state=int(state)
+@app.route('/<pinId>')
+def action(pinId):
+	#state=int(state)
 	device=pinsID[pinId]['gpio']
 	print(device)
-	print(pinsID[pinId]['state'])
+	#print(pinsID[pinId]['state'])
 	GPIO.output(int(device),GPIO.HIGH)
 	time.sleep(0.3)
 	GPIO.output(int(device),GPIO.LOW)
