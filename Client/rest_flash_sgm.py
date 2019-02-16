@@ -2,10 +2,15 @@
 
 from flask import Flask, jsonify
 from flaskext.mysql import MySQL
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM) 
+GPIO.setwarnings(False) 
 
 app = Flask(__name__)
 mysql = MySQL()
-#urls=("/favicon.ico","dummy")
+urls=("/favicon.ico","dummy")
+
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
@@ -13,11 +18,6 @@ app.config['MYSQL_DATABASE_DB'] = 'AmritaSGM'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 mysql.init_app(app)
-
-import RPi.GPIO as GPIO
-import time
-GPIO.setmode(GPIO.BCM) 
-GPIO.setwarnings(False) 
 
 pins = {26 : {'name' : 'R1', 'state' : GPIO.LOW},
 	19 : {'name' : 'R2', 'state' : GPIO.LOW},
