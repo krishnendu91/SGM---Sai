@@ -5,7 +5,7 @@ from flaskext.mysql import MySQL
 
 app = Flask(__name__)
 mysql = MySQL()
-urls=("/favicon.ico","dummy")
+#urls=("/favicon.ico","dummy")
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
