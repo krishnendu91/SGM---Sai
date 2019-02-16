@@ -47,9 +47,9 @@ def action(pinId, state):
 	print(device)
 	print(pinsID[pinId]['state'])
 	GPIO.output(int(device),GPIO.HIGH)
-	time.sleep(1)
+	time.sleep(0.3)
 	GPIO.output(int(device),GPIO.LOW)
-	return device
+	return (str(device)+ "Activated")
 	
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=2000,debug=1)
