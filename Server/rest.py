@@ -37,7 +37,8 @@ def welcome():
 
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 def switchcontrol(node,switch):
-	dURL=str(nodeId[node]['url'])+'/'+str(switch)
+	dURL='192.168.179.23'+str(node)+':2000/'+str(switch)
+	#dURL=str(nodeId[node]['url'])+'/'+str(switch)
 	print(dURL)
 	return str(dURL)+ " Triggered successfully"
 
