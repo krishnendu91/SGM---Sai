@@ -48,7 +48,7 @@ def switchcontrol(node,switch):
 		message=str(dURL)+ " Triggered successfully"
 	except:
 		pass
-		message="Error accessing URL"
+		message="Error accessing URL \n " + print(sURL)
 	return message
 
 @app.route('/mqtttest')
