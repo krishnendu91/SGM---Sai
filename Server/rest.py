@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import datetime
+import datetime,sys
 from urllib.request import urlopen
 from flask import Flask, jsonify,request
 from flaskext.mysql import MySQL
