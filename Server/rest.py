@@ -38,6 +38,7 @@ def welcome():
 
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 def switchcontrol(node,switch):
+	APILog={'clientIP':request.environ['REMOTE_ADDR'],'API':switchcontrol}
 	conn = mysql.connect()
 	cur=conn.cursor()
 	dURL='192.168.179.23'+str(node)+':2000/'+str(switch)
@@ -58,7 +59,8 @@ def switchcontrol(node,switch):
 	cur.execute('INSERT INTO switchInstruction(nodeId,switchID,switchState,success)VALUES(%(nodeId)s,%(switchID)s,%(switchState)s,%(success)s); ',switchControl)
 	conn.commit()
 	print("Switch State Updated in DB")
-	print(request.environ['REMOTE_ADDR'])
+	cur.execute('INSERT INTO APILogs(clientIP,API)VALUES(%(clientIP)s,%(API)s); ',APILog)
+	conn.commit()
 	return message
 
 @app.route('/mqtttest')
