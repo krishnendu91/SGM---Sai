@@ -39,7 +39,7 @@ def welcome():
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 def switchcontrol(node,switch):
 	conn = mysql.connect()
-	cur=mysql.cursor()
+	cur=conn.cursor()
 	dURL='192.168.179.23'+str(node)+':2000/'+str(switch)
 	sURL=str(nodeId[node]['url'])+str(switch)
 	print(dURL)
