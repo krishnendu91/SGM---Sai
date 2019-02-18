@@ -2,7 +2,7 @@
 
 import datetime
 from urllib.request import urlopen
-from flask import Flask, jsonify
+from flask import Flask, jsonify,request
 from flaskext.mysql import MySQL
 
 app = Flask(__name__)
@@ -663,5 +663,6 @@ def sch():
 	return jsonify({'Recent data' : r})
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=5000,debug=1)
+	app.run(host="0.0.0.0",port=5000,debug=1)
+	print(request.environ['REMOTE_ADDR'])
 
