@@ -44,17 +44,20 @@ def switchcontrol(node,switch):
 	sURL=str(nodeId[node]['url'])+str(switch)
 	print(dURL)
 	print(sURL)
+	try:	
+		success=1
+		api_page = urlopen(sURL) #Python 3
+		api=api_page.read()
+		message=str(dURL)+ " Triggered successfully"
 		
-	switchControl={"nodeId":node,"switchID":switch,"switchState":1}
-	api_page = urlopen(sURL) #Python 3
-	api=api_page.read()
-	message=str(dURL)+ " Triggered successfully"
-	cur.execute('INSERT INTO switchInstruction(nodeId,switchID,switchState)VALUES(%(nodeId)s,%(switchID)s,%(switchState)s); ',switchControl)
+	except:
+		pass
+		success=0
+		message="Error accessing URL \n " + str(sURL)
+	switchControl={"nodeId":node,"switchID":switch,"switchState":1,"success":success}
+	cur.execute('INSERT INTO switchInstruction(nodeId,switchID,switchState,success)VALUES(%(nodeId)s,%(switchID)s,%(switchState)s,%(success)s); ',switchControl)
 	conn.commit()
 	print("Switch State Updated in DB")
-	#except:
-	#	pass
-	#	message="Error accessing URL \n " + str(sURL)
 	return message
 
 @app.route('/mqtttest')
