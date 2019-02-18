@@ -38,7 +38,7 @@ def welcome():
 
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 def switchcontrol(node,switch):
-	APILog={'clientIP':request.environ['REMOTE_ADDR'],'API':switchcontrol}
+	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':'switchcontrol'}
 	conn = mysql.connect()
 	cur=conn.cursor()
 	dURL='192.168.179.23'+str(node)+':2000/'+str(switch)
