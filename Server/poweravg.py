@@ -42,7 +42,7 @@ while(a<15):
     tdcalc(nodeid,dbtime,temp,ssid,wlan_ss)
     conn.close()
     a=a+1
-   except:
+  except:
     pass
 #    if a==15:
  #     aggid=200
