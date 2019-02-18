@@ -38,14 +38,24 @@ def welcome():
 
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 def switchcontrol(node,switch):
+	conn = mysql.connect()
+	cur=mysql.cursor()
 	dURL='192.168.179.23'+str(node)+':2000/'+str(switch)
 	sURL=str(nodeId[node]['url'])+str(switch)
 	print(dURL)
 	print(sURL)
 	try:
+		
+		switchControl={"nodeId":node,
+			       "switchID":switch,
+			       "switchState":1}
+		
 		api_page = urlopen(sURL) #Python 3
 		api=api_page.read()
 		message=str(dURL)+ " Triggered successfully"
+		cur.execute('INSERT INTO switchinstruction(nodeId,switchID,switchState)VALUES(%(nodeId)s,%(switchID)s,%(switchState)s); ',switchControl)
+		conn.commit()
+		print("Switch State Updated in DB")
 	except:
 		pass
 		message="Error accessing URL \n " + str(sURL)
