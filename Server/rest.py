@@ -58,6 +58,7 @@ def switchcontrol(node,switch):
 	cur.execute('INSERT INTO switchInstruction(nodeId,switchID,switchState,success)VALUES(%(nodeId)s,%(switchID)s,%(switchState)s,%(success)s); ',switchControl)
 	conn.commit()
 	print("Switch State Updated in DB")
+	print(request.environ['REMOTE_ADDR'])
 	return message
 
 @app.route('/mqtttest')
