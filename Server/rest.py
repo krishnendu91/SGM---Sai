@@ -49,7 +49,7 @@ def switchcontrol(node,switch):
 	api_page = urlopen(sURL) #Python 3
 	api=api_page.read()
 	message=str(dURL)+ " Triggered successfully"
-	cur.execute('INSERT INTO switchinstruction(nodeId,switchID,switchState)VALUES(%(nodeId)s,%(switchID)s,%(switchState)s); ',switchControl)
+	cur.execute('INSERT INTO switchInstruction(nodeId,switchID,switchState)VALUES(%(nodeId)s,%(switchID)s,%(switchState)s); ',switchControl)
 	conn.commit()
 	print("Switch State Updated in DB")
 	#except:
