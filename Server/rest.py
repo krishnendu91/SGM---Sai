@@ -32,6 +32,11 @@ nodeId={'1':{'url':"http://192.168.179.231:5000/"},
 
 @app.route('/')
 def welcome():
+	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':str(sys._getframe().f_code.co_name)}
+	conn = mysql.connect()
+	cur=conn.cursor()
+	cur.execute('INSERT INTO APILogs(clientIP,API)VALUES(%(clientIP)s,%(API)s); ',APILog)
+	conn.commit()
 #	print "Welcome to Amrita Smart-Grid Middleware"
 #	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
@@ -65,14 +70,22 @@ def switchcontrol(node,switch):
 
 @app.route('/mqtttest')
 def mqtttest():
-	cur = mysql.connect().cursor()
+	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':'welcome'}
+	conn = mysql.connect()
+	cur=conn.cursor()
+	cur.execute('INSERT INTO APILogs(clientIP,API)VALUES(%(clientIP)s,%(API)s); ',APILog)
+	conn.commit()
 	cur.execute('select * from mqttTest ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'mqtt Test data' : r})
 
 @app.route('/alive/1')
 def alive_1():
-	cur = mysql.connect().cursor()
+	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':'welcome'}
+	conn = mysql.connect()
+	cur=conn.cursor()
+	cur.execute('INSERT INTO APILogs(clientIP,API)VALUES(%(clientIP)s,%(API)s); ',APILog)
+	conn.commit()
 	cur.execute('select * from lastseen where nodeid=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()
