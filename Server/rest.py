@@ -46,7 +46,7 @@ def welcome():
 
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 def switchcontrol(node,switch):
-	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':str(sys._getframe().f_code.co_name)}
+	security(str(sys._getframe().f_code.co_name))
 	conn = mysql.connect()
 	cur=conn.cursor()
 	dURL='192.168.179.23'+str(node)+':2000/'+str(switch)
@@ -67,28 +67,22 @@ def switchcontrol(node,switch):
 	cur.execute('INSERT INTO switchInstruction(nodeId,switchID,switchState,success)VALUES(%(nodeId)s,%(switchID)s,%(switchState)s,%(success)s); ',switchControl)
 	conn.commit()
 	print("Switch State Updated in DB")
-	cur.execute('INSERT INTO APILogs(clientIP,API)VALUES(%(clientIP)s,%(API)s); ',APILog)
-	conn.commit()
 	return message
 
 @app.route('/mqtttest')
 def mqtttest():
-	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':'welcome'}
+	security(str(sys._getframe().f_code.co_name))
 	conn = mysql.connect()
 	cur=conn.cursor()
-	cur.execute('INSERT INTO APILogs(clientIP,API)VALUES(%(clientIP)s,%(API)s); ',APILog)
-	conn.commit()
 	cur.execute('select * from mqttTest ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'mqtt Test data' : r})
 
 @app.route('/alive/1')
 def alive_1():
-	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':'welcome'}
+	security(str(sys._getframe().f_code.co_name))
 	conn = mysql.connect()
 	cur=conn.cursor()
-	cur.execute('INSERT INTO APILogs(clientIP,API)VALUES(%(clientIP)s,%(API)s); ',APILog)
-	conn.commit()
 	cur.execute('select * from lastseen where nodeid=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()
@@ -96,6 +90,7 @@ def alive_1():
 
 @app.route('/alive/2')
 def alive_2():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -104,6 +99,7 @@ def alive_2():
 
 @app.route('/alive/3')
 def alive_3():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=3 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -112,6 +108,7 @@ def alive_3():
 
 @app.route('/alive/4')
 def alive_4():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=4 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -120,6 +117,7 @@ def alive_4():
 
 @app.route('/alive/5')
 def alive_5():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=5 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -128,6 +126,7 @@ def alive_5():
 
 @app.route('/alive/6')
 def alive_6():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=6 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -136,6 +135,7 @@ def alive_6():
 
 @app.route('/alive/7')
 def alive_7():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=7 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -144,6 +144,7 @@ def alive_7():
 
 @app.route('/alive/8')
 def alive_8():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=8 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -152,6 +153,7 @@ def alive_8():
 
 @app.route('/alive/9')
 def alive_9():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=9 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -160,6 +162,7 @@ def alive_9():
 
 @app.route('/alive/10')
 def alive_10():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=10 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -168,6 +171,7 @@ def alive_10():
 
 @app.route('/alive/11')
 def alive_11():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=11 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -176,6 +180,7 @@ def alive_11():
 
 @app.route('/alive/12')
 def alive_12():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=12 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -184,6 +189,7 @@ def alive_12():
 
 @app.route('/alive/13')
 def alive_13():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=13 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -192,6 +198,7 @@ def alive_13():
 
 @app.route('/alive/14')
 def alive_14():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from lastseen where nodeid=14 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -200,6 +207,7 @@ def alive_14():
 
 @app.route('/alive/100')
 def alive_100():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT * FROM `nodeHealth` WHERE aggId =1 ORDER BY `id` DESC limit 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -208,6 +216,7 @@ def alive_100():
 
 @app.route('/alive/200')
 def alive_200():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT * FROM `nodeHealth` WHERE aggId =2 ORDER BY `id` DESC limit 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -216,6 +225,7 @@ def alive_200():
 
 @app.route('/alive/300')
 def alive_300():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT * FROM `nodeHealth` WHERE aggId =3 ORDER BY `id` DESC limit 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -224,6 +234,7 @@ def alive_300():
 
 @app.route('/weather')
 def weather():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from weather ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -231,6 +242,7 @@ def weather():
 
 @app.route('/site')
 def site():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT * FROM `projectSite` ORDER by siteId ASC')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -238,6 +250,7 @@ def site():
 
 @app.route('/metertype')
 def metertype():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT * FROM `Meter` ORDER BY meterID ASC')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -245,6 +258,7 @@ def metertype():
 
 @app.route('/dimis/switchstate/1')
 def n1switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -253,6 +267,7 @@ def n1switchState():
 
 @app.route('/dimis/switchstate/2')
 def n2switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -261,6 +276,7 @@ def n2switchState():
 
 @app.route('/dimis/switchstate/3')
 def n3switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=3 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -269,6 +285,7 @@ def n3switchState():
 
 @app.route('/dimis/switchstate/4')
 def n4switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=4 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -277,6 +294,7 @@ def n4switchState():
 
 @app.route('/dimis/switchstate/5')
 def n5switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=5 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -285,6 +303,7 @@ def n5switchState():
 
 @app.route('/dimis/switchstate/6')
 def n6switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=6 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -293,6 +312,7 @@ def n6switchState():
 
 @app.route('/dimis/switchstate/7')
 def n7switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=7 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -301,6 +321,7 @@ def n7switchState():
 
 @app.route('/dimis/switchstate/8')
 def n8switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=8 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -309,6 +330,7 @@ def n8switchState():
 
 @app.route('/dimis/switchstate/9')
 def n9switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=9 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -317,6 +339,7 @@ def n9switchState():
 
 @app.route('/dimis/switchstate/10')
 def n10switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=10 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -325,6 +348,7 @@ def n10switchState():
 
 @app.route('/dimis/switchstate/11')
 def n11switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=11 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -333,6 +357,7 @@ def n11switchState():
 
 @app.route('/dimis/switchstate/12')
 def n12switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=12 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -341,6 +366,7 @@ def n12switchState():
 
 @app.route('/dimis/switchstate/13')
 def n13switchState():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from switchState where nodeId=13 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -349,6 +375,7 @@ def n13switchState():
 
 @app.route('/dimis/recentgm1')
 def recentgm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -356,6 +383,7 @@ def recentgm():
 
 @app.route('/dimis/recentlm')
 def recentlm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where meterType=2 ORDER BY id DESC LIMIT 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -363,6 +391,7 @@ def recentlm1():
 
 @app.route('/dimis/recentgm2')
 def recentlm2():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where meterType=3 ORDER BY id DESC LIMIT 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -370,6 +399,7 @@ def recentlm2():
 
 @app.route('/outbackrecent')
 def outbackrecent():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from inverterData ORDER BY id DESC LIMIT 1')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -378,6 +408,7 @@ def outbackrecent():
 #Event API
 @app.route('/dimis/event')
 def event():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from event ORDER BY id DESC LIMIT 15')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -387,6 +418,7 @@ def event():
 #API for node level filtering
 @app.route('/dimis/1/gm1')
 def n1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=1 and meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -395,6 +427,7 @@ def n1():
 
 @app.route('/dimis/2/gm1')
 def n2_gm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=2 and meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -403,6 +436,7 @@ def n2_gm():
 
 @app.route('/dimis/2/lm')
 def n2_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=2 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -411,6 +445,7 @@ def n2_lm():
 
 @app.route('/dimis/3/gm1')
 def n3_gm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=3 and meterType=1  ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -419,6 +454,7 @@ def n3_gm():
 
 @app.route('/dimis/3/lm')
 def n3_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=3 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -427,6 +463,7 @@ def n3_lm():
 
 @app.route('/dimis/4/gm1')
 def n4_gm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=4  and meterType =1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -435,6 +472,7 @@ def n4_gm1():
 
 @app.route('/dimis/4/lm')
 def n4_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=4 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -443,6 +481,7 @@ def n4_lm():
 
 @app.route('/dimis/5/gm1')
 def n5_gm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=5 and meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -451,6 +490,7 @@ def n5_gm1():
 
 @app.route('/dimis/5/lm')
 def n5_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=5 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -459,6 +499,7 @@ def n5_lm():
 
 @app.route('/dimis/6/gm1')
 def n6_gm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=6 and meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -467,6 +508,7 @@ def n6_gm1():
 
 @app.route('/dimis/6/lm')
 def n6_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=6 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -475,6 +517,7 @@ def n6_lm():
 
 @app.route('/dimis/7/gm1')
 def n7_gm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=7 and meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -483,6 +526,7 @@ def n7_gm1():
 
 @app.route('/dimis/7/lm')
 def n7_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=7 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -491,6 +535,7 @@ def n7_lm():
 
 @app.route('/dimis/7/gm2')
 def n7_gm3():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=7 and meterType=3 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -499,6 +544,7 @@ def n7_gm3():
 
 @app.route('/dimis/8/gm1')
 def n8_gm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=8 amd meterType=1  ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -507,6 +553,7 @@ def n8_gm1():
 
 @app.route('/dimis/8/lm')
 def n8_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=8 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -515,6 +562,7 @@ def n8_lm():
 
 @app.route('/dimis/9/gm1')
 def n9_gm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=9 and meterType=1  ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -523,6 +571,7 @@ def n9_gm1():
 
 @app.route('/dimis/9/lm')
 def n9_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=9 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -531,6 +580,7 @@ def n9_lm():
 
 @app.route('/dimis/9/gm2')
 def n9_gm2():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=9 and meterType=3 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -539,6 +589,7 @@ def n9_gm2():
 
 @app.route('/dimis/10/gm1')
 def n10_gm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=10 and meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -547,6 +598,7 @@ def n10_gm1():
 
 @app.route('/dimis/10/lm')
 def n10_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=10 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -555,6 +607,7 @@ def n10_lm():
 
 @app.route('/dimis/11/gm1')
 def n11_gm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=11 and meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -563,6 +616,7 @@ def n11_gm1():
 
 @app.route('/dimis/11/lm')
 def n11_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=11 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -571,6 +625,7 @@ def n11_lm():
 
 @app.route('/dimis/12/gm1')
 def n12_gm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=12 and meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -579,6 +634,7 @@ def n12_gm1():
 
 @app.route('/dimis/12/lm')
 def n12_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=12 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -587,6 +643,7 @@ def n12_lm():
 
 @app.route('/dimis/12/gm2')
 def n12_gm2():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=12 and meterType=3 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -595,6 +652,7 @@ def n12_gm2():
 
 @app.route('/dimis/13/gm1')
 def n13_gm1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=13 and meterType=1 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -603,6 +661,7 @@ def n13_gm1():
 
 @app.route('/dimis/13/lm')
 def n13_lm():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=13 and meterType=2 ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -611,6 +670,7 @@ def n13_lm():
 
 @app.route('/maxim/1')
 def maxim():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from maximData where nodeId="IL_1" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -619,6 +679,7 @@ def maxim():
 
 @app.route('/maxim/2')
 def maxim1():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from maximData where nodeId="IL_2" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -627,6 +688,7 @@ def maxim1():
 
 @app.route('/maxim/3')
 def maxim2():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from maximData where nodeId="IL_3" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -635,6 +697,7 @@ def maxim2():
 
 @app.route('/maxim/4')
 def maxim3():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from maximData where nodeId="IL_4" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -643,6 +706,7 @@ def maxim3():
 
 @app.route('/maxim/5')
 def maxim4():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from maximData where nodeId="IL_5" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -651,6 +715,7 @@ def maxim4():
 
 @app.route('/maxim/6')
 def maxim5():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from maximData where nodeId="IL_6" ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -659,6 +724,7 @@ def maxim5():
 
 @app.route('/outbackinv')
 def outbackinv():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select nodeid,type,port,battVoltage,aux,error,dev,vac1_in_l2,ac_input,vac_out_l2,inv_mode,inv_i_l2,warn,buy_i_l2,vac_in_l2,sell_i_l2,chg_i_l2,ac_mode from inverterData where dev="FXR" ORDER BY id DESC LIMIT 3')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -667,6 +733,7 @@ def outbackinv():
 
 @app.route('/outbackcc')
 def outbackcc():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select nodeid,type,port,battVoltage,aux,error,dev,cc_mode,aux_mode,in_i,out_i,in_v,out_kwh,out_ah  from inverterData where dev="CC" ORDER BY id DESC LIMIT 3')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -675,6 +742,7 @@ def outbackcc():
 
 @app.route('/sch')
 def sch():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from schData ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
