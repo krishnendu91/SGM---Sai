@@ -30,20 +30,23 @@ nodeId={'1':{'url':"http://192.168.179.231:5000/"},
 	'12':{'url':"http://192.168.179.242:5000/"},
 	'13':{'url':"http://192.168.179.243:5000/"},}
 
-@app.route('/')
-def welcome():
-	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':str(sys._getframe().f_code.co_name)}
+def security(fname):
+	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':fname}
 	conn = mysql.connect()
 	cur=conn.cursor()
 	cur.execute('INSERT INTO APILogs(clientIP,API)VALUES(%(clientIP)s,%(API)s); ',APILog)
 	conn.commit()
+
+@app.route('/')
+def welcome():
+	security(str(sys._getframe().f_code.co_name))
 #	print "Welcome to Amrita Smart-Grid Middleware"
 #	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 def switchcontrol(node,switch):
-	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':'switchcontrol'}
+	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':str(sys._getframe().f_code.co_name)}
 	conn = mysql.connect()
 	cur=conn.cursor()
 	dURL='192.168.179.23'+str(node)+':2000/'+str(switch)
