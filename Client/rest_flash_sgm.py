@@ -3,7 +3,7 @@
 from flask import Flask, jsonify
 from flaskext.mysql import MySQL
 import RPi.GPIO as GPIO
-import time
+import time,switchstatus
 GPIO.setmode(GPIO.BCM) 
 GPIO.setwarnings(False) 
 
@@ -63,6 +63,7 @@ def action(pinId):
 	GPIO.output(int(device),GPIO.HIGH)
 	time.sleep(0.3)
 	GPIO.output(int(device),GPIO.LOW)
+	switchstatus.switchrest()
 	return (str(device)+ " Activated")
 
 @app.route('/maxim')
