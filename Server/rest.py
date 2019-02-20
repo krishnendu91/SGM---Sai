@@ -31,7 +31,10 @@ nodeId={'1':{'url':"http://192.168.179.231:5000/"},
 	'13':{'url':"http://192.168.179.243:5000/"},}
 
 def security(fname):
-	APILog={'clientIP':str(request.environ['REMOTE_ADDR']),'API':fname}
+	APILog={'clientAgent':str(request.headers.get('User-Agent')),
+		'clientIP':str(request.environ['REMOTE_ADDR']),
+		'API':fname}
+	print(APILog)
 	conn = mysql.connect()
 	cur=conn.cursor()
 	cur.execute('INSERT INTO APILogs(clientIP,API)VALUES(%(clientIP)s,%(API)s); ',APILog)
