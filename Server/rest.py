@@ -37,7 +37,7 @@ def security(fname):
 	print(APILog)
 	conn = mysql.connect()
 	cur=conn.cursor()
-	cur.execute('INSERT INTO APILogs(clientIP,API)VALUES(%(clientIP)s,%(API)s); ',APILog)
+	cur.execute('INSERT INTO APILogs(clientAgent,clientIP,API)VALUES(%(clientAgent)s,%(clientIP)s,%(API)s); ',APILog)
 	conn.commit()
 
 @app.route('/')
