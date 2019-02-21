@@ -47,6 +47,20 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
+@app.route('/dimis/update/<node>')
+def updatedimis(node):
+	security(str(sys._getframe().f_code.co_name))
+	sURL=str(nodeId[node]['url'])+'update'
+	try:	
+		api_page = urlopen(sURL) #Python 3
+		api=api_page.read()
+		message=api
+		
+	except:
+		pass
+		message="Error accessing URL \n " + str(sURL)
+	return message
+
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 def switchcontrol(node,switch):
 	security(str(sys._getframe().f_code.co_name))
@@ -60,7 +74,7 @@ def switchcontrol(node,switch):
 		success=1
 		api_page = urlopen(sURL) #Python 3
 		api=api_page.read()
-		message=str(dURL)+ " Triggered successfully"
+		message=str(sURL)+ " Triggered successfully"
 		
 	except:
 		pass
