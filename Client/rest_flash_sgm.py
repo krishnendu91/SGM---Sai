@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from flask import Flask, jsonify,request
+from flask import Flask, jsonify,request,response
 from flaskext.mysql import MySQL
 import RPi.GPIO as GPIO
 import time,utils,os
@@ -28,7 +28,7 @@ def welcome():
 def update():
 	cmd="git pull"
 	os.system(cmd)
-	return str(request.status)
+	return str(response)
 
 @app.route('/alive')
 def alive():
