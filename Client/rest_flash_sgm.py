@@ -3,7 +3,7 @@
 from flask import Flask, jsonify
 from flaskext.mysql import MySQL
 import RPi.GPIO as GPIO
-import time,utils
+import time,utils,os
 GPIO.setmode(GPIO.BCM) 
 GPIO.setwarnings(False) 
 
@@ -46,6 +46,12 @@ for pin in pins:
 @app.route('/')
 def welcome():
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
+
+@app.route('/update')
+def update():
+	cmd="git pull"
+	os.system(cmd)
+	return "Update Requested"
 
 @app.route('/alive')
 def alive():
