@@ -28,7 +28,7 @@ def welcome():
 def update():
 	cmd="git pull"
 	os.system(cmd)
-	return str(request.headers)
+	return str(request.status)
 
 @app.route('/alive')
 def alive():
