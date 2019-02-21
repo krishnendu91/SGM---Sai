@@ -19,29 +19,6 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 mysql.init_app(app)
 
-pins = {26 : {'name' : 'R1', 'state' : GPIO.LOW},
-	19 : {'name' : 'R2', 'state' : GPIO.LOW},
-	13 : {'name' : 'R3', 'state' : GPIO.LOW},
-	6 : {'name' : 'R4', 'state' : GPIO.LOW},
-	12 : {'name' : 'R5', 'state' : GPIO.LOW},
-	16 : {'name' : 'R6', 'state' : GPIO.LOW},
-	20 : {'name' : 'R7', 'state' : GPIO.LOW},
-	21 : {'name' : 'R8', 'state' : GPIO.LOW}
-   }
-
-pinsID = {'R1' : {'gpio' : '26', 'state' : GPIO.LOW},
-	'R2' : {'gpio' : '19', 'state' : GPIO.LOW},
-	'R3' : {'gpio' : '13', 'state' : GPIO.LOW},
-	'R4': {'gpio' : '6', 'state' : GPIO.LOW},
-	'R5' : {'gpio' : '12', 'state' : GPIO.LOW},
-	'R6' : {'gpio' : '16', 'state' : GPIO.LOW},
-	'R7' : {'gpio' : '20', 'state' : GPIO.LOW},
-	'R8' : {'gpio' : '21', 'state' : GPIO.LOW}
-   }
-
-for pin in pins:
-   GPIO.setup(pin, GPIO.OUT)
-   GPIO.output(pin, GPIO.LOW)
 
 @app.route('/')
 def welcome():
@@ -62,6 +39,27 @@ def alive():
 
 @app.route('/<pinId>')
 def action(pinId):
+	pins = {26 : {'name' : 'R1', 'state' : GPIO.LOW},
+		19 : {'name' : 'R2', 'state' : GPIO.LOW},
+		13 : {'name' : 'R3', 'state' : GPIO.LOW},
+		6 : {'name' : 'R4', 'state' : GPIO.LOW},
+		12 : {'name' : 'R5', 'state' : GPIO.LOW},
+		16 : {'name' : 'R6', 'state' : GPIO.LOW},
+		20 : {'name' : 'R7', 'state' : GPIO.LOW},
+		21 : {'name' : 'R8', 'state' : GPIO.LOW}}
+
+	pinsID = {'R1' : {'gpio' : '26', 'state' : GPIO.LOW},
+		  'R2' : {'gpio' : '19', 'state' : GPIO.LOW},
+		  'R3' : {'gpio' : '13', 'state' : GPIO.LOW},
+		  'R4': {'gpio' : '6', 'state' : GPIO.LOW},
+		  'R5' : {'gpio' : '12', 'state' : GPIO.LOW},
+		  'R6' : {'gpio' : '16', 'state' : GPIO.LOW},
+		  'R7' : {'gpio' : '20', 'state' : GPIO.LOW},
+		  'R8' : {'gpio' : '21', 'state' : GPIO.LOW}}
+	for pin in pins:
+		GPIO.setup(pin, GPIO.OUT)
+		GPIO.output(pin, GPIO.LOW)
+	
 	#state=int(state)
 	device=pinsID[pinId]['gpio']
 	print(device)
