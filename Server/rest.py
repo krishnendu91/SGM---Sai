@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import datetime,sys
+import datetime,sys,os
 from urllib.request import urlopen
 from flask import Flask, jsonify,request
 from flaskext.mysql import MySQL
@@ -47,6 +47,12 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
+@app.route('/restart')
+def restart():
+	cmd="/home/cs/restartRest.sh"
+	os.system(cmd)
+	return "restart complete"
+
 @app.route('/dimis/update/<node>')
 def updatedimis(node):
 	security(str(sys._getframe().f_code.co_name))
@@ -55,7 +61,6 @@ def updatedimis(node):
 		api_page = urlopen(sURL) #Python 3
 		api=api_page.read()
 		message=api
-		
 	except:
 		pass
 		message="Error accessing URL \n " + str(sURL)
