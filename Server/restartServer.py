@@ -2,10 +2,6 @@
 import os,time
 from urllib.request import urlopen
 
-cmd="/home/cs/restartRest.sh"
-os.system(cmd)
-time.sleep(0.5)
-
 def openurl(sURL):
         try:    
                 api_page = urlopen(sURL) #Python 3
@@ -14,7 +10,8 @@ def openurl(sURL):
         except:
                 pass
                 message="Error accessing URL \n " 
-        print(str(sURL)+message)
+        time.sleep(0.5)
+	print(str(sURL)+message)
 
 
 i=1
@@ -31,17 +28,7 @@ while i<14:
                 url="http://192.168.179.243:5000/restart"
 	else:
 		pass
-	print(url)
 	openurl(url)
 	i=i+1
-
-def openurl(sURL):
-        try:    
-                api_page = urlopen(sURL) #Python 3
-                api=api_page.read()
-                message=str(api)
-        except:
-                pass
-                message="Error accessing URL \n " 
-        print(str(sURL)+message)
-
+cmd="/home/cs/restartRest.sh"
+os.system(cmd)
