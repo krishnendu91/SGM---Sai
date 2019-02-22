@@ -15,8 +15,8 @@ mypid = os.getpid()
 print("Process started at: " +str(mypid))
 client_uniq = "pubclient_"+str(mypid)
 mqttclient = paho.Client(client_uniq, False) #nocleanstart
-mqttclient.connect(broker, port, 600)
-mqttclient.on_disconnect=mqttclient.reconnect()
+mqttclient.connect(broker, port, 60)
+#mqttclient.on_disconnect=mqttclient.reconnect()
 mqttclient.subscribe("SGM/#")
 
 
