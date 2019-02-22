@@ -1,22 +1,25 @@
 #!/bin/bash
 echo "Restart Process Initiated..."
 echo "#############################################"
-sleep 1
+sleep 0.5
 echo "Please be patient...."
 
-service mosquitto stop
-systemctl stop SMG_Server.service 
-systemctl stop rest.service 
+{
+#service mosquitto restart
+service SMG_Server restart
+#service rest restart
+}>> /home/cs/SGM_log/restartRest.log
+
 #service grafana-server stop 
 #service mysql stop
 #sleep 1
 
-echo "Stop completed"
+#echo "Stop completed"
 
 #service mysql start
-service mosquitto start
-systemctl start SMG_Server.service
-systemctl start rest.service
+#service mosquitto start
+#systemctl start SMG_Server.service
+#systemctl start rest.service
 #service grafana-server start
 
 echo "Reboot success"
