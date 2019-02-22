@@ -49,12 +49,14 @@ def welcome():
 
 @app.route('/updateserver')
 def serverupdate():
+	security(str(sys._getframe().f_code.co_name))
 	cmd="/home/cs/SGM_Local/gitpull.sh"
 	os.system(cmd)
 	return "Server Updation Complete"
 
 @app.route('/restart')
 def restart():
+	security(str(sys._getframe().f_code.co_name))
 	cmd="./restartServer.py"
 	os.system(cmd)
 	return "restart complete"
