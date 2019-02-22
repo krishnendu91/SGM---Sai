@@ -21,14 +21,13 @@ while i<14:
 cmd="/home/cs/restartRest.sh"
 os.system(cmd)
 
-
 def openurl(sURL):
-        try:    
-                api_page = urlopen(sURL) #Python 3
-                api=api_page.read()
-                message=str(api)
-        except:
-                pass
-                message="Error accessing URL \n "
+	try:
+		api_page = urlopen(sURL) #Python 3
+		api=api_page.read()
+		message=str(api)
+	except:
+		pass
+		message="Error accessing URL \n "
 	time.sleep(0.5)
-	print(str(sURL)+message)
+	print(str(sURL)+"\t" +message)
