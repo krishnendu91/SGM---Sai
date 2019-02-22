@@ -29,5 +29,5 @@ while i<14:
 		pass
 	openurl(url)
 	i=i+1
-cmd="/home/cs/restartRest.sh"
+cmd="./restartRest.sh"
 os.system(cmd)
