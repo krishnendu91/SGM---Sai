@@ -16,7 +16,6 @@ app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
 app.config['MYSQL_DATABASE_DB'] = 'AmritaSGM'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-service mosquitto restart
 mysql.init_app(app)
 
 
