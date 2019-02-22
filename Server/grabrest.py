@@ -6,6 +6,8 @@ import sys
 from urllib.request import urlopen
 #Define a page opener using inbuilt function from urllib2
 #opener=urllib2.build_opener()
+api=""
+
 def grab(ip,api_req,dev):
   url='http://'+str(ip)+':5000/'+str(api_req)
   print (url)
