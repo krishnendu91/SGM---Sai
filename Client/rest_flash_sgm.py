@@ -7,6 +7,7 @@ import time,utils,os
 GPIO.setmode(GPIO.BCM) 
 GPIO.setwarnings(False) 
 
+
 app = Flask(__name__)
 mysql = MySQL()
 #urls=("/favicon.ico","dummy")
