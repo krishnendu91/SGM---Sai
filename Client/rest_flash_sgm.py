@@ -32,7 +32,9 @@ def update():
 
 @app.route('/restart')
 def restart():
-	cmd="./restartDimis.sh"
+	cmd="service mosquitto restart"
+	os.system(cmd)
+	cmd="service datafetch restart"
 	os.system(cmd)
 	return "Reboot Completed"
 
