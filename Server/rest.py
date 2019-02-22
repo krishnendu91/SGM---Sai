@@ -55,7 +55,7 @@ def serverupdate():
 
 @app.route('/restart')
 def restart():
-	cmd="/home/cs/restartRest.sh"
+	cmd="./restartServer.py"
 	os.system(cmd)
 	return "restart complete"
 
