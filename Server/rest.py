@@ -54,6 +54,16 @@ def serverupdate():
 	os.system(cmd)
 	return "Server Updation Complete"
 
+@app.route('/switchname/<node>')
+def switchname(node):
+	node=str(node)
+	security(str(sys._getframe().f_code.co_name))
+	conn = mysql.connect()
+	cur=conn.cursor()
+	cur.execute('select * from switch where nodeId=%s ORDER BY id DESC LIMIT 1 ',node)
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'mqtt Test data' : r})
+
 @app.route('/restart')
 def restart():
 	security(str(sys._getframe().f_code.co_name))
