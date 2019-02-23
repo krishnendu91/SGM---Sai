@@ -117,14 +117,16 @@ def datafetch_switch_rest(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'switchState',103)
 	
-def agg_alive(client, userdata, msg):
+def agg_alive(client, userdata, msg,):
 	print("Alive beacon received")
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'alive',102)
 
-	
+def on_log(client, userdata, level, buf):
+	print("log: ",buf)	
 
-#Subscribed Topics  
+mqttclient.on_log=on_log # set client logging	
+#Subscribed Topics 
 mqttclient.message_callback_add("SGM/test", test)
 mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm1", datafetch_dimis_lm1)
