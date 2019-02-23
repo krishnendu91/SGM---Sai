@@ -78,6 +78,14 @@ def action(pinId):
 	utils.switchrest()
 	return (str(device)+ " Activated")
 
+@app.route('/deadnodes')
+def deadnodes():
+	cur = mysql.connect().cursor()
+	cur.execute('SELECT nodeId FROM `lastseen` WHERE alive =0 and timestamp>= NOW() - INTERVAL 3 MINUTE ORDER BY `id` DESC')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Dead Nodes' : r})
+
+
 @app.route('/maxim')
 def maxim():
 	cur = mysql.connect().cursor()
