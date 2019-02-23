@@ -104,6 +104,8 @@ def grab(ip,api_req,dev):
       print("none")
   
   except:
+    print("Error")
+    txId=0
     pass
   
   cur.close()
