@@ -67,7 +67,7 @@ def switchname(node):
 @app.route('/restart')
 def restart():
 	security(str(sys._getframe().f_code.co_name))
-	cmd="./restartServer.py"
+	cmd="/home/cs/restartRest.sh"
 	os.system(cmd)
 	return "restart complete"
 
