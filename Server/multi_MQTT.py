@@ -13,10 +13,10 @@ broker = "192.168.112.110";
 port = 1883;
 mypid = os.getpid()
 print("Process started at: " +str(mypid))
-client_uniq = "pubclient_"+str(mypid)
-mqttclient = paho.Client() #cleanstart
+client_uniq = "node__"+str(mypid)
+#mqttclient = paho.Client() #cleanstart
 
-#mqttclient = paho.Client(client_uniq, False) #nocleanstart
+mqttclient = paho.Client(client_uniq, False) #nocleanstart
 mqttclient.connect(broker, port, 0)
 #mqttclient.on_disconnect=mqttclient.reconnect()
 mqttclient.subscribe("SGM/#")
