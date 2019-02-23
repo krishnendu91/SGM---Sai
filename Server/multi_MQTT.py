@@ -113,7 +113,7 @@ def datafetch_switch(client, userdata, msg):
 	datagrab(payload,'switchState',101)
 	
 def datafetch_switch_rest(client, userdata, msg):
-	print("Switch Status received")
+	print("Switch Status received post switch position change")
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'switchState',103)
 	
