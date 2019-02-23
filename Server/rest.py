@@ -47,6 +47,14 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
 
+@app.route('/deadnodes')
+def deadnodes():
+	cur = mysql.connect().cursor()
+	cur.execute('SELECT nodeId FROM `lastseen` WHERE alive =0 and timestamp>= NOW() - INTERVAL 3 MINUTE ORDER BY `id` DESC')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'Dead Nodes' : r})
+
+
 @app.route('/updateserver')
 def serverupdate():
 	security(str(sys._getframe().f_code.co_name))
@@ -75,7 +83,7 @@ def mqttlog():
 	security(str(sys._getframe().f_code.co_name))
 	conn = mysql.connect()
 	cur=conn.cursor()
-	cur.execute('select * from mqttLog ORDER BY id DESC limit 15')
+	cur.execute('select timestamp,log from mqttLog ORDER BY id DESC limit 15')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'mqtt log' : r})
 
