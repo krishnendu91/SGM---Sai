@@ -97,7 +97,7 @@ def switchcontrol(node,switch):
 		success=1
 		api_page = urlopen(sURL) #Python 3
 		api=api_page.read()
-		message=str(sURL)+ " Triggered successfully"
+		message="Node : " + str(node)+ " " + str(switch)+ " Triggered successfully"
 		
 	except:
 		pass
