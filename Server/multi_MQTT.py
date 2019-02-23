@@ -115,7 +115,7 @@ def datafetch_switch(client, userdata, msg):
 def datafetch_switch_rest(client, userdata, msg):
 	print("Switch Status received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'switchState',101)
+	datagrab(payload,'switchState',103)
 	
 def agg_alive(client, userdata, msg):
 	print("Alive beacon received")
