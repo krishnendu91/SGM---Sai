@@ -8,7 +8,7 @@ from subprocess import check_output
 def switchrest():
   ip_eth0,ip_wlan0,id_node=sysinfo()
   switchstatus()
-  mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_switch","DONE",ip_wlan0)
+  mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_switch_rest","DONE",ip_wlan0)
   print("Switch State updated")
   
 def getmeterid(nodeid,metertype):
