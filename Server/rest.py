@@ -70,6 +70,14 @@ def restart():
 	cmd="/home/cs/restartRest.sh"
 	os.system(cmd)
 	return "restart complete"
+@app.route('/mqttlog')
+def mqttlog():
+	security(str(sys._getframe().f_code.co_name))
+	conn = mysql.connect()
+	cur=conn.cursor()
+	cur.execute('select * from mqttLog ORDER BY id DESC limit 15')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'mqtt log' : r})
 
 @app.route('/dimis/update/<node>')
 def updatedimis(node):
