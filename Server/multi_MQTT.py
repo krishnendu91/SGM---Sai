@@ -123,7 +123,12 @@ def agg_alive(client, userdata, msg,):
 	datagrab(payload,'alive',102)
 
 def on_log(client, userdata, level, buf):
-	print("log: ",buf)	
+	print("log:",buf)	
+	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+	cur1=conn1.cursor()
+	cur1.execute("INSERT INTO mqttLog(log) VALUES(%s);",buf)
+	conn1.commit()
+	conn1.close()
 
 mqttclient.on_log=on_log # set client logging	
 #Subscribed Topics 
