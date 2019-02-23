@@ -112,6 +112,11 @@ def datafetch_switch(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'switchState',101)
 	
+def datafetch_switch_rest(client, userdata, msg):
+	print("Switch Status received")
+	payload=json.loads(msg.payload.decode())
+	datagrab(payload,'switchState',101)
+	
 def agg_alive(client, userdata, msg):
 	print("Alive beacon received")
 	payload=json.loads(msg.payload.decode())
@@ -134,7 +139,7 @@ mqttclient.message_callback_add("SGM/datafetch_events", datafetch_events)
 mqttclient.message_callback_add("SGM/node_alive", node_alive)
 mqttclient.message_callback_add("SGM/datafetch_switch", datafetch_switch)
 mqttclient.message_callback_add("SGM/agg_alive", agg_alive)
-
+mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest)
 
 
 mqttclient.loop_forever()
