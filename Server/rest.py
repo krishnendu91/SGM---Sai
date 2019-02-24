@@ -54,6 +54,13 @@ def deadnodes():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Dead Nodes' : r})
 
+@app.route('/reboot')
+def rebootS():
+	security(str(sys._getframe().f_code.co_name))
+	cmd="reboot"
+	os.system(cmd)
+	return "Server rebooting"
+
 
 @app.route('/updateserver')
 def serverupdate():
