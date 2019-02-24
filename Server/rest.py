@@ -45,7 +45,7 @@ def welcome():
 	security(str(sys._getframe().f_code.co_name))
 #	print "Welcome to Amrita Smart-Grid Middleware"
 #	print "kindly use one of the APIs to get data"
-	return "\tWelcome to Amrita Smart-Grid Middleware.\n\n \tKindly use one of the APIs to get data"
+	return "<h1>Welcome to Amrita Smart-Grid Middleware</h1>"
 
 @app.route('/deadnodes')
 def deadnodes():
