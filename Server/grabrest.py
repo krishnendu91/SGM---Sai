@@ -28,7 +28,7 @@ def todb(data,dev):
   elif dev==100:
     cur.execute("INSERT INTO nodeHealth(nodeId,alive,temp,SSID,wlan_ss) VALUES(%(nodeId)s,%(alive)s,%(temp)s,%(SSID)s,%(wlan_ss)s);",data)
   elif dev==101:
-    cur.execute("INSERT INTO switchState(nodeId,C1,C2,C3,C4) VALUES(%(nodeId)s,%(C1)s,%(C2)s,%(C3)s,%(C4)s);",data)
+    cur.execute("INSERT INTO switchState(nodeId,C1,C2,C3,C4) VALUES(%(nodeid)s,%(C1)s,%(C2)s,%(C3)s,%(C4)s);",data)
   elif dev==102:
     cur.execute("INSERT INTO nodeHealth(aggId,alive,temp,SSID,wlan_ss) VALUES(%(aggId)s,%(alive)s,%(temp)s,%(SSID)s,%(wlan_ss)s);",data)
   elif dev==2:
