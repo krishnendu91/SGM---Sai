@@ -172,24 +172,24 @@ def on_log(client, userdata, level, buf):
 	conn1.close()
 
 mqttclient.on_log=on_log # set client logging	
+
 #Subscribed Topics 
 mqttclient.message_callback_add("SGM/test", test)
 mqttclient.message_callback_add("SGM/datafetch_dimis_gm1_direct", datafetch_dimis_gm1_direct)
-mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1)
-mqttclient.message_callback_add("SGM/datafetch_dimis_lm1", datafetch_dimis_lm1)
-mqttclient.message_callback_add("SGM/datafetch_dimis_lm2", datafetch_dimis_lm2)
-mqttclient.message_callback_add("SGM/datafetch_maxim", datafetch_maxim)
-mqttclient.message_callback_add("SGM/datafetch_sch", datafetch_sch)
-mqttclient.message_callback_add("SGM/datafetch_outback_inv", datafetch_outback_inv)
-mqttclient.message_callback_add("SGM/datafetch_outback_cc", datafetch_outback_cc)
-mqttclient.message_callback_add("SGM/datafetch_navsemi", datafetch_navsemi)
-mqttclient.message_callback_add("SGM/datafetch_gsm", datafetch_gsm)
-mqttclient.message_callback_add("SGM/datafetch_events", datafetch_events)
-mqttclient.message_callback_add("SGM/node_alive", node_alive)
-mqttclient.message_callback_add("SGM/datafetch_switch", datafetch_switch)
-mqttclient.message_callback_add("SGM/agg_alive", agg_alive)
-mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest)
-
+mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1_direct)
+mqttclient.message_callback_add("SGM/datafetch_dimis_lm1", datafetch_dimis_lm1_direct)
+mqttclient.message_callback_add("SGM/datafetch_dimis_lm2", datafetch_dimis_lm2_direct)
+mqttclient.message_callback_add("SGM/datafetch_maxim", datafetch_maxim_direct)
+mqttclient.message_callback_add("SGM/datafetch_sch", datafetch_sch_direct)
+mqttclient.message_callback_add("SGM/datafetch_outback_inv", datafetch_outback_inv_direct)
+mqttclient.message_callback_add("SGM/datafetch_outback_cc", datafetch_outback_cc_direct)
+mqttclient.message_callback_add("SGM/datafetch_navsemi", datafetch_navsemi_direct)
+mqttclient.message_callback_add("SGM/datafetch_gsm", datafetch_gsm_direct)
+mqttclient.message_callback_add("SGM/datafetch_events", datafetch_events_direct)
+mqttclient.message_callback_add("SGM/node_alive", node_alive_direct)
+mqttclient.message_callback_add("SGM/datafetch_switch", datafetch_switch_direct)
+mqttclient.message_callback_add("SGM/agg_alive", agg_alive_direct)
+mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
 
 mqttclient.loop_forever()
 
