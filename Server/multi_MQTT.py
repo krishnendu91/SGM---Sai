@@ -46,7 +46,11 @@ def test(client, userdata, message):
 	conn1.commit()
 	conn1.close()
 	print("DB DUMP suceess for MQTT Test")
-
+def datafetch_dimis_gm1_direct(client, userdata, msg):
+	print("Direct MQTT Message received")
+	payload=json.loads(msg.payload.decode())
+	print(payload)
+	
 def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
@@ -135,7 +139,8 @@ def on_log(client, userdata, level, buf):
 mqttclient.on_log=on_log # set client logging	
 #Subscribed Topics 
 mqttclient.message_callback_add("SGM/test", test)
-mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1)
+mqttclient.message_callback_add("SGM/datafetch_dimis_gm1_direct", datafetch_dimis_gm1_direct)
+mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1_)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm1", datafetch_dimis_lm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm2", datafetch_dimis_lm2)
 mqttclient.message_callback_add("SGM/datafetch_maxim", datafetch_maxim)
