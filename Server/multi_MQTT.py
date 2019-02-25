@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import sys
-import os,ast
+import os
 import paho.mqtt.client as paho
-import json,grabrest,mqtt_reply,pymysql
+import json,grabrest,pymysql
 
 global mqttclient;
 global broker;
@@ -14,27 +14,9 @@ port = 1883;
 mypid = os.getpid()
 print("Process started at: " +str(mypid))
 client_uniq = "pubclient_"+str(mypid)
-#mqttclient = paho.Client() #cleanstart
-
 mqttclient = paho.Client(client_uniq, False) #nocleanstart
 mqttclient.connect(broker, port, 0)
-#mqttclient.on_disconnect=mqttclient.reconnect()
 mqttclient.subscribe("SGM/#")
-
-
-def datagrab(payload,api,dev):
-	ip_wlan0 = payload['ip']
-	if payload['message'] == "DONE":
-		txId=grabrest.grab(ip_wlan0,api,dev)
-		reply={'message':'SUCCESS',"id":txId}
-		print(reply)
-	else:
-		status=msg.payload.decode()
-		print(status)
-		reply="FAIL"
-		print(reply)
-	reply=json.dumps(reply)
-	#mqtt_reply.mqttack(ip_wlan0,reply)
 
 def test(client, userdata, message):
 	print("Test Channel")
@@ -52,112 +34,64 @@ def datafetch_dimis_gm1_direct(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	print(payload)
 	grabrest.todb(payload,1)
-	
-	
+
 def datafetch_dimis_lm1_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Dimis LM")
 	payload=json.loads(msg.payload.decode())
-	print(payload)
 	grabrest.todb(payload,1)
 	print(payload)
 
 def datafetch_dimis_lm2_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Dimis GM2")
 	payload=json.loads(msg.payload.decode())
-	print(payload)
 	grabrest.todb(payload,1)
 	print(payload)
 
-def datafetch_dimis_gm1(client, userdata, msg):
-	print("Dimis Data received")
-	payload=json.loads(msg.payload.decode())
-	try:
-		datagrab(payload,'recentgm',1)
-	except:
-		pass
-	
-def datafetch_dimis_lm1(client, userdata, msg):
-	print("Dimis Data received")
-	payload=json.loads(msg.payload.decode())
-	try:
-		datagrab(payload,'recentlm1',1)
-	except:
-		pass
-
-def datafetch_dimis_lm2(client, userdata, msg):
-	print("Dimis Data received")
-	payload=json.loads(msg.payload.decode())
-	try:
-		datagrab(payload,'recentlm2',1)
-	except:
-		pass
-
-def datafetch_maxim(client, userdata, msg):
+def datafetch_maxim_direct(client, userdata, msg):
 	print("Maxim Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'maxim',2)
+	grabrest.todb(payload,2)
 
-def datafetch_sch(client, userdata, msg):
+def datafetch_sch_direct(client, userdata, msg):
 	print("Schneider Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'sch',3)
+	grabrest.todb(payload,3)
 	
-def datafetch_outback_inv(client, userdata, msg):
+def datafetch_outback_inv_direct(client, userdata, msg):
 	print("Outback Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'outbackinv',41)
+	grabrest.todb(payload,41)
 
-def datafetch_outback_cc(client, userdata, msg):
+def datafetch_outback_cc_direct(client, userdata, msg):
 	print("Outback Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'outbackcc',42)
+	grabrest.todb(payload,42)
 
-def datafetch_navsemi(client, userdata, msg):
+def datafetch_navsemi_direct(client, userdata, msg):
 	print("Navsemi Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'navsemi',5)
+	grabrest.todb(payload,5)
 
-def datafetch_gsm(client, userdata, msg):
+def datafetch_gsm_direct(client, userdata, msg):
 	print("GSM Data received")
 	#TBD
 
-def datafetch_events(client, userdata, msg):
+def datafetch_events_direct(client, userdata, msg):
 	print("Event Data received")
 	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'events',0) 
+	grabrest.todb(payload,0) 
 
 def node_alive_direct(client, userdata, msg):
 	print("Alive beacon received")
 	payload=json.loads(msg.payload.decode())
 	print(payload)
 	grabrest.todb(payload,100)
-
-def node_alive(client, userdata, msg):
-	print("Alive beacon received")
-	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'alive',100)
 	
-def datafetch_switch(client, userdata, msg):
-	print("Switch Status received")
-	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'switchState',101)
-
 def datafetch_switch_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Switch")
 	payload=json.loads(msg.payload.decode())
 	print(payload)
 	grabrest.todb(payload,101)
-	
-	
-def datafetch_switch_rest(client, userdata, msg):
-	print("Switch Status received post switch position change")
-	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'switchState',103)
-	
-def agg_alive(client, userdata, msg,):
-	print("Alive beacon received")
-	payload=json.loads(msg.payload.decode())
-	datagrab(payload,'alive',102)
 
 def agg_alive_direct(client, userdata, msg,):
 	print("Direct Alive beacon received from AGG")
@@ -175,22 +109,22 @@ def on_log(client, userdata, level, buf):
 mqttclient.on_log=on_log # set client logging	
 
 #Subscribed Topics 
+
 mqttclient.message_callback_add("SGM/test", test)
 mqttclient.message_callback_add("SGM/datafetch_dimis_gm1_direct", datafetch_dimis_gm1_direct)
-#mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1_direct)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm1_direct", datafetch_dimis_lm1_direct)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm2_direct", datafetch_dimis_lm2_direct)
-#mqttclient.message_callback_add("SGM/datafetch_maxim_direct", datafetch_maxim_direct)
-#mqttclient.message_callback_add("SGM/datafetch_sch_direct", datafetch_sch_direct)
-#mqttclient.message_callback_add("SGM/datafetch_outback_inv_direct", datafetch_outback_inv_direct)
-#mqttclient.message_callback_add("SGM/datafetch_outback_cc_direct", datafetch_outback_cc_direct)
-#mqttclient.message_callback_add("SGM/datafetch_navsemi_direct", datafetch_navsemi_direct)
-#mqttclient.message_callback_add("SGM/datafetch_gsm_direct", datafetch_gsm_direct)
-#mqttclient.message_callback_add("SGM/datafetch_events_direct", datafetch_events_direct)
+mqttclient.message_callback_add("SGM/datafetch_maxim_direct", datafetch_maxim_direct)
+mqttclient.message_callback_add("SGM/datafetch_sch_direct", datafetch_sch_direct)
+mqttclient.message_callback_add("SGM/datafetch_outback_inv_direct", datafetch_outback_inv_direct)
+mqttclient.message_callback_add("SGM/datafetch_outback_cc_direct", datafetch_outback_cc_direct)
+mqttclient.message_callback_add("SGM/datafetch_navsemi_direct", datafetch_navsemi_direct)
+mqttclient.message_callback_add("SGM/datafetch_gsm_direct", datafetch_gsm_direct)
+mqttclient.message_callback_add("SGM/datafetch_events_direct", datafetch_events_direct)
 mqttclient.message_callback_add("SGM/node_alive_direct", node_alive_direct)
 mqttclient.message_callback_add("SGM/datafetch_switch_direct", datafetch_switch_direct)
-#mqttclient.message_callback_add("SGM/agg_alive", agg_alive_direct)
-#mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
+mqttclient.message_callback_add("SGM/agg_alive", agg_alive_direct)
+mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
 
 mqttclient.loop_forever()
 
