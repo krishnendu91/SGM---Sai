@@ -158,14 +158,15 @@ elif (id_node == 1):#for source node
 	value_GM=dimishelper(ip_eth0,port_GM)
 	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1_direct",value_GM,ip_wlan0)
 	utils.todbdimis(value_GM)
-	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
+	#mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_dimis_gm1","DONE",ip_wlan0)
 	#algorithm.poweroutage(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	#algorithm.frequency(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	#algorithm.powerquality(value_GM['v1'],value_GM['v2'],value_GM['v3'],value_GM['meterType'],id_node,ip_wlan0)
 	#algorithm.current(value_GM['i1'],value_GM['i2'],value_GM['i3'],value_GM['meterType'],id_node,ip_wlan0)
 	print("GM1 Fetch Complete")
 
-utils.switchstatus()
-mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_switch","DONE",ip_wlan0)
+switch=utils.switchstatus()
+#mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_switch","DONE",ip_wlan0)
+mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_switch_direct",switch,ip_wlan0)
 print("MQTT Success")
 
