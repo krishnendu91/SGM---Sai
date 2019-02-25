@@ -48,21 +48,21 @@ def test(client, userdata, message):
 	print("DB DUMP suceess for MQTT Test")
 	
 def datafetch_dimis_gm1_direct(client, userdata, msg):
-	print("Direct MQTT Message received - Dimis")
+	print("Direct MQTT Message received - Dimis GM1")
 	payload=json.loads(msg.payload.decode())
 	print(payload)
 	grabrest.todb(payload,1)
-	print(payload)
+	
 	
 def datafetch_dimis_lm1_direct(client, userdata, msg):
-	print("Direct MQTT Message received - Dimis")
+	print("Direct MQTT Message received - Dimis LM")
 	payload=json.loads(msg.payload.decode())
 	print(payload)
 	grabrest.todb(payload,1)
 	print(payload)
 
 def datafetch_dimis_lm2_direct(client, userdata, msg):
-	print("Direct MQTT Message received - Dimis")
+	print("Direct MQTT Message received - Dimis GM2")
 	payload=json.loads(msg.payload.decode())
 	print(payload)
 	grabrest.todb(payload,1)
@@ -120,6 +120,7 @@ def datafetch_navsemi(client, userdata, msg):
 def datafetch_gsm(client, userdata, msg):
 	print("GSM Data received")
 	#TBD
+
 def datafetch_events(client, userdata, msg):
 	print("Event Data received")
 	payload=json.loads(msg.payload.decode())
@@ -156,6 +157,11 @@ def agg_alive(client, userdata, msg,):
 	print("Alive beacon received")
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'alive',102)
+
+def agg_alive_direct(client, userdata, msg,):
+	print("Direct Alive beacon received from AGG")
+	print(payload)
+	grabrest.todb(payload,101)
 
 def on_log(client, userdata, level, buf):
 	print("log:",buf)	
