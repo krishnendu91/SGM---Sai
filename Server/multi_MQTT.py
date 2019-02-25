@@ -48,7 +48,21 @@ def test(client, userdata, message):
 	print("DB DUMP suceess for MQTT Test")
 	
 def datafetch_dimis_gm1_direct(client, userdata, msg):
-	print("Direct MQTT Message received")
+	print("Direct MQTT Message received - Dimis")
+	payload=json.loads(msg.payload.decode())
+	print(payload)
+	grabrest.todb(payload,1)
+	print(payload)
+	
+def datafetch_dimis_lm1_direct(client, userdata, msg):
+	print("Direct MQTT Message received - Dimis")
+	payload=json.loads(msg.payload.decode())
+	print(payload)
+	grabrest.todb(payload,1)
+	print(payload)
+
+def datafetch_dimis_lm2_direct(client, userdata, msg):
+	print("Direct MQTT Message received - Dimis")
 	payload=json.loads(msg.payload.decode())
 	print(payload)
 	grabrest.todb(payload,1)
@@ -111,6 +125,11 @@ def datafetch_events(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'events',0) 
 
+def node_alive_direct(client, userdata, msg):
+	print("Alive beacon received")
+	payload=json.loads(msg.payload.decode())
+	grabrest.todb(payload,'alive',100)
+
 def node_alive(client, userdata, msg):
 	print("Alive beacon received")
 	payload=json.loads(msg.payload.decode())
@@ -120,6 +139,13 @@ def datafetch_switch(client, userdata, msg):
 	print("Switch Status received")
 	payload=json.loads(msg.payload.decode())
 	datagrab(payload,'switchState',101)
+
+def datafetch_switch_direct(client, userdata, msg):
+	print("Direct MQTT Message received - Switch")
+	payload=json.loads(msg.payload.decode())
+	print(payload)
+	grabrest.todb(payload,101)
+	
 	
 def datafetch_switch_rest(client, userdata, msg):
 	print("Switch Status received post switch position change")
