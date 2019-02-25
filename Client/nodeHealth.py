@@ -56,4 +56,4 @@ conn.close()
 print ("DB Dump success")
 
 #MQTT to server
-mqttservice.mqtt_publish("192.168.112.110",1883,"node_alive","DONE",ip_wlan0)
+mqttservice.mqtt_publish("192.168.112.110",1883,"node_alive_direct",dataHealth,ip_wlan0)
