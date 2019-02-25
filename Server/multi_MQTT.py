@@ -128,6 +128,7 @@ def datafetch_events(client, userdata, msg):
 
 def node_alive_direct(client, userdata, msg):
 	print("Alive beacon received")
+	print(payload)
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,100)
 
@@ -143,6 +144,8 @@ def datafetch_switch(client, userdata, msg):
 
 def datafetch_switch_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Switch")
+	print(payload)
+
 	payload=json.loads(msg.payload.decode())
 	print(payload)
 	grabrest.todb(payload,101)
