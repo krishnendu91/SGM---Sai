@@ -14,4 +14,4 @@ def mqtt_publish(broker,port,topic,payload,ip_wlan0):
 	client.connect(broker,port,0)
 	(rc,mid)=client.publish(topic,payload);
 	client.disconnect();
-	mqtt_reply.mqttack()
+	#mqtt_reply.mqttack()
