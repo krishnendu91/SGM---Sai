@@ -129,7 +129,7 @@ def datafetch_events(client, userdata, msg):
 def node_alive_direct(client, userdata, msg):
 	print("Alive beacon received")
 	payload=json.loads(msg.payload.decode())
-	grabrest.todb(payload,'alive',100)
+	grabrest.todb(payload,100)
 
 def node_alive(client, userdata, msg):
 	print("Alive beacon received")
