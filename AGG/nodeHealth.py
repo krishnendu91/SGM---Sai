@@ -47,7 +47,8 @@ except:
 print(ssid,ss)
 	
 #Store to DB
-dataHealth={'nodeid':nodeId,'alive':1,'temp':temp,'ssid':ssid,'ss':ss}
+
+dataHealth={'aggid':nodeId,'alive':1,'temp':temp,'ssid':ssid,'ss':ss}
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
 cur.execute("INSERT INTO nodeHealth(nodeid,alive,temp,SSID,wlan_ss) VALUES(%(nodeid)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",dataHealth)
