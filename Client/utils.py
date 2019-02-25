@@ -108,14 +108,14 @@ def dimisdecode(val,meterType,meterId):
   D8=data[44]
   timestamp=datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 #Jsonify decoded values
-  data={'meterId':meterId,'nodeid':nodeId,'meterType':meterType,'time':timestamp,'V1':v1,'V2':v2,'V3':v3,'I1':i1,'I2':i2,'I3':i3,'W1':w1,'W2':w2,'W3':w3,'VAR1':var1,'VAR2':var2,'VAR3':var3,'VA1':va1,'VA2':va2,'VA3':va3,'PF1':pf1,'PF2':pf2,'PF3':pf3,'F1':f1,'F2':f2,'F3':f3,'WH':wh,'VAH':vah,'VARH':varh,'WH1':wh1,'WH2':wh2,'WH3':wh3,'VARH1':varh1,'VARH2':varh2,'VARH3':varh3,'VAH1':vah1,'VAH2':vah2,'VAH3':vah3,'D1':D1,'D2':D2,'D3':D3,'D4':D4,'D5':D5,'D6':D6,'D7':D7,'D8':D8}
+  data={'meterId':meterId,'nodeId':nodeid,'meterType':meterType,'time':timestamp,'V1':v1,'V2':v2,'V3':v3,'I1':i1,'I2':i2,'I3':i3,'W1':w1,'W2':w2,'W3':w3,'VAR1':var1,'VAR2':var2,'VAR3':var3,'VA1':va1,'VA2':va2,'VA3':va3,'PF1':pf1,'PF2':pf2,'PF3':pf3,'F1':f1,'F2':f2,'F3':f3,'WH':wh,'VAH':vah,'VARH':varh,'WH1':wh1,'WH2':wh2,'WH3':wh3,'VARH1':varh1,'VARH2':varh2,'VARH3':varh3,'VAH1':vah1,'VAH2':vah2,'VAH3':vah3,'D1':D1,'D2':D2,'D3':D3,'D4':D4,'D5':D5,'D6':D6,'D7':D7,'D8':D8}
   return data
 
 #DB Dump for Dimis
 def todbdimis(data):
   conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
   cur=conn.cursor()
-  cur.execute("INSERT INTO nodeData(meterId,nodeid,meterType, v1, v2, v3, i1, i2, i3, w1,w2,w3,va1,va2,va3,var1,var2,var3,wh,vah,varh,wh1,wh2,wh3,vah1,vah2,vah3,varh1,varh2,varh3,pf1,pf2,pf3,f1,f2,f3,d1,d2,d3,d4,d5,d6,d7,d8) VALUES(%(meterId)s,%(nodeid)s,%(meterType)s,%(v1)s,%(v2)s,%(v3)s,%(i1)s,%(i2)s,%(i3)s,%(w1)s,%(w2)s,%(w3)s,%(va1)s,%(va2)s,%(va3)s,%(var1)s,%(var2)s,%(var3)s,%(wh)s,%(vah)s,%(varh)s,%(wh1)s,%(wh2)s,%(wh3)s,%(vah1)s,%(vah2)s,%(vah3)s,%(varh1)s,%(varh2)s,%(varh3)s,%(pf1)s,%(pf2)s,%(pf3)s,%(f1)s,%(f2)s,%(f3)s,%(D1)s,%(D2)s,%(D3)s,%(D4)s,%(D5)s,%(D6)s,%(D7)s,%(D8)s);",data)
+  cur.execute("INSERT INTO nodeData(meterId,nodeId,meterType, v1, v2, v3, i1, i2, i3, w1,w2,w3,va1,va2,va3,var1,var2,var3,wh,vah,varh,wh1,wh2,wh3,vah1,vah2,vah3,varh1,varh2,varh3,pf1,pf2,pf3,f1,f2,f3,d1,d2,d3,d4,d5,d6,d7,d8) VALUES(%(meterId)s,%(nodeid)s,%(meterType)s,%(v1)s,%(v2)s,%(v3)s,%(i1)s,%(i2)s,%(i3)s,%(w1)s,%(w2)s,%(w3)s,%(va1)s,%(va2)s,%(va3)s,%(var1)s,%(var2)s,%(var3)s,%(wh)s,%(vah)s,%(varh)s,%(wh1)s,%(wh2)s,%(wh3)s,%(vah1)s,%(vah2)s,%(vah3)s,%(varh1)s,%(varh2)s,%(varh3)s,%(pf1)s,%(pf2)s,%(pf3)s,%(f1)s,%(f2)s,%(f3)s,%(D1)s,%(D2)s,%(D3)s,%(D4)s,%(D5)s,%(D6)s,%(D7)s,%(D8)s);",data)
   conn.commit()
   conn.close()
   print ("DB Dump success")
