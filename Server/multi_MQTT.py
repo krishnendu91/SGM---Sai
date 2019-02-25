@@ -50,8 +50,8 @@ def test(client, userdata, message):
 def datafetch_dimis_gm1_direct(client, userdata, msg):
 	print("Direct MQTT Message received")
 	payload=json.loads(msg.payload.decode())
-	print(payload)
-	#grabrest.todb(payload,1)
+	print(payload.lower())
+	grabrest.todb(payload.lower(),1)
 		
 def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
