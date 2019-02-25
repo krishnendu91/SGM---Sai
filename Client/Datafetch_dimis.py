@@ -173,4 +173,3 @@ switch=utils.switchstatus()
 #mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_switch","DONE",ip_wlan0)
 mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_switch_direct",switch,ip_wlan0)
 print("MQTT Success")
-
