@@ -44,18 +44,16 @@ except:
 		ss=0
 		pass
 
-#print(ssid,ss)
+print(ssid,ss)
 	
 #Store to DB
-dataHealth={'aggid':nodeId,'alive':1,'temp':temp,'ssid':ssid,'ss':ss}
-print(dataHealth)
+dataHealth={'nodeid':nodeId,'alive':1,'temp':temp,'ssid':ssid,'ss':ss}
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
-cur.execute("INSERT INTO nodeHealth(aggid,alive,temp,SSID,wlan_ss) VALUES(%(aggid)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",dataHealth)
+cur.execute("INSERT INTO nodeHealth(nodeid,alive,temp,SSID,wlan_ss) VALUES(%(nodeid)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",dataHealth)
 conn.commit()
 conn.close()
 print ("DB Dump success")
 
-
 #MQTT to server
-mqttservice.mqtt_publish("192.168.112.110",1883,"agg_alive","DONE",ip_wlan0)
+mqttservice.mqtt_publish("192.168.112.110",1883,"node_alive_direct",dataHealth,ip_wlan0)
