@@ -36,7 +36,6 @@ def datagrab(payload,api,dev):
 	reply=json.dumps(reply)
 	#mqtt_reply.mqttack(ip_wlan0,reply)
 
-
 def test(client, userdata, message):
 	print("Test Channel")
 	print("Received message '" + str(message.payload) + "' on topic '" + message.topic + "' with QoS " + str(message.qos))
@@ -51,9 +50,8 @@ def test(client, userdata, message):
 def datafetch_dimis_gm1_direct(client, userdata, msg):
 	print("Direct MQTT Message received")
 	payload=json.loads(msg.payload.decode())
-	print(payload)
-	
-	
+	grabrest.todb(payload,1)
+		
 def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
