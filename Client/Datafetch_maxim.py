@@ -68,5 +68,5 @@ while a:
 	zon_data={'Meter':m0_data,'temp':m1_data,'f1':m2_data,'wh1':m3_data,'varh1':m6_data,'vah1':m7_data,'pf1':m11_data,'i1':m15_data,'v1':m16_data,'w1':realpower,'var1':reactivepower,'va1':apparentpower,'nodeId':"IL_"+str(nodeId)}
 	print(zon_data)
 	utils.todbmaxim(zon_data)
-	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_maxim","DONE",ip_wlan0)
+	mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_maxim_direct",zon_data,ip_wlan0)
 	a=0
