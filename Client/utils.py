@@ -175,6 +175,7 @@ def switchstatus():
   conn.commit()
   conn.close()
   print ("Switch State - DB Dump success")
+  return switch
   
 def todbsch(schData):
   conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
