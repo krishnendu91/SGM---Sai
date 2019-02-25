@@ -140,7 +140,7 @@ mqttclient.on_log=on_log # set client logging
 #Subscribed Topics 
 mqttclient.message_callback_add("SGM/test", test)
 mqttclient.message_callback_add("SGM/datafetch_dimis_gm1_direct", datafetch_dimis_gm1_direct)
-mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1_)
+mqttclient.message_callback_add("SGM/datafetch_dimis_gm1", datafetch_dimis_gm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm1", datafetch_dimis_lm1)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm2", datafetch_dimis_lm2)
 mqttclient.message_callback_add("SGM/datafetch_maxim", datafetch_maxim)
