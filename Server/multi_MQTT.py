@@ -51,7 +51,6 @@ def datafetch_dimis_gm1_direct(client, userdata, msg):
 	print("Direct MQTT Message received")
 	payload=json.loads(msg.payload.decode())
 	print(payload)
-	payload=dict((k.lower(), v) for k, v in payload.iteritems())
 	grabrest.todb(payload,1)
 	print(payload)
 
