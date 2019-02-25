@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sys
-import os
+import os,ast
 import paho.mqtt.client as paho
 import json,grabrest,mqtt_reply,pymysql
 
@@ -50,9 +50,11 @@ def test(client, userdata, message):
 def datafetch_dimis_gm1_direct(client, userdata, msg):
 	print("Direct MQTT Message received")
 	payload=json.loads(msg.payload.decode())
-	print(payload.lower())
-	grabrest.todb(payload.lower(),1)
-		
+	print(payload)
+	payload=dict((k.lower(), v) for k, v in payload.iteritems())
+	grabrest.todb(payload,1)
+	print(payload)
+
 def datafetch_dimis_gm1(client, userdata, msg):
 	print("Dimis Data received")
 	payload=json.loads(msg.payload.decode())
