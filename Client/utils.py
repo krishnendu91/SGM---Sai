@@ -108,7 +108,7 @@ def dimisdecode(val,meterType,meterId):
   D8=data[44]
   timestamp=datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 #Jsonify decoded values
-  data={'meterId':meterId,'nodeId':nodeid,'meterType':meterType,'time':timestamp,'V1':v1,'V2':v2,'V3':v3,'I1':i1,'I2':i2,'I3':i3,'W1':w1,'W2':w2,'W3':w3,'VAR1':var1,'VAR2':var2,'VAR3':var3,'VA1':va1,'VA2':va2,'VA3':va3,'PF1':pf1,'PF2':pf2,'PF3':pf3,'F1':f1,'F2':f2,'F3':f3,'WH':wh,'VAH':vah,'VARH':varh,'WH1':wh1,'WH2':wh2,'WH3':wh3,'VARH1':varh1,'VARH2':varh2,'VARH3':varh3,'VAH1':vah1,'VAH2':vah2,'VAH3':vah3,'D1':D1,'D2':D2,'D3':D3,'D4':D4,'D5':D5,'D6':D6,'D7':D7,'D8':D8}
+  data={'meterId':meterId,'nodeId':nodeId,'meterType':meterType,'time':timestamp,'V1':v1,'V2':v2,'V3':v3,'I1':i1,'I2':i2,'I3':i3,'W1':w1,'W2':w2,'W3':w3,'VAR1':var1,'VAR2':var2,'VAR3':var3,'VA1':va1,'VA2':va2,'VA3':va3,'PF1':pf1,'PF2':pf2,'PF3':pf3,'F1':f1,'F2':f2,'F3':f3,'WH':wh,'VAH':vah,'VARH':varh,'WH1':wh1,'WH2':wh2,'WH3':wh3,'VARH1':varh1,'VARH2':varh2,'VARH3':varh3,'VAH1':vah1,'VAH2':vah2,'VAH3':vah3,'D1':D1,'D2':D2,'D3':D3,'D4':D4,'D5':D5,'D6':D6,'D7':D7,'D8':D8}
   return data
 
 #DB Dump for Dimis
