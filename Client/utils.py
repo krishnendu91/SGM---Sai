@@ -108,7 +108,7 @@ def dimisdecode(val,meterType,meterId):
   D8=data[44]
   timestamp=datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 #Jsonify decoded values
-  data={'meterId':meterId,'nodeid':nodeId,'meterType':meterType,'time':timestamp,'v1':v1,'v2':v2,'v3':v3,'i1':i1,'i2':i2,'i3':i3,'w1':w1,'w2':w2,'w3':w3,'var1':var1,'var2':var2,'var3':var3,'va1':va1,'va2':va2,'va3':va3,'pf1':pf1,'pf2':pf2,'pf3':pf3,'f1':f1,'f2':f2,'f3':f3,'wh':wh,'vah':vah,'varh':varh,'wh1':wh1,'wh2':wh2,'wh3':wh3,'varh1':varh1,'varh2':varh2,'varh3':varh3,'vah1':vah1,'vah2':vah2,'vah3':vah3,'D1':D1,'D2':D2,'D3':D3,'D4':D4,'D5':D5,'D6':D6,'D7':D7,'D8':D8}
+  data={'meterId':meterId,'nodeid':nodeId,'meterType':meterType,'time':timestamp,'V1':v1,'V2':v2,'V3':v3,'I1':i1,'I2':i2,'I3':i3,'W1':w1,'W2':w2,'W3':w3,'VAR1':var1,'VAR2':var2,'VAR3':var3,'VA1':va1,'VA2':va2,'VA3':va3,'PF1':pf1,'PF2':pf2,'PF3':pf3,'F1':f1,'F2':f2,'F3':f3,'WH':wh,'VAH':vah,'VARH':varh,'WH1':wh1,'WH2':wh2,'WH3':wh3,'VARH1':varh1,'VARH2':varh2,'VARH3':varh3,'VAH1':vah1,'VAH2':vah2,'VAH3':vah3,'D1':D1,'D2':D2,'D3':D3,'D4':D4,'D5':D5,'D6':D6,'D7':D7,'D8':D8}
   return data
 
 #DB Dump for Dimis
@@ -168,11 +168,6 @@ def switchstatus():
     switch={'nodeid':nodeId,'C1':0,'C2':1,'C3':1,'C4':1}
   else:
     switch={'nodeid':nodeId,'C1':0,'C2':0,'C3':0,'C4':0}
-  
-
-  print(i2c)
-  
-  print(switch)
 
   conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
   cur=conn.cursor()
