@@ -161,7 +161,7 @@ def agg_alive(client, userdata, msg,):
 def agg_alive_direct(client, userdata, msg,):
 	print("Direct Alive beacon received from AGG")
 	print(payload)
-	grabrest.todb(payload,101)
+	grabrest.todb(payload,102)
 
 def on_log(client, userdata, level, buf):
 	print("log:",buf)	
