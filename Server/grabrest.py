@@ -16,9 +16,9 @@ def todb(data,dev):
     print('todb')
     print(data)
   elif dev==41:
-    cur.execute("INSERT INTO inverterData(nodeid,type,port,battVoltage,aux,error,dev,vac1_in_l2,ac_input,vac_out_l2,inv_mode,inv_i_l2,warn,buy_i_l2,vac_in_l2,sell_i_l2,chg_i_l2,ac_mode) VALUES(%(nodeid)s,%(type)s,%(port)s,%(battVoltage)s,%(aux)s,%(error)s,%(dev)s,%(vac1_in_l2)s,%(ac_input)s,%(vac_out_l2)s,%(inv_mode)s,%(inv_i_l2)s,%(warn)s,%(buy_i_l2)s,%(vac_in_l2)s,%(sell_i_l2)s,%(chg_i_l2)s,%(ac_mode)s);",data)
+    cur.execute("INSERT INTO inverterData(nodeid,type,port,battVoltage,aux,error,dev,vac1_in_l2,ac_input,vac_out_l2,inv_mode,inv_i_l2,warn,buy_i_l2,vac_in_l2,sell_i_l2,chg_i_l2,ac_mode) VALUES(%(nodeid)s,%(Type)s,%(port)s,%(battVoltage)s,%(aux)s,%(error)s,%(dev)s,%(vac1_in_l2)s,%(ac_input)s,%(vac_out_l2)s,%(inv_mode)s,%(inv_i_l2)s,%(warn)s,%(buy_i_l2)s,%(vac_in_l2)s,%(sell_i_l2)s,%(chg_i_l2)s,%(ac_mode)s);",data)
   elif dev==42:
-    cur.execute("INSERT INTO inverterData(nodeid,type,port,battVoltage,aux,error,dev,cc_mode,aux_mode,in_i,out_i,in_v,out_kwh,out_ah ) VALUES(%(nodeid)s,%(type)s,%(port)s,%(battVoltage)s,%(aux)s,%(error)s,%(dev)s,%(cc_mode)s,%(aux_mode)s,%(in_i)s,%(out_i)s,%(in_v)s,%(out_kwh)s,%(out_ah)s);",data)
+    cur.execute("INSERT INTO inverterData(nodeid,type,port,battVoltage,aux,error,dev,cc_mode,aux_mode,in_i,out_i,in_v,out_kwh,out_ah ) VALUES(%(nodeid)s,%(Type)s,%(port)s,%(battVoltage)s,%(aux)s,%(error)s,%(dev)s,%(cc_mode)s,%(aux_mode)s,%(in_i)s,%(out_i)s,%(in_v)s,%(out_kwh)s,%(out_ah)s);",data)
   elif dev==0:
     cur.execute("SELECT id FROM weather ORDER BY id DESC LIMIT 1")
     weatherID=cur.fetchall()
