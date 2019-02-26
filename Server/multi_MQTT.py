@@ -60,11 +60,13 @@ def datafetch_sch_direct(client, userdata, msg):
 def datafetch_outback_inv_direct(client, userdata, msg):
 	print("Outback Data received")
 	payload=json.loads(msg.payload.decode())
+	print(payload)
 	grabrest.todb(payload,41)
 
 def datafetch_outback_cc_direct(client, userdata, msg):
 	print("Outback Data received")
 	payload=json.loads(msg.payload.decode())
+	print(payload)
 	grabrest.todb(payload,42)
 
 def datafetch_navsemi_direct(client, userdata, msg):
