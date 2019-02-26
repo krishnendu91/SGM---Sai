@@ -124,7 +124,7 @@ mqttclient.message_callback_add("SGM/datafetch_events_direct", datafetch_events_
 mqttclient.message_callback_add("SGM/node_alive_direct", node_alive_direct)
 mqttclient.message_callback_add("SGM/datafetch_switch_direct", datafetch_switch_direct)
 mqttclient.message_callback_add("SGM/agg_alive", agg_alive_direct)
-mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
+#mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
 
 mqttclient.loop_forever()
 
