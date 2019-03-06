@@ -103,7 +103,7 @@ def valDecode(value_d):
 #ETP1 has 6 Meters
 i=1
 while i<=metercount:
-	schData=meter(i)
+	schData=meter(4)
 	print(schData)
 	utils.todbsch(schData)
 	utils.mqtt_publish("datafetch_sch_direct",schData)
