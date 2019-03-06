@@ -1,5 +1,5 @@
 import sys
-import socket,mqttservice
+import socket
 import time,json
 from datetime import datetime
 import pymysql
