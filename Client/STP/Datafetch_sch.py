@@ -21,7 +21,7 @@ from pymodbus.payload import BinaryPayloadBuilder as builder
 
 eth0,nodeId=utils.sysinfo()
 if nodeId=='STP1':
-	metercount=1
+	metercount=6
 elif nodeId=='STP2':
 	metercount=4
 else:
@@ -29,7 +29,7 @@ else:
 
 def meter(meterId):
 	meterId=int(meterId)
-	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=0.05) 
+	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=1) 
 	client.connect()
 	A=client.read_holding_registers(3912,2,unit=meterId)
 	A=valDecode(A)
@@ -103,8 +103,9 @@ def valDecode(value_d):
 #ETP1 has 6 Meters
 i=1
 while i<=metercount:
-	schData=meter(4)
+	schData=meter(i)
 	print(schData)
 	utils.todbsch(schData)
 	utils.mqtt_publish("datafetch_sch_direct",schData)
 	i=i+1
+	time.sleep(1)
