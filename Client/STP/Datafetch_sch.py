@@ -20,6 +20,12 @@ from pymodbus.payload import BinaryPayloadDecoder as payloadDecode
 from pymodbus.payload import BinaryPayloadBuilder as builder
 
 eth0,nodeId=utils.sysinfo()
+if nodeId=='STP1':
+	metercount=1
+elif nodeId=='STP2':
+	metercount=4
+else:
+	metercount=2
 
 def meter(meterId):
 	meterId=int(meterId)
@@ -93,39 +99,12 @@ def valDecode(value_d):
 	#for i, value in value_d.iteritems():
 	 #     value=value
 	return value_d['float']
+
 #ETP1 has 6 Meters
-#For Meter 1
-schData=meter(1)
-print(schData)
-utils.todbsch(schData)
-utils.mqtt_publish("datafetch_sch_direct",schData)
-
-#For Meter 2
-schData=meter(2)
-print(schData)
-utils.todbsch(schData)
-utils.mqtt_publish("datafetch_sch_direct",schData)
-
-#For Meter 3
-schData=meter(3)
-print(schData)
-utils.todbsch(schData)
-utils.mqtt_publish("datafetch_sch_direct",schData)
-
-#For Meter 4
-schData=meter(4)
-print(schData)
-utils.todbsch(schData)
-utils.mqtt_publish("datafetch_sch_direct",schData)
-
-#For Meter 5
-schData=meter(5)
-print(schData)
-utils.todbsch(schData)
-utils.mqtt_publish("datafetch_sch_direct",schData)
-
-#For Meter 6
-schData=meter(6)
-print(schData)
-utils.todbsch(schData)
-utils.mqtt_publish("datafetch_sch_direct",schData)
+i=1
+while i<=metercount:
+	schData=meter(i)
+	print(schData)
+	utils.todbsch(schData)
+	utils.mqtt_publish("datafetch_sch_direct",schData)
+	i=i+1
