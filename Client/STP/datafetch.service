@@ -1,0 +1,12 @@
+[Unit]
+Description= Smart Grid Middleware Client API Startup Service
+After=mariadb.service network.target SGM_Client_api.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/pi/SGM_Local/Client/STP/datafetch.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
