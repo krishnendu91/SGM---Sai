@@ -57,6 +57,11 @@ def datafetch_sch_direct(client, userdata, msg):
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,3)
 	
+def datafetch_stp_direct(client, userdata, msg):
+	print("Schneider Data received")
+	payload=json.loads(msg.payload.decode())
+	grabrest.todb(payload,4)
+	
 def datafetch_outback_inv_direct(client, userdata, msg):
 	print("Outback Data received")
 	payload=json.loads(msg.payload.decode())
@@ -126,6 +131,8 @@ mqttclient.message_callback_add("SGM/datafetch_events_direct", datafetch_events_
 mqttclient.message_callback_add("SGM/node_alive_direct", node_alive_direct)
 mqttclient.message_callback_add("SGM/datafetch_switch_direct", datafetch_switch_direct)
 mqttclient.message_callback_add("SGM/agg_alive", agg_alive_direct)
+mqttclient.message_callback_add("SGM/datafetch_stp_direct", datafetch_stp_direct)
+
 #mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
 
 mqttclient.loop_forever()
