@@ -135,7 +135,7 @@ def switchstatus():
   i2c=check_output(["i2cget -y 1 0x3b"],shell=1)
   i2c=i2c.decode().split()[0]
   i2c=i2c[3:]
-  
+  print(i2c)
   if i2c=='f':
     switch={'nodeid':nodeId,'C1':0,'C2':0,'C3':0,'C4':0}
   elif i2c=='e':
