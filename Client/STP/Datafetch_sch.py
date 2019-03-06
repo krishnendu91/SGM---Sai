@@ -10,7 +10,7 @@
 
 import time
 import pymodbus 
-import serial,utils,mqttservice
+import serial,utils
 from pymodbus.pdu import ModbusRequest
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 from pymodbus.transaction import ModbusRtuFramer
@@ -97,6 +97,6 @@ def valDecode(value_d):
 schData=meter(1)
 print(schData)
 utils.todbsch(schData)
-mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_sch_direct",schData,ip_wlan0)
+utils.mqtt_publish("192.168.112.110",1883,"datafetch_sch_direct",schData,ip_wlan0)
 
 
