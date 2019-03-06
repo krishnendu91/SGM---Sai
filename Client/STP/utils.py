@@ -10,7 +10,7 @@ def mqtt_publish(topic,payload):
 	payload=json.dumps(payload)
 	topic="SGM/"+topic
 	client = mqtt.Client()
-	client.connect(192.168.112.110,1883,60)
+	client.connect('192.168.112.110',1883,60)
 	(rc,mid)=client.publish(topic,payload);
 	client.disconnect();
 	return rc
