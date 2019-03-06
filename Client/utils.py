@@ -167,7 +167,7 @@ def switchstatus():
   elif i2c=='1':
     switch={'nodeid':nodeId,'C1':0,'C2':1,'C3':1,'C4':1}
   else:
-    switch={'nodeid':nodeId,'C1':0,'C2':0,'C3':0,'C4':0}
+    switch={'nodeid':nodeId,'C1':1,'C2':1,'C3':1,'C4':1}
 
   conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
   cur=conn.cursor()
