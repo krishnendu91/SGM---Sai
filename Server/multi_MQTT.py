@@ -32,20 +32,20 @@ def test(client, userdata, message):
 def datafetch_dimis_gm1_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Dimis GM1")
 	payload=json.loads(msg.payload.decode())
-	print(payload)
+	#print(payload)
 	grabrest.todb(payload,1)
 
 def datafetch_dimis_lm1_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Dimis LM")
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,1)
-	print(payload)
+	#print(payload)
 
 def datafetch_dimis_lm2_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Dimis GM2")
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,1)
-	print(payload)
+	#print(payload)
 
 def datafetch_maxim_direct(client, userdata, msg):
 	print("Maxim Data received")
