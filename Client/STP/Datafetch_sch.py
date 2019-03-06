@@ -106,6 +106,6 @@ while i<=metercount:
 	schData=meter(i)
 	print(schData)
 	utils.todbsch(schData)
-	utils.mqtt_publish("datafetch_sch_direct",schData)
+	utils.mqtt_publish("datafetch_stp_direct",schData)
 	i=i+1
 	time.sleep(1)
