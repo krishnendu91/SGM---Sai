@@ -93,10 +93,39 @@ def valDecode(value_d):
 	#for i, value in value_d.iteritems():
 	 #     value=value
 	return value_d['float']
-
+#ETP1 has 6 Meters
+#For Meter 1
 schData=meter(1)
 print(schData)
 utils.todbsch(schData)
 utils.mqtt_publish("datafetch_sch_direct",schData)
 
+#For Meter 2
+schData=meter(2)
+print(schData)
+utils.todbsch(schData)
+utils.mqtt_publish("datafetch_sch_direct",schData)
 
+#For Meter 3
+schData=meter(3)
+print(schData)
+utils.todbsch(schData)
+utils.mqtt_publish("datafetch_sch_direct",schData)
+
+#For Meter 4
+schData=meter(4)
+print(schData)
+utils.todbsch(schData)
+utils.mqtt_publish("datafetch_sch_direct",schData)
+
+#For Meter 5
+schData=meter(5)
+print(schData)
+utils.todbsch(schData)
+utils.mqtt_publish("datafetch_sch_direct",schData)
+
+#For Meter 6
+schData=meter(6)
+print(schData)
+utils.todbsch(schData)
+utils.mqtt_publish("datafetch_sch_direct",schData)
