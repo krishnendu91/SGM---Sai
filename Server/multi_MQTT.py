@@ -65,13 +65,13 @@ def datafetch_stp_direct(client, userdata, msg):
 def datafetch_outback_inv_direct(client, userdata, msg):
 	print("Outback Data received")
 	payload=json.loads(msg.payload.decode())
-	print(payload)
+	#print(payload)
 	grabrest.todb(payload,41)
 
 def datafetch_outback_cc_direct(client, userdata, msg):
 	print("Outback Data received")
 	payload=json.loads(msg.payload.decode())
-	print(payload)
+	#print(payload)
 	grabrest.todb(payload,42)
 
 def datafetch_navsemi_direct(client, userdata, msg):
@@ -91,18 +91,18 @@ def datafetch_events_direct(client, userdata, msg):
 def node_alive_direct(client, userdata, msg):
 	print("Alive beacon received")
 	payload=json.loads(msg.payload.decode())
-	print(payload)
+	#print(payload)
 	grabrest.todb(payload,100)
 	
 def datafetch_switch_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Switch")
 	payload=json.loads(msg.payload.decode())
-	print(payload)
+	#print(payload)
 	grabrest.todb(payload,101)
 
 def agg_alive_direct(client, userdata, msg,):
 	print("Direct Alive beacon received from AGG")
-	print(payload)
+	#print(payload)
 	grabrest.todb(payload,102)
 
 def on_log(client, userdata, level, buf):
