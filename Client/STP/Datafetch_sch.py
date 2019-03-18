@@ -29,9 +29,11 @@ else:
 
 def meter(meterId):
 	meterId=int(meterId)
+	meterID=1
 	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=1) 
 	client.connect()
 	A=client.read_holding_registers(3912,2,unit=meterId)
+	print(A)
 	A=valDecode(A)
 	A1=client.read_holding_registers(3928,2,unit=meterId) 
 	A1=valDecode(A1)
