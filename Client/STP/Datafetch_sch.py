@@ -30,7 +30,7 @@ else:
 def meter(meterId):
 	meterId=int(meterId)
 	#meterId=5
-	client = ModbusClient(method ='rtu',baudrate=9600,port='/dev/ttyUSB0',timeout=1) 
+	client = ModbusClient(method ='rtu',baudrate=9600,port='/dev/ttyUSB0',timeout=0.01) 
 	C_connected=client.connect()
 	client.debug_enabled()
 	if C_connected:
