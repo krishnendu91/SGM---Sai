@@ -30,7 +30,7 @@ else:
 def meter(meterId):
 	meterId=int(meterId)
 	#meterId=5
-	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=0.5) 
+	client = ModbusClient(method ='rtu',baudrate=9600,port='/dev/ttyUSB0',timeout=1) 
 	C_connected=client.connect()
 	client.debug_enabled()
 	if C_connected:
@@ -113,5 +113,6 @@ while i<=metercount:
 	print(schData)
 	utils.todbsch(schData)
 	utils.mqtt_publish("datafetch_stp_direct",schData)
+	print("Push to Server complete")
 	i=i+1
 	time.sleep(1)
