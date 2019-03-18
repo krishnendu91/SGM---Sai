@@ -21,7 +21,7 @@ from pymodbus.payload import BinaryPayloadBuilder as builder
 
 eth0,nodeId=utils.sysinfo()
 if nodeId=='STP1':
-	metercount=6
+	metercount=7
 elif nodeId=='STP2':
 	metercount=4
 else:
