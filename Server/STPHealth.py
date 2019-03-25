@@ -2,42 +2,31 @@
 import pymysql
 import datetime
 a=1
-
-def tdcalc(nodeId,dbtime,temp,ssid,wlan_ss):
-  dbtimeE=dbtime.timestamp() #Epoch conversion
-  timenow=datetime.datetime.now()
-  print(timenow)
-  timenow=datetime.datetime.now().timestamp() #get current time in Epoch
-  print(timenow)
-  timedrift=timenow-dbtimeE
-  print(timedrift)
-  #timedrift=datetime.datetime.fromtimestamp(timedrift).strftime('%s')
-  #print(timedrift)
-
-  if timedrift<420:
-    alive=1
-  else:
-    alive=0
-
-  conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
-  cur=conn.cursor()
-  data={"dbtime":dbtime,"alive":alive,"timedrift":timedrift,"nodeid":nodeid,"temp":temp,"ssid":ssid,"wlan_ss":wlan_ss}
-  cur.execute("INSERT INTO `lastseen` (dbtime,alive,timedrift,nodeid,temp,ssid,wlan_ss) VALUES (%(dbtime)s,%(alive)s,%(timedrift)s,%(nodeid)s,%(temp)s,%(ssid)s,%(wlan_ss)s);",data)
+def stateCalc(nodeId,dbtime,meterId,meterName,A): 
+  if A>0:
+      state=1
+    else:
+      state=0
+  dbtimeE=dbtime.timestamp()
+  timeDrift= datetime.datetime.now().timestamp()-dbtimeE
+  data={"dbtime":dbtime,"state":state,"timeDrift":timeDrift,"nodeId":nodeId,"meterId":meterId,"meterName":meterName}
+  cur.execute("INSERT INTO `STPState` (dbtime,state,timeDrift,nodeId,meterId,meterName) VALUES (%(dbtime)s,%(state)s,%(timeDrift)s,%(nodeId)s,%(meterId)s,%(meterName)s);",data)
   conn.commit()
   conn.close()
   print("DB Updated with alive state: " +str(alive) + " for Node "+str(nodeid))
   
 while(a<12):
-try:
+  try:
     conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
     cur=conn.cursor()
     cur.execute("SELECT timestamp,nodeId,meterId,meterName,A FROM `nodeHealth` where meterId=%s order by id desc limit 1;",a)
     data=cur.fetchone() #fetch all
     dbtime=data[0]
     nodeId=data[1]
-    meterName=data[2]
-    A=data[3]
-   tdcalc(nodeId,dbtime,meterName,A)
+    meterId=data[2]
+    meterName=data[3]
+    A=data[4]
+   
     conn.close()
     a=a+1
   except:
