@@ -17,23 +17,22 @@ def stateCalc(nodeId,dbtime,meterId,meterName,A):
   return "Completed"
   
 while(a<13):
-  try:
-    conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
-    cur=conn.cursor()
-    cur.execute("SELECT timestamp,nodeId,meterId,meterName,A FROM STPData where meterId=%s order by id desc limit 1;",a)
-    data=cur.fetchone() #fetch all
-    dbtime=data[0]
-    nodeId=data[1]
-    meterId=data[2]
-    meterName=data[3]
-    A=data[4]
-    stateCalc(nodeId,dbtime,meterId,meterName,A)
-    conn.close()
-    a=a+1
-  except:
-    a=a+1
-    print("Error")
-    exit()
+  conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+  cur=conn.cursor()
+  cur.execute("SELECT timestamp,nodeId,meterId,meterName,A FROM STPData where meterId=%s order by id desc limit 1;",a)
+  data=cur.fetchone() #fetch all
+  dbtime=data[0]
+  nodeId=data[1]
+  meterId=data[2]
+  meterName=data[3]
+  A=data[4]
+  stateCalc(nodeId,dbtime,meterId,meterName,A)
+  conn.close()
+  a=a+1
+  #except:
+   # a=a+1
+    #print("Error")
+    #exit()
 #    if a==15:
  #     aggid=200
   #    conn = pymysql.connect(database="AmritaSGM",user="grafana",password="grafana",host="localhost")
