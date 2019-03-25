@@ -5,7 +5,7 @@ a=1
 def stateCalc(nodeId,dbtime,meterId,meterName,A): 
   if A>0:
       state=1
-    else:
+  else:
       state=0
   dbtimeE=dbtime.timestamp()
   timeDrift= datetime.datetime.now().timestamp()-dbtimeE
