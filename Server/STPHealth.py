@@ -38,7 +38,6 @@ while(a<13):
     a=a+1
   except:
     a=a+1
-    print("Error")
     pass
 #    if a==15:
  #     aggid=200
