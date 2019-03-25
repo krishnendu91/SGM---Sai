@@ -30,7 +30,7 @@ def todb(data,dev):
   elif dev==101:
     cur.execute("INSERT INTO switchState(nodeId,C1,C2,C3,C4) VALUES(%(nodeid)s,%(C1)s,%(C2)s,%(C3)s,%(C4)s);",data)
   elif dev==102:
-    cur.execute("INSERT INTO nodeHealth(aggId,alive,temp,SSID,wlan_ss) VALUES(%(aggId)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",data)
+    cur.execute("INSERT INTO nodeHealth(aggId,alive,temp,SSID,wlan_ss) VALUES(%(aggid)s,%(alive)s,%(temp)s,%(ssid)s,%(ss)s);",data)
   elif dev==2:
     cur.execute("INSERT INTO maximData(nodeid,v1,i1, w1,va1,var1,wh1,vah1,varh1,pf1,f1) VALUES(%(nodeId)s,%(v1)s,%(i1)s,%(w1)s,%(va1)s,%(var1)s,%(wh1)s,%(vah1)s,%(varh1)s,%(pf1)s,%(f1)s);",data)
   elif dev==3:
