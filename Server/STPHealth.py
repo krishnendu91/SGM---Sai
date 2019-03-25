@@ -18,7 +18,7 @@ def stateCalc(nodeId,dbtime,meterId,meterName,A):
     conn.close()
     print("DB Updated with state: " +str(state) + " for "+str(meterName)+ " with Time difference : "+ str(timeDrift) +" and Current "+str(round(A,3)))
   except Exception as e:
-    print(e):
+    print(e)
     print("State Updated")
     pass
   return "Completed"
@@ -39,7 +39,7 @@ while(a<13):
     a=a+1
   except Exception as e: 
     print("ERROR at DB")
-    print(e):
+    print(e)
     a=a+1
     pass
 #    if a==15:
