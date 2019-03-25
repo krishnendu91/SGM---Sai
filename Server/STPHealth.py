@@ -3,7 +3,7 @@ import pymysql
 import datetime
 a=1
 def stateCalc(nodeId,dbtime,meterId,meterName,A): 
-  if A>0:
+  if round(A)>0:
       state=1
   else:
       state=0
@@ -15,7 +15,7 @@ def stateCalc(nodeId,dbtime,meterId,meterName,A):
   cur.execute("INSERT INTO `STPState` (dbtime,state,timeDrift,nodeId,meterId,meterName) VALUES (%(dbtime)s,%(state)s,%(timeDrift)s,%(nodeId)s,%(meterId)s,%(meterName)s);",data)
   conn.commit()
   conn.close()
-  print("DB Updated with state: " +str(state) + " for "+str(meterName)+ "with Time difference : "+ str(timeDrift) +" and Current "+str(round(A)))
+  print("DB Updated with state: " +str(state) + " for "+str(meterName)+ "with Time difference : "+ str(timeDrift) +" and Current "+str(round(A,3)))
   return "Completed"
   
 while(a<13):
