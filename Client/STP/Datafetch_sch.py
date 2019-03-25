@@ -28,7 +28,7 @@ else:
 	metercount=2
 
 def meter(meterId):
-	meterName=utils.meterinfo(nodeID,meterId)
+	meterName=utils.meterinfo(nodeId,meterId)
 	print(meterName)
 	meterId=int(meterId)
 	#meterId=5
