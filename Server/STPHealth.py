@@ -37,7 +37,9 @@ while(a<13):
     stateCalc(nodeId,dbtime,meterId,meterName,A)
     conn.close()
     a=a+1
-  except:
+  except Exception as e: 
+    print("ERROR at DB")
+    print(e):
     a=a+1
     pass
 #    if a==15:
