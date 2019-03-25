@@ -97,19 +97,22 @@ def meter(meterId):
 		return data
 	else:
 		print("Error Connecting to Device")
-		quit()
+		exit()
 def valDecode(value_d):
-	print(value_d)
-	value_d = payloadDecode.fromRegisters(value_d.registers, byteorder=Endian.Big)
+	try:
+		print(value_d)
+		value_d = payloadDecode.fromRegisters(value_d.registers, byteorder=Endian.Big)
 	#print(value_d)
-	value_d ={'float':value_d.decode_32bit_float(),}
-	val=value_d['float']
+		value_d ={'float':value_d.decode_32bit_float(),}
+		val=value_d['float']
+		return val
+		
 	#print(value_d['float'])
 	#for i, value in value_d.iteritems():
 	 #     value=value
-	#except:
-	#	pass
-	return val
+	except:
+		print("Error Decoding MODBUS Data")
+		pass
 
 #ETP1 has 6 Meters
 i=1
