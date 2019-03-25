@@ -10,6 +10,8 @@ def stateCalc(nodeId,dbtime,meterId,meterName,A):
   dbtimeE=dbtime.timestamp()
   timeDrift= datetime.datetime.now().timestamp()-dbtimeE
   data={"dbtime":dbtime,"state":state,"timeDrift":timeDrift,"nodeId":nodeId,"meterId":meterId,"meterName":meterName}
+  conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+  cur=conn.cursor()
   cur.execute("INSERT INTO `STPState` (dbtime,state,timeDrift,nodeId,meterId,meterName) VALUES (%(dbtime)s,%(state)s,%(timeDrift)s,%(nodeId)s,%(meterId)s,%(meterName)s);",data)
   conn.commit()
   conn.close()
