@@ -133,7 +133,7 @@ mqttclient.message_callback_add("SGM/datafetch_gsm_direct", datafetch_gsm_direct
 mqttclient.message_callback_add("SGM/datafetch_events_direct", datafetch_events_direct)
 mqttclient.message_callback_add("SGM/node_alive_direct", node_alive_direct)
 mqttclient.message_callback_add("SGM/datafetch_switch_direct", datafetch_switch_direct)
-mqttclient.message_callback_add("SGM/agg_alive", agg_alive_direct)
+mqttclient.message_callback_add("SGM/agg_alive_direct", agg_alive_direct)
 mqttclient.message_callback_add("SGM/datafetch_stp_direct", datafetch_stp_direct)
 
 #mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
