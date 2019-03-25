@@ -8,18 +8,18 @@ def stateCalc(nodeId,dbtime,meterId,meterName,A):
   try:
     if round(A)>0:
       state=1
+    dbtimeE=dbtime.timestamp()
+    timeDrift= datetime.datetime.now().timestamp()-dbtimeE
+    data={"dbtime":dbtime,"state":state,"timeDrift":timeDrift,"nodeId":nodeId,"meterId":meterId,"meterName":meterName}
+    conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+    cur=conn.cursor()
+    cur.execute("INSERT INTO `STPState` (dbtime,state,timeDrift,nodeId,meterId,meterName) VALUES (%(dbtime)s,%(state)s,%(timeDrift)s,%(nodeId)s,%(meterId)s,%(meterName)s);",data)
+    conn.commit()
+    conn.close()
+    print("DB Updated with state: " +str(state) + " for "+str(meterName)+ "with Time difference : "+ str(timeDrift) +" and Current "+str(round(A,3)))
   except:
     print("Error")
     pass
-  dbtimeE=dbtime.timestamp()
-  timeDrift= datetime.datetime.now().timestamp()-dbtimeE
-  data={"dbtime":dbtime,"state":state,"timeDrift":timeDrift,"nodeId":nodeId,"meterId":meterId,"meterName":meterName}
-  conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
-  cur=conn.cursor()
-  cur.execute("INSERT INTO `STPState` (dbtime,state,timeDrift,nodeId,meterId,meterName) VALUES (%(dbtime)s,%(state)s,%(timeDrift)s,%(nodeId)s,%(meterId)s,%(meterName)s);",data)
-  conn.commit()
-  conn.close()
-  print("DB Updated with state: " +str(state) + " for "+str(meterName)+ "with Time difference : "+ str(timeDrift) +" and Current "+str(round(A,3)))
   return "Completed"
   
 while(a<13):
