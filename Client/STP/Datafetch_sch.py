@@ -30,7 +30,7 @@ else:
 def meter(meterId):
 	meterId=int(meterId)
 	#meterId=5
-	client = ModbusClient(method ='rtu',baudrate=9600,port='/dev/ttyUSB0',timeout=3) 
+	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=3) 
 	C_connected=client.connect()
 	client.debug_enabled()
 	if C_connected:
@@ -97,14 +97,14 @@ def meter(meterId):
 		print("Error Connecting to Device")
 		quit()
 def valDecode(value_d):
-	print(value_d)
-	#value_d = payloadDecode.fromRegisters(value_d.registers, byteorder=Endian.Big)
 	#print(value_d)
-	#value_d ={'float':value_d.decode_32bit_float(),}
+	value_d = payloadDecode.fromRegisters(value_d.registers, byteorder=Endian.Big)
+	#print(value_d)
+	value_d ={'float':value_d.decode_32bit_float(),}
 	#print(value_d['float'])
 	#for i, value in value_d.iteritems():
 	 #     value=value
-	#return value_d['float']
+	return value_d['float']
 
 #ETP1 has 6 Meters
 i=1
