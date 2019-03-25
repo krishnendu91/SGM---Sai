@@ -28,13 +28,15 @@ else:
 	metercount=2
 
 def meter(meterId):
+	meterName=utils.meterinfo(nodeID,meterId)
+	print(meterName)
 	meterId=int(meterId)
 	#meterId=5
 	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=3) 
 	C_connected=client.connect()
 	client.debug_enabled()
 	if C_connected:
-		print("Device Connected successfully. Device ID="+str(meterId))
+		print("Device Connected successfully. Device ID="+str(meterId) + "for: " +str(meterName))
 		A=client.read_holding_registers(3912,2,unit=meterId)
 		A=valDecode(A)
 		A1=client.read_holding_registers(3928,2,unit=meterId) 
