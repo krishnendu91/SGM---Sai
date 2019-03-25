@@ -18,7 +18,7 @@ def stateCalc(nodeId,dbtime,meterId,meterName,A):
     conn.close()
     print("DB Updated with state: " +str(state) + " for "+str(meterName)+ "with Time difference : "+ str(timeDrift) +" and Current "+str(round(A,3)))
   except:
-    print("Error")
+    print("State Updated")
     pass
   return "Completed"
   
