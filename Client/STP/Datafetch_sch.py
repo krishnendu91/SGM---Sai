@@ -93,19 +93,22 @@ def meter(meterId):
 		WH=valDecode(WH)
 		intr=client.read_holding_registers(3998,2,unit=meterId) 
 		intr=valDecode(intr)
-		data={'nodeId':nodeId,'meterId':meterId,'A':A,'A1':A1,'A2':A2,'A3':A3,'VLL':VLL,'VLN':VLN,'V1':V1,'V2':V2,'V3':V3,'V12':V12,'V23':V23,'V31':V31,'W':W,'W1':W1,'W2':W2,'W3':W3,'VA':VA,'VA1':VA1,'VA2':VA2,'VA3':VA3,'PF':PF,'PF1':PF1,'PF2':PF2,'PF3':PF3,'F':F,'VAH':VAH,'WH':WH,'INTR':intr}
+		data={'nodeId':nodeId,'meterName':meterName,'meterId':meterId,'A':A,'A1':A1,'A2':A2,'A3':A3,'VLL':VLL,'VLN':VLN,'V1':V1,'V2':V2,'V3':V3,'V12':V12,'V23':V23,'V31':V31,'W':W,'W1':W1,'W2':W2,'W3':W3,'VA':VA,'VA1':VA1,'VA2':VA2,'VA3':VA3,'PF':PF,'PF1':PF1,'PF2':PF2,'PF3':PF3,'F':F,'VAH':VAH,'WH':WH,'INTR':intr}
 		return data
 	else:
 		print("Error Connecting to Device")
 		quit()
 def valDecode(value_d):
 	#print(value_d)
-	value_d = payloadDecode.fromRegisters(value_d.registers, byteorder=Endian.Big)
+	try:
+		value_d = payloadDecode.fromRegisters(value_d.registers, byteorder=Endian.Big)
 	#print(value_d)
-	value_d ={'float':value_d.decode_32bit_float(),}
+		value_d ={'float':value_d.decode_32bit_float(),}
 	#print(value_d['float'])
 	#for i, value in value_d.iteritems():
 	 #     value=value
+	except:
+		pass
 	return value_d['float']
 
 #ETP1 has 6 Meters
