@@ -15,7 +15,7 @@ def stateCalc(nodeId,dbtime,meterId,meterName,A):
   conn.close()
   print("DB Updated with alive state: " +str(alive) + " for Node "+str(nodeid))
   
-while(a<12):
+while(a<13):
   try:
     conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
     cur=conn.cursor()
