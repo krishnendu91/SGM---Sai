@@ -20,7 +20,7 @@ while(a<13):
   try:
     conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
     cur=conn.cursor()
-    cur.execute("SELECT timestamp,nodeId,meterId,meterName,A FROM `nodeHealth` where meterId=%s order by id desc limit 1;",a)
+    cur.execute("SELECT timestamp,nodeId,meterId,meterName,A FROM `STPData` where meterId=%s order by id desc limit 1;",a)
     data=cur.fetchone() #fetch all
     dbtime=data[0]
     nodeId=data[1]
@@ -31,7 +31,8 @@ while(a<13):
     conn.close()
     a=a+1
   except:
-    pass
+    a=a+1
+    exit()
 #    if a==15:
  #     aggid=200
   #    conn = pymysql.connect(database="AmritaSGM",user="grafana",password="grafana",host="localhost")
