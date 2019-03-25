@@ -34,9 +34,10 @@ def todbsch(schData):
 	return "Completed"
 
 def meterinfo(STPnode,id):
+	mInfo={'STPnode':STPnode,'id':id}
 	conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur=conn.cursor()
-	cur.execute("SELECT meterName FROM `STP`WHERE STPnode=%s and meterId=%s;"STPnode,id)
+	cur.execute("SELECT meterName FROM `STP`WHERE STPnode=%(STPnode)s and meterId=%(id)s;",mInfo)
 	meterName=cur.fetchone()
 	return meterName
 
