@@ -115,4 +115,4 @@ while i<=metercount:
 	utils.mqtt_publish("datafetch_stp_direct",schData)
 	print("Push to Server complete")
 	i=i+1
-	time.sleep(1)
+	time.sleep(3)
