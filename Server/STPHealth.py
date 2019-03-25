@@ -2,6 +2,7 @@
 import pymysql
 import datetime
 a=1
+state=0
 def stateCalc(nodeId,dbtime,meterId,meterName,A): 
   try:
     if round(A)>0:
