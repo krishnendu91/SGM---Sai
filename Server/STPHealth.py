@@ -2,13 +2,12 @@
 import pymysql
 import datetime
 a=1
-global state=0
+
 def stateCalc(nodeId,dbtime,meterId,meterName,A): 
+  state=0
   try:
     if round(A)>0:
       state=1
-    else:
-      state=0
   except:
     print("Error")
     pass
