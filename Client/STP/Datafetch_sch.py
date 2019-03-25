@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 # Library for Schneider Poly phase meter Modbus
 # Library returns all power parameters
