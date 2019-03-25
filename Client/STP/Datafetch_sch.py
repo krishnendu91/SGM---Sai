@@ -100,16 +100,15 @@ def meter(meterId):
 		quit()
 def valDecode(value_d):
 	#print(value_d)
-	try:
-		value_d = payloadDecode.fromRegisters(value_d.registers, byteorder=Endian.Big)
+	value_d = payloadDecode.fromRegisters(value_d.registers, byteorder=Endian.Big)
 	#print(value_d)
-		value_d ={'float':value_d.decode_32bit_float(),}
-		val=value_d['float']
+	value_d ={'float':value_d.decode_32bit_float(),}
+	val=value_d['float']
 	#print(value_d['float'])
 	#for i, value in value_d.iteritems():
 	 #     value=value
-	except:
-		pass
+	#except:
+	#	pass
 	return val
 
 #ETP1 has 6 Meters
