@@ -31,7 +31,7 @@ def meter(meterId):
 	meterName=utils.meterinfo(nodeId,meterId)
 	#print(meterName)
 	meterId=int(meterId)
-	meterId=3
+	meterId=4
 	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=1) 
 	C_connected=client.connect()
 	client.debug_enabled()
