@@ -39,5 +39,5 @@ def meterinfo(STPnode,id):
 	cur=conn.cursor()
 	cur.execute("SELECT meterName FROM `STP`WHERE STPnode=%(STPnode)s and meterId=%(id)s;",mInfo)
 	meterName=cur.fetchone()
-	return meterName
+	return meterName[1]
 
