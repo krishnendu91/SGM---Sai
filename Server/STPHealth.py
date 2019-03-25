@@ -14,6 +14,7 @@ def stateCalc(nodeId,dbtime,meterId,meterName,A):
   conn.commit()
   conn.close()
   print("DB Updated with alive state: " +str(alive) + " for Node "+str(nodeid))
+  return "Completed"
   
 while(a<13):
   try:
@@ -26,7 +27,7 @@ while(a<13):
     meterId=data[2]
     meterName=data[3]
     A=data[4]
-   
+    stateCalc(nodeId,dbtime,meterId,meterName,A)
     conn.close()
     a=a+1
   except:
