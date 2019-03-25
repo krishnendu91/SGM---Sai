@@ -104,12 +104,13 @@ def valDecode(value_d):
 		value_d = payloadDecode.fromRegisters(value_d.registers, byteorder=Endian.Big)
 	#print(value_d)
 		value_d ={'float':value_d.decode_32bit_float(),}
+		val=value_d['float']
 	#print(value_d['float'])
 	#for i, value in value_d.iteritems():
 	 #     value=value
 	except:
 		pass
-	return value_d['float']
+	return val
 
 #ETP1 has 6 Meters
 i=1
