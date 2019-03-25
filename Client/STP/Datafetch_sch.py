@@ -36,7 +36,7 @@ def meter(meterId):
 	C_connected=client.connect()
 	client.debug_enabled()
 	if C_connected:
-		print("Device Connected successfully. Device ID="+str(meterId) + "for: " +str(meterName))
+		print("Device Connected successfully. Device ID="+str(meterId) + " for: " +str(meterName))
 		A=client.read_holding_registers(3912,2,unit=meterId)
 		A=valDecode(A)
 		A1=client.read_holding_registers(3928,2,unit=meterId) 
