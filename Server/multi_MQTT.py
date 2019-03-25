@@ -104,6 +104,7 @@ def datafetch_switch_direct(client, userdata, msg):
 def agg_alive_direct(client, userdata, msg,):
 	print("Direct Alive beacon received from AGG")
 	payload=json.loads(msg.payload.decode())
+	print(msg)
 	print(payload)
 	grabrest.todb(payload,102)
 
