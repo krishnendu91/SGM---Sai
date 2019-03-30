@@ -63,7 +63,14 @@ def stpdata(meterName):
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	cur.execute('SELECT state FROM `STPState` where meterName=%s ORDER by id DESC LIMIT 1',meterName)
 	s = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	return jsonify({'STP Data' : r,s})
+	return jsonify({'STP Data' : r})
+@app.route('/stp/state/<meterName>')
+def stpstate(meterName):
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute('SELECT state FROM `STPState` where meterName=%s ORDER by id DESC LIMIT 1',meterName)
+	s = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'STP Data' : s})
 
 @app.route('/deadnodes')
 def deadnodes():
