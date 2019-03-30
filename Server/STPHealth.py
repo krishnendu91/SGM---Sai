@@ -27,7 +27,10 @@ while(a<13):
   try:
     conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
     cur=conn.cursor()
-    cur.execute("SELECT timestamp,nodeId,meterId,meterName,A FROM STPData where meterId=%s order by id desc limit 1;",a)
+    cur.execute("SELECT meterName,A FROM STP where id=%s order by id desc limit 1;",a)
+    data=cur.fetchone()
+    meterName=data[0]
+    cur.execute("SELECT timestamp,nodeId,meterId,meterName,A FROM STPData where meterName=%s order by id desc limit 1;",data)
     data=cur.fetchone() #fetch all
     print(data)
     dbtime=data[0]
