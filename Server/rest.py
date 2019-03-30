@@ -47,8 +47,9 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "Welcome to Amrita Intelligent Infrastructure Data Management and Control Panel App. \n Use one of the options below."
 
-@app.route('/<meterName>')
+@app.route('/stp/<meterName>')
 def stpdata(meterName):
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT timestamp,A,VLL,PF,F,W,WH FROM `STPData` where meterName=%s ORDER by id DESC LIMIT 1',meterName)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
@@ -58,6 +59,7 @@ def stpdata(meterName):
 
 @app.route('/deadnodes')
 def deadnodes():
+	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT nodeId FROM `lastseen` WHERE alive =0 and timestamp>= NOW() - INTERVAL 3 MINUTE ORDER BY `id` DESC')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
