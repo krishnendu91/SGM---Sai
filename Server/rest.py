@@ -47,6 +47,15 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "Welcome to Amrita Intelligent Infrastructure Data Management and Control Panel App. \n Use one of the options below."
 
+@app.route('/<meterName>')
+def stpdata(meterName):
+	cur = mysql.connect().cursor()
+	cur.execute('SELECT timestamp,A,VLL,PF,F,W,WH FROM `STPData` where meterName=%s ORDER by id DESC LIMIT 1',meterName)
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	cur.execute('SELECT state FROM `STPState` where meterName=%s ORDER by id DESC LIMIT 1',meterName)
+	s = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'STP Data' : r,s})
+
 @app.route('/deadnodes')
 def deadnodes():
 	cur = mysql.connect().cursor()
