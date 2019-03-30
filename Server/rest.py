@@ -47,6 +47,14 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "Welcome to Amrita Intelligent Infrastructure Data Management and Control Panel App. \n Use one of the options below."
 
+@app.route('/stp/pumplist')
+def stppump():
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute('SELECT meterName FROM `STP` order by id ASC')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'STP Data' : r})
+
 @app.route('/stp/<meterName>')
 def stpdata(meterName):
 	security(str(sys._getframe().f_code.co_name))
