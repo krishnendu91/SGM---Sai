@@ -13,7 +13,7 @@ cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp
 #r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 #print(r)
 
-
+print(cur.description)
 results = cur.fetchall()
 
 wb = Workbook()
