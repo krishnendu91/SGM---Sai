@@ -23,8 +23,8 @@ sheet1.write('D1', "Power Factor")
 sheet1.write('E1', "Frequency (F)")
 sheet1.write('F1', "Power (W)")
 sheet1.write('G1', "Energy (Wh)")
-row=2
-col=2
+r=2
+c=2
 for r, row in enumerate(cur.fetchall()):
   for c, col in enumerate(row):
     sheet1.write(r, c, col)
