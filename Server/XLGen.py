@@ -16,7 +16,7 @@ timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
 filename = 'STPReport_'+timenow+'.xlsx'
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur = conn.cursor()
-cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR);')
+cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR) order by id desc;')
 results = cur.fetchall()
 
 wb = Workbook()
