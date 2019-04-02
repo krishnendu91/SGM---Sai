@@ -22,7 +22,7 @@ ws.title = "STP Energy Usage Report"
 #ws.append(cur.description)
 
 for row in results:
-  print(cur.description[row][0])
+  print(cur.description[1])
   ws.append(row)
 wb.save(filename)    
   
