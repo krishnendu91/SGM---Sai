@@ -11,7 +11,7 @@ cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp
 #print(r)
 
 
-workbook = Workbook('./test.xlsx')
+workbook = Workbook('./STPReport.xlsx')
 sheet1 = workbook.add_worksheet()
 #sheet1.add_table(r)
 sheet1.write('A1', "Pump Name")
@@ -24,5 +24,5 @@ sheet1.write('A1', "Energy (Wh)")
 
 for r, row in enumerate(cur.fetchall()):
   for c, col in enumerate(row):
-    sheet.write(r, c, col)
+    sheet1.write(r, c, col)
 workbook.close()
