@@ -9,10 +9,11 @@ from email.mime.base import MIMEBase
 from email import encoders 
 
 fromaddr = "amritawna.pr@gmail.com"
-toaddr = "saishibu38380@gmail.com"
+toaddr1 = "saishibu38380@gmail.com"
+toaddr2 = "akshayachu.20@gmail.com"
 
 timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
-filename = 'STPReport'+timenow+'.xlsx'
+filename = 'STPReport_'+timenow+'.xlsx'
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur = conn.cursor()
 cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR);')
@@ -78,7 +79,8 @@ s.login(fromaddr,'amma@123')
 text = msg.as_string() 
 
 # sending the mail 
-s.sendmail(fromaddr, toaddr, text) 
+s.sendmail(fromaddr, toaddr1, text) 
+s.sendmail(fromaddr, toaddr2, text) 
 
 # terminating the session 
 s.quit() 
