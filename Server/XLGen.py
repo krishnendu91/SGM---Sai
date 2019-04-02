@@ -18,7 +18,7 @@ results = cur.fetchall()
 
 wb = Workbook()
 ws = wb.create_sheet(0)
-ws.title = manufacturer_table_name
+ws.title = "STP Energy Usage Report"
 ws.append(cur.column_names)
 
 for row in results:
