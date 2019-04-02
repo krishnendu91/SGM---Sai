@@ -20,7 +20,7 @@ results = cur.fetchall()
 
 wb = Workbook()
 ws = wb.create_sheet(0)
-ws.title = filename
+ws.title = "STP Report"
 ws.append(cur.column_names)
 
 for row in results:
