@@ -4,10 +4,10 @@ import datetime
 import csv
 from xlsxwriter.workbook import Workbook
 from datetime import datetime
-timenow=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-filename="./STPReport"+timenow+".xlsx"
+timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
+filename = './STPReport'+timenow+'.xlsx'
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
-cur=conn.cursor()
+cur = conn.cursor()
 cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 DAY) limit 5;')
 #r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 #print(r)
@@ -22,7 +22,7 @@ sheet1.write('C1', "Current (A)")
 sheet1.write('D1', "Power Factor")
 sheet1.write('E1', "Frequency (F)")
 sheet1.write('F1', "Power (W)")
-sheet1.write('A1', "Energy (Wh)")
+sheet1.write('G1', "Energy (Wh)")
 
 for r, row=row+1 in enumerate(cur.fetchall()):
   for c, col=col+1 in enumerate(row):
