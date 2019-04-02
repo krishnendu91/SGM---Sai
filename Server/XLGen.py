@@ -7,10 +7,10 @@ from xlsxwriter.workbook import Workbook
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
 cur.execute('SELECT * FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 DAY);')
-
+r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+r=json.dumps(r)
+print(r)
 workbook = Workbook('./test.xlsx')
-sheet = workbook.add_worksheet()
-for r, row in enumerate(cur.fetchall()):
-  for c, col in enumerate(row):
-    sheet.write(r, c, col)
+sheet1 = workbook.add_worksheet()
+sheet1.add_table(r)
 workbook.close()
