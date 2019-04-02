@@ -14,18 +14,12 @@ cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp
 #print(r)
 
 
-wb = Workbook()
-ws=wb.active
-ws['A1']= "Pump Name"
-ws['B1']= "Voltage (V)"
-ws['C1']= "Current (A)"
-ws['D1']= "Power Factor"
-ws['E1']= "Frequency (F)"
-ws['F1']= "Power (W)"
-ws['G1']= "Energy (Wh)"
-for r, row in enumerate(cur.fetchall()):
-  for c, col in enumerate(row):
-    ws.append([r,c,col])
+results = cur.fetchall()
+ws = wb.create_sheet(0)
+ws.title = manufacturer_table_name
+ws.append(cur.column_names)
+for row in results:
+  ws.append(row)
 wb.save(filename)    
   
 #sheet1 = workbook.add_worksheet()
