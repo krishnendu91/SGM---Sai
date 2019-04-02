@@ -3,7 +3,9 @@ import pymysql,json
 import datetime
 import csv
 from xlsxwriter.workbook import Workbook
-
+from datetime import datetime
+timenow=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+filename="./STPReport"+timenow+".xlsx"
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
 cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 DAY) limit 5;')
@@ -11,7 +13,7 @@ cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp
 #print(r)
 
 
-workbook = Workbook('./STPReport.xlsx')
+workbook = Workbook(filename)
 sheet1 = workbook.add_worksheet()
 #sheet1.add_table(r)
 sheet1.write('A1', "Pump Name")
