@@ -15,12 +15,12 @@ timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
 filename = 'STPReport'+timenow+'.xlsx'
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur = conn.cursor()
-cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 DAY);')
+cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR);')
 results = cur.fetchall()
 
 wb = Workbook()
-ws = wb.create_sheet(0)
-#ws.title = "STP Energy Usage Report"
+
+ws.title = "STP Energy Usage Report"
 ws.append(cur.column_names)
 
 for row in results:
