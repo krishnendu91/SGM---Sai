@@ -19,7 +19,7 @@ results = cur.fetchall()
 wb = Workbook()
 ws = wb.create_sheet(0)
 ws.title = "STP Energy Usage Report"
-ws.append(cur.column_names)
+ws.append(cur.description)
 
 for row in results:
   ws.append(row)
