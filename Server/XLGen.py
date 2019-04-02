@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase 
 from email import encoders 
 
-fromaddr = "saishibu38380@gmail.com"
+fromaddr = "user@localhost"
 toaddr = "saishibu38380@gmail.com"
 
 timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
@@ -24,7 +24,7 @@ ws.title = "STP Energy Usage Report"
 ws.append(cur.column_names)
 
 for row in results:
-  print(row)
+  #print(row)
   #print(cur.description[1][0])
   ws.append(row)
 wb.save(filename)
@@ -33,7 +33,7 @@ wb.save(filename)
 msg = MIMEMultipart() 
 
 # storing the senders email address 
-msg['From'] = 'amritawna.pr@gmail.com' 
+msg['From'] = 'user@localhost' 
 
 # storing the receivers email address 
 msg['To'] = 'saishibu38380@gmail.com' 
@@ -69,10 +69,10 @@ msg.attach(p)
 s = smtplib.SMTP('smtp.gmail.com', 587) 
 
 # start TLS for security 
-s.starttls() 
+#s.starttls() 
 
 # Authentication 
-s.login(fromaddr,'amma@123') 
+#s.login(fromaddr,'amma@123') 
 
 # Converts the Multipart msg into a string 
 text = msg.as_string() 
@@ -82,3 +82,4 @@ s.sendmail(fromaddr, toaddr, text)
 
 # terminating the session 
 s.quit() 
+print("Email Sent")
