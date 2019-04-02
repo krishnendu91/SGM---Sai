@@ -8,14 +8,14 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase 
 from email import encoders 
 
-fromaddr = "user@localhost"
+fromaddr = "amritawna.pr@gmail.com"
 toaddr = "saishibu38380@gmail.com"
 
 timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
 filename = './STPReport'+timenow+'.xlsx'
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur = conn.cursor()
-cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 DAY) limit 5;')
+cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 DAY);')
 results = cur.fetchall()
 
 wb = Workbook()
@@ -33,7 +33,7 @@ wb.save(filename)
 msg = MIMEMultipart() 
 
 # storing the senders email address 
-msg['From'] = 'user@localhost' 
+msg['From'] = 'amritawna.pr@gmail.com' 
 
 # storing the receivers email address 
 msg['To'] = 'saishibu38380@gmail.com' 
@@ -66,13 +66,13 @@ p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 msg.attach(p) 
 
 # creates SMTP session 
-s = smtplib.SMTP('localhost', 25) 
+s = smtplib.SMTP('smtp.gmail.com', 587) 
 
 # start TLS for security 
 s.starttls() 
 
 # Authentication 
-#s.login(fromaddr,'amma@123') 
+s.login(fromaddr,'amma@123') 
 
 # Converts the Multipart msg into a string 
 text = msg.as_string() 
