@@ -19,7 +19,7 @@ cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp
 results = cur.fetchall()
 
 wb = Workbook()
-
+ws = wb.create_sheet(0)
 ws.title = "STP Energy Usage Report"
 ws.append(cur.column_names)
 
