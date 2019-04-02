@@ -14,7 +14,7 @@ cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp
 #print(r)
 
 
-workbook = Workbook()
+wb = Workbook()
 ws=wb.active
 ws['A1']= "Pump Name"
 ws['B1']= "Voltage (V)"
