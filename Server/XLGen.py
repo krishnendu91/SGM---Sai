@@ -2,8 +2,9 @@
 import pymysql,json
 import datetime
 import csv
-from xlsxwriter.workbook import Workbook
+from openpyxl import Workbook
 from datetime import datetime
+
 timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
 filename = './STPReport'+timenow+'.xlsx'
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
@@ -13,19 +14,31 @@ cur.execute('SELECT meterName,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp
 #print(r)
 
 
-workbook = Workbook(filename)
-sheet1 = workbook.add_worksheet()
-#sheet1.add_table(r)
-sheet1.write('A1', "Pump Name")
-sheet1.write('B1', "Voltage (V)")
-sheet1.write('C1', "Current (A)")
-sheet1.write('D1', "Power Factor")
-sheet1.write('E1', "Frequency (F)")
-sheet1.write('F1', "Power (W)")
-sheet1.write('G1', "Energy (Wh)")
-r=2
-c=2
+workbook = Workbook()
+ws=wb.active
+ws['A1']= "Pump Name"
+ws['B1']= "Voltage (V)"
+ws['C1']= "Current (A)"
+ws['D1']= "Power Factor"
+ws['E1']= "Frequency (F)"
+ws['F1']= "Power (W)"
+ws['G1']= "Energy (Wh)"
 for r, row in enumerate(cur.fetchall()):
   for c, col in enumerate(row):
-    sheet1.write(r, c, col)
-workbook.close()
+    ws.append([r,c,col])
+wb.save(filename)    
+  
+#sheet1 = workbook.add_worksheet()
+#sheet1.add_table(r)
+#sheet1.write('A1', "Pump Name")
+#sheet1.write('B1', "Voltage (V)")
+#sheet1.write('C1', "Current (A)")
+#sheet1.write('D1', "Power Factor")
+#sheet1.write('E1', "Frequency (F)")
+#sheet1.write('F1', "Power (W)")
+#sheet1.write('G1', "Energy (Wh)")
+
+#for r, row in enumerate(cur.fetchall()):
+#  for c, col in enumerate(row):
+#    sheet1.write(r, c, col)
+#workbook.close()
