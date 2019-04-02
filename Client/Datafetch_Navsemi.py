@@ -84,7 +84,7 @@ def meter():
 	#return data
 
 def valDecode(value_d):
-	#print(value_d)
+	print(value_d)
 	value_d = payloadDecode.fromRegisters(value_d.registers, byteorder=Endian.Big)
 	#print(value_d)
 	value_d ={'float':value_d.decode_32bit_float(),}
