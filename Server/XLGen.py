@@ -66,7 +66,7 @@ p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 msg.attach(p) 
 
 # creates SMTP session 
-s = smtplib.SMTP('smtp.gmail.com', 587) 
+s = smtplib.SMTP('localhost', 25) 
 
 # start TLS for security 
 s.starttls() 
