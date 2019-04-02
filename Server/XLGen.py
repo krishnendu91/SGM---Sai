@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import mysql.connector,json
+import mysql.connector as pymysql,json
 import datetime
 import csv
 from openpyxl import Workbook
