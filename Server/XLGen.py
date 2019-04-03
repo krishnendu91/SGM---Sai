@@ -22,7 +22,7 @@ cur = conn.cursor()
 
 wb = Workbook()
 while a<13:
-  cur.execute('SELECT meterName FROM STP where id= %d ;',a)
+  cur.execute('SELECT meterName FROM STP where id= %s ;',str(a))
   meterName=cur.fetchone()
   meterName=meterName[0]
   print("Report Generating for "+str(meterName))
