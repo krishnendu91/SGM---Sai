@@ -9,7 +9,7 @@ from email.mime.base import MIMEBase
 from email import encoders 
 from subprocess import check_output
 
-
+a=1
 fromaddr = "noreply@amrita.ac.in"
 toaddr1 = "saishibu38380@gmail.com"
 toaddr2 = "akshayachu.20@gmail.com"
@@ -92,4 +92,3 @@ s.sendmail(fromaddr, toaddr2, text)
 s.quit() 
 print("Email Sent")
 delete=check_output(["rm *.xlsx"],shell=1)
-print(delete)
