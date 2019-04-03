@@ -40,9 +40,10 @@ while a<13:
 wb.save(filename)
 # instance of MIMEMultipart 
 workbook=openpyxl.load_workbook(filename)
-workbook.remove_sheet(Sheet)
+
 sheetName=workbook.get_sheet_names()
 workbook.save(filename)
+workbook.remove_sheet(sheetName[0])
 
 message = "Report Generated Successfully on " + timenow +" for "+str(sheetName)
 print(message)
