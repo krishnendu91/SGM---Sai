@@ -35,6 +35,7 @@ while a<13:
   ws.append(cur.column_names)
   for row in results:
     ws.append(row)
+    wb..save(filename)
   
   
   a=a+1
