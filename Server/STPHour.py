@@ -27,6 +27,6 @@ while a<13:
 	print(WH,dbtime)
 	print(WH_old,dbtime_old)
 	WH_new=float(WH)-float(WH_old)
-	print(WH)
+	print(WH_new)
 	a=a+1
 	
