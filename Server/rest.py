@@ -30,6 +30,9 @@ nodeId={'1':{'url':"http://192.168.179.231:5000/"},
 	'12':{'url':"http://192.168.179.242:5000/"},
 	'13':{'url':"http://192.168.179.243:5000/"},}
 
+
+
+
 def security(fname):
 	APILog={'clientAgent':str(request.headers.get('User-Agent')),
 		'clientIP':str(request.environ['REMOTE_ADDR']),
@@ -46,6 +49,14 @@ def welcome():
 #	print "Welcome to Amrita Smart-Grid Middleware"
 #	print "kindly use one of the APIs to get data"
 	return "Welcome to Amrita Intelligent Infrastructure Data Management and Control Panel App. \n Use one of the options below."
+
+@app.route('/stp/test')
+def stptest():
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute("SELECT timestamp,WH FROM STPHourData WHERE meterName='filter'")
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify({'STP Test Data' : r})
 
 @app.route('/stp/pumplist')
 def stppump():
