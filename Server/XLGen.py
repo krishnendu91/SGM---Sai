@@ -18,20 +18,24 @@ timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
 filename = 'STPReport_'+timenow+'.xlsx'
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur = conn.cursor()
-cur.execute('SELECT meterName,timestamp,VLL ,A, PF, F, W, Wh  FROM STPData where timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR) order by id desc;')
-results = cur.fetchall()
-
 wb = Workbook()
-ws = wb.active
-ws.title = "STP Report"
-ws.append(cur.column_names)
+while a<13:
+  cur.execute('SELECT meterName,FROM STP where id=%s;',a)
+  meterName=cur.fetchone()
+  meterName=meterName[0]
+  print("Report Generating for "+str(wb = Workbook()))
+  cur.execute('SELECT meterName,timestamp,VLL ,A, PF, F, W, Wh  FROM STPData where meterName = %s and timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR) order by id desc;',meterName)
+  results = cur.fetchall()
 
-for row in results:
-  #print(row)
-  #print(cur.description[1][0])
-  ws.append(row)
-wb.save(filename)
+  ws = wb.active
+  ws.title = "STP Report - " + str(meterName)
+  ws.append(cur.column_names)
 
+  for row in results:
+    ws.append(row)
+  
+  wb.save(filename)
+  a=a+1
 # instance of MIMEMultipart 
 msg = MIMEMultipart() 
 
