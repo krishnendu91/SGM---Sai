@@ -39,12 +39,13 @@ while a<13:
      
   a=a+1
 wb.save(filename)
-# instance of MIMEMultipart 
 sheetName=wb.get_sheet_names()
-
+print(sheetName)
 
 message = "Report Generated Successfully on " + timenow
 print(message)
+
+# instance of MIMEMultipart 
 msg = MIMEMultipart() 
 
 # storing the senders email address 
