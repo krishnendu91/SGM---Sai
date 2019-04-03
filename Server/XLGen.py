@@ -39,6 +39,7 @@ while a<13:
   wb.save(filename)
   a=a+1
 # instance of MIMEMultipart 
+wb.remove_sheet('Sheet1')
 msg = MIMEMultipart() 
 
 # storing the senders email address 
