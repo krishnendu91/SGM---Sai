@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-import mysql.connector as pymysql,json
+import pymysql,json
+# mysql.connector as
 from openpyxl import Workbook
 from datetime import datetime
 import smtplib,sys 
@@ -18,9 +19,10 @@ timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
 filename = 'STPReport_'+timenow+'.xlsx'
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur = conn.cursor()
+
 wb = Workbook()
 while a<13:
-  cur.execute('SELECT meterName FROM STP where id=%s;',a)
+  cur.execute('SELECT meterName FROM STP where id= %s;',a)
   meterName=cur.fetchone()
   meterName=meterName[0]
   print("Report Generating for "+str(wb = Workbook()))
