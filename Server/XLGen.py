@@ -2,11 +2,13 @@
 import mysql.connector as pymysql,json
 from openpyxl import Workbook
 from datetime import datetime
-import smtplib 
+import smtplib,sys 
 from email.mime.multipart import MIMEMultipart 
 from email.mime.text import MIMEText 
 from email.mime.base import MIMEBase 
 from email import encoders 
+from subprocess import check_output
+
 
 fromaddr = "noreply@amrita.ac.in"
 toaddr1 = "saishibu38380@gmail.com"
@@ -85,3 +87,5 @@ s.sendmail(fromaddr, toaddr2, text)
 # terminating the session 
 s.quit() 
 print("Email Sent")
+delete=check_output(["rm *.xlsx"],shell=1)
+print(delete)
