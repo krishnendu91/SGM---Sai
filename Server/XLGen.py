@@ -28,7 +28,7 @@ while a<13:
   meterName=cur.fetchone()
   meterName=meterName[0]
   print("Report Generating for "+str(meterName))
-  cur.execute('SELECT timestamp,VLL ,A, PF, F, W, Wh  FROM STPData where meterName = %(meterName)s and timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR) order by id desc;',{'meterName':meterName})
+  cur.execute('SELECT timestamp,VLL ,A, PF, F, W, WH  FROM STPHourData where meterName = %(meterName)s and timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR) order by id desc;',{'meterName':meterName})
   results = cur.fetchall()
   
   sheetName = "STP Report - " + str(meterName)
