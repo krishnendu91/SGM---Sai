@@ -35,10 +35,9 @@ while a<13:
   ws.append(cur.column_names)
   for row in results:
     ws.append(row)
-    wb.save(filename)
-  
-  
+     
   a=a+1
+wb.save(filename)
 # instance of MIMEMultipart 
 workbook=openpyxl.load_workbook(filename)
 workbook.remove_sheet('Sheet')
