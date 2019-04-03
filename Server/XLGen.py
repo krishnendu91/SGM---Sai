@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import pymysql,json
-# mysql.connector as
+import mysql.connector as pymysql,json
+
 from openpyxl import Workbook
 from datetime import datetime
 import smtplib,sys 
