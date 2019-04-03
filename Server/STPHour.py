@@ -24,9 +24,13 @@ while a<13:
 	data=cur.fetchone()
 	WH_old=data[0]
 	dbtime_old=data[1]
-	print(WH,dbtime)
-	print(WH_old,dbtime_old)
 	WH_new=float(WH)-float(WH_old)
-	print(WH_new)
+	newData={'meterName':meterName,'A':A,'VLL':VLL,'W':W,'F':F,'PF':PF,'WH':WH_new,'dbtime':dbtime}
+	print(newData)
+	cur.execute('INSERT INTO STPData(meterName,A, VLL,F,PF,W,WH,dbtime) VALUES (%(meterName)s,%(A)s, %(VLL)s,%(F)s,%(PF)s,%(W)s,%(WH)s,%(dbtime)s);",newData)
 	a=a+1
+cur.close()
+conn.commit()
+conn.close()
+	
 	
