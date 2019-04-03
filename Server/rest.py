@@ -54,7 +54,8 @@ def welcome():
 def stptest():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
-	cur.execute("SET GLOBAL time_zone = '+05:30';")
+	
+	#cur.execute("SET GLOBAL time_zone = '+05:30';")
 	#r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	#return jsonify({'STP Test Data' : r})
 	return 'done'
