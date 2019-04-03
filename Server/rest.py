@@ -84,7 +84,7 @@ def deadnodes():
 @app.route('/xlgen')
 def xlgen():
 	security(str(sys._getframe().f_code.co_name))
-	cmd="./XLGen.py"
+	cmd="/home/cs/SGM/Server/XLGen.py"
 	os.system(cmd)
 	return "Check Your Mailbox"
 
