@@ -105,14 +105,15 @@ def valDecode(value_d):
 	#print(value_d)
 		value_d ={'float':value_d.decode_32bit_float(),}
 		val=value_d['float']
-		return val
 		
 	#print(value_d['float'])
 	#for i, value in value_d.iteritems():
 	 #     value=value
 	except:
 		print("Error Decoding MODBUS Data")
+		val=0
 		pass
+	return val
 
 #ETP1 has 6 Meters
 i=1
