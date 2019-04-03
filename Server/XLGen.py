@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase 
 from email import encoders 
 
-fromaddr = "amritawna.pr@gmail.com"
+fromaddr = "noreply@amrita.ac.in"
 toaddr1 = "saishibu38380@gmail.com"
 toaddr2 = "akshayachu.20@gmail.com"
 
@@ -34,7 +34,7 @@ wb.save(filename)
 msg = MIMEMultipart() 
 
 # storing the senders email address 
-msg['From'] = 'amritawna.pr@gmail.com' 
+msg['From'] = 'noreply@amrita.ac.in' 
 
 # storing the receivers email address 
 msg['To'] = 'saishibu38380@gmail.com' 
@@ -67,13 +67,13 @@ p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 msg.attach(p) 
 
 # creates SMTP session 
-s = smtplib.SMTP('smtp.gmail.com', 587) 
+s = smtplib.SMTP('smtp.amrita.ac.in', 25) 
 
 # start TLS for security 
 s.starttls() 
 
 # Authentication 
-s.login(fromaddr,'amma@123') 
+s.login('noreply@amrita.ac.in','Amrita@123') 
 
 # Converts the Multipart msg into a string 
 text = msg.as_string() 
