@@ -39,7 +39,7 @@ while a<13:
      
   a=a+1
 
-wb.remove(wb[sheet])
+wb.remove(wb[1])
 wb.save(filename)
 sheetName=wb.get_sheet_names()
 print(sheetName)
