@@ -26,8 +26,8 @@ while a<13:
   meterName=cur.fetchone()
   meterName=meterName[0]
   print("Report Generating for "+str(meterName)
-  cur.execute('SELECT meterName,timestamp,VLL ,A, PF, F, W, Wh  FROM STPData where meterName = %s and timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR) order by id desc;',meterName)
-  results = cur.fetchall()
+  #cur.execute('SELECT meterName,timestamp,VLL ,A, PF, F, W, Wh  FROM STPData where meterName = %s and timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR) order by id desc;',meterName)
+ #results = cur.fetchall()
 
   ws = wb.active
   ws.title = "STP Report - " + str(meterName)
@@ -81,16 +81,16 @@ s = smtplib.SMTP('smtp.amrita.ac.in', 25)
 s.starttls() 
 
 # Authentication 
-s.login('noreply@amrita.ac.in','Amrita@123') 
+#s.login('noreply@amrita.ac.in','Amrita@123') 
 
 # Converts the Multipart msg into a string 
 text = msg.as_string() 
 
 # sending the mail 
-s.sendmail(fromaddr, toaddr1, text) 
-s.sendmail(fromaddr, toaddr2, text) 
+#s.sendmail(fromaddr, toaddr1, text) 
+#s.sendmail(fromaddr, toaddr2, text) 
 
 # terminating the session 
 s.quit() 
 print("Email Sent")
-delete=check_output(["rm *.xlsx"],shell=1)
+#delete=check_output(["rm *.xlsx"],shell=1)
