@@ -40,9 +40,7 @@ while a<13:
   
   ws=wb.create_sheet("New")   
   a=a+1
-  sheetName=wb.get_sheet_names()
-  print(sheetName)
-
+  
 #wb.remove(ws['Sheet'])
 wb.save(filename)
 sheetName=wb.get_sheet_names()
