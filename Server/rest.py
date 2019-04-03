@@ -104,7 +104,7 @@ def xlgen():
 def rebootS():
 	security(str(sys._getframe().f_code.co_name))
 	cmd="reboot"
-	os.system(cmd)
+	#os.system(cmd)
 	return "Server rebooting"
 
 
