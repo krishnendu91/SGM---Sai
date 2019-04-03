@@ -38,8 +38,9 @@ while a<13:
     ws.append(row)
      
   a=a+1
+
+wb.remove(wb['sheet'])
 wb.save(filename)
-wb.remove(xlsx['sheet'])
 sheetName=wb.get_sheet_names()
 print(sheetName)
 
