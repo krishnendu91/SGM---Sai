@@ -39,6 +39,7 @@ while a<13:
   wb.save(filename)
   a=a+1
 # instance of MIMEMultipart 
+print(wb.get_sheet_names())
 wb.remove_sheet('Sheet1')
 msg = MIMEMultipart() 
 
