@@ -30,8 +30,8 @@ while a<13:
   results = cur.fetchall()
   
   sheetName = "STP Report - " + str(meterName)
-  wb.create_sheet(sheetName)
-  ws = wb.active
+  ws=wb.create_sheet(sheetName)
+  #ws = wb.active
   ws.append(cur.column_names)
   for row in results:
     ws.append(row)
