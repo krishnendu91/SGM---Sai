@@ -64,6 +64,7 @@ def stpdata(meterName):
 	cur.execute('SELECT state FROM `STPState` where meterName=%s ORDER by id DESC LIMIT 1',meterName)
 	s = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'STP Data' : r})
+
 @app.route('/stp/state/<meterName>')
 def stpstate(meterName):
 	security(str(sys._getframe().f_code.co_name))
@@ -79,6 +80,13 @@ def deadnodes():
 	cur.execute('SELECT nodeId FROM `lastseen` WHERE alive =0 and timestamp>= NOW() - INTERVAL 3 MINUTE ORDER BY `id` DESC')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Dead Nodes' : r})
+
+@app.route('/xlgen')
+def xlgen():
+	security(str(sys._getframe().f_code.co_name))
+	cmd="./XLGen.py"
+	os.system(cmd)
+	return "Check Your Mailbox"
 
 @app.route('/reboot')
 def rebootS():
