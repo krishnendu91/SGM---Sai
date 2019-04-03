@@ -29,7 +29,8 @@ while a<13:
   cur.execute('SELECT meterName,timestamp,VLL ,A, PF, F, W, Wh  FROM STPData where meterName = %(meterName)s and timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR) order by id desc;',{'meterName':meterName})
   results = cur.fetchall()
   ws = wb.active
-  ws.title = "STP Report - " + str(meterName)
+  sheetName = "STP Report - " + str(meterName)
+  ws.create_sheet(sheetName)
   ws.append(cur.column_names)
   for row in results:
     ws.append(row)
