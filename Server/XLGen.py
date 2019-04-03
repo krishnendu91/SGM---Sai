@@ -20,7 +20,7 @@ conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="
 cur = conn.cursor()
 wb = Workbook()
 while a<13:
-  cur.execute('SELECT meterName,FROM STP where id=%s;',a)
+  cur.execute('SELECT meterName FROM STP where id=%s;',a)
   meterName=cur.fetchone()
   meterName=meterName[0]
   print("Report Generating for "+str(wb = Workbook()))
