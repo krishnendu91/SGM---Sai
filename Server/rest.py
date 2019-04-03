@@ -73,8 +73,7 @@ def stpdata(meterName):
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT timestamp,A,VLL,PF,F,W,WH FROM `STPData` where meterName=%s ORDER by id DESC LIMIT 1',meterName)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	cur.execute('SELECT state FROM `STPState` where meterName=%s ORDER by id DESC LIMIT 1',meterName)
-	s = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'STP Data' : r})
 
 @app.route('/stp/state/<meterName>')
