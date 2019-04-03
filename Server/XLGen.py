@@ -40,7 +40,7 @@ while a<13:
 wb.save(filename)
 # instance of MIMEMultipart 
 workbook=openpyxl.load_workbook(filename)
-workbook.remove_sheet('Sheet')
+workbook.remove_sheet(Sheet)
 sheetName=workbook.get_sheet_names()
 workbook.save(filename)
 
