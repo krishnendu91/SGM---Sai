@@ -25,7 +25,7 @@ while a<13:
   cur.execute('SELECT meterName FROM STP where id= %s;',a)
   meterName=cur.fetchone()
   meterName=meterName[0]
-  print("Report Generating for "+str(meterName)
+  print("Report Generating for "+str(meterName))
   #cur.execute('SELECT meterName,timestamp,VLL ,A, PF, F, W, Wh  FROM STPData where meterName = %s and timestamp >= DATE_SUB(NOW(),INTERVAL 1 HOUR) order by id desc;',meterName)
  #results = cur.fetchall()
   ws = wb.active
