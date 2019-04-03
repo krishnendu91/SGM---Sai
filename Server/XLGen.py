@@ -41,8 +41,9 @@ while a<13:
 # instance of MIMEMultipart 
 
 wb.remove_sheet('Sheet')
-sheetName=wb.get_sheet_names())
+sheetName=wb.get_sheet_names()
 message = "Report Generated Successfully on " + timenow +" for "+str(sheetName)
+print(message)
 msg = MIMEMultipart() 
 
 # storing the senders email address 
