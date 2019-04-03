@@ -10,6 +10,7 @@ while a<13:
 	cur.execute('SELECT meterName FROM STP where id= %(a)s ;',{'a':a})
 	meterName=cur.fetchone()
 	meterName=meterName[0]
+	print(meterName)
 	cur.execute('SELECT A,VLL,W,F,PF,max(WH),timestamp FROM STPData WHERE meterName=%s ORDER by id desc limit 1',meterName)
 	data=cur.fetchone()
 	A=data[0]
@@ -25,7 +26,7 @@ while a<13:
 	dbtime_old=data[1]
 	print(WH,dbtime)
 	print(WH_old,dbtime_old)
-	WH_new=WH-WH_old
+	WH_new=float(WH)-float(WH_old)
 	print(WH)
 	a=a+1
 	
