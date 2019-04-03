@@ -22,6 +22,7 @@ conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="
 cur = conn.cursor()
 
 wb = Workbook()
+ws = wb.active
 while a<13:
   cur.execute('SELECT meterName FROM STP where id= %(a)s ;',{'a':a})
   meterName=cur.fetchone()
@@ -31,12 +32,13 @@ while a<13:
   results = cur.fetchall()
   
   sheetName = "STP Report - " + str(meterName)
-  ws = wb.active
-  ws=wb.create_sheet(sheetName)
+  ws.title=sheetName
+  
   ws.append(cur.column_names)
   for row in results:
     ws.append(row)
-     
+  
+  ws=wb.create_sheet("New")   
   a=a+1
   sheetName=wb.get_sheet_names()
   print(sheetName)
