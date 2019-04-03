@@ -36,12 +36,13 @@ while a<13:
   for row in results:
     ws.append(row)
   
-  wb.save(filename)
+  
   a=a+1
 # instance of MIMEMultipart 
-
 wb.remove_sheet('Sheet')
 sheetName=wb.get_sheet_names()
+wb.save(filename)
+
 message = "Report Generated Successfully on " + timenow +" for "+str(sheetName)
 print(message)
 msg = MIMEMultipart() 
