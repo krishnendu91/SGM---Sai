@@ -30,7 +30,7 @@ while a<13:
 			WH_new=0
 	except:
 		print('ERROR!')
-		WH_new=WH
+		WH_new=0
 		pass
 	newData={'meterName':meterName,'A':A,'VLL':VLL,'W':W,'F':F,'PF':PF,'WH':WH_new,'dbtime':dbtime}
 	print(meterName,WH_new)
