@@ -29,10 +29,12 @@ while a<13:
 		if(WH_new<=0):
 			WH_new=0
 	except:
+		print('ERROR!')
 		WH_new=WH
 		pass
 	newData={'meterName':meterName,'A':A,'VLL':VLL,'W':W,'F':F,'PF':PF,'WH':WH_new,'dbtime':dbtime}
-	print(newData)
+	print(meterName,WH_new)
+	#print(newData)
 	cur.execute("INSERT INTO STPHourData(meterName,A, VLL,F,PF,W,WH,dbtime) VALUES (%(meterName)s,%(A)s, %(VLL)s,%(F)s,%(PF)s,%(W)s,%(WH)s,%(dbtime)s);",newData)
 	a=a+1
 cur.close()
