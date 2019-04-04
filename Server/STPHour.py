@@ -28,8 +28,8 @@ while a<13:
 		WH_new=float(WH)-float(WH_old)
 		if(WH_new<=0):
 			WH_new=0
-	except:
-		print(Exception)
+	except Exception as e:
+		print(e)
 		WH_new=0
 		pass
 	newData={'meterName':meterName,'A':A,'VLL':VLL,'W':W,'F':F,'PF':PF,'WH':WH_new,'dbtime':dbtime}
