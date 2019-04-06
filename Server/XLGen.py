@@ -99,8 +99,8 @@ text = msg.as_string()
 
 # sending the mail 
 s.sendmail(fromaddr, toaddr1, text) 
-#s.sendmail(fromaddr, toaddr2, text) 
-#s.sendmail(fromaddr, toaddr3, text) 
+s.sendmail(fromaddr, toaddr2, text) 
+s.sendmail(fromaddr, toaddr3, text) 
 
 # terminating the session 
 s.quit() 
