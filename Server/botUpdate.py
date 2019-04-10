@@ -15,7 +15,7 @@ while a<13:
 	data=cur.fetchone()
 	idNew=data[0]
 	stateNew=data[1]
-	id=idNew-1
+	id=int(idNew)-1
 	cur.execute('SELECT id,state FROM STPState WHERE where id=%(id)s and meterName=%(meterName)s ORDER by id desc limit 1',{'meterName':meterName,'id':id})
 	data=cur.fetchone()
 	idOld=data[0]
