@@ -14,11 +14,11 @@ while a<13:
 	cur.execute('SELECT id,state FROM STPState WHERE meterName=%s ORDER by id desc limit 2',meterName)
 	data=cur.fetchall()
 	idNew=data[0][0]
-	stateNew=data[0][1]
+	stateNew=int(data[0][1])
 	print(idNew)
 	idOld=data[1][0]
 	print(idOld)
-	stateOld=data[1][1]
+	stateOld=int(data[1][1])
 	a=a+1
 	if (stateOld!=stateNew):
 		if(stateNew==1):
@@ -27,8 +27,9 @@ while a<13:
 		elif(stateNew==0):
 			print(str(meterName)+ " Turned OFF")
 			sendmessage(str(meterName)+ " Turned OFF")
-		else:
-			print("No change in State")
+	else:
+		print("No change in State")
+		print(meterName+": "+str(stateOld)+str(stateNew))
 def sendmessage(message):
 	chat_id =-304438902
 	bot.send_message(chat_id=chat_id, text=message)
