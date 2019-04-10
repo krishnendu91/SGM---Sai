@@ -5,7 +5,7 @@ bot = telegram.Bot(token='813728431:AAEmpmT-UXIQQcdzwkih8k1XSdCbiMIFP2Q')
 
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur = conn.cursor()
-
+a=1
 while a<13:
 	cur.execute('SELECT meterName FROM STP where id= %(a)s ;',{'a':a})
 	meterName=cur.fetchone()
@@ -20,6 +20,7 @@ while a<13:
 	data=cur.fetchone()
 	idOld=data[0]
 	stateOld=data[1]
+	a=a+1
 	if (stateOld!=StateNew):
 		if(stateNew==1):
 			print(str(meterName)+ " Turned On")
