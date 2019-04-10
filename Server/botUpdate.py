@@ -13,25 +13,25 @@ while a<13:
 	#print(meterName)
 	cur.execute('SELECT id,state FROM STPState WHERE meterName=%s ORDER by id desc limit 1',meterName)
 	data=cur.fetchone()
-  idNew=data[0]
-  stateNew=data[1]
-  id=idNew-1
-  cur.execute('SELECT id,state FROM STPState WHERE where id=%(id)s meterName=%(meterName)s ORDER by id desc limit 1',{'meterName':meterName,'id':id})
+  	idNew=data[0]
+  	stateNew=data[1]
+  	id=idNew-1
+  	cur.execute('SELECT id,state FROM STPState WHERE where id=%(id)s meterName=%(meterName)s ORDER by id desc limit 1',{'meterName':meterName,'id':id})
 	data=cur.fetchone()
-  idOld=data[0]
-  stateOld=data[1]
+  	idOld=data[0]
+  	stateOld=data[1]
   
-  if (stateOld!=StateNew):
-    if(stateNew==1):
-      print("str(meterName)+ " Turned On")
-      sendmessage(str(meterName)+ " Turned On")
-    elif(stateNew==0):
-      print("str(meterName)+ " Turned OFF")
-      sendmessage(str(meterName)+ " Turned OFF")
-  else:
-      print("No change in State")
+  	if (stateOld!=StateNew):
+    		if(stateNew==1):
+      			print("str(meterName)+ " Turned On")
+      			sendmessage(str(meterName)+ " Turned On")
+    		elif(stateNew==0):
+      			print("str(meterName)+ " Turned OFF")
+      			sendmessage(str(meterName)+ " Turned OFF")
+  	else:
+      		print("No change in State")
   
 def sendmessage(message):
-  chat_id =-304438902
-  bot.send_message(chat_id=chat_id, text=message)
-  return "Done!"
+	chat_id =-304438902
+  	bot.send_message(chat_id=chat_id, text=message)
+	return "Done!"
