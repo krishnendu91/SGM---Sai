@@ -3,6 +3,12 @@
 import telegram,pymysql
 bot = telegram.Bot(token='813728431:AAEmpmT-UXIQQcdzwkih8k1XSdCbiMIFP2Q')
 
+def sendmessage(message):
+	chat_id =-304438902
+	bot.send_message(chat_id=chat_id, text=message)
+	return "Done!"
+
+
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur = conn.cursor()
 a=1
@@ -30,7 +36,4 @@ while a<13:
 	else:
 		print("No change in State")
 		print(meterName+": "+str(stateOld)+str(stateNew))
-def sendmessage(message):
-	chat_id =-304438902
-	bot.send_message(chat_id=chat_id, text=message)
-	return "Done!"
+
