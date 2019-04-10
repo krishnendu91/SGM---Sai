@@ -12,13 +12,13 @@ from subprocess import check_output
 
 a=1
 fromaddr = "noreply@amrita.ac.in"
-toaddr1 = "saishibu38380@gmail.com"
-toaddr2 = "akshayachu.20@gmail.com"
-toaddr3 = "manu@am.amrita.edu"
-toaddr4 = "binup@am.amrita.edu"
-toaddr5 = "ravishankarm@am.amrita.edu"
-toaddr6 = "anilkumark@am.amrita.edu"
-toaddr7 = "arya.rdjk@gmail.com"
+toaddr1 = "saishibu38380@gmail.com,"
+toaddr2 = "akshayachu.20@gmail.com,"
+toaddr3 = "manu@am.amrita.edu,"
+toaddr4 = "binup@am.amrita.edu,"
+toaddr5 = "ravishankarm@am.amrita.edu,"
+toaddr6 = "anilkumark@am.amrita.edu,"
+toaddr7 = "arya.rdjk@gmail.com,"
 
 toaddrs=[toaddr1]+[toaddr2]+[toaddr3]+[toaddr4]+[toaddr5]+[toaddr6]+[toaddr7]
 timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
@@ -103,7 +103,7 @@ s.login('noreply@amrita.ac.in','Amrita@123')
 text = msg.as_string() 
 
 # sending the mail 
-s.sendmail(fromaddr, toaddrs, text) 
+s.sendmail(fromaddr, 'saishibu38380@gmail.com', text) 
 #s.sendmail(fromaddr, toaddr2, text) 
 #s.sendmail(fromaddr, toaddr3, text) 
 
