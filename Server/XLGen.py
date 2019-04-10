@@ -20,7 +20,7 @@ toaddr5 = "ravishankarm@am.amrita.edu"
 toaddr6 = "anilkumark@am.amrita.edu"
 toaddr7 = "arya.rdjk@gmail.com"
 
-toaddrs=toaddr1+toaddr2+toaddr3+toaddr4+toaddr5+toaddr6+toaddr7
+toaddrs=[toaddr1]+[toaddr2]+[toaddr3]+[toaddr4]+[toaddr5]+[toaddr6]+[toaddr7]
 timenow = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
 filename = 'STPReport_'+timenow+'.xlsx'
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
