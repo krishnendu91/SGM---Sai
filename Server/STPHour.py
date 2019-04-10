@@ -3,6 +3,7 @@ import pymysql
 import datetime
 a=1
 
+
 conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur = conn.cursor()
 
