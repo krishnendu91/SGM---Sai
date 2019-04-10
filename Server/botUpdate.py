@@ -11,10 +11,12 @@ while a<13:
 	meterName=cur.fetchone()
 	meterName=meterName[0]
 	#print(meterName)
-	cur.execute('SELECT id,state FROM STPState WHERE meterName=%s ORDER by id desc limit 1',meterName)
+	cur.execute('SELECT id,state FROM STPState WHERE meterName=%s ORDER by id desc limit 2',meterName)
 	data=cur.fetchone()
 	idNew=data[0]
 	stateNew=data[1]
+	print(idNew)
+	print(data)
 	id=int(idNew)-1
 	cur.execute('SELECT id,state FROM STPState WHERE id=%(id)s and meterName=%(meterName)s ORDER by id desc limit 1',{'meterName':meterName,'id':id})
 	data=cur.fetchone()
