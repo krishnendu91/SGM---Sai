@@ -16,14 +16,11 @@ while a<13:
 	idNew=data[0][0]
 	stateNew=data[0][1]
 	print(idNew)
-	#print(data)
-	#id=int(idNew)-1
-	#cur.execute('SELECT id,state FROM STPState WHERE id=%(id)s and meterName=%(meterName)s ORDER by id desc limit 1',{'meterName':meterName,'id':id})
-	#data=cur.fetchone()
 	idOld=data[1][0]
+	print(idOld)
 	stateOld=data[1][1]
 	a=a+1
-	if (stateOld!=StateNew):
+	if (stateOld!=stateNew):
 		if(stateNew==1):
 			print(str(meterName)+ " Turned On")
 			sendmessage(str(meterName)+ " Turned On")
