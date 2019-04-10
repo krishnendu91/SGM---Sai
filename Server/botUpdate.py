@@ -13,15 +13,15 @@ while a<13:
 	#print(meterName)
 	cur.execute('SELECT id,state FROM STPState WHERE meterName=%s ORDER by id desc limit 2',meterName)
 	data=cur.fetchall()
-	idNew=data[0]
-	stateNew=data[1]
+	idNew=data[0][0]
+	stateNew=data[0][1]
 	print(idNew)
-	print(data)
-	id=int(idNew)-1
-	cur.execute('SELECT id,state FROM STPState WHERE id=%(id)s and meterName=%(meterName)s ORDER by id desc limit 1',{'meterName':meterName,'id':id})
-	data=cur.fetchone()
-	idOld=data[0]
-	stateOld=data[1]
+	#print(data)
+	#id=int(idNew)-1
+	#cur.execute('SELECT id,state FROM STPState WHERE id=%(id)s and meterName=%(meterName)s ORDER by id desc limit 1',{'meterName':meterName,'id':id})
+	#data=cur.fetchone()
+	idOld=data[1][0]
+	stateOld=data[1][1]
 	a=a+1
 	if (stateOld!=StateNew):
 		if(stateNew==1):
