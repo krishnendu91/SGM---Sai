@@ -28,7 +28,7 @@ while a<13:
 	stateOld=int(data[1][1])
 	a=a+1
 	if (stateOld==stateNew):
-		if(stateNew==1):
+		if(stateNew!=1):
 			print(str(meterName)+ " Turned On")
 			sendmessage(str(meterName)+ " Turned On")
 		elif(stateNew==0):
