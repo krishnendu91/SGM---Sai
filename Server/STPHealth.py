@@ -4,10 +4,14 @@ import datetime
 a=1
 
 def stateCalc(nodeId,dbtime,meterId,meterName,A): 
-  state=0
+  
   try:
-    if round(A)>0:
+    state=0
+    if round(A,2)>0:
       state=1
+    else:
+      state=0
+      
     dbtimeE=dbtime.timestamp()
     timeDrift= datetime.datetime.now().timestamp()-dbtimeE
     data={"dbtime":dbtime,"state":state,"timeDrift":timeDrift,"nodeId":nodeId,"meterId":meterId,"meterName":meterName}
