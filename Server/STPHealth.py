@@ -20,7 +20,7 @@ def stateCalc(nodeId,dbtime,meterId,meterName,A):
     cur.execute("INSERT INTO `STPState` (dbtime,state,timeDrift,nodeId,meterId,meterName) VALUES (%(dbtime)s,%(state)s,%(timeDrift)s,%(nodeId)s,%(meterId)s,%(meterName)s);",data)
     conn.commit()
     conn.close()
-    print("DB Updated with state: " +str(state) + " for "+str(meterName)+ " with Time difference : "+ str(timeDrift) +" and Current "+str(round(A,3)))
+    print("DB Updated with state: " +str(state) + " for "+str(meterName)+ " with Time difference : "+ str(timeDrift) +" and Current "+str(A))
   except Exception as e:
     print(e)
     print("State Updated")
@@ -50,15 +50,3 @@ while(a<13):
     print(e)
     a=a+1
     pass
-#    if a==15:
- #     aggid=200
-  #    conn = pymysql.connect(database="AmritaSGM",user="grafana",password="grafana",host="localhost")
-   #   cur=conn.cursor()
-    #  cur.execute("SELECT timestamp,aggid,temp,ssid,wlan_ss FROM `nodeHealth` where aggid=%s order by id desc limit 1;",a)
-     # data=cur.fetchone() #fetch all
-      #dbtime=data[0]
-      #nodeid=data[1]
-      #temp=data[2]
-      #ssid=data[3]
-      #wlan_ss=data[4]
-      #tdcalc(nodeid,dbtime,temp,ssid,wlan_ss)
