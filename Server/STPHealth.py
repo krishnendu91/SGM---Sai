@@ -36,7 +36,7 @@ while(a<13):
     meterName=data[0]
     cur.execute("SELECT timestamp,nodeId,meterId,meterName,A FROM STPData where meterName=%s order by id desc limit 1;",data)
     data=cur.fetchone() #fetch all
-    print(data)
+    #print(data)
     dbtime=data[0]
     nodeId=data[1]
     meterId=data[2]
