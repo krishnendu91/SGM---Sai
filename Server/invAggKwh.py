@@ -13,7 +13,7 @@ for item in data:
 kwh=kwh1[0]+kwh2[0]+kwh3[0]
 #print(kwh)
 avgData={'nodeId':14,'kwh':kwh,'type':'avg'}
-cur.execute("Insert into inverterData (nodeId,totalKwh,type) values(%(nodeId)s,%(kwh)s,%(type)s);",avgData)
+cur.execute("Insert into inverterAvgData (nodeId,totalKwh,type) values(%(nodeId)s,%(kwh)s,%(type)s);",avgData)
 conn.commit()
 conn.close()
 
