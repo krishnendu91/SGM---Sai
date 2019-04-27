@@ -177,8 +177,8 @@ def switchcontrol(node,switch):
 		success=0
 		message="Error accessing URL \n " + str(sURL)
 	switchControl={"nodeId":node,"switchID":switch,"switchState":1,"success":success}
-	cur.execute('INSERT INTO switchInstruction(nodeId,switchID,switchState,success)VALUES(%(nodeId)s,%(switchID)s,%(switchState)s,%(success)s); ',switchControl)
-	conn.commit()
+	#cur.execute('INSERT INTO switchInstruction(nodeId,switchID,switchState,success)VALUES(%(nodeId)s,%(switchID)s,%(switchState)s,%(success)s); ',switchControl)
+	#conn.commit()
 	print("Switch State Updated in DB")
 	return message
 
@@ -191,129 +191,12 @@ def mqtttest():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'mqtt Test data' : r})
 
-@app.route('/alive/1')
-def alive_1():
+@app.route('/alive/<id>')
+def alive_1(id):
 	security(str(sys._getframe().f_code.co_name))
 	conn = mysql.connect()
 	cur=conn.cursor()
-	cur.execute('select * from lastseen where nodeid=1 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/2')
-def alive_2():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/3')
-def alive_3():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=3 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/4')
-def alive_4():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=4 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/5')
-def alive_5():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=5 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/6')
-def alive_6():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=6 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/7')
-def alive_7():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=7 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/8')
-def alive_8():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=8 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/9')
-def alive_9():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=9 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/10')
-def alive_10():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=10 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/11')
-def alive_11():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=11 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/12')
-def alive_12():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=12 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/13')
-def alive_13():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=13 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/14')
-def alive_14():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from lastseen where nodeid=14 ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from lastseen where nodeid=%s ORDER BY id DESC LIMIT 1 ',id)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Alive' : r})
@@ -369,119 +252,11 @@ def metertype():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Available Meters' : r})
 
-@app.route('/dimis/switchstate/1')
-def n1switchState():
+@app.route('/dimis/switchstate/<id>')
+def n1switchState(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=1 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/2')
-def n2switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/3')
-def n3switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=3 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/4')
-def n4switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=4 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/5')
-def n5switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=5 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/6')
-def n6switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=6 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/7')
-def n7switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=7 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/8')
-def n8switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=8 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/9')
-def n9switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=9 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/10')
-def n10switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=10 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/11')
-def n11switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=11 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/12')
-def n12switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=12 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'switchState' : r})
-
-@app.route('/dimis/switchstate/13')
-def n13switchState():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from switchState where nodeId=13 ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from switchState where nodeId=%s ORDER BY id DESC LIMIT 1 ',id)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'switchState' : r})
@@ -529,254 +304,29 @@ def event():
 	return jsonify({'Event Data' : r})
 
 #API for node level filtering
-@app.route('/dimis/1/gm1')
-def n1():
+@app.route('/dimis/<id>/gm1')
+def n1(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=1 and meterType=1 ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from nodeData where nodeId=%s and meterType=gm1 ORDER BY id DESC LIMIT 1 ',id)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
-@app.route('/dimis/2/gm1')
-def n2_gm():
+@app.route('/dimis/<id>/gm2')
+def n2(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=2 and meterType=1 ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from nodeData where nodeId=%s and meterType=gm2 ORDER BY id DESC LIMIT 1 ',id)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
-@app.route('/dimis/2/lm')
-def n2_lm():
+@app.route('/dimis/<id>/lm')
+def n2(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=2 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/3/gm1')
-def n3_gm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=3 and meterType=1  ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/3/lm')
-def n3_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=3 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/4/gm1')
-def n4_gm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=4  and meterType =1 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/4/lm')
-def n4_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=4 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/5/gm1')
-def n5_gm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=5 and meterType=1 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/5/lm')
-def n5_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=5 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/6/gm1')
-def n6_gm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=6 and meterType=1 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/6/lm')
-def n6_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=6 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/7/gm1')
-def n7_gm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=7 and meterType=1 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/7/lm')
-def n7_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=7 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/7/gm2')
-def n7_gm3():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=7 and meterType=3 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/8/gm1')
-def n8_gm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=8 amd meterType=1  ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/8/lm')
-def n8_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=8 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/9/gm1')
-def n9_gm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=9 and meterType=1  ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/9/lm')
-def n9_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=9 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/9/gm2')
-def n9_gm2():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=9 and meterType=3 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/10/gm1')
-def n10_gm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=10 and meterType=1 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/10/lm')
-def n10_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=10 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/11/gm1')
-def n11_gm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=11 and meterType=1 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/11/lm')
-def n11_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=11 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/12/gm1')
-def n12_gm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=12 and meterType=1 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/12/lm')
-def n12_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=12 and meterType=2 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/12/gm2')
-def n12_gm2():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=12 and meterType=3 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/13/gm1')
-def n13_gm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=13 and meterType=1 ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/13/lm')
-def n13_lm():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=13 and meterType=2 ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from nodeData where nodeId=%s and meterType=lm ORDER BY id DESC LIMIT 1 ',id)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
