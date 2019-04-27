@@ -308,7 +308,7 @@ def event():
 def n1(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=%s and meterType=gm1 ORDER BY id DESC LIMIT 1 ',id)
+	cur.execute('select * from nodeData where nodeId=%s and meterType="gm1" ORDER BY id DESC LIMIT 1 ',id)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
@@ -317,7 +317,7 @@ def n1(id):
 def n2(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=%s and meterType=gm2 ORDER BY id DESC LIMIT 1 ',id)
+	cur.execute('select * from nodeData where nodeId=%s and meterType="gm2" ORDER BY id DESC LIMIT 1 ',id)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
@@ -326,7 +326,7 @@ def n2(id):
 def n3(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where nodeId=%s and meterType=lm ORDER BY id DESC LIMIT 1 ',id)
+	cur.execute('select * from nodeData where nodeId=%s and meterType="lm" ORDER BY id DESC LIMIT 1 ',id)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
