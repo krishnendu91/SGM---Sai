@@ -323,7 +323,7 @@ def n2(id):
 	return jsonify({'Recent data' : r})
 
 @app.route('/dimis/<id>/lm')
-def n2(id):
+def n3(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from nodeData where nodeId=%s and meterType=lm ORDER BY id DESC LIMIT 1 ',id)
