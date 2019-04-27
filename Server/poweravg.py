@@ -43,6 +43,7 @@ while(a<15):
     conn.close()
     a=a+1
   except:
+    print("ERROR")
     pass
 #    if a==15:
  #     aggid=200
