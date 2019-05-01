@@ -61,8 +61,8 @@ def build_plot(node,param):
 	cur.execute('SELECT timestamp,V1,nodeId FROM nodeData where nodeId=%(node)s order by id DESC limit 5',data)
 	data=cur.fetchall()
 	print(data)
-	y = data[0]['V1']
-	x = md.date2num(data[0]['timestamp'])
+	y.append = data[0]['V1']
+	x.append = md.date2num(data[0]['timestamp'])
 	print(x)
 	print(y)
 	plt.plot(x,y)
