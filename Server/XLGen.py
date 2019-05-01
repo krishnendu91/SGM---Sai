@@ -39,7 +39,7 @@ while a<13:
   
   sheetName = "STP Report - " + str(meterName)
   ws.title=sheetName
-  
+  ws.column_dimensions['A'].width = 20
   ws.append(cur.column_names)
   for row in results:
     ws.append(row)
@@ -104,8 +104,8 @@ s.login('noreply@amrita.ac.in','Amrita@123')
 text = msg.as_string() 
 
 # sending the mail 
-s.sendmail(fromaddr, toaddrs, text) 
-#s.sendmail(fromaddr, toaddr2, text) 
+#s.sendmail(fromaddr, toaddrs, text) 
+s.sendmail(fromaddr, 'saishibu38380@gmail.com', text) 
 #s.sendmail(fromaddr, toaddr3, text) 
 
 # terminating the session 
