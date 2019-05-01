@@ -52,6 +52,7 @@ def security(fname):
 @app.route('/plot/<node>/<param>')
 
 def build_plot(node,param):
+	cur = mysql.connect().cursor()
 	img = io.BytesIO()
 	data={'node':node,'param':param}
 	cur.execute('SELECT timestamp,%(param)s FROM nodeData where nodeId=%(node)s order by id ASC limit 5',data)
