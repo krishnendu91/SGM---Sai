@@ -56,9 +56,8 @@ def build_plot(node,param):
 	cur = mysql.connect().cursor()
 	img = io.BytesIO()
 	data={'node':int(node),'param':param}
-	sql='SELECT timestamp,"%(param)s" FROM nodeData where nodeId=%(node)s order by id DESC limit 5',data
-	print(sql)
-	cur.execute('SELECT timestamp,"%(param)s" FROM nodeData where nodeId=%(node)s order by id DESC limit 5',data)
+	print(data)
+	cur.execute('SELECT timestamp,%(param)s FROM nodeData where nodeId=%(node)s order by id DESC limit 5',data)
 	data=cur.fetchall()
 	print(data)
 	y = data[1][0]
@@ -70,7 +69,7 @@ def build_plot(node,param):
 	#img.seek(0)
 	#plot_url = base64.b64encode(img.getvalue()).decode()
 	#return '<img src="data:image/png;base64,{}">'.format(plot_url)
-	return x
+	return str(x)
 @app.route('/')
 def welcome():
 	security(str(sys._getframe().f_code.co_name))
