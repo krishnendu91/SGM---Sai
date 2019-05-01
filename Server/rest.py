@@ -5,6 +5,7 @@ from urllib.request import urlopen
 from flask import Flask, jsonify,request
 from flaskext.mysql import MySQL
 import matplotlib.pyplot as plt
+import matplotlib.dates as md
 import base64
 
 
@@ -55,19 +56,21 @@ def build_plot(node,param):
 	cur = mysql.connect().cursor()
 	img = io.BytesIO()
 	data={'node':int(node),'param':param}
+	sql='SELECT timestamp,%(param)s FROM nodeData where nodeId=%(node)s order by id ASC limit 5',data
+	print(sql)
 	cur.execute('SELECT timestamp,%(param)s FROM nodeData where nodeId=%(node)s order by id ASC limit 5',data)
 	data=cur.fetchall()
 	print(data)
-	y = data[1]
-	x = data[0]
+	y = data[1][0]
+	x = data[0][0]
 	print(x)
 	print(y)
-	plt.plot(x,y)
-	plt.savefig(img, format='png')
-	img.seek(0)
-	plot_url = base64.b64encode(img.getvalue()).decode()
-	return '<img src="data:image/png;base64,{}">'.format(plot_url)
-
+	#plt.plot(x,y)
+	#plt.savefig(img, format='png')
+	#img.seek(0)
+	#plot_url = base64.b64encode(img.getvalue()).decode()
+	#return '<img src="data:image/png;base64,{}">'.format(plot_url)
+	return x
 @app.route('/')
 def welcome():
 	security(str(sys._getframe().f_code.co_name))
