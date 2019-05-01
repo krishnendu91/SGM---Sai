@@ -57,11 +57,11 @@ def build_plot(node,param):
 	img = io.BytesIO()
 	data={'node':int(node),'param':str(param)}
 	print(data)
-	cur.execute('SELECT timestamp,V1 FROM nodeData where nodeId=%(node)s order by id DESC limit 5',data)
+	cur.execute('SELECT timestamp,V1,nodeId FROM nodeData where nodeId=%(node)s order by id DESC limit 5',data)
 	data=cur.fetchall()
 	print(data)
-	y = data[1][0]
-	x = data[0][0]
+	y = data[1]
+	x = data[0]
 	print(x)
 	print(y)
 	#plt.plot(x,y)
