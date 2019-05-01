@@ -52,7 +52,7 @@ wb.save(filename)
 sheetName=wb.get_sheet_names()
 print(sheetName)
 
-message = "Namah Shivaya\n Report Generated Successfully on " + timenow
+message = "Namah Shivaya\nReport Generated Successfully on " + timenow
 print(message)
 
 # instance of MIMEMultipart 
