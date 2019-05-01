@@ -49,20 +49,22 @@ def security(fname):
 	cur.execute('INSERT INTO APILogs(clientAgent,clientIP,API)VALUES(%(clientAgent)s,%(clientIP)s,%(API)s); ',APILog)
 	conn.commit()
 
-@app.route('/plot')
-def build_plot():
+@app.route('/plot/<node>/<param>')
 
-    img = io.BytesIO()
-
-    y = [1,2,3,4,5]
-    x = [0,2,1,3,4]
-    plt.plot(x,y)
-    plt.savefig(img, format='png')
-    img.seek(0)
-
-    plot_url = base64.b64encode(img.getvalue()).decode()
-
-    return '<img src="data:image/png;base64,{}">'.format(plot_url)
+def build_plot(node,param):
+	img = io.BytesIO()
+	data={'node':node,'param':param}
+	cur.execute('SELECT timestamp,%(param)s FROM nodeData where nodeId=%(node)s order by id ASC limit 5',data)
+	data=cur.fetchall()
+	y = data[1]
+	x = data[0]
+	print(x)
+	print(y)
+	plt.plot(x,y)
+	plt.savefig(img, format='png')
+	img.seek(0)
+	plot_url = base64.b64encode(img.getvalue()).decode()
+	return '<img src="data:image/png;base64,{}">'.format(plot_url)
 
 @app.route('/')
 def welcome():
