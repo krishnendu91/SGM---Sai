@@ -10,7 +10,7 @@ import base64
 
 
 app = Flask(__name__)
-mysql = MySQL()
+mysql = MySQL(cursorclass=mdb.cursors.DictCursor)
 urls=("/favicon.ico","dummy")
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'admin'
@@ -54,7 +54,7 @@ def security(fname):
 
 def build_plot(node,param):
 	conn = mysql.connect()
-	cur = conn.cursor(dictionary=True)
+	cur = conn.cursor()
 	img = io.BytesIO()
 	data={'node':int(node),'param':str(param)}
 	print(data)
