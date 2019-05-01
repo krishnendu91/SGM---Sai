@@ -60,10 +60,11 @@ def build_plot(node,param):
 	cur.execute('SELECT timestamp,V1,nodeId FROM nodeData where nodeId=%(node)s order by id DESC limit 5',data)
 	data=cur.fetchone()
 	print(data)
-	y = data[1]
-	x = data[0]
-	print(x)
-	print(y)
+	for rows in data:
+		y = data[1]
+		x = data[0]
+		print(x)
+		print(y)
 	#plt.plot(x,y)
 	#plt.savefig(img, format='png')
 	#img.seek(0)
