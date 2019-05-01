@@ -53,7 +53,7 @@ def security(fname):
 @app.route('/plot/<node>/<param>')
 
 def build_plot(node,param):
-	cur = mysql.connect().cursor()
+	cur = mysql.connect().cursor(mysql.cursors.DictCursor)
 	img = io.BytesIO()
 	data={'node':int(node),'param':str(param)}
 	print(data)
