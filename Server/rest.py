@@ -55,7 +55,7 @@ def security(fname):
 def build_plot(node,param):
 	cur = mysql.connect().cursor()
 	img = io.BytesIO()
-	data={'node':int(node),'param':param}
+	data={'node':int(node),'param':str(param)}
 	print(data)
 	cur.execute('SELECT timestamp,%(param)s FROM nodeData where nodeId=%(node)s order by id DESC limit 5',data)
 	data=cur.fetchall()
