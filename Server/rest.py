@@ -7,10 +7,10 @@ from flaskext.mysql import MySQL
 import matplotlib.pyplot as plt
 import matplotlib.dates as md
 import base64
-import MySQLdb as mdb
+import pymysql
 
 app = Flask(__name__)
-mysql = MySQL(cursorclass=mdb.cursors.DictCursor)
+mysql = MySQL()
 urls=("/favicon.ico","dummy")
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'admin'
@@ -53,13 +53,13 @@ def security(fname):
 @app.route('/plot/<node>/<param>')
 
 def build_plot(node,param):
-	conn = mysql.connect()
-	cur = conn.cursor()
+	conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+	cur = conn.cursor(pymysql.cursors.DictCursor)
 	img = io.BytesIO()
 	data={'node':int(node),'param':str(param)}
 	print(data)
 	cur.execute('SELECT timestamp,V1,nodeId FROM nodeData where nodeId=%(node)s order by id DESC limit 5',data)
-	data=cur.fetchone()
+	data=cur.fetchall()
 	print(data)
 	for rows in data:
 		y = data[1]
