@@ -7,7 +7,7 @@ from flaskext.mysql import MySQL
 import matplotlib.pyplot as plt
 import matplotlib.dates as md
 import base64
-
+import MySQLdb as mdb
 
 app = Flask(__name__)
 mysql = MySQL(cursorclass=mdb.cursors.DictCursor)
