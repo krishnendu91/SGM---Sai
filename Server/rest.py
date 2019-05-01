@@ -62,15 +62,15 @@ def build_plot(node,param):
 	print(data)
 	for rows in data:
 		y = data[1]
-		x = data[0]
+		x = md.date2num(data[0])
 		print(x)
 		print(y)
-	#plt.plot(x,y)
-	#plt.savefig(img, format='png')
-	#img.seek(0)
-	#plot_url = base64.b64encode(img.getvalue()).decode()
-	#return '<img src="data:image/png;base64,{}">'.format(plot_url)
-	return str(x)
+		plt.plot(x,y)
+	plt.savefig(img, format='png')
+	img.seek(0)
+	plot_url = base64.b64encode(img.getvalue()).decode()
+	return '<img src="data:image/png;base64,{}">'.format(plot_url)
+	#return str(x)
 @app.route('/')
 def welcome():
 	security(str(sys._getframe().f_code.co_name))
