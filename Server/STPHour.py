@@ -23,7 +23,7 @@ while a<13:
 	WH=data[5]
 	dbtime=data[6]
 	try:
-		cur.execute('SELET WH,timestamp FROM STPData WHERE meterName=%s and timestamp < DATE_SUB(NOW(),INTERVAL 1 HOUR) ORDER by id desc limit 1',meterName)
+		cur.execute('SELECT WH,timestamp FROM STPData WHERE meterName=%s and timestamp < DATE_SUB(NOW(),INTERVAL 1 HOUR) ORDER by id desc limit 1',meterName)
 		data=cur.fetchone()
 		WH_old=data[0]
 		dbtime_old=data[1]
