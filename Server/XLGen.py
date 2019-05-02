@@ -104,8 +104,8 @@ s.login('noreply@amrita.ac.in','Amrita@123')
 text = msg.as_string() 
 
 # sending the mail 
-s.sendmail(fromaddr, toaddrs, text) 
-#s.sendmail(fromaddr, 'saishibu38380@gmail.com', text) 
+#s.sendmail(fromaddr, toaddrs, text) 
+s.sendmail(fromaddr, 'saishibu38380@gmail.com', text) 
 #s.sendmail(fromaddr, toaddr3, text) 
 
 # terminating the session 
