@@ -29,13 +29,14 @@ while a<13:
 		dbtime_old=data[1]
 	except Exception as e:
 		print(e)
-		EN.sendmessage(str(e))
+		EN.sendmessage('STPHour.py '+str(e))
 	try:
 		WH_new=float(WH)-float(WH_old)
 		if(WH_new<=0):
 			WH_new=0
 	except Exception as e:
 		print(str(e))
+		EN.sendmessage('STPHour.py '+str(e))
 		WH_new=0
 		pass
 	newData={'meterName':meterName,'A':A,'VLL':VLL,'W':W,'F':F,'PF':PF,'WH':WH_new,'dbtime':dbtime}
