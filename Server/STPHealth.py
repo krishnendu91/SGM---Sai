@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import pymysql
 import datetime
+import errornotify as EN
+
 a=1
 
 def stateCalc(nodeId,dbtime,meterId,meterName,A): 
@@ -23,6 +25,7 @@ def stateCalc(nodeId,dbtime,meterId,meterName,A):
     print("DB Updated with state: " +str(state) + " for "+str(meterName)+ " with Time difference : "+ str(timeDrift) +" and Current "+str(A))
   except Exception as e:
     print(e)
+    EN.sendmessage('STPHealth.py '+str(e))
     print("State Updated")
     pass
   return "Completed"
@@ -48,5 +51,6 @@ while(a<13):
   except Exception as e: 
     print("ERROR at DB")
     print(e)
+    EN.sendmessage('STPHealth.py '+str(e))
     a=a+1
     pass
