@@ -28,7 +28,8 @@ while a<13:
 		WH_old=data[0]
 		dbtime_old=data[1]
 	except Exception as e:
-		EN.sendmessage(e)
+		print(e)
+		EN.sendmessage(str(e))
 	try:
 		WH_new=float(WH)-float(WH_old)
 		if(WH_new<=0):
