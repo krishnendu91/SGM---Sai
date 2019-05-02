@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import pymysql
 import datetime
+import errornotify as EN
 a=1
 
 
@@ -21,10 +22,13 @@ while a<13:
 	PF=data[4]
 	WH=data[5]
 	dbtime=data[6]
-	cur.execute('SELECT WH,timestamp FROM STPData WHERE meterName=%s and timestamp < DATE_SUB(NOW(),INTERVAL 1 HOUR) ORDER by id desc limit 1',meterName)
-	data=cur.fetchone()
-	WH_old=data[0]
-	dbtime_old=data[1]
+	try:
+		cur.execute('SELET WH,timestamp FROM STPData WHERE meterName=%s and timestamp < DATE_SUB(NOW(),INTERVAL 1 HOUR) ORDER by id desc limit 1',meterName)
+		data=cur.fetchone()
+		WH_old=data[0]
+		dbtime_old=data[1]
+	except Exception as e:
+		EN.sendmessage(e)
 	try:
 		WH_new=float(WH)-float(WH_old)
 		if(WH_new<=0):
