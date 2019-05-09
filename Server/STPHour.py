@@ -13,7 +13,7 @@ while a<13:
 	meterName=cur.fetchone()
 	meterName=meterName[0]
 #	print(meterName)
-	cur.execute('SELECT A,VLL,W,F,PF,max(WH),timestamp FROM STPData WHERE meterName=%s ORDER by id desc limit 1',meterName)
+	cur.execute('SELECT A,VLL,W,F,PF,WH,timestamp FROM STPData WHERE meterName=%s ORDER by id desc limit 1',meterName)
 	data=cur.fetchone()
 	A=data[0]
 	VLL=data[1]
