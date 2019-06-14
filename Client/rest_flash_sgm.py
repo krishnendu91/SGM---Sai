@@ -5,7 +5,8 @@ from flaskext.mysql import MySQL
 import RPi.GPIO as GPIO
 import time,utils,os
 GPIO.setmode(GPIO.BCM) 
-GPIO.setwarnings(False) 
+GPIO.setwarnings(False)
+from subprocess import check_output
 
 
 app = Flask(__name__)
@@ -78,7 +79,11 @@ def action(pinId):
 	utils.switchrest()
 	return (str(device)+ " Activated")
 
-
+@app.route('/bc/free')
+def freeenergy():
+	id_scanoutput=check_output(["hostname"],shell=1)
+	nodeid=int(id_scanoutput[-2:-1])
+	return jsonify({'nodeId':nodeid,'free':10,'tariff':3})	
 
 @app.route('/maxim')
 def maxim():
