@@ -7,6 +7,7 @@ import time,utils,os
 GPIO.setmode(GPIO.BCM) 
 GPIO.setwarnings(False)
 from subprocess import check_output
+import random
 
 
 app = Flask(__name__)
@@ -83,7 +84,7 @@ def action(pinId):
 def freeenergy():
 	id_scanoutput=check_output(["hostname"],shell=1)
 	nodeid=int(id_scanoutput[-2:-1])
-	return jsonify({'nodeId':nodeid,'free':10,'tariff':3})	
+	return jsonify({'nodeId':nodeid,'free':random.randint(0,10),'tariff1':random.randint(0,3),'tariff2':random.randint(3,6),'tariff3':random.randint(7,10)})	
 
 @app.route('/maxim')
 def maxim():
