@@ -31,6 +31,7 @@ while a<13:
 	except Exception as e:
 		print(e)
 		EN.sendmessage('STPHour.py '+str(e))
+		WH_new=0
 	try:
 		WH_new=float(WH)-float(WH_old)
 		if(WH_new<=0):
