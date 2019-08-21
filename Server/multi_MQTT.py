@@ -61,7 +61,7 @@ def datafetch_stp_direct(client, userdata, msg):
 	print("Schneider Data received")
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,4)
-	print(payload)
+	
 	
 def datafetch_outback_inv_direct(client, userdata, msg):
 	print("Outback Data received")
