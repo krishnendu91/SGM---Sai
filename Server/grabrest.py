@@ -12,7 +12,7 @@ def todb(data,dev):
   conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
   cur=conn.cursor()
   sha=str(data)
-  sha=hashlib.sha256(sha).hexdigest()
+  sha=hashlib.sha256(sha).encode('utf-8')).hexdigest()
   data['sha']=sha
   print(data)
   if dev==1:
