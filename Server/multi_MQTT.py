@@ -113,7 +113,7 @@ def temperature(client, userdata, msg,):
 	payload=json.loads(msg.payload.decode())
 	#print(msg)
 	print(payload)
-	#grabrest.todb(payload,102)
+	grabrest.todb(payload,5)
 
 
 def on_log(client, userdata, level, buf):
