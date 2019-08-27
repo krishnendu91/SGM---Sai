@@ -264,6 +264,14 @@ def weather():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'current weather' : r})
 
+@app.route('/weathersummary')
+def weathersummary():
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute('select summary from weather ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	return jsonify(r)
+
 @app.route('/site')
 def site():
 	security(str(sys._getframe().f_code.co_name))
