@@ -268,7 +268,7 @@ def weather():
 def weathersummary():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
-	cur.execute('select summary from weather ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select summary,apparentTemperature,humidity from weather ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify(r)
 
