@@ -1,6 +1,7 @@
 #!/usr/bin/python3.7
 
 import datetime,sys,os,io
+from datetime import datetime
 from urllib.request import urlopen
 from flask import Flask, jsonify,request,render_template
 from flaskext.mysql import MySQL
@@ -50,9 +51,14 @@ def security(fname):
 	cur.execute('INSERT INTO APILogs(clientAgent,clientIP,API)VALUES(%(clientAgent)s,%(clientIP)s,%(API)s); ',APILog)
 	conn.commit()
 
+
+@app.route('/ambtemp')
+def timenow():
+	security(str(sys._getframe().f_code.co_name))
+	now = datetime.now()
+	return (now.strftime("%Y-%m-%d %H:%M:%S:%s"))
+
 @app.route('/plot/<node>/<param>')
-
-
 def build_plot(node,param):
 	x=0
 	y=0
