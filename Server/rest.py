@@ -1,4 +1,4 @@
-#!/usr/bin/python3.7
+#!/usr/bin/python3
 
 import datetime,sys,os,io
 from datetime import datetime
