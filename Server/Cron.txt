@@ -14,6 +14,17 @@
 
 #1 */1 * * * (/bin/date && /sbin/reboot) >> /home/cs/SGM_log/sysReboot.log 2>&1
 
+#Clearlog - clear system log every sunday
+#50 23 * *  6 (/bin/date && rm /home/cs/SGM_log/*.log) >> /home/cs/SGM_log/clearlog.txt
 
+#59 23 * *  6 (/bin/date && reboot) >> /home/cs/SGM_log/reboot.txt
+
+#Daily report
+#0 9 * *  * (/bin/date && /home/cs/SGM/Server/XLGen.py) >> /home/cs/SGM_log/XLGen.log
+
+#0 0 * *  * (/bin/date && /home/cs/SGM/Server/DBDump.sh) >> /home/cs/SGM_log/DBDump.log
+
+#Chat Bot update
+#* * * *  * (/bin/date && /home/cs/SGM/Server/botUpdate.py) >> /home/cs/SGM_log/botUpdate.log
 
 #Paste in crontab -e
