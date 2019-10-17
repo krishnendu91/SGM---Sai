@@ -52,11 +52,21 @@ def security(fname):
 	conn.commit()
 
 
-@app.route('/ambtemp')
+@app.route('/timenow')
 def timenow():
 	security(str(sys._getframe().f_code.co_name))
 	now = datetime.now()
-	return (now.strftime("%Y-%m-%d %H:%M:%S:%s"))
+	return (now.strftime("%Y-%m-%d %H:%M:%S"))
+
+@app.route('/ambtemp')
+def ambtemp():
+	security(str(sys._getframe().f_code.co_name))
+	conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+	cur = conn.cursor(pymysql.cursors.DictCursor)
+	cur.execute(SELECT * FROM tempData ORDER BY id DESC limit 1)
+	data=cur.fetchall()
+	return jsonify({'Temperature' : data})
+
 
 @app.route('/plot/<node>/<param>')
 def build_plot(node,param):
