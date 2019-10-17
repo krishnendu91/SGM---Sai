@@ -63,7 +63,7 @@ def temperature():
 	security(str(sys._getframe().f_code.co_name))
 	conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur = conn.cursor(pymysql.cursors.DictCursor)
-	cur.execute("SELECT * FROM tempData ORDER BY id DESC limit 1")
+	cur.execute("SELECT timestamp,temp FROM tempData ORDER BY id DESC limit 1")
 	r=cur.fetchall()
 	return jsonify({'Temperature' : r})
 
