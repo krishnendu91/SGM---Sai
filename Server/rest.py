@@ -67,29 +67,6 @@ def temperature():
 	r=cur.fetchall()
 	return jsonify({'Temperature' : r})
 
-
-@app.route('/plot/<node>/<param>')
-def build_plot(node,param):
-	x=0
-	y=0
-	conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
-	cur = conn.cursor(pymysql.cursors.DictCursor)
-	img = io.BytesIO()
-	data={'node':int(node),'param':str(param)}
-	print(data)
-	cur.execute('SELECT timestamp,V1,nodeId FROM nodeData where nodeId=%(node)s order by id DESC limit 5',data)
-	data=cur.fetchall()
-	print(data)
-	y.append = data[0]['V1']
-	x.append = md.date2num(data[0]['timestamp'])
-	print(x)
-	print(y)
-	plt.plot(x,y)
-	plt.savefig(img, format='png')
-	img.seek(0)
-	plot_url = base64.b64encode(img.getvalue()).decode()
-	return '<img src="data:image/png;base64,{}">'.format(plot_url)
-	#return str(x)
 @app.route('/')
 def welcome():
 	security(str(sys._getframe().f_code.co_name))
@@ -97,6 +74,7 @@ def welcome():
 #	print "kindly use one of the APIs to get data"
 	return "Welcome to Amrita Intelligent Infrastructure Data Management and Control Panel App. \n Use one of the options below."
 	#return render_template('/home/cs/SGM/Server/welcome.html')
+
 @app.route('/stp/test')
 def stptest():
 	security(str(sys._getframe().f_code.co_name))
