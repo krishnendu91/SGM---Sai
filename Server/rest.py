@@ -58,14 +58,14 @@ def timenow():
 	now = datetime.now()
 	return (now.strftime("%Y-%m-%d %H:%M:%S"))
 
-@app.route('/ambtemp')
-def ambtemp():
+@app.route('/temperature')
+def temperature():
 	security(str(sys._getframe().f_code.co_name))
 	conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur = conn.cursor(pymysql.cursors.DictCursor)
 	cur.execute("SELECT * FROM tempData ORDER BY id DESC limit 1")
-	data=cur.fetchall()
-	return jsonify({'Temperature' : data})
+	r=cur.fetchall()
+	return jsonify({'Temperature' : r})
 
 
 @app.route('/plot/<node>/<param>')
