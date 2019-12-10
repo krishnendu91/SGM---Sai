@@ -9,7 +9,7 @@ global broker;
 global port;
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
-broker = "192.168.112.110";
+broker = "localhost";
 port = 1883;
 mypid = os.getpid()
 print("Process started at: " +str(mypid))
