@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as md
 import base64
 import pymysql
+import dispenserHelper as dh
+
 
 app = Flask(__name__)
 mysql = MySQL()
