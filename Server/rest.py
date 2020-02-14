@@ -75,7 +75,7 @@ def sendData(address,data):
 def sendMoney(address,data,money):
 	security(str(sys._getframe().f_code.co_name))
 
-	rc=dh.sendMoney(address,data,money)
+	rc=dh.sendMoney(address,data,int(money))
 	if rc==0:
 		return "Transaction failed"
 	elif rc==1:
