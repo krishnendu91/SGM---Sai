@@ -51,6 +51,35 @@ def security(fname):
 	cur.execute('INSERT INTO APILogs(clientAgent,clientIP,API)VALUES(%(clientAgent)s,%(clientIP)s,%(API)s); ',APILog)
 	conn.commit()
 
+# FOR DISPENSER
+@app.route('/Dispenser/getAddress')
+def getAddress():
+	security(str(sys._getframe().f_code.co_name))
+	address=dh.addressGen()
+	return str(address)
+
+@app.route('/Dispenser/sendData/<address>/<data>')
+def sendData(address,data):
+	security(str(sys._getframe().f_code.co_name))
+	rc=dh.sendData(address,data)
+	if rc==0:
+		return "Transaction failed"
+	elif rc==1:
+		return "Transaction success"
+	else:
+		return "Transaction not processed"
+
+@app.route('/Dispenser/sendMoney/<address>/<data>/<money>')
+def sendMoney(address,data,money):
+	security(str(sys._getframe().f_code.co_name))
+
+	rc=dh.sendMoney(address,data,money)
+	if rc==0:
+		return "Transaction failed"
+	elif rc==1:
+		return "Transaction success"
+	else:
+		return "Transaction not processed"
 
 @app.route('/timenow')
 def timenow():
