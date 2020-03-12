@@ -114,7 +114,13 @@ def temperature(client, userdata, msg,):
 	#print(msg)
 	print(payload)
 	grabrest.todb(payload,5)
-
+def powerstate(client, userdata, msg,):
+	conn1 =pymysql.connect(database="powerstatus",user="admin",password="admin",host="localhost")
+	cur1=conn1.cursor()
+	payload=json.loads(msg.payload.decode())
+	cur1.execute("INSERT INTO measureData(deviceId,temperature,humidity,state) VALUES(%(deviceId)s,%(temperature)s,%(humidity)s,%(state)s);",payload)
+	conn1.commit()
+	conn1.close()
 
 def on_log(client, userdata, level, buf):
 	print("log:",buf)	
@@ -123,6 +129,9 @@ def on_log(client, userdata, level, buf):
 	cur1.execute("INSERT INTO mqttLog(log) VALUES(%s);",buf)
 	conn1.commit()
 	conn1.close()
+	
+
+	
 
 mqttclient.on_log=on_log # set client logging	
 
@@ -144,6 +153,7 @@ mqttclient.message_callback_add("SGM/datafetch_switch_direct", datafetch_switch_
 mqttclient.message_callback_add("SGM/agg_alive_direct", agg_alive_direct)
 mqttclient.message_callback_add("SGM/datafetch_stp_direct", datafetch_stp_direct)
 mqttclient.message_callback_add("SGM/temperature", temperature)
+mqttclient.message_callback_add("SGM/powerstate", powerstate)
 
 
 #mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
