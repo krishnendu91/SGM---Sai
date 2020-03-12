@@ -114,11 +114,21 @@ def temperature(client, userdata, msg,):
 	#print(msg)
 	print(payload)
 	grabrest.todb(payload,5)
+	
 def powerstate(client, userdata, msg,):
 	conn1 =pymysql.connect(database="powerstatus",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
 	payload=json.loads(msg.payload.decode())
 	cur1.execute("INSERT INTO measureData(deviceId,temperature,humidity,state) VALUES(%(deviceId)s,%(temperature)s,%(humidity)s,%(state)s);",payload)
+	conn1.commit()
+	conn1.close()
+	
+def onpiggyback(client, userdata, msg,):
+	conn1 =pymysql.connect(database="OceanNet",user="admin",password="admin",host="localhost")
+	cur1=conn1.cursor()
+	payload=json.loads(msg.payload.decode())
+	print(payload)
+	cur1.execute("INSERT INTO piggyback(TIME,boat,dir,ping_ms,ss,nf,rssi,pos,ccq,d,txrate,rxrate,freq,channel,bs_ip) VALUES(%(TIME)s,%(boat,%(dir)s,%(ping_ms)s,%(ss)s,%(nf)s,%(rssi)s,%(pos)s,%(ccq)s,%(d)s,%(txrate)s,%(rxrate)s,%(freq)s,%(channel)s,%(bs_ip)s);",payload)
 	conn1.commit()
 	conn1.close()
 
@@ -154,6 +164,7 @@ mqttclient.message_callback_add("SGM/agg_alive_direct", agg_alive_direct)
 mqttclient.message_callback_add("SGM/datafetch_stp_direct", datafetch_stp_direct)
 mqttclient.message_callback_add("SGM/temperature", temperature)
 mqttclient.message_callback_add("SGM/powerstate", powerstate)
+mqttclient.message_callback_add("SGM/onpiggyback", onpiggyback)
 
 
 #mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
