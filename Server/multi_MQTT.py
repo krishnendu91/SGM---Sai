@@ -16,6 +16,8 @@ print("Process started at: " +str(mypid))
 client_uniq = "pubclient_"+str(mypid)
 mqttclient = paho.Client(client_uniq, False) #nocleanstart
 mqttclient.connect(broker, port, 0)
+mqttclient.loop_forever()
+
 mqttclient.subscribe("SGM/#")
 
 def test(client, userdata, message):
@@ -193,5 +195,4 @@ mqttclient.message_callback_add("SGM/faclon/dev", faclon)
 
 #mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
 
-mqttclient.loop_forever()
 
