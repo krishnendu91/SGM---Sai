@@ -166,7 +166,7 @@ def on_log(client, userdata, level, buf):
 
 	
 
-# mqttclient.on_log=on_log # set client logging	
+mqttclient.on_log=on_log # set client logging	
 
 #Subscribed Topics 
 def on_connect(mqttclient, userdata, flags, rc):
