@@ -15,9 +15,6 @@ mypid = os.getpid()
 print("Process started at: " +str(mypid))
 client_uniq = "pubclient_"+str(mypid)
 mqttclient = paho.Client(client_uniq, False) #nocleanstart
-mqttclient.connect(broker, port, 0)
-
-mqttclient.subscribe("SGM/#")
 
 def test(client, userdata, message):
 	print("Test Channel")
@@ -161,7 +158,10 @@ def on_log(client, userdata, level, buf):
 	cur1.execute("INSERT INTO mqttLog(log) VALUES(%s);",buf)
 	conn1.commit()
 	conn1.close()
+
 	
+def on_message(client, userdata, msg):
+	print(Received: Topic: %s Body: %s", msg.topic, msg.payload)
 #Subscribed Topics 
 def on_connect(mqttclient, userdata, flags, rc):
 	print("on connect")
@@ -190,8 +190,12 @@ def on_connect(mqttclient, userdata, flags, rc):
 
 #mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
 
+	      
+mqttclient.connect(broker, port, 0)
+mqttclient.subscribe("SGM/#")	  
 mqttclient.on_log=on_log # set client logging	
 mqttclient.on_connect = on_connect
+mqttclient.on_message = on_message	 
 mqttclient.loop_forever()
 
 
