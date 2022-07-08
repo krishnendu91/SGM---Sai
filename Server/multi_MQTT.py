@@ -162,11 +162,6 @@ def on_log(client, userdata, level, buf):
 	conn1.commit()
 	conn1.close()
 	
-
-	
-
-mqttclient.on_log=on_log # set client logging	
-
 #Subscribed Topics 
 def on_connect(mqttclient, userdata, flags, rc):
 	print("on connect")
@@ -195,7 +190,9 @@ def on_connect(mqttclient, userdata, flags, rc):
 
 #mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
 
+mqttclient.on_log=on_log # set client logging	
 mqttclient.on_connect = on_connect
 mqttclient.loop_forever()
+
 
 
