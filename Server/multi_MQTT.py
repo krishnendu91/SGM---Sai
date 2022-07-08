@@ -161,7 +161,8 @@ def on_log(client, userdata, level, buf):
 
 	
 def on_message(client, userdata, msg):
-	print(Received: Topic: %s Body: %s", msg.topic, msg.payload)
+	print("Received: Topic: %s Body: %s", msg.topic, msg.payload)
+	 
 #Subscribed Topics 
 def on_connect(mqttclient, userdata, flags, rc):
 	print("on connect")
