@@ -19,7 +19,6 @@ mqttclient.connect(broker, port, 0)
 
 mqttclient.loop_forever()
 mqttclient.subscribe("SGM/#")
-mqttclient.on_connect = on_connect
 
 def test(client, userdata, message):
 	print("Test Channel")
@@ -197,4 +196,5 @@ def on_connect(mqttclient, userdata, flags, rc):
 
 #mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
 
+mqttclient.on_connect = on_connect
 
