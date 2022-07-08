@@ -151,10 +151,10 @@ def faclon(client, userdata, msg,):
 # 	conn1.close()
 
 def on_log(client, userdata, level, buf):
-	print("log:",buf)
-	print(client)
-	print(userdata)
-	print(level)
+# 	print("log:",buf)
+# 	print(client)
+# 	print(userdata)
+# 	print(level)
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
 	cur1.execute("INSERT INTO mqttLog(log) VALUES(%s);",buf)
@@ -186,8 +186,8 @@ mqttclient.message_callback_add("SGM/datafetch_stp_direct", datafetch_stp_direct
 mqttclient.message_callback_add("SGM/temperature", temperature)
 mqttclient.message_callback_add("SGM/powerstate", powerstate)
 mqttclient.message_callback_add("SGM/onpiggyback", onpiggyback)
-mqttclient.message_callback_add("4ward/d1", ward)
-mqttclient.message_callback_add("faclon/dev", faclon)
+mqttclient.message_callback_add("SGM/4ward/d1", ward)
+mqttclient.message_callback_add("SGM/faclon/dev", faclon)
 
 
 
