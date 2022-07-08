@@ -198,6 +198,7 @@ mqttclient.connect(broker, port, 0)
 mqttclient.on_log=on_log # set client logging	
 mqttclient.on_connect = on_connect
 mqttclient.on_message = on_message	
+mqttclient.loop_start()
 mqttclient.subscribe("SGM/#",0)		      
 mqttclient.loop_forever()
 
