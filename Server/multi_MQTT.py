@@ -19,6 +19,7 @@ mqttclient.connect(broker, port, 0)
 
 mqttclient.loop_forever()
 mqttclient.subscribe("SGM/#")
+mqttclient.on_connect = on_connect
 
 def test(client, userdata, message):
 	print("Test Channel")
@@ -169,27 +170,27 @@ def on_log(client, userdata, level, buf):
 # mqttclient.on_log=on_log # set client logging	
 
 #Subscribed Topics 
-
-mqttclient.message_callback_add("SGM/test", test)
-mqttclient.message_callback_add("SGM/datafetch_dimis_gm1_direct", datafetch_dimis_gm1_direct)
-mqttclient.message_callback_add("SGM/datafetch_dimis_lm1_direct", datafetch_dimis_lm1_direct)
-mqttclient.message_callback_add("SGM/datafetch_dimis_lm2_direct", datafetch_dimis_lm2_direct)
-mqttclient.message_callback_add("SGM/datafetch_maxim_direct", datafetch_maxim_direct)
-mqttclient.message_callback_add("SGM/datafetch_sch_direct", datafetch_sch_direct)
-mqttclient.message_callback_add("SGM/datafetch_outback_inv_direct", datafetch_outback_inv_direct)
-mqttclient.message_callback_add("SGM/datafetch_outback_cc_direct", datafetch_outback_cc_direct)
-mqttclient.message_callback_add("SGM/datafetch_navsemi_direct", datafetch_navsemi_direct)
-mqttclient.message_callback_add("SGM/datafetch_gsm_direct", datafetch_gsm_direct)
-mqttclient.message_callback_add("SGM/datafetch_events_direct", datafetch_events_direct)
-mqttclient.message_callback_add("SGM/node_alive_direct", node_alive_direct)
-mqttclient.message_callback_add("SGM/datafetch_switch_direct", datafetch_switch_direct)
-mqttclient.message_callback_add("SGM/agg_alive_direct", agg_alive_direct)
-mqttclient.message_callback_add("SGM/datafetch_stp_direct", datafetch_stp_direct)
-mqttclient.message_callback_add("SGM/temperature", temperature)
-mqttclient.message_callback_add("SGM/powerstate", powerstate)
-mqttclient.message_callback_add("SGM/onpiggyback", onpiggyback)
-mqttclient.message_callback_add("SGM/4ward/d1", ward)
-mqttclient.message_callback_add("SGM/faclon/dev", faclon)
+def on_connect(mqttclient, userdata, flags, rc):
+	mqttclient.message_callback_add("SGM/test", test)
+	mqttclient.message_callback_add("SGM/datafetch_dimis_gm1_direct", datafetch_dimis_gm1_direct)
+	mqttclient.message_callback_add("SGM/datafetch_dimis_lm1_direct", datafetch_dimis_lm1_direct)
+	mqttclient.message_callback_add("SGM/datafetch_dimis_lm2_direct", datafetch_dimis_lm2_direct)
+	mqttclient.message_callback_add("SGM/datafetch_maxim_direct", datafetch_maxim_direct)
+	mqttclient.message_callback_add("SGM/datafetch_sch_direct", datafetch_sch_direct)
+	mqttclient.message_callback_add("SGM/datafetch_outback_inv_direct", datafetch_outback_inv_direct)
+	mqttclient.message_callback_add("SGM/datafetch_outback_cc_direct", datafetch_outback_cc_direct)
+	mqttclient.message_callback_add("SGM/datafetch_navsemi_direct", datafetch_navsemi_direct)
+	mqttclient.message_callback_add("SGM/datafetch_gsm_direct", datafetch_gsm_direct)
+	mqttclient.message_callback_add("SGM/datafetch_events_direct", datafetch_events_direct)
+	mqttclient.message_callback_add("SGM/node_alive_direct", node_alive_direct)
+	mqttclient.message_callback_add("SGM/datafetch_switch_direct", datafetch_switch_direct)
+	mqttclient.message_callback_add("SGM/agg_alive_direct", agg_alive_direct)
+	mqttclient.message_callback_add("SGM/datafetch_stp_direct", datafetch_stp_direct)
+	mqttclient.message_callback_add("SGM/temperature", temperature)
+	mqttclient.message_callback_add("SGM/powerstate", powerstate)
+	mqttclient.message_callback_add("SGM/onpiggyback", onpiggyback)
+	mqttclient.message_callback_add("SGM/4ward/d1", ward)
+	mqttclient.message_callback_add("SGM/faclon/dev", faclon)
 
 
 
