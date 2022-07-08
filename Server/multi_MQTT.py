@@ -151,7 +151,10 @@ def faclon(client, userdata, msg,):
 # 	conn1.close()
 
 def on_log(client, userdata, level, buf):
-	print("log:",buf)	
+	print("log:",buf)
+	print(client)
+	print(userdata)
+	print(level)
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
 	cur1.execute("INSERT INTO mqttLog(log) VALUES(%s);",buf)
