@@ -151,7 +151,7 @@ def faclon(client, userdata, msg,):
 # 	conn1.close()
 
 def on_log(client, userdata, level, buf):
-# 	print("log:",buf)
+	print("log:",buf)
 # 	print(client)
 # 	print(userdata)
 # 	print(level)
