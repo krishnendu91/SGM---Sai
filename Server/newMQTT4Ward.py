@@ -17,4 +17,4 @@ client.connect(broker_address) #connect to broker
 client.loop_start() #start the loop
 print("Subscribing to topic","SGM/faclon/dev")
 client.subscribe("SGM/faclon/dev")
-client.loop_stop() #stop the loop
+# client.loop_stop() #stop the loop
