@@ -17,7 +17,6 @@ client_uniq = "pubclient_"+str(mypid)
 mqttclient = paho.Client(client_uniq, False) #nocleanstart
 mqttclient.connect(broker, port, 0)
 
-mqttclient.loop_forever()
 mqttclient.subscribe("SGM/#")
 
 def test(client, userdata, message):
@@ -197,4 +196,6 @@ def on_connect(mqttclient, userdata, flags, rc):
 #mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
 
 mqttclient.on_connect = on_connect
+mqttclient.loop_forever()
+
 
