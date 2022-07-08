@@ -171,6 +171,7 @@ def on_log(client, userdata, level, buf):
 
 #Subscribed Topics 
 def on_connect(mqttclient, userdata, flags, rc):
+	print("on connect")
 	mqttclient.message_callback_add("SGM/test", test)
 	mqttclient.message_callback_add("SGM/datafetch_dimis_gm1_direct", datafetch_dimis_gm1_direct)
 	mqttclient.message_callback_add("SGM/datafetch_dimis_lm1_direct", datafetch_dimis_lm1_direct)
