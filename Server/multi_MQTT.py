@@ -130,10 +130,10 @@ def onpiggyback(client, userdata, msg,):
 	conn1.commit()
 	conn1.close()
 
-def ward(client, userdata, msg,):
+def wiman(client, userdata, msg,):
 # 	conn1 =pymysql.connect(database="OceanNet",user="admin",password="admin",host="localhost")
 # 	cur1=conn1.cursor()
-	payload=json.loads(msg.payload.decode())
+	payload=msg.payload.decode()
 	print(payload)
 # 	cur1.execute("INSERT INTO piggyback(TIME,boat,dir,ping_ms,ss,nf,rssi,pos,ccq,d,txrate,rxrate,freq,channel,bs_ip) VALUES(%(TIME)s,%(boat,%(dir)s,%(ping_ms)s,%(ss)s,%(nf)s,%(rssi)s,%(pos)s,%(ccq)s,%(d)s,%(txrate)s,%(rxrate)s,%(freq)s,%(channel)s,%(bs_ip)s);",payload)
 # 	conn1.commit()
@@ -142,7 +142,16 @@ def ward(client, userdata, msg,):
 def faclon(client, userdata, msg,):
 # 	conn1 =pymysql.connect(database="OceanNet",user="admin",password="admin",host="localhost")
 # 	cur1=conn1.cursor()
-	payload=msg.payload.decode('utf-8')
+	payload=msg.payload.decode()
+	print(payload)
+# 	cur1.execute("INSERT INTO piggyback(TIME,boat,dir,ping_ms,ss,nf,rssi,pos,ccq,d,txrate,rxrate,freq,channel,bs_ip) VALUES(%(TIME)s,%(boat,%(dir)s,%(ping_ms)s,%(ss)s,%(nf)s,%(rssi)s,%(pos)s,%(ccq)s,%(d)s,%(txrate)s,%(rxrate)s,%(freq)s,%(channel)s,%(bs_ip)s);",payload)
+# 	conn1.commit()
+# 	conn1.close()
+
+def trb(client, userdata, msg,):
+# 	conn1 =pymysql.connect(database="OceanNet",user="admin",password="admin",host="localhost")
+# 	cur1=conn1.cursor()
+	payload=msg.payload.decode()
 	print(payload)
 # 	cur1.execute("INSERT INTO piggyback(TIME,boat,dir,ping_ms,ss,nf,rssi,pos,ccq,d,txrate,rxrate,freq,channel,bs_ip) VALUES(%(TIME)s,%(boat,%(dir)s,%(ping_ms)s,%(ss)s,%(nf)s,%(rssi)s,%(pos)s,%(ccq)s,%(d)s,%(txrate)s,%(rxrate)s,%(freq)s,%(channel)s,%(bs_ip)s);",payload)
 # 	conn1.commit()
@@ -189,8 +198,9 @@ mqttclient.message_callback_add("SGM/datafetch_stp_direct", datafetch_stp_direct
 mqttclient.message_callback_add("SGM/temperature", temperature)
 mqttclient.message_callback_add("SGM/powerstate", powerstate)
 mqttclient.message_callback_add("SGM/onpiggyback", onpiggyback)
-mqttclient.message_callback_add("SGM/4ward/d1", ward)
-mqttclient.message_callback_add("SGM/faclon/dev", faclon)
+mqttclient.message_callback_add("SGM/Wiman", wiman)
+mqttclient.message_callback_add("SGM/faclon", faclon)
+mqttclient.message_callback_add("SGM/trb", trb)
 
 
 
