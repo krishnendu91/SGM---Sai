@@ -168,7 +168,7 @@ def _on_message(client, userdata, msg):
 def _on_connect(mqttclient, userdata, flags, rc):
 	print("on connect")
 	print(rc)
-	mqttclient.subscribe("$SGM/#", qos=0)	
+	mqttclient.subscribe("SGM/#", qos=0)	
 	
 
 mqttclient.message_callback_add("SGM/test", test)
@@ -201,7 +201,7 @@ mqttclient.connect(broker, port, keepalive=1, bind_address="")
   
 mqttclient.on_log=on_log # set client logging	
 mqttclient.on_connect = _on_connect
-mqttclient.on_message = _on_message	
+# mqttclient.on_message = _on_message	
 # mqttclient.loop_start()
 # mqttclient.subscribe("SGM/#",0)		      
 mqttclient.loop_forever()
