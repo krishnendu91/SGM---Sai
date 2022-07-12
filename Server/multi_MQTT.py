@@ -166,7 +166,7 @@ def _on_message(client, userdata, msg):
 	 
 #Subscribed Topics 
 def _on_connect(mqttclient, userdata, flags, rc):
-	print("on connect")
+	print("New Client: "+mqttclient+ " connected with topic " + msg.topic)
 	print(rc)
 	mqttclient.subscribe("SGM/#", qos=0)	
 	
