@@ -3,6 +3,8 @@ import sys
 import os
 import paho.mqtt.client as paho
 import json,grabrest,pymysql
+import ast
+
 
 global mqttclient;
 global broker;
@@ -160,6 +162,8 @@ def trb(client, userdata, msg,):
 # 	print(type(payloadJson))
 	data={"DevID":payload[0],"registerAddress":payload[1],"data":payload[3],"readTime":payload[4]}
 	print(data)
+	data2 =  ast.literal_eval(payload)
+	print(data2)
 	
 	
 # 	cur1.execute("INSERT INTO trbdata(readTime, DevID, registerAddress,data) VALUES(%(readTime)s, %(DevID)s, %(registerAddress)s,%(data)s;",data)
