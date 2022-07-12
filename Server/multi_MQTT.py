@@ -160,15 +160,15 @@ def trb(client, userdata, msg,):
 # 	payloadJson = json.loads(payload)
 # 	print(payloadJson)
 # 	print(type(payloadJson))
-	data={"DevID":payload[0],"registerAddress":payload[1],"data":payload[3],"readTime":payload[4]}
-	print(data)
+# 	data={"DevID":payload[0],"registerAddress":payload[1],"data":payload[3],"readTime":payload[4]}
+# 	print(data)
 	data2 =  ast.literal_eval(payload)
 	print(data2)
+	print(type(data2))
 	
-	
-# 	cur1.execute("INSERT INTO trbdata(readTime, DevID, registerAddress,data) VALUES(%(readTime)s, %(DevID)s, %(registerAddress)s,%(data)s;",data)
-# 	conn1.commit()
-# 	conn1.close()
+	cur1.execute("INSERT INTO trbdata(readTime, DevID, registerAddress,data) VALUES(%(readTime)s, %(DevID)s, %(registerAddress)s,%(data)s;",data2)
+	conn1.commit()
+	conn1.close()
 
 def on_log(client, userdata, level, buf):
 # 	print("log:",buf)
