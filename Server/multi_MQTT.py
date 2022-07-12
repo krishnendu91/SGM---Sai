@@ -14,7 +14,7 @@ port = 1883;
 mypid = os.getpid()
 print("Process started at: " +str(mypid))
 client_uniq = "pubclient_"+str(mypid)
-mqttclient = paho.Client(client_uniq, true) #nocleanstart
+mqttclient = paho.Client(client_uniq, True) #nocleanstart
 
 def test(client, userdata, message):
 	print("Test Channel")
