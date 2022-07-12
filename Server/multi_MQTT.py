@@ -166,7 +166,7 @@ def trb(client, userdata, msg,):
 	print(data2)
 	print(type(data2))
 	
-	cur1.execute("INSERT INTO trbdata(readTime, DevID, registerAddress,data) VALUES(%(readTime)s, %(DevID)s, %(registerAddress)s,%(data)s;",data2)
+	cur1.execute("INSERT INTO trbdata(readTime, DevID, registerAddress,data) VALUES(%(readTime)s, %(DevID)s, %(registerAddress)s,%(data)s);",data2)
 	conn1.commit()
 	conn1.close()
 
