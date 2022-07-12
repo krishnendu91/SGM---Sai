@@ -198,7 +198,7 @@ mqttclient.message_callback_add("SGM/datafetch_stp_direct", datafetch_stp_direct
 mqttclient.message_callback_add("SGM/temperature", temperature)
 mqttclient.message_callback_add("SGM/powerstate", powerstate)
 mqttclient.message_callback_add("SGM/onpiggyback", onpiggyback)
-mqttclient.message_callback_add("SGM/Wiman", wiman)
+mqttclient.message_callback_add("SGM/wiman", wiman)
 mqttclient.message_callback_add("SGM/faclon", faclon)
 mqttclient.message_callback_add("SGM/trb", trb)
 
