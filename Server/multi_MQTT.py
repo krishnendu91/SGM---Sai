@@ -165,6 +165,7 @@ def trb(client, userdata, msg,):
 	data2 =  ast.literal_eval(payload)
 	print(data2)
 	print(type(data2))
+	print(data2["readTime"]
 	
 	cur1.execute("INSERT INTO trbdata(readTime, DevID, registerAddress,data) VALUES(%(readTime)s, %(DevID)s, %(registerAddress)s,%(data)s);",data2)
 	conn1.commit()
