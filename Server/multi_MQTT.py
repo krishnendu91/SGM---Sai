@@ -155,24 +155,16 @@ def faclon(client, userdata, msg,):
 def trb(client, userdata, msg,):
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
-	
 	payload=ast.literal_eval(msg.payload.decode())
-# 	print(payload)
-# 	print(type(payload))
-# 	payloadJson = json.loads(payload)
-# 	print(payloadJson)
-# 	print(type(payloadJson))
-# 	data={"DevID":payload[0],"registerAddress":payload[1],"data":payload[3],"readTime":payload[4]}
-# 	print(data)
-# 	data2 =  (payload)
-# 	print(data2)
-# 	print(type(data2))
-# 	print(data2["readTime"])
 	readTime = datetime.utcfromtimestamp(payload["readTime"]).strftime('%Y-%m-%d %H:%M:%S')
 	payload["readTime"] = readTime
+	print(payload["DevID"] + " Data Received")
+	print(payload)
+	
 	cur1.execute("INSERT INTO trbdata(readTime, DevID, registerAddress,data) VALUES(%(readTime)s, %(DevID)s, %(registerAddress)s,%(data)s);",payload)
 	conn1.commit()
 	conn1.close()
+	print("DB Dump Success")
 
 def on_log(client, userdata, level, buf):
 # 	print("log:",buf)
