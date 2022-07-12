@@ -161,11 +161,14 @@ def on_log(client, userdata, level, buf):
 
 	
 def on_message(client, userdata, msg):
-	print("Received: Topic: %s Body: %s", msg.topic, msg.payload)
+# 	print("Received: Topic: %s Body: %s", msg.topic, msg.payload)
+	print(msg.topic+" "+str(msg.payload))
 	 
 #Subscribed Topics 
 def on_connect(mqttclient, userdata, flags, rc):
 	print("on connect")
+	mqttclient.subscribe("SGM/#",0)	
+	
 
 mqttclient.message_callback_add("SGM/test", test)
 mqttclient.message_callback_add("SGM/datafetch_dimis_gm1_direct", datafetch_dimis_gm1_direct)
@@ -199,7 +202,7 @@ mqttclient.on_log=on_log # set client logging
 mqttclient.on_connect = on_connect
 mqttclient.on_message = on_message	
 mqttclient.loop_start()
-mqttclient.subscribe("SGM/#",0)		      
+# mqttclient.subscribe("SGM/#",0)		      
 mqttclient.loop_forever()
 
 
