@@ -14,7 +14,7 @@ port = 1883;
 mypid = os.getpid()
 print("Process started at: " +str(mypid))
 client_uniq = "pubclient_"+str(mypid)
-mqttclient = paho.Client(client_uniq, False) #nocleanstart
+mqttclient = paho.Client(client_uniq, true) #nocleanstart
 
 def test(client, userdata, message):
 	print("Test Channel")
@@ -160,14 +160,15 @@ def on_log(client, userdata, level, buf):
 	conn1.close()
 
 	
-def on_message(client, userdata, msg):
+def _on_message(client, userdata, msg):
 # 	print("Received: Topic: %s Body: %s", msg.topic, msg.payload)
 	print(msg.topic+" "+str(msg.payload))
 	 
 #Subscribed Topics 
-def on_connect(mqttclient, userdata, flags, rc):
+def _on_connect(mqttclient, userdata, flags, rc):
 	print("on connect")
-	mqttclient.subscribe("SGM",0)	
+	print(rc)
+	mqttclient.subscribe("$SGM/#", qos=0)	
 	
 
 mqttclient.message_callback_add("SGM/test", test)
@@ -196,11 +197,11 @@ mqttclient.message_callback_add("SGM/faclon/dev", faclon)
 #mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
 
 	      
-mqttclient.connect(broker, port, 0)
+mqttclient.connect(broker, port, keepalive=1, bind_address="")
   
 mqttclient.on_log=on_log # set client logging	
-mqttclient.on_connect = on_connect
-mqttclient.on_message = on_message	
+mqttclient.on_connect = _on_connect
+mqttclient.on_message = _on_message	
 # mqttclient.loop_start()
 # mqttclient.subscribe("SGM/#",0)		      
 mqttclient.loop_forever()
