@@ -155,10 +155,10 @@ def trb(client, userdata, msg,):
 	payload=msg.payload.decode()
 	print(payload)
 	print(type(payload))
-	payloadJson = json.loads(payload)
-	print(payloadJson)
-	print(type(payloadJson))
-	data={"DevID":payload[0],"registerAddress":payload[1],"data":payload[3][0],"readTime":payload[4]}
+# 	payloadJson = json.loads(payload)
+# 	print(payloadJson)
+# 	print(type(payloadJson))
+	data={"DevID":payload[0],"registerAddress":payload[1],"data":payload[3],"readTime":payload[4]}
 	print(data)
 	
 	
