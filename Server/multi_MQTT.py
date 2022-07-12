@@ -153,7 +153,7 @@ def trb(client, userdata, msg,):
 	cur1=conn1.cursor()
 	
 	payload=msg.payload.decode()
-	print(payload)
+	print(payload.json())
 	print(type(payload))
 	payloadJson = json.loads(r'payload[1:-1]')
 	print(payloadJson)
