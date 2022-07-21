@@ -144,10 +144,10 @@ def wiman(client, userdata, msg,):
 # 	conn1.close()
 
 def faclon(client, userdata, msg,):
-# 	conn1 =pymysql.connect(database="OceanNet",user="admin",password="admin",host="localhost")
-# 	cur1=conn1.cursor()
+	conn1 =pymysql.connect(database="OceanNet",user="admin",password="admin",host="localhost")
+	cur1=conn1.cursor()
 	payload=msg.payload.decode()
-	print(payload)
+	print(type(payload))
 # 	cur1.execute("INSERT INTO piggyback(TIME,boat,dir,ping_ms,ss,nf,rssi,pos,ccq,d,txrate,rxrate,freq,channel,bs_ip) VALUES(%(TIME)s,%(boat,%(dir)s,%(ping_ms)s,%(ss)s,%(nf)s,%(rssi)s,%(pos)s,%(ccq)s,%(d)s,%(txrate)s,%(rxrate)s,%(freq)s,%(channel)s,%(bs_ip)s);",payload)
 # 	conn1.commit()
 # 	conn1.close()
