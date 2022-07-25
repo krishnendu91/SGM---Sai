@@ -159,7 +159,7 @@ def trb(client, userdata, msg,):
 	print(msg.payload.decode())
 	payload=ast.literal_eval(msg.payload.decode())[0]
 	
-	readTime = datetime.utcfromtimestamp(payload["readTime"]).strftime('%Y-%m-%d %H:%M:%S')
+	readTime = datetime.utcfromtimestamp(int(payload["readTime"])).strftime('%Y-%m-%d %H:%M:%S')
 	payload["readTime"] = readTime
 	print(payload["DevID"] + " Data Received")
 	print(payload)
