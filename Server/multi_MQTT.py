@@ -156,7 +156,9 @@ def faclon(client, userdata, msg,):
 def trb(client, userdata, msg,):
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
+	print(msg.payload.decode())
 	payload=ast.literal_eval(msg.payload.decode())
+	
 	readTime = datetime.utcfromtimestamp(payload["readTime"]).strftime('%Y-%m-%d %H:%M:%S')
 	payload["readTime"] = readTime
 	print(payload["DevID"] + " Data Received")
