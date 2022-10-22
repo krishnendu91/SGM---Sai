@@ -32,7 +32,7 @@ gnews_links = []               #list of URLs from google news
 gnews_permitted = []           #list of URLs from google news that permit crawling
 download_link = []             #list of URLs from google news that proceeded to download after succeeding content analysis
 
-connection = pymysql.connect(user='root',
+connection = pymysql.connect(user='4ward',
                              password='amma@123',
                             db='4ward',
                             charset='utf8mb4',
