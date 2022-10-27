@@ -55,21 +55,20 @@ def get_article(download_link):  #function to download articles using newspaper 
     #for row in data:
     #    titles.append(row["title"])
     for url in download_link:
-        try:
-            article = Article(url)
-            article.download()
-            article.parse()
-            title = article.title
-            print("downloading content from URL: ", url)
-            list_title.append(title)
-            print("article title found")
-            content = article.text #extract paragraph of article
-            list_content.append(content)
-            print("article content found")
-            pub_date = find_date(url) #date of article
-            list_date.append(pub_date)
-            print("article date found")
-            article.nlp()
+        article = Article(url)
+        article.download()
+        article.parse()
+        title = article.title
+        print("downloading content from URL: ", url)
+        list_title.append(title)
+        print("article title found")
+        content = article.text #extract paragraph of article
+        list_content.append(content)
+        print("article content found")
+        pub_date = find_date(url) #date of article
+        list_date.append(pub_date)
+        print("article date found")
+        article.nlp()
             #locationId = article.locationId #summary of article
             #list_location.append(locationId)
            # print("article summary found")
@@ -78,21 +77,21 @@ def get_article(download_link):  #function to download articles using newspaper 
             #source = url #source url of article
             #list_source.append(source)
            # print("article source found")
-        except:
-            pass
-    print(len(list_title)) 
-    print(len(list_content))
-    print(len(list_date)) 
+        # except:
+        #     pass
+        print(len(list_title)) 
+        print(len(list_content))
+        print(len(list_date)) 
     #print(len(list_location))         #dataframe created for all above items
-    dataset = pd.DataFrame({'News_title' : list_title, 'News_content' : list_content, 'Published Date' : list_date})
-    print(dataset)
+        dataset = pd.DataFrame({'News_title' : list_title, 'News_content' : list_content, 'Published Date' : list_date})
+        print(dataset)
                 #inserting into news data table
 
-    with connection.cursor() as cursor:
-        sql = "INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%s, %s, %s)"
-        for index, row in dataset.iterrows():
-            cursor.execute(sql, (str(row['News_title']), str(row['News_content']), str(row['Published Date'])))
-            connection.commit()
+        with connection.cursor() as cursor:
+            sql = "INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%s, %s, %s)"
+            for index, row in dataset.iterrows():
+                cursor.execute(sql, (str(row['News_title']), str(row['News_content']), str(row['Published Date'])))
+                connection.commit()
 
 
 def checkRobots(links_list): #checking scraping permission of each URL passed
