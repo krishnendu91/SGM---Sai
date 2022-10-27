@@ -11,7 +11,7 @@ import requests
 #   nltk.download('punkt')
 #nltk.download('stopwords')
 #nltk.download('wordnet')
-from lxml import html,xml
+from lxml import html
 from urllib.parse import urlparse, urljoin
 import urllib.request
 import urllib.robotparser
