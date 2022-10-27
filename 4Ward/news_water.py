@@ -12,6 +12,8 @@ import requests
 #nltk.download('stopwords')
 #nltk.download('wordnet')
 from lxml import html
+from lxml.html.soupparser import fromstring
+
 from urllib.parse import urlparse, urljoin
 import urllib.request
 import urllib.robotparser
@@ -122,7 +124,9 @@ def trendingSearch(): #prepares query for searching in google news
 def googleNews_scrape(url): #function extracts all article links in google news
     r1 = requests.get(url) #sends request to webpage to access
     page = r1.text #collects source code of web page
-    soup1 = BeautifulSoup(page)
+#     soup1 = BeautifulSoup(page)
+    soup1 = BeautifulSoup(page, "html.parser")
+    markup_type=markup_type))
     for link in soup1.find_all("a", class_="VDXfz"): #beautifulsoup function collects all anchor tags under the given class
         relative_link = (link.get('href')) #collects all href links under the given class
         full_link = relative_link.replace(relative_link[:1], "https://news.google.com") #since google news returns a "." instead of the domain name, need to replace it
