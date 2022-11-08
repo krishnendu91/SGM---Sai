@@ -3,8 +3,8 @@
 #importing necessary libraries
 import requests_html
 import requests
-##import nltk
-#   nltk.download('punkt')
+import nltk
+nltk.download('punkt')
 #nltk.download('stopwords')
 #nltk.download('wordnet')
 from lxml import html
