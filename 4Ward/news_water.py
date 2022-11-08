@@ -4,10 +4,11 @@
 import requests_html
 import requests
 
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
+#uncomment on first run only
+# import nltk
+# nltk.download('punkt')
+# nltk.download('stopwords')
+# nltk.download('wordnet')
 
 from lxml import html
 from lxml.html.soupparser import fromstring
