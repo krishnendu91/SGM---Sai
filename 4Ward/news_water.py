@@ -74,22 +74,22 @@ def get_article(download_link):  #function to download articles using newspaper 
            # print("article source found")
         # except:
         #     pass
-        print(len(list_title)) 
-        print(len(list_content))
-        print(len(list_date)) 
+        #print(len(list_title)) 
+        #print(len(list_content))
+        #print(len(list_date)) 
     #print(len(list_location))         #dataframe created for all above items
-        dataset = pd.DataFrame({'News_title' : list_title, 'News_content' : list_content, 'Published_Date' : list_date[0]})
-        newdata = {'News_title' : list_title, 'News_content' : list_content, 'Published_Date' : list_date}
-        print(dataset)
+        #dataset = pd.DataFrame({'News_title' : list_title, 'News_content' : list_content, 'Published_Date' : list_date[0]})
+        newdata = {'News_title' : list_title[0], 'News_content' : list_content[0], 'Published_Date' : list_date[0]}
+        #print(dataset)
         print(newdata)
                 #inserting into news data table
 
 #         with connection.cursor() as cursor:
 #             sql = "INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%s, %s, %s)"
-        for index, row in dataset.iterrows():
+        #for index, row in dataset.iterrows():
 #                 cur.execute(sql, (str(row['News_title']), str(row['News_content']), str(row['Published Date'])))
-                cur.execute("INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%(News_title)s, %(News_content)s, %(Published_Date)s);",newdata)
-                conn.commit()
+        cur.execute("INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%(News_title)s, %(News_content)s, %(Published_Date)s);",newdata)
+        conn.commit()
 
 
 def checkRobots(links_list): #checking scraping permission of each URL passed
