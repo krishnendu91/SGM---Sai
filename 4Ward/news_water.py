@@ -42,7 +42,7 @@ def get_article(download_link):  #function to download articles using newspaper 
     list_location = []
 
     titles = []
-    print(url)
+    print(download_link)
     for url in download_link:
         try:
             article = Article(url)
