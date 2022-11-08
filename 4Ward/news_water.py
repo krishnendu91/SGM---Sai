@@ -84,9 +84,9 @@ def get_article(download_link):  #function to download articles using newspaper 
         print(newdata)
                 #inserting into news data table
 
-        with connection.cursor() as cursor:
+#         with connection.cursor() as cursor:
 #             sql = "INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%s, %s, %s)"
-            for index, row in dataset.iterrows():
+        for index, row in dataset.iterrows():
 #                 cur.execute(sql, (str(row['News_title']), str(row['News_content']), str(row['Published Date'])))
                 cur.execute("INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%(News_title)s, %(News_content)s, %(Published_Date)s);",newdata)
                 conn.commit()
