@@ -78,7 +78,7 @@ def get_article(download_link):  #function to download articles using newspaper 
         print(len(list_content))
         print(len(list_date)) 
     #print(len(list_location))         #dataframe created for all above items
-        dataset = pd.DataFrame({'News_title' : list_title, 'News_content' : list_content, 'Published_Date' : list_date})
+        dataset = pd.DataFrame({'News_title' : list_title, 'News_content' : list_content, 'Published_Date' : list_date[0]})
         newdata = {'News_title' : list_title, 'News_content' : list_content, 'Published_Date' : list_date}
         print(dataset)
         print(newdata)
