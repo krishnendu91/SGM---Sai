@@ -44,21 +44,20 @@ def get_article(download_link):  #function to download articles using newspaper 
     titles = []
     print(download_link)
     for url in download_link:
-        try:
-            article = Article(url)
-            article.download()
-            article.parse()
-            title = article.title
-            print("downloading content from URL: ", url)
-            list_title.append(title)
-            print("article title found")
-            content = article.text #extract paragraph of article
-            list_content.append(content)
-            print("article content found")
-            pub_date = find_date(url) #date of article
-            list_date.append(pub_date)
-            print("article date found")
-            article.nlp()
+        article = Article(url)
+        article.download()
+        article.parse()
+        title = article.title
+        print("downloading content from URL: ", url)
+        list_title.append(title)
+        print("article title found")
+        content = article.text #extract paragraph of article
+        list_content.append(content)
+        print("article content found")
+        pub_date = find_date(url) #date of article
+        list_date.append(pub_date)
+        print("article date found")
+        article.nlp()
             #locationId = article.locationId #summary of article
             #list_location.append(locationId)
            # print("article summary found")
@@ -67,13 +66,13 @@ def get_article(download_link):  #function to download articles using newspaper 
             #source = url #source url of article
             #list_source.append(source)
            # print("article source found")
-            newdata = {'News_title' : list_title[0], 'News_content' : list_content[0], 'Published_Date' : list_date[0]}
-            print(newdata)
-            cur.execute("INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%(News_title)s, %(News_content)s, %(Published_Date)s);",newdata)
-            conn.commit()
+        newdata = {'News_title' : list_title[0], 'News_content' : list_content[0], 'Published_Date' : list_date[0]}
+        print(newdata)
+        cur.execute("INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%(News_title)s, %(News_content)s, %(Published_Date)s);",newdata)
+        conn.commit()
         
-        except:
-            pass
+#         except:
+#             pass
       
 def checkRobots(links_list): #checking scraping permission of each URL passed
     permitted_links = []     #list of scraping permitted links
