@@ -1,8 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[3]:
-
+#!/usr/bin/python3
 
 #importing necessary libraries
 import requests_html
@@ -36,6 +32,7 @@ download_link = []             #list of URLs from google news that proceeded to 
 
 conn = pymysql.connect(user="4ward",password="Amma@123",database="4ward") #setting connection to sql
 cur = conn.cursor()
+
 def get_article(download_link):  #function to download articles using newspaper API
     list_title = []          #list of titles
     list_content = []        #list of contents
@@ -114,7 +111,7 @@ def trendingSearch(): #prepares query for searching in google news
     #print("Crawling google news for latest updates..")
     #url_rain = "https://news.google.com/search?q=rain%20in%20India%20" + str(today) + "&hl=en-IN&gl=IN&ceid=IN%3Aen" #link of the query "rain in India" with today's date
     #googleNews_scrape(url_rain)
-    url_water_india = "https://news.google.com/search?q=water%20quality%20news%20%20in%20india&hl=en-IN&gl=IN&ceid=IN%3Aen" #link of the query "landslide in India" with today's date
+    url_water_india = "https://news.google.com/search?q=water%20quality%20news%20in%20india&hl=en-IN&hl=en-IN&gl=IN&gl=IN&ceid=IN%3Aen" #link of the query "landslide in India" with today's date
     googleNews_scrape(url_water_india)
     url_water_erkm = "https://news.google.com/search?q=water%20quality%20news%20%20in%20ernakulam&hl=en-IN&gl=IN&ceid=IN%3Aen" #link of the query "flood in India" with today's date
     googleNews_scrape(url_water_erkm)
@@ -136,4 +133,5 @@ def crawler():
     gnews_permitted = checkRobots(gnews_links) #function call to check if a webpage permits scraping or not
     get_article(gnews_permitted) #function call to download news articles
     print("............crawling completed................")
+
 crawler()
