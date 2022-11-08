@@ -18,7 +18,7 @@ from urllib.parse import urlparse, urljoin
 import urllib.request
 import urllib.robotparser
 import pandas as pd
-import pymysql.cursors
+import pymysql
 from bs4 import BeautifulSoup
 from newspaper import Article
 #from nltk import word_tokenize
@@ -34,12 +34,8 @@ gnews_links = []               #list of URLs from google news
 gnews_permitted = []           #list of URLs from google news that permit crawling
 download_link = []             #list of URLs from google news that proceeded to download after succeeding content analysis
 
-connection = pymysql.connect(user='4ward',
-                             password='Amma@123',
-                            db='4ward',
-                            charset='utf8mb4',
-                            cursorclass=pymysql.cursors.DictCursor) #setting connection to sql
-
+conn = pymysql.connect(user="4ward",password="Amma@123",database="4ward") #setting connection to sql
+cur = conn.cursor()
 def get_article(download_link):  #function to download articles using newspaper API
     list_title = []          #list of titles
     list_content = []        #list of contents
@@ -85,15 +81,18 @@ def get_article(download_link):  #function to download articles using newspaper 
         print(len(list_content))
         print(len(list_date)) 
     #print(len(list_location))         #dataframe created for all above items
-        dataset = pd.DataFrame({'News_title' : list_title, 'News_content' : list_content, 'Published Date' : list_date})
+        dataset = pd.DataFrame({'News_title' : list_title, 'News_content' : list_content, 'Published_Date' : list_date})
+        newdata = {'News_title' : list_title, 'News_content' : list_content, 'Published_Date' : list_date}
         print(dataset)
+        print(newdata)
                 #inserting into news data table
 
         with connection.cursor() as cursor:
-            sql = "INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%s, %s, %s)"
+#             sql = "INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%s, %s, %s)"
             for index, row in dataset.iterrows():
-                cursor.execute(sql, (str(row['News_title']), str(row['News_content']), str(row['Published Date'])))
-                connection.commit()
+#                 cur.execute(sql, (str(row['News_title']), str(row['News_content']), str(row['Published Date'])))
+                cur.execute("INSERT INTO `news_data` (`Title`,`Content`,`PublishDate`) VALUES (%(News_title)s, %(News_content)s, %(Published_Date)s);",newdata)
+                conn.commit()
 
 
 def checkRobots(links_list): #checking scraping permission of each URL passed
