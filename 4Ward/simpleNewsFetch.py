@@ -1,7 +1,7 @@
 from serpapi import GoogleSearch
 
 params = {
-  "q": "Coffee",
+  "q": "Water Quality News",
   "location": "Kochi, Kerala, India",
   "hl": "en",
   "gl": "in",
