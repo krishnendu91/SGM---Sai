@@ -141,6 +141,7 @@ def wiman(client, userdata, msg,):
 	print(payload)
 	print(type(payload))
 	payload2= payload.replace("\'", "\"")
+	payload2=payload.replace("\r\n"," ")
 	print(payload2)
 	print(type(payload2))
 	payload3 = json.loads(payload2)
