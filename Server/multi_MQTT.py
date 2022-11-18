@@ -151,7 +151,7 @@ def wiman(client, userdata, msg,):
 # 	print(type(payload3))
 	data = payload3['data']
 	print(data)
-# 	cur1.execute("INSERT INTO `wiman` (`ID`, `receiveTime`, `deviceID`, `imei`, `uid`, `dtm`, `seq`, `sig`, `di1`, `di2`, `op1`, `a1`, `a2`, `s1`, `p1`, `sysv`) VALUES(%(deviceID)s, %(imei)s, %(uid)s, %(dtm)s, %(seq)s, %(sig)s, %(di1)s, %(di2)s, %(op1)s, %(a1)s, %(a2)s, %(s1)s, %(p1)s, %(sysv)s);",data)
+	cur1.execute("INSERT INTO `wiman` (`ID`, `receiveTime`, `deviceID`, `imei`, `uid`, `dtm`, `seq`, `sig`, `di1`, `di2`, `op1`, `a1`, `a2`, `s1`, `p1`, `sysv`) VALUES(%(deviceID)s, %(imei)s, %(uid)s, %(dtm)s, %(seq)s, %(sig)s, %(di1)s, %(di2)s, %(op1)s, %(a1)s, %(a2)s, %(s1)s, %(p1)s, %(sysv)s);",data)
 	cur1.execute("INSERT INTO wimanRaw (data) VALUES (%s);",payload)
 # 	cur1.execute("INSERT INTO piggyback(TIME,boat,dir,ping_ms,ss,nf,rssi,pos,ccq,d,txrate,rxrate,freq,channel,bs_ip) VALUES(%(TIME)s,%(boat,%(dir)s,%(ping_ms)s,%(ss)s,%(nf)s,%(rssi)s,%(pos)s,%(ccq)s,%(d)s,%(txrate)s,%(rxrate)s,%(freq)s,%(channel)s,%(bs_ip)s);",payload)
 	conn1.commit()
