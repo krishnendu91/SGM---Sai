@@ -174,7 +174,7 @@ def faclon(client, userdata, msg,):
 	
 	payload2= payload.replace("\'", "\"")
 	payload2=payload2.replace("\r\n"," ")
-	payload2=payload2.replace("AV_TS2,"," ")
+	payload2=payload2.replace("AV_TS1,"," ")
  	
 	payload3 = json.loads(payload2)
 	print("Wiman Data")
