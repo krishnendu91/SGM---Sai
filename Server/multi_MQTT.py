@@ -171,6 +171,29 @@ def faclon(client, userdata, msg,):
 	payload=msg.payload.decode()
 	print("Faclon Data")
 	print(payload)
+	
+	payload2= payload.replace("\'", "\"")
+	payload2=payload2.replace("\r\n"," ")
+	payload2=payload2.replace("AV_TS2,"," ")
+ 	
+	payload3 = json.loads(payload2)
+	print("Wiman Data")
+	
+
+	data = payload3['data']
+# 	print(data)
+	try:
+		io = data["io"]
+		sysv = data["dev"]
+		sqdata = {"deviceID":1,"imei":data["imei"],"uid":data["uid"],"dtm":data["dtm"],"seq":data["seq"],"sig":data["sig"],"di1":io["di1"],"di2":io["di2"],"op1":io["op1"],"a1":io["a1"],"a2":io["a2"],"s1":io["s1"],"p1":io["p1"],"sysv":sysv["sysv"]}
+		print(sqdata)
+	
+		cur1.execute("INSERT INTO `faclon` (`deviceID`, `imei`, `uid`, `dtm`, `seq`, `sig`, `di1`, `di2`, `op1`, `a1`, `a2`, `s1`, `p1`, `sysv`) VALUES(%(deviceID)s, %(imei)s, %(uid)s, %(dtm)s, %(seq)s, %(sig)s, %(di1)s, %(di2)s, %(op1)s, %(a1)s, %(a2)s, %(s1)s, %(p1)s, %(sysv)s);",sqdata)
+		
+	except:
+		print("data format error")
+		pass
+	
 	cur1.execute("INSERT INTO faclonRaw (data) VALUES (%s);",payload)
 # 	cur1.execute("INSERT INTO piggyback(TIME,boat,dir,ping_ms,ss,nf,rssi,pos,ccq,d,txrate,rxrate,freq,channel,bs_ip) VALUES(%(TIME)s,%(boat,%(dir)s,%(ping_ms)s,%(ss)s,%(nf)s,%(rssi)s,%(pos)s,%(ccq)s,%(d)s,%(txrate)s,%(rxrate)s,%(freq)s,%(channel)s,%(bs_ip)s);",payload)
 	conn1.commit()
