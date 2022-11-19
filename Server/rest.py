@@ -486,7 +486,7 @@ def trb():
 def faclon():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
-	cur.execute('select * from faclonRaw ORDER BY id DESC LIMIT 1 ')
+	cur.execute('select * from faclon ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
