@@ -492,7 +492,7 @@ def faclon():
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/faclonRaw')
-def faclon():
+def faclonRaw():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from faclonRaw ORDER BY id DESC LIMIT 1 ')
