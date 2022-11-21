@@ -482,11 +482,29 @@ def trb():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+@app.route('/4ward/trbdata/<imei>')
+def trbimei(imei):
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute('select * from trbdata where DevID=%s ORDER BY id DESC LIMIT 1 ',imei)
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+# 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
+	return jsonify({'Recent data' : r})
+
 @app.route('/4ward/faclon')
 def faclon():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from faclon ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+# 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
+	return jsonify({'Recent data' : r})
+
+@app.route('/4ward/faclon/imei')
+def faclonimei(imei):
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute('select * from faclon where imei = %s ORDER BY id DESC LIMIT 1 ',imei)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
@@ -505,6 +523,15 @@ def wiman():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from wiman ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+# 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
+	return jsonify({'Recent data' : r})
+
+@app.route('/4ward/wiman/<imei>')
+def wimanimei(imei):
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute('select * from wiman where imei = %s ORDER BY id DESC LIMIT 1 ',imei)
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
