@@ -500,7 +500,7 @@ def faclon():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
-@app.route('/4ward/faclon/imei')
+@app.route('/4ward/faclon/<imei>')
 def faclonimei(imei):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
