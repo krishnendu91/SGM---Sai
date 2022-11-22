@@ -215,6 +215,18 @@ def trb(client, userdata, msg,):
 	conn1.commit()
 	conn1.close()
 	print("DB Dump Success")
+	
+def embedos(client, userdata, msg,):
+	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+	cur1=conn1.cursor()
+# 	print(msg.payload.decode())
+	payload=msg.payload.decode()
+	print("embedos Data")
+		
+	cur1.execute("INSERT INTO embedosRaw(data) VALUES(%s);",payload)
+	conn1.commit()
+	conn1.close()
+	print("DB Dump Success")
 
 def on_log(client, userdata, level, buf):
 # 	print("log:",buf)
@@ -260,6 +272,7 @@ mqttclient.message_callback_add("SGM/onpiggyback", onpiggyback)
 mqttclient.message_callback_add("SGM/wiman", wiman)
 mqttclient.message_callback_add("SGM/faclon", faclon)
 mqttclient.message_callback_add("SGM/trb", trb)
+mqttclient.message_callback_add("SGM/embedos", embedos)
 
 
 
