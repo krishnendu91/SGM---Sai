@@ -545,6 +545,15 @@ def wimanRaw():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+@app.route('/4ward/embedosRaw')
+def embedosRaw():
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute('select * from embedosRaw ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+# 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
+	return jsonify({'Recent data' : r})
+
 
 if __name__ == '__main__':
 	app.run(host="0.0.0.0",port=5000,debug=1)
