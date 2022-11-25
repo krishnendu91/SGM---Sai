@@ -170,19 +170,17 @@ def faclon(client, userdata, msg,):
 	cur1=conn1.cursor()
 	payload=msg.payload.decode()
 	print("Faclon Data")
-	print(payload)
+	
 	
 	payload2= payload.replace("\'", "\"")
 	payload2=payload2.replace("\r\n"," ")
 	payload2=payload2.replace("AV_TS1,"," ")
  	
-	payload3 = json.loads(payload2)
-	print("Wiman Data")
 	
-
-	data = payload3['data']
 # 	print(data)
 	try:
+		payload3 = json.loads(payload2)
+		data = payload3['data']
 		io = data["io"]
 		sysv = data["dev"]
 		sqdata = {"deviceID":1,"imei":data["imei"],"uid":data["uid"],"dtm":data["dtm"],"seq":data["seq"],"sig":data["sig"],"di1":io["di1"],"di2":io["di2"],"op1":io["op1"],"a1":io["a1"],"a2":io["a2"],"s1":io["s1"],"p1":io["p1"],"sysv":sysv["sysv"]}
@@ -191,6 +189,7 @@ def faclon(client, userdata, msg,):
 		
 	except:
 		print("data format error")
+		print(payload)
 		pass
 	
 	cur1.execute("INSERT INTO faclonRaw (data) VALUES (%s);",payload)
