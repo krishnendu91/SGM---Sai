@@ -159,6 +159,7 @@ def wiman(client, userdata, msg,):
 		
 	except:
 		print("data format error")
+		print(payload)
 		pass
 	cur1.execute("INSERT INTO wimanRaw (data) VALUES (%s);",payload)
 	# 	cur1.execute("INSERT INTO piggyback(TIME,boat,dir,ping_ms,ss,nf,rssi,pos,ccq,d,txrate,rxrate,freq,channel,bs_ip) VALUES(%(TIME)s,%(boat,%(dir)s,%(ping_ms)s,%(ss)s,%(nf)s,%(rssi)s,%(pos)s,%(ccq)s,%(d)s,%(txrate)s,%(rxrate)s,%(freq)s,%(channel)s,%(bs_ip)s);",payload)
