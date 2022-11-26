@@ -222,7 +222,7 @@ def embedos(client, userdata, msg,):
 # 	print(msg.payload.decode())
 	payload=msg.payload.decode()
 	print("embedos Data")
-		
+	print(payload)	
 	cur1.execute("INSERT INTO embedosRaw(data) VALUES(%s);",payload)
 	conn1.commit()
 	conn1.close()
