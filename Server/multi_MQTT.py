@@ -220,11 +220,12 @@ def embedos(client, userdata, msg,):
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
 # 	print(msg.payload.decode())
-	payload=json.loads(msg.payload.decode())
+	payload=msg.payload.decode()
 	print("embedos Data")
 	print(payload)	
 	
 	cur1.execute("INSERT INTO embedosRaw(data) VALUES(%s);",payload)
+	payload=json.loads(payload)
 	analogDataChannel1 = payload["analogDataChannel1"]
 	analogDataChannel2 = payload["analogDataChannel2"]
 	analogDataChannel3 = payload["analogDataChannel3"]
