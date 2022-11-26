@@ -220,7 +220,7 @@ def embedos(client, userdata, msg,):
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
 # 	print(msg.payload.decode())
-	payload=msg.payload.decode()
+	payload=json.loads(msg.payload.decode())
 	print("embedos Data")
 	print(payload)	
 	
