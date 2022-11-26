@@ -223,10 +223,23 @@ def embedos(client, userdata, msg,):
 	payload=msg.payload.decode()
 	print("embedos Data")
 	print(payload)	
+	
 	cur1.execute("INSERT INTO embedosRaw(data) VALUES(%s);",payload)
+	analogDataChannel1 = payload["analogDataChannel1"]
+	analogDataChannel2 = payload["analogDataChannel2"]
+	analogDataChannel3 = payload["analogDataChannel3"]
+	analogDataChannel4 = payload["analogDataChannel4"]
+	DigitalInput = payload["DigitalInput"]
+	DigitalOutput = payload["DigitalOutput"]
+
+	data = {"deviceId":payload["deviceId"],"deviceTypeId":payload["deviceTypeId"],"analogDataChannel1value":analogDataChannel1["value"],"analogDataChannel1status":analogDataChannel1["status"],"analogDataChannel2value":analogDataChannel2["value"],"analogDataChannel2status":analogDataChannel2["status"],"analogDataChannel3value":analogDataChannel3["value"],"analogDataChannel3status":analogDataChannel3["status"],"analogDataChannel4value":analogDataChannel4["value"],"analogDataChannel4status":analogDataChannel4["status"],"DigitalInputvalue":DigitalInput["value"],"DigitalInputstatus":DigitalInput["status"],"DigitalOutputvalue":DigitalOutput["value"],"DigitalOutputstatus":DigitalOutput["status"]}
+	print(data)
+	
+	cur1.execute("INSERT INTO `embedos` (`deviceId`, `deviceTypeId`, `analogDataChannel1value`, `analogDataChannel1status`, `analogDataChannel2value`, `analogDataChannel2status`, `analogDataChannel3value`, `analogDataChannel3status`, `analogDataChannel4value`, `analogDataChannel4status`, `DigitalInputvalue`, `DigitalInputstatus`, `DigitalOutputvalue`, `DigitalOutputstatus`) VALUES (%(deviceId)s, %(deviceTypeId)s, %(analogDataChannel1value)s, %(analogDataChannel1status)s, %(analogDataChannel2value)s, %(analogDataChannel2status)s, %(analogDataChannel3value)s, %(analogDataChannel3status)s, %(analogDataChannel4value)s, %(analogDataChannel4status)s, %(DigitalInputvalue)s, %(DigitalInputstatus)s, %(DigitalOutputvalue)s, %(DigitalOutputstatus)s);",data)
 	conn1.commit()
 	conn1.close()
 	print("DB Dump Success")
+
 
 def on_log(client, userdata, level, buf):
 # 	print("log:",buf)
