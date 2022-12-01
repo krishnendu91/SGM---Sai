@@ -564,7 +564,7 @@ def embedos():
 	return jsonify({'Recent data' : r})
 
 @app.route('/BIoT/API1')
-def wiman():
+def biot1():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('select * from wiman ORDER BY id DESC LIMIT 1 ')
