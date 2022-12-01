@@ -563,6 +563,15 @@ def embedos():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+@app.route('/4ward/embedos/<devid>')
+def embedosID(devid):
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute('select * from embedos where deviceId =%s  ORDER BY id DESC LIMIT 1 ',devid)
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+# 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
+	return jsonify({'Recent data' : r})
+
 @app.route('/BIoT/API1')
 def biot1():
 	security(str(sys._getframe().f_code.co_name))
