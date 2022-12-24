@@ -60,6 +60,6 @@ CostBal = NTc - NTp
 data={"p1":p1, "p2":p2, "p3":p3,"p4":p4,"p5":p5,"c1":c1,"c2":c2,"c3":c3,"Tconsumption":Tconsumption,"Tgeneration":Tgeneration,"pbal":pbal, "tp1":tp1, "tp2":tp2,"tp3":tp3,"tp4":tp4, "tp5":tp5,"Tc1":Tc1,"Tc2":Tc2,"Tc3":Tc3,"NTp":NTp,"NTc":NTc,"CostBal":CostBal }
 print(data)
 
-cur.execute("INSERT INTO `synt-bc` (`Tconsumption`, `Tgeneration`, `p1`, `p2`, `p3`, `p4`, `p5`, `c1`, `c2`, `c3`, `pbal`) VALUES (%(Tconsumption)s, %(Tgeneration)s, %(p1)s, %(p2)s, %(p3)s, %(p4)s, %(p5)s, %(c1)s, %(c2)s, %(c3)s, %(pbal)s);",data)
+cur.execute("INSERT INTO `synt-bc` (`Tconsumption`, `Tgeneration`, `p1`, `p2`, `p3`, `p4`, `p5`, `c1`, `c2`, `c3`, `pbal`,`tp1`, `tp2`, `tp3`, `tp4`, `tp5`, `Tc1`, `Tc2`, `Tc3`, `NTp`, `NTc`, `CostBal`) VALUES (%(Tconsumption)s, %(Tgeneration)s, %(p1)s, %(p2)s, %(p3)s, %(p4)s, %(p5)s, %(c1)s, %(c2)s, %(c3)s, %(pbal)s,%(tp1)s, %(tp2)s, %(tp3)s, %(tp4)s, %(tp5)s, %(Tc1)s, %(Tc2)s,%(Tc3)s, %(NTp)s, %(NTc)s, %(CostBal)s);",data)
 conn.commit()
 conn.close()
