@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # Synthetic Data to generate consumption and generation
 
 import pymysql,random
