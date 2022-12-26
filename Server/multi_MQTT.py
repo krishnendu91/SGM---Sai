@@ -137,6 +137,7 @@ def onpiggyback(client, userdata, msg,):
 def wiman(client, userdata, msg,):
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
+	print(msg.payload)
 	payload=msg.payload.decode()
 	
 	payload2= payload.replace("\'", "\"")
