@@ -146,11 +146,11 @@ def wiman(client, userdata, msg,):
  	
 	payload3 = json.loads(payload2)
 	print("Wiman Data")
-	
-
-	data = payload3['data']
-# 	print(data)
+	print(data)	
 	try:
+		data = payload3['data']
+
+	
 		io = data["io"]
 		sysv = data["dev"]
 		sqdata = {"deviceID":1,"imei":data["imei"],"uid":data["uid"],"dtm":data["dtm"],"seq":data["seq"],"sig":data["sig"],"di1":io["di1"],"di2":io["di2"],"op1":io["op1"],"a1":io["a1"],"a2":io["a2"],"s1":io["s1"],"p1":io["p1"],"sysv":sysv["sysv"]}
