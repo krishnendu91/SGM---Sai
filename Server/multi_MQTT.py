@@ -148,7 +148,7 @@ def wiman(client, userdata, msg,):
  	
 	payload3 = json.loads(payload2)
 	print("Wiman Data")
-	print(data)	
+# 	print(data)	
 	data = payload3['data']
 	try:
 	
