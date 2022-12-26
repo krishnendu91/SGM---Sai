@@ -140,14 +140,15 @@ def wiman(client, userdata, msg,):
 	print(msg.payload)
 	payload=msg.payload.decode()
 	
-	payload2= payload.replace("\'", "\"")
-	payload2=payload2.replace("\r\n"," ")
-	payload2=payload2.replace("AV_TS2,"," ")
- 	
-	payload3 = json.loads(payload2)
-	print("Wiman Data")
-	print(data)	
+	
 	try:
+		payload2= payload.replace("\'", "\"")
+		payload2=payload2.replace("\r\n"," ")
+		payload2=payload2.replace("AV_TS2,"," ")
+ 	
+		payload3 = json.loads(payload2)
+		print("Wiman Data")
+		print(data)	
 		data = payload3['data']
 
 	
