@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 # Synthetic Data to generate anomaly
 
