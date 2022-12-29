@@ -24,8 +24,9 @@ else:
 WSBPower = Load1+Load2
 User1Avg = random.randint(0,100)
 User2Avg = random.randint(0,100)
+User3Avg = random.randint(0,100)
 
-data = {"WSB":WSB,"User":User,"Load1":Load1,"Load2":Load2, "Load1Power":Load1Power, "Load2Power":Load2Power, "WSBPower":WSBPower,"User1Avg":User1Avg,"User2Avg":User2Avg}
+data = {"WSB":WSB,"User":User,"Load1":Load1,"Load2":Load2, "Load1Power":Load1Power, "Load2Power":Load2Power, "WSBPower":WSBPower,"User1Avg":User1Avg,"User2Avg":User2Avg,"User3Avg":User3Avg}
 print(data)
 
 cur.execute("INSERT INTO `SmartBuildingSynt` (`WSB`, `User`, `Load1`, `Load2`, `Load1Power`, `Load2Power`, `WSBPower`, `User1Avg`, `User2Avg`, `User3Avg`) VALUES (%(WSB)s, %(User)s, %(Load1)s, %(Load2)s, %(Load1Power)s, %(Load2Power)s, %(WSBPower)s, %(User1Avg)s, %(User2Avg)s, %(User3Avg)s);",data)
