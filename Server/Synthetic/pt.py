@@ -30,6 +30,6 @@ else:
 data={"Power":Power,"powerTheft":powerTheft,"lineFault":lineFault,"tieline":tieline}
 print(data)
 
-cur.execute("INSERT INTO `anomalySynt` (`lineFault`, `powerTheft`, `Power`, `tieline`) VALUES (%(lineFault)s, %(powerTheft)s, %(Power)s, %(tieline)s);",data)
+cur.execute("INSERT INTO `anomalySynt` (`lineFault`, `powerTheft`, `Power1`, `tieline`) VALUES (%(lineFault)s, %(powerTheft)s, %(Power)s, %(tieline)s);",data)
 conn.commit()
 conn.close()
