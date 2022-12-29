@@ -21,7 +21,7 @@ if Load2 ==1:
 else:
   Load2Power = 0
 
-WSBPower = Load1+Load2
+WSBPower = Load2Power+Load1Power
 User1Avg = random.randint(0,100)
 User2Avg = random.randint(0,100)
 User3Avg = random.randint(0,100)
