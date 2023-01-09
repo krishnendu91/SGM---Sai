@@ -563,6 +563,7 @@ def embedos():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+
 @app.route('/4ward/embedos/<devid>')
 def embedosID(devid):
 	security(str(sys._getframe().f_code.co_name))
@@ -571,6 +572,26 @@ def embedosID(devid):
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
+
+@app.route('/4ward/VVM/<devID>')
+def VVMdev(devID):
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute('select * from VVMGateway where devID = %s ORDER BY id DESC LIMIT 1 ',devID)
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+# 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
+	return jsonify({'Recent data' : r})
+
+@app.route('/4ward/VVM')
+def VVM():
+	security(str(sys._getframe().f_code.co_name))
+	cur = mysql.connect().cursor()
+	cur.execute('select * from VVMGateway ORDER BY id DESC LIMIT 1 ')
+	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+# 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
+	return jsonify({'Recent data' : r})
+
+
 
 @app.route('/BIoT/API1')
 def biot1():
