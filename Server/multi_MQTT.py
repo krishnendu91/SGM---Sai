@@ -243,7 +243,18 @@ def embedos(client, userdata, msg,):
 	conn1.close()
 	print("DB Dump Success")
 
-
+def vvmgateway(client, userdata, msg,):
+	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
+	cur1=conn1.cursor()
+	payload=msg.payload.decode()
+	payload=json.loads(payload)
+	print("VVM Data")
+	print(payload)
+	cur1.execute("INSERT INTO `VVMGateway` (`devID`, `G`, `timestamp`, `BTV`, `PVV`, `PVI`, `4-20`) VALUES (%(devID)s, %(G)s, %(timestamp)s, %(BTV)s, %(PVV)s, %(PVI)s, %(4-20)s);",payload)
+	conn1.commit()
+	conn1.close()
+	print("DB Dump Success")
+	
 def on_log(client, userdata, level, buf):
 # 	print("log:",buf)
 # 	print(client)
@@ -289,6 +300,7 @@ mqttclient.message_callback_add("SGM/wiman", wiman)
 mqttclient.message_callback_add("SGM/faclon", faclon)
 mqttclient.message_callback_add("SGM/trb", trb)
 mqttclient.message_callback_add("SGM/embedos", embedos)
+mqttclient.message_callback_add("SGM/vvm", vvmgateway)
 
 
 
