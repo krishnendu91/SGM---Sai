@@ -17,7 +17,7 @@ faclonRT = time.mktime(cur1.fetchone()[0].timetuple())
 currentTime = time.time()
 print(faclonRT)
 print(currentTime)
-print(timedelta(currentTime,faclonRT))
+print((currentTime-faclonRT).total_seconds()/60)
 
 conn1.close()
 
