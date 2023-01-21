@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import telebot,pymysql,time
+from datetime import datetime
 from datetime import timedelta
 bot = telebot.TeleBot(token='813728431:AAEmpmT-UXIQQcdzwkih8k1XSdCbiMIFP2Q')
 
@@ -17,7 +18,7 @@ faclonRT = time.mktime(cur1.fetchone()[0].timetuple())
 currentTime = time.time()
 print(faclonRT)
 print(currentTime)
-print((currentTime-faclonRT).total_seconds()/60)
+print((currentTime-faclonRT)/60)
 
 conn1.close()
 
