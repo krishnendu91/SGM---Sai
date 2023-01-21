@@ -11,12 +11,11 @@ def sendmessage(message):
 
 conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur1=conn1.cursor()
+cur1.execute("SELECT receiveTime FROM `faclon`  ORDER BY `faclon`.`receiveTime`  DESC LIMIT 1")
+faclonRT = cur1.fetchone()
+print(faclonRT)
 
 
-
-# cur1.execute("SELECT  INTO mqttTest(message,topic,qos) VALUES(%(message)s,%(topic)s,%(qos)s);",mqttData)
-
-conn1.commit()
 conn1.close()
 
 sendmessage("test")
