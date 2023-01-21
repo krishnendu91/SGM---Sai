@@ -46,7 +46,7 @@ if delta > 600:
 
 
 #VVM AMGW001
-cur1.execute("SELECT receiveTime FROM `VVMGateway` WHERE devID = %s ORDER BY `receiveTime` DESC LIMIT 1;","AMGW001")
+cur1.execute("SELECT receiveTime FROM `VVMGateway` WHERE devID = "AMGW001" ORDER BY `receiveTime` DESC LIMIT 1;")
 RT = cur1.fetchone()[0]
 RT2 = time.mktime(RT.timetuple())
 currentTime = time.time()
@@ -55,7 +55,7 @@ if delta > 600:
 	sendmessage("VVM - AMGW001 - No data for last 10 min. Last data received time: " + str(RT) )
 
 #Embeddos	
-cur1.execute("SELECT timestamp FROM `embedos` WHERE devID = AMGW001 ORDER BY `receiveTime` DESC LIMIT 1;")
+cur1.execute("SELECT timestamp FROM `embedos` ORDER BY `timestamp` DESC LIMIT 1;")
 RT = cur1.fetchone()[0]
 RT2 = time.mktime(RT.timetuple())
 currentTime = time.time()
