@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import telebot,pymysql,time
+from datetime import timedelta
 bot = telebot.TeleBot(token='813728431:AAEmpmT-UXIQQcdzwkih8k1XSdCbiMIFP2Q')
 
 def sendmessage(message):
@@ -16,6 +17,7 @@ faclonRT = time.mktime(cur1.fetchone()[0].timetuple())
 currentTime = time.time()
 print(faclonRT)
 print(currentTime)
+print(timedelta(currentTime,faclonRT))
 
 conn1.close()
 
