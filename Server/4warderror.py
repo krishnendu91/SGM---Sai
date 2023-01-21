@@ -13,7 +13,7 @@ def sendmessage(message):
 
 conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur1=conn1.cursor()
-
+wiman2=0
 
 cur1.execute("SELECT faclon1, wiman1, wiman2, vvm, embedos FROM `4wardDevStatus` ORDER BY ID DESC LIMIT 1;")
 pastData = cur1.fetchone()
