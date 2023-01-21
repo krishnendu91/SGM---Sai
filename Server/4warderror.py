@@ -46,7 +46,7 @@ if delta > 600:
 
 
 #VVM AMGW001
-cur1.execute("SELECT receiveTime FROM `VVMGateway` WHERE devID = "AMGW001" ORDER BY `receiveTime` DESC LIMIT 1;")
+cur1.execute("SELECT receiveTime FROM `VVMGateway` WHERE devID = 'AMGW001' ORDER BY `receiveTime` DESC LIMIT 1;")
 RT = cur1.fetchone()[0]
 RT2 = time.mktime(RT.timetuple())
 currentTime = time.time()
