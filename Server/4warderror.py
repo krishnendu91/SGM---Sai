@@ -13,8 +13,9 @@ conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="
 cur1=conn1.cursor()
 cur1.execute("SELECT receiveTime FROM `faclon`  ORDER BY `faclon`.`receiveTime`  DESC LIMIT 1")
 faclonRT = time.mktime(cur1.fetchone()[0].timetuple())
+currentTime = time.time()
 print(faclonRT)
-
+print(currentTime)
 
 conn1.close()
 
