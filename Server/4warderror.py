@@ -1,4 +1,10 @@
 #!/usr/bin/python3
-from errornotify import sendmessage
+import telegram,pymysql
+bot = telegram.Bot(token='813728431:AAEmpmT-UXIQQcdzwkih8k1XSdCbiMIFP2Q')
 
-print(sendmessage("test-4ward gatewayerrors"))
+def sendmessage(message):
+	chat_id =-304438902
+	bot.send_message(chat_id=chat_id, text=message)
+	return "Done!"
+
+sendmessage("test")
