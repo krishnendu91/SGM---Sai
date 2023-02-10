@@ -33,7 +33,7 @@ elif delta < 600:
 		faclon1 = 0
 	else:
 		faclon1 = status["faclon1"]
-else
+else:
 	faclon1 = 0
 
 #Wiman 869523057988207
