@@ -26,7 +26,7 @@ if delta > 600:
 		sendmessage("Faclon - 869523055584990 - No data for last 10 min. Last data received time: " + str(RT) )
 		faclon1 = 1
 	else:
-		faclon1 = 0
+		faclon1 = status["faclon1"]
 else:
 	faclon1 = 0
 
@@ -41,7 +41,7 @@ if delta > 600:
 		sendmessage("Wiman - 869523057988207 - No data for last 10 min. Last data received time: " + str(RT) )
 		wiman1 = 1
 	else:
-		wiman1 = 0
+		wiman1 = status["wiman1"]
 else:
 	wiman1 = 0
 #Wiman 869523057983679
@@ -55,7 +55,7 @@ if delta > 600:
 		sendmessage("Wiman - 869523057983679 - No data for last 10 min. Last data received time: " + str(RT) )
 		wiman2 = 1
 	else:
-		wiman2 = 0
+		wiman2 = status["wiman2"]
 else:
 	wiman2 = 0
 #VVM AMGW001
@@ -69,7 +69,7 @@ if delta > 600:
 		sendmessage("VVM - AMGW001 - No data for last 10 min. Last data received time: " + str(RT) )
 		vvm = 1
 	else:
-		vvm = 0
+		vvm = status["vvm"]
 else:
 	vvm = 0
 #Embeddos	
@@ -83,7 +83,7 @@ if delta > 600:
 		sendmessage("Embeddos - No data for last 10 min. Last data received time: " + str(RT) )
 		embedos = 1
 	else:
-		embedos = 0
+		embedos = status["embedos"]
 else:
 	embedos = 0
 status = {"faclon1":faclon1,"wiman1":wiman1,"wiman2":wiman2, "vvm":vvm, "embedos":embedos}
