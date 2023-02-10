@@ -3,18 +3,13 @@ import telebot,pymysql,time
 from datetime import datetime
 from datetime import timedelta
 bot = telebot.TeleBot(token='813728431:AAEmpmT-UXIQQcdzwkih8k1XSdCbiMIFP2Q')
-
 def sendmessage(message):
 	chat_id =-663842076
 	bot.send_message(chat_id=chat_id, text=message)
 	return "Done!"
-
-
-
 conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur1=conn1.cursor()
 wiman2=0
-
 cur1.execute("SELECT faclon1, wiman1, wiman2, vvm, embedos FROM `4wardDevStatus` ORDER BY ID DESC LIMIT 1;")
 pastData = cur1.fetchone()
 faclon1 = pastData[0]
@@ -49,8 +44,6 @@ if delta > 600:
 		wiman1 = 0
 else:
 	wiman1 = 0
-	
-
 #Wiman 869523057983679
 cur1.execute("SELECT receiveTime FROM `wiman` WHERE imei = 869523057983679 ORDER BY `receiveTime` DESC LIMIT 1;")
 RT = cur1.fetchone()[0]
@@ -65,8 +58,6 @@ if delta > 600:
 		wiman2 = 0
 else:
 	wiman2 = 0
-
-
 #VVM AMGW001
 cur1.execute("SELECT receiveTime FROM `VVMGateway` WHERE devID = 'AMGW001' ORDER BY `receiveTime` DESC LIMIT 1;")
 RT = cur1.fetchone()[0]
@@ -81,7 +72,6 @@ if delta > 600:
 		vvm = 0
 else:
 	vvm = 0
-
 #Embeddos	
 cur1.execute("SELECT timestamp FROM `embedos` ORDER BY `timestamp` DESC LIMIT 1;")
 RT = cur1.fetchone()[0]
@@ -96,12 +86,9 @@ if delta > 600:
 		embedos = 0
 else:
 	embedos = 0
-	
-
 status = {"faclon1":faclon1,"wiman1":wiman1,"wiman2":wiman2, "vvm":vvm, "embedos":embedos}
 print(status)
 cur1.execute("INSERT INTO 4wardDevStatus (faclon1, wiman1, wiman2, vvm, embedos) VALUES (%(faclon1)s, %(wiman1)s, %(wiman2)s, %(vvm)s, %(embedos)s;",status)
 cur1.commit()
 conn1.close()
-
 # sendmessage("test")
