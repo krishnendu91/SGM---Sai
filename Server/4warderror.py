@@ -88,7 +88,7 @@ else:
 	embedos = 0
 status = {"faclon1":faclon1,"wiman1":wiman1,"wiman2":wiman2, "vvm":vvm, "embedos":embedos}
 print(status)
-cur1.execute("INSERT INTO 4wardDevStatus (faclon1, wiman1, wiman2, vvm, embedos) VALUES (%(faclon1)s, %(wiman1)s, %(wiman2)s, %(vvm)s, %(embedos)s;",status)
+cur1.execute("INSERT INTO `4wardDevStatus`(`faclon1`, `wiman1`, `wiman2`, `vvm`, `embedos`) VALUES (%(faclon1)s, %(wiman1)s, %(wiman2)s, %(vvm)s, %(embedos)s;",status)
 cur1.commit()
 conn1.close()
 # sendmessage("test")
