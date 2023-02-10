@@ -27,7 +27,13 @@ if delta > 600:
 		faclon1 = 1
 	else:
 		faclon1 = status["faclon1"]
-else:
+elif delta < 600:
+	if status["faclon1"] == 1:
+		sendmessage("Faclon - 869523055584990 - Device Up at " + str(RT) )
+		faclon1 = 0
+	else:
+		faclon1 = status["faclon1"]
+else
 	faclon1 = 0
 
 #Wiman 869523057988207
@@ -70,8 +76,16 @@ if delta > 600:
 		vvm = 1
 	else:
 		vvm = status["vvm"]
+
+elif delta < 600:
+	if status["vvm"] == 1:
+		sendmessage("VVM - AMGW001 - Device up at: " + str(RT) )
+		vvm = 1
+	else:
+		vvm = status["vvm"]		
 else:
 	vvm = 0
+
 #Embeddos	
 cur1.execute("SELECT timestamp FROM `embedos` ORDER BY `timestamp` DESC LIMIT 1;")
 RT = cur1.fetchone()[0]
