@@ -42,14 +42,25 @@ RT = cur1.fetchone()[0]
 RT2 = time.mktime(RT.timetuple())
 currentTime = time.time()
 delta = (currentTime-RT2)
+
 if delta > 600:
 	if status["wiman1"] == 0:
 		sendmessage("Wiman - 869523057988207 - No data for last 10 min. Last data received time: " + str(RT) )
 		wiman1 = 1
 	else:
 		wiman1 = status["wiman1"]
+elif delta < 600:
+	if status["wiman1"] == 0:
+		sendmessage("Wiman - 869523057988207 - No data for last 10 min. Last data received time: " + str(RT) )
+		wiman1 = 0
+	else:
+		wiman1 = status["wiman1"]
 else:
 	wiman1 = 0
+
+	
+	
+	
 #Wiman 869523057983679
 cur1.execute("SELECT receiveTime FROM `wiman` WHERE imei = 869523057983679 ORDER BY `receiveTime` DESC LIMIT 1;")
 RT = cur1.fetchone()[0]
@@ -62,6 +73,14 @@ if delta > 600:
 		wiman2 = 1
 	else:
 		wiman2 = status["wiman2"]
+elif delta < 600:
+	if status["wiman2"] == 0:
+		sendmessage("Wiman - 869523057983679 - No data for last 10 min. Last data received time: " + str(RT) )
+		wiman2 = 0
+	else:
+		wiman2 = status["wiman2"]
+
+		
 else:
 	wiman2 = 0
 #VVM AMGW001
@@ -80,11 +99,11 @@ if delta > 600:
 elif delta < 600:
 	if status["vvm"] == 1:
 		sendmessage("VVM - AMGW001 - Device up at: " + str(RT) )
-		vvm = 1
+		vvm = 0
 	else:
 		vvm = status["vvm"]		
 else:
-	vvm = 0
+	vvm = 1
 
 #Embeddos	
 cur1.execute("SELECT timestamp FROM `embedos` ORDER BY `timestamp` DESC LIMIT 1;")
