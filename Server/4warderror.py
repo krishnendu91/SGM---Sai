@@ -105,6 +105,8 @@ elif delta < 600:
 else:
 	vvm = 1
 
+
+
 #Embeddos	
 cur1.execute("SELECT timestamp FROM `embedos` ORDER BY `timestamp` DESC LIMIT 1;")
 RT = cur1.fetchone()[0]
