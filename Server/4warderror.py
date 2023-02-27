@@ -10,10 +10,10 @@ def sendmessage(message):
 conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur1=conn1.cursor()
 wiman2=0
-cur1.execute("SELECT faclon1, wiman1, wiman2, vvm, embedos FROM `4wardDevStatus` ORDER BY ID DESC LIMIT 1;")
+cur1.execute("SELECT faclon1, wiman1, wiman2, vvm001, vvm007, embedos FROM `4wardDevStatus` ORDER BY ID DESC LIMIT 1;")
 pastData = cur1.fetchone()
 faclon1 = pastData[0]
-status = {"faclon1":pastData[0],"wiman1":pastData[1],"wiman2":pastData[2], "vvm":pastData[3], "embedos":pastData[4]}
+status = {"faclon1":pastData[0],"wiman1":pastData[1],"wiman2":pastData[2], "vvm001":pastData[3], "vvm007":pastData[4], "embedos":pastData[5]}
 print(status)
 #Faclon 869523055584990
 cur1.execute("SELECT receiveTime FROM `faclon` WHERE imei = 869523055584990 ORDER BY `faclon`.`receiveTime` DESC LIMIT 1;")
@@ -90,20 +90,42 @@ RT2 = time.mktime(RT.timetuple())
 currentTime = time.time()
 delta = (currentTime-RT2)
 if delta > 600:
-	if status["vvm"] == 0:
+	if status["vvm001"] == 0:
 		sendmessage("VVM - AMGW001 - No data for last 10 min. Last data received time: " + str(RT) )
-		vvm = 1
+		vvm1 = 1
 	else:
-		vvm = status["vvm"]
+		vvm1 = status["vvm001"]
 
 elif delta < 600:
-	if status["vvm"] == 1:
+	if status["vvm001"] == 1:
 		sendmessage("VVM - AMGW001 - Device up at: " + str(RT) )
-		vvm = 0
+		vvm1 = 0
 	else:
-		vvm = status["vvm"]		
+		vvm1 = status["vvm001"]		
 else:
-	vvm = 1
+	vvm1 = 1
+
+#VVM AMGW007
+cur1.execute("SELECT receiveTime FROM `VVMGateway` WHERE devID = 'AMGW001' ORDER BY `receiveTime` DESC LIMIT 1;")
+RT = cur1.fetchone()[0]
+RT2 = time.mktime(RT.timetuple())
+currentTime = time.time()
+delta = (currentTime-RT2)
+if delta > 600:
+	if status["vvm007"] == 0:
+		sendmessage("VVM - AMGW001 - No data for last 10 min. Last data received time: " + str(RT) )
+		vvm7 = 1
+	else:
+		vvm7 = status["vvm007"]
+
+elif delta < 600:
+	if status["vvm007"] == 1:
+		sendmessage("VVM - AMGW001 - Device up at: " + str(RT) )
+		vvm7 = 0
+	else:
+		vvm7 = status["vvm007"]		
+else:
+	vvm7 = 1
 
 
 
@@ -121,9 +143,9 @@ if delta > 600:
 		embedos = status["embedos"]
 else:
 	embedos = 0
-status = {"faclon1":faclon1,"wiman1":wiman1,"wiman2":wiman2, "vvm":vvm, "embedos":embedos}
+status = {"faclon1":faclon1,"wiman1":wiman1,"wiman2":wiman2, "vvm001":vvm1, "vvm007":vvm7, "embedos":embedos}
 print(status)
-cur1.execute("INSERT INTO `4wardDevStatus`(`faclon1`, `wiman1`, `wiman2`, `vvm`, `embedos`) VALUES (%(faclon1)s, %(wiman1)s, %(wiman2)s, %(vvm)s, %(embedos)s);",status)
+cur1.execute("INSERT INTO `4wardDevStatus`(`faclon1`, `wiman1`, `wiman2`, `vvm001`, `vvm007`, `embedos`) VALUES (%(faclon1)s, %(wiman1)s, %(wiman2)s, %(vvm001)s, %(vvm007)s, %(embedos)s);",status)
 conn1.commit()
 conn1.close()
 # sendmessage("test")
