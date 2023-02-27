@@ -106,21 +106,21 @@ else:
 	vvm1 = 1
 
 #VVM AMGW007
-cur1.execute("SELECT receiveTime FROM `VVMGateway` WHERE devID = 'AMGW001' ORDER BY `receiveTime` DESC LIMIT 1;")
+cur1.execute("SELECT receiveTime FROM `VVMGateway` WHERE devID = 'AMGW007' ORDER BY `receiveTime` DESC LIMIT 1;")
 RT = cur1.fetchone()[0]
 RT2 = time.mktime(RT.timetuple())
 currentTime = time.time()
 delta = (currentTime-RT2)
 if delta > 600:
 	if status["vvm007"] == 0:
-		sendmessage("VVM - AMGW001 - No data for last 10 min. Last data received time: " + str(RT) )
+		sendmessage("VVM - AMGW007 - No data for last 10 min. Last data received time: " + str(RT) )
 		vvm7 = 1
 	else:
 		vvm7 = status["vvm007"]
 
 elif delta < 600:
 	if status["vvm007"] == 1:
-		sendmessage("VVM - AMGW001 - Device up at: " + str(RT) )
+		sendmessage("VVM - AMGW007 - Device up at: " + str(RT) )
 		vvm7 = 0
 	else:
 		vvm7 = status["vvm007"]		
