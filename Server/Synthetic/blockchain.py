@@ -33,36 +33,35 @@ def consTarrif(c):
       
 
 
-pg1=random.uniform(0.0,999.0)
-pe1=random.uniform(0.0,pg1)
-pc1=(pg1-pe1)/2
-pb1=(pg1-pe1)/2
+pe1=random.uniform(0.0,999.0)
+pc1=random.uniform(0.0,999.0)
+pb1=random.uniform(0.0,999.0)
+pg1=pe1+pc2-pb1
 tp1 = pe1*bp
 
-# pg2=random.uniform(0.0,999.0)
 pc2=random.uniform(0.0,999.0)
 pe2=random.uniform(0.0,999.0)
 pb2=random.uniform(0.0,999.0)
 pg2=pe2+pc2-pb2
 tp2 = pe2*bp
-print(pg2,pc2,pe2,pb2)
 
-pg3=random.uniform(0.0,999.0)
-pe3=random.uniform(0.0,pg3)
-pc3=(pg3-pe3)/2
-pb3=(pg3-pe3)/2
+
+pc3=random.uniform(0.0,999.0)
+pe3=random.uniform(0.0,999.0)
+pb3=random.uniform(0.0,999.0)
+pg3=pe3+pc3-pb3
 tp3 = pe3*bp
 
-pg4=random.uniform(0.0,999.0)
-pe4=random.uniform(0.0,pg4)
-pc4=(pg4-pe4)/2
-pb4=(pg4-pe4)/2
+pc4=random.uniform(0.0,999.0)
+pe4=random.uniform(0.0,999.0)
+pb4=random.uniform(0.0,999.0)
+pg4=pe4+pc4-pb4
 tp4 = pe4*bp
 
-pg5=random.uniform(0.0,999.0)
-pe5=random.uniform(0.0,pg1)
-pc5=(pg5-pe5)/2
-pb5=(pg5-pe5)/2
+pc5=random.uniform(0.0,999.0)
+pe5=random.uniform(0.0,999.0)
+pb5=random.uniform(0.0,999.0)
+pg5=pe5+pc5-pb5
 tp5 = pe5*bp
 
 c1=random.uniform(0.0,999.0)
