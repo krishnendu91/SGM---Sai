@@ -41,9 +41,10 @@ tp1 = pe1*bp
 
 pg2=random.uniform(0.0,999.0)
 pc2=random.uniform(0.0,pg2)
-pe2=random.uniform(0.0,pc2)
-pb2=pg2-pc2-pe2
+pe2=random.uniform(0.0,pg2)
+pb2=abs(pg2-pc2-pe2)
 tp2 = pe2*bp
+print(pg2,pc2,pe2,pb2)
 
 pg3=random.uniform(0.0,999.0)
 pe3=random.uniform(0.0,pg3)
