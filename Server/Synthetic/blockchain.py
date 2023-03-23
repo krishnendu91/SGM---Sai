@@ -36,7 +36,7 @@ def consTarrif(c):
 pe1=random.uniform(0.0,999.0)
 pc1=random.uniform(0.0,999.0)
 pb1=random.uniform(0.0,999.0)
-pg1=pe1+pc2-pb1
+pg1=pe1+pc1-pb1
 tp1 = pe1*bp
 
 pc2=random.uniform(0.0,999.0)
