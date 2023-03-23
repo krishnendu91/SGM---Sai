@@ -40,9 +40,9 @@ pb1=(pg1-pe1)/2
 tp1 = pe1*bp
 
 pg2=random.uniform(0.0,999.0)
-pe2=random.uniform(0.0,pg2)
-pc2=(pg2-pe2)/2
-pb2=(pg2-pe2)/2
+pc2=random.uniform(0.0,pg2)
+pe2=random.uniform(0.0,pc2)
+pb2=pg2-pc2-pe2
 tp2 = pe2*bp
 
 pg3=random.uniform(0.0,999.0)
