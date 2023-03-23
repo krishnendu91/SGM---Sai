@@ -43,7 +43,7 @@ tp1 = pe1*bp
 pc2=random.uniform(0.0,999.0)
 pe2=random.uniform(0.0,999.0)
 pb2=random.uniform(0.0,999.0)
-pg=pe2+pc2-pb2
+pg2=pe2+pc2-pb2
 tp2 = pe2*bp
 print(pg2,pc2,pe2,pb2)
 
