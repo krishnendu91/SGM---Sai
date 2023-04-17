@@ -9,10 +9,13 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as md
 import base64
 import pymysql
+from flask_cors import CORS
+
 # import dispenserHelper as dh
 
 
 app = Flask(__name__)
+CORS(app)
 mysql = MySQL()
 urls=("/favicon.ico","dummy")
 # MySQL configurations
