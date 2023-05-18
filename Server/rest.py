@@ -112,13 +112,13 @@ def login():
             # Successful login
             session['username'] = username
             redirected_from = session.pop('redirected_from', None)
-            return redirect(redirected_from or url_for('/'))
+            return redirect(redirected_from or url_for('welcome'))
         else:
             # Failed login
             return 'Invalid username or password'
     else:
         if 'username' in session:
-            return redirect(url_for('/'))
+            return redirect(url_for('welcome'))
         else:
             return render_template('index2.html')
 
