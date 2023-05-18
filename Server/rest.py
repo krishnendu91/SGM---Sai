@@ -3,10 +3,11 @@
 import datetime,sys,os,io
 from datetime import datetime
 from urllib.request import urlopen
-from flask import Flask, jsonify,request,render_template
+from flask import Flask, render_template, request, redirect, session, jsonify
+from passlib.hash import bcrypt
 from flaskext.mysql import MySQL
-import matplotlib.pyplot as plt
-import matplotlib.dates as md
+# import matplotlib.pyplot as plt
+# import matplotlib.dates as md
 import base64
 import pymysql
 from flask_cors import CORS
@@ -15,6 +16,8 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
+app.secret_key = 'intelinfra'
+
 CORS(app)
 mysql = MySQL()
 urls=("/favicon.ico","dummy")
@@ -24,7 +27,12 @@ app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
 app.config['MYSQL_DATABASE_DB'] = 'AmritaSGM'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
+users = {'admin': bcrypt.hash('password123'), 'user': bcrypt.hash('123456')}
+
+
 mysql.init_app(app)
+
+
 
 nodeId={'1':{'url':"http://192.168.179.231:5000/"},
 	'2':{'url':"http://192.168.179.232:5000/"},
@@ -44,7 +52,12 @@ nodeId={'1':{'url':"http://192.168.179.231:5000/"},
 	'16':{'url':"http://192.168.190.142:5000/"},
 	'17':{'url':"http://192.168.190.143:5000/"},}
 
-
+def login_required(route_function):
+    def decorated_function(*args, **kwargs):
+        if 'username' not in session:
+            return redirect('/login')
+        return route_function(*args, **kwargs)
+    return decorated_function
 
 def security(fname):
 	APILog={'clientAgent':str(request.headers.get('User-Agent')),
@@ -84,6 +97,33 @@ def security(fname):
 # 		return "Transaction success"
 # 	else:
 # 		return "Transaction not processed"
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        if username in users and bcrypt.verify(password, users[username]):
+            # Successful login
+            session['username'] = username
+            return redirect('/')
+        else:
+            # Failed login
+            return 'Invalid username or password'
+    else:
+        if 'username' in session:
+            return redirect('/')
+        else:
+            return render_template('index2.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect('/login')
+
+
 
 @app.route('/timenow')
 def timenow():
@@ -477,6 +517,7 @@ def sch():
 
 #4Ward
 @app.route('/4ward/trbdata')
+@login_required
 def trb():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
