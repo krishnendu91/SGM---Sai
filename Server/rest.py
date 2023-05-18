@@ -111,13 +111,14 @@ def login():
         if username in users and bcrypt.verify(password, users[username]):
             # Successful login
             session['username'] = username
-            return redirect('/')
+            redirected_from = session.pop('redirected_from', None)
+            return redirect(redirected_from or url_for('home'))
         else:
             # Failed login
             return 'Invalid username or password'
     else:
         if 'username' in session:
-            return redirect('/')
+            return redirect(url_for('home'))
         else:
             return render_template('index2.html')
 
