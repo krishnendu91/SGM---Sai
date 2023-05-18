@@ -11,6 +11,8 @@ from flaskext.mysql import MySQL
 import base64
 import pymysql
 from flask_cors import CORS
+from functools import wraps
+
 
 # import dispenserHelper as dh
 
@@ -53,6 +55,7 @@ nodeId={'1':{'url':"http://192.168.179.231:5000/"},
 	'17':{'url':"http://192.168.190.143:5000/"},}
 
 def login_required(route_function):
+    @wraps(route_function)
     def decorated_function(*args, **kwargs):
         if 'username' not in session:
             return redirect('/login')
@@ -527,6 +530,7 @@ def trb():
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/trbdata/<imei>')
+@login_required
 def trbimei(imei):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -536,6 +540,7 @@ def trbimei(imei):
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/faclon')
+@login_required
 def faclon():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -545,6 +550,7 @@ def faclon():
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/faclon/<imei>')
+@login_required
 def faclonimei(imei):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -554,6 +560,7 @@ def faclonimei(imei):
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/faclonRaw')
+@login_required
 def faclonRaw():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -563,6 +570,7 @@ def faclonRaw():
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/wiman')
+@login_required
 def wiman():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -572,6 +580,7 @@ def wiman():
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/wiman/<imei>')
+@login_required
 def wimanimei(imei):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -581,6 +590,7 @@ def wimanimei(imei):
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/wimanRaw')
+@login_required
 def wimanRaw():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -590,6 +600,7 @@ def wimanRaw():
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/embedosRaw')
+@login_required
 def embedosRaw():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -599,6 +610,7 @@ def embedosRaw():
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/embedos')
+@login_required
 def embedos():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -609,6 +621,7 @@ def embedos():
 
 
 @app.route('/4ward/embedos/<devid>')
+@login_required
 def embedosID(devid):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -618,6 +631,7 @@ def embedosID(devid):
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/VVM/<devID>')
+@login_required
 def VVMdev(devID):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -627,6 +641,7 @@ def VVMdev(devID):
 	return jsonify({'Recent data' : r})
 
 @app.route('/4ward/VVM')
+@login_required
 def VVM():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
