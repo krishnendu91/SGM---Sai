@@ -118,7 +118,7 @@ def login():
             return 'Invalid username or password'
     else:
         if 'username' in session:
-            return redirect(url_for('welcome'))
+            return redirect(redirected_from)
         else:
             return render_template('index2.html')
 
