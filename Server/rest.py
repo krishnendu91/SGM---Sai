@@ -149,7 +149,7 @@ def temperature():
 
 @app.route('/')
 @login_required
-def welcome():
+def home():
 	security(str(sys._getframe().f_code.co_name))
 #	print "Welcome to Amrita Smart-Grid Middleware"
 #	print "kindly use one of the APIs to get data"
