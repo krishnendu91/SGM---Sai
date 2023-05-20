@@ -112,7 +112,7 @@ def login():
 			# Successful login
 			session['username'] = username
 			next_page = request.args.get('next')
-			print(redirected_from)
+			
 			return redirect(next_page or url_for('home'))
 		else:
             # Failed login
