@@ -58,7 +58,7 @@ def login_required(route_function):
     @wraps(route_function)
     def decorated_function(*args, **kwargs):
         if 'username' not in session:
-            return redirect('/login')
+            return redirect(url_for('login', next=request.url))
         return route_function(*args, **kwargs)
     return decorated_function
 
@@ -118,7 +118,7 @@ def login():
             return 'Invalid username or password'
     else:
         if 'username' in session:
-            return redirect(redirected_from)
+            return redirect(url_for('welcome'))
         else:
             return render_template('index2.html')
 
@@ -130,12 +130,14 @@ def logout():
 
 
 @app.route('/timenow')
+@login_required
 def timenow():
 	security(str(sys._getframe().f_code.co_name))
 	now = datetime.now()
 	return (now.strftime("%Y-%m-%d %H:%M:%S"))
 
 @app.route('/temperature')
+@login_required
 def temperature():
 	security(str(sys._getframe().f_code.co_name))
 	conn = pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
@@ -145,6 +147,7 @@ def temperature():
 	return jsonify({'Temperature' : r})
 
 @app.route('/')
+@login_required
 def welcome():
 	security(str(sys._getframe().f_code.co_name))
 #	print "Welcome to Amrita Smart-Grid Middleware"
@@ -153,6 +156,7 @@ def welcome():
 	#return render_template('/home/cs/SGM/Server/welcome.html')
 
 @app.route('/stp/test')
+@login_required
 def stptest():
 	security(str(sys._getframe().f_code.co_name))
 	#cur = mysql.connect().cursor()
@@ -164,6 +168,7 @@ def stptest():
 	return 'done'
 
 @app.route('/stp/pumplist')
+@login_required
 def stppump():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -172,6 +177,7 @@ def stppump():
 	return jsonify({'STP Data' : r})
 
 @app.route('/stp/<meterName>')
+@login_required
 def stpdata(meterName):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -181,6 +187,7 @@ def stpdata(meterName):
 	return jsonify({'STP Data' : r})
 
 @app.route('/stp/state/<meterName>')
+@login_required
 def stpstate(meterName):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -189,6 +196,7 @@ def stpstate(meterName):
 	return jsonify({'STP Data' : s})
 
 @app.route('/deadnodes')
+@login_required
 def deadnodes():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -197,6 +205,7 @@ def deadnodes():
 	return jsonify({'Dead Nodes' : r})
 
 @app.route('/xlgen')
+@login_required
 def xlgen():
 	security(str(sys._getframe().f_code.co_name))
 	cmd="/home/cs/SGM/Server/XLGen.py"
@@ -204,6 +213,7 @@ def xlgen():
 	return "Check Your Mailbox"
 
 @app.route('/reboot')
+@login_required
 def rebootS():
 	security(str(sys._getframe().f_code.co_name))
 	cmd="reboot"
@@ -212,6 +222,7 @@ def rebootS():
 
 
 @app.route('/updateserver')
+@login_required
 def serverupdate():
 	security(str(sys._getframe().f_code.co_name))
 	cmd="/home/cs/SGM_Local/gitpull.sh"
@@ -219,6 +230,7 @@ def serverupdate():
 	return "Server Updation Complete"
 
 @app.route('/switchname/<node>')
+@login_required
 def switchname(node):
 	node=str(node)
 	security(str(sys._getframe().f_code.co_name))
@@ -229,12 +241,14 @@ def switchname(node):
 	return jsonify({'mqtt Test data' : r})
 
 @app.route('/restart')
+@login_required
 def restart():
 	security(str(sys._getframe().f_code.co_name))
 	cmd="/home/cs/restartRest.sh"
 	os.system(cmd)
 	return "restart complete"
 @app.route('/mqttlog')
+@login_required
 def mqttlog():
 	security(str(sys._getframe().f_code.co_name))
 	conn = mysql.connect()
@@ -244,6 +258,7 @@ def mqttlog():
 	return jsonify({'mqtt log' : r})
 
 @app.route('/dimis/update/<node>')
+@login_required
 def updatedimis(node):
 	security(str(sys._getframe().f_code.co_name))
 	sURL=str(nodeId[node]['url'])+'update'
@@ -257,6 +272,7 @@ def updatedimis(node):
 	return message
 
 @app.route('/dimis/switchcontrol/<node>/<switch>')
+@login_required
 def switchcontrol(node,switch):
 	security(str(sys._getframe().f_code.co_name))
 	conn = mysql.connect()
@@ -282,6 +298,7 @@ def switchcontrol(node,switch):
 	return message
 
 @app.route('/mqtttest')
+@login_required
 def mqtttest():
 	security(str(sys._getframe().f_code.co_name))
 	conn = mysql.connect()
@@ -291,6 +308,7 @@ def mqtttest():
 	return jsonify({'mqtt Test data' : r})
 
 @app.route('/alive/<id>')
+@login_required
 def alive_1(id):
 	security(str(sys._getframe().f_code.co_name))
 	conn = mysql.connect()
@@ -301,6 +319,7 @@ def alive_1(id):
 	return jsonify({'Alive' : r})
 
 @app.route('/alive/100')
+@login_required
 def alive_100():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -310,6 +329,7 @@ def alive_100():
 	return jsonify({'Alive' : r})
 
 @app.route('/alive/200')
+@login_required
 def alive_200():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -319,15 +339,18 @@ def alive_200():
 	return jsonify({'Alive' : r})
 
 @app.route('/alive/300')
+@login_required
 def alive_300():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT * FROM `nodeHealth` WHERE aggId =3 ORDER BY `id` DESC limit 1')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
+	r = [dict((cur.des@login_required
+cription[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Alive' : r})
 
 @app.route('/weather')
+@login_required
 def weather():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -336,6 +359,7 @@ def weather():
 	return jsonify({'current weather' : r})
 
 @app.route('/weathersummary')
+@login_required
 def weathersummary():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -344,6 +368,7 @@ def weathersummary():
 	return jsonify(r)
 
 @app.route('/site')
+@login_required
 def site():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -352,6 +377,7 @@ def site():
 	return jsonify({'Project Sites' : r})
 
 @app.route('/metertype')
+@login_required
 def metertype():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -360,6 +386,7 @@ def metertype():
 	return jsonify({'Available Meters' : r})
 
 @app.route('/dimis/switchstate/<id>')
+@login_required
 def n1switchState(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -369,6 +396,7 @@ def n1switchState(id):
 	return jsonify({'switchState' : r})
 
 @app.route('/dimis/recentgm1')
+@login_required
 def recentgm():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -377,6 +405,7 @@ def recentgm():
 	return jsonify({'Recent data' : r})
 
 @app.route('/dimis/recentlm')
+@login_required
 def recentlm1():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -385,6 +414,7 @@ def recentlm1():
 	return jsonify({'Recent data' : r})
 
 @app.route('/dimis/recentgm2')
+@login_required
 def recentlm2():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -393,6 +423,7 @@ def recentlm2():
 	return jsonify({'Recent data' : r})
 
 @app.route('/outbackrecent')
+@login_required
 def outbackrecent():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -402,6 +433,7 @@ def outbackrecent():
 
 #Event API
 @app.route('/dimis/event')
+@login_required
 def event():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -412,6 +444,7 @@ def event():
 
 #API for node level filtering
 @app.route('/dimis/<id>/gm1')
+@login_required
 def n1(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -421,6 +454,7 @@ def n1(id):
 	return jsonify({'Recent data' : r})
 
 @app.route('/dimis/<id>/gm2')
+@login_required
 def n2(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -430,6 +464,7 @@ def n2(id):
 	return jsonify({'Recent data' : r})
 
 @app.route('/dimis/<id>/lm')
+@login_required
 def n3(id):
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -439,6 +474,7 @@ def n3(id):
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/1')
+@login_required
 def maxim():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -448,6 +484,7 @@ def maxim():
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/2')
+@login_required
 def maxim1():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -457,6 +494,7 @@ def maxim1():
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/3')
+@login_required
 def maxim2():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -466,6 +504,7 @@ def maxim2():
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/4')
+@login_required
 def maxim3():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -475,6 +514,7 @@ def maxim3():
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/5')
+@login_required
 def maxim4():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -484,6 +524,7 @@ def maxim4():
 	return jsonify({'Recent data' : r})
 
 @app.route('/maxim/6')
+@login_required
 def maxim5():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -493,6 +534,7 @@ def maxim5():
 	return jsonify({'Recent data' : r})
 
 @app.route('/outbackinv')
+@login_required
 def outbackinv():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -502,6 +544,7 @@ def outbackinv():
 	return jsonify({'Recent data' : r})
 
 @app.route('/outbackcc')
+@login_required
 def outbackcc():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
@@ -511,6 +554,7 @@ def outbackcc():
 	return jsonify({'Recent data' : r})
 
 @app.route('/sch')
+@login_required
 def sch():
 	security(str(sys._getframe().f_code.co_name))
 	cur = mysql.connect().cursor()
