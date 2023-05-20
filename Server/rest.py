@@ -104,24 +104,24 @@ def security(fname):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-
-        if username in users and bcrypt.verify(password, users[username]):
-            # Successful login
-            session['username'] = username
-            redirected_from = session.pop('redirected_from', None)
-	    print(redirected_from)
-            return redirect(redirected_from or url_for('welcome'))
-        else:
+	if request.method == 'POST':
+		username = request.form.get('username')
+		password = request.form.get('password')
+		
+		if username in users and bcrypt.verify(password, users[username]):
+			# Successful login
+			session['username'] = username
+			redirected_from = session.pop('redirected_from', None)
+			print(redirected_from)
+			return redirect(redirected_from or url_for('welcome'))
+		else:
             # Failed login
-            return 'Invalid username or password'
-    else:
-        if 'username' in session:
-            return redirect(url_for('welcome'))
-        else:
-            return render_template('index2.html')
+			return 'Invalid username or password'
+	else:
+		if 'username' in session:
+			return redirect(url_for('welcome'))
+		else:
+			return render_template('index2.html')
 
 @app.route('/logout')
 def logout():
