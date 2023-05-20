@@ -112,6 +112,7 @@ def login():
             # Successful login
             session['username'] = username
             redirected_from = session.pop('redirected_from', None)
+	    print(redirected_from)
             return redirect(redirected_from or url_for('welcome'))
         else:
             # Failed login
