@@ -250,7 +250,7 @@ def vvmgateway(client, userdata, msg,):
 	payload=json.loads(payload)
 	print("VVM Data")
 	print(payload)
-	cur1.execute("INSERT INTO `VVMGateway` (`devID`, `G`, `timestamp`, `BTV`, `PVV`, `PVI`, `4-20`) VALUES (%(devID)s, %(G)s, %(timestamp)s, %(BTV)s, %(PVV)s, %(PVI)s, %(4-20)s);",payload)
+	cur1.execute("INSERT INTO `VVMGateway` (`devID`, `G`, `timestamp`, `BTV`, `PVV`, `PVI`, `mA`) VALUES (%(devID)s, %(G)s, %(timestamp)s, %(BTV)s, %(PVV)s, %(PVI)s, %(4-20)s);",payload)
 	conn1.commit()
 	conn1.close()
 	print("DB Dump Success")
