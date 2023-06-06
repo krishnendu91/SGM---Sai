@@ -50,7 +50,7 @@ if delta > 600:
 	else:
 		wiman1 = status["wiman1"]
 elif delta < 600:
-	if status["wiman1"] == 0:
+	if status["wiman1"] == 1:
 		sendmessage("Wiman - 869523057988207 - No data for last 10 min. Last data received time: " + str(RT) )
 		wiman1 = 0
 	else:
@@ -74,7 +74,7 @@ if delta > 600:
 	else:
 		wiman2 = status["wiman2"]
 elif delta < 600:
-	if status["wiman2"] == 0:
+	if status["wiman2"] == 1:
 		sendmessage("Wiman - 869523057983679 - No data for last 10 min. Last data received time: " + str(RT) )
 		wiman2 = 0
 	else:
@@ -117,6 +117,7 @@ if delta > 600:
 		vvm7 = 1
 	else:
 		vvm7 = status["vvm007"]
+		
 
 elif delta < 600:
 	if status["vvm007"] == 1:
@@ -126,6 +127,29 @@ elif delta < 600:
 		vvm7 = status["vvm007"]		
 else:
 	vvm7 = 1
+	
+#VVM AMGW005
+cur1.execute("SELECT receiveTime FROM `VVMGateway` WHERE devID = 'AMGW005' ORDER BY `receiveTime` DESC LIMIT 1;")
+RT = cur1.fetchone()[0]
+RT2 = time.mktime(RT.timetuple())
+currentTime = time.time()
+delta = (currentTime-RT2)
+if delta > 600:
+	if status["vvm005"] == 0:
+		sendmessage("VVM - AMGW005 - No data for last 10 min. Last data received time: " + str(RT) )
+		vvm5 = 1
+	else:
+		vvm5 = status["vvm005"]
+		
+
+elif delta < 600:
+	if status["vvm005"] == 1:
+		sendmessage("VVM - AMGW005 - Device up at: " + str(RT) )
+		vvm5 = 0
+	else:
+		vvm5 = status["vvm005"]		
+else:
+	vvm5 = 1
 
 
 
