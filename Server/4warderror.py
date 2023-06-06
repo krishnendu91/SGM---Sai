@@ -13,7 +13,7 @@ wiman2=0
 cur1.execute("SELECT faclon1, wiman1, wiman2, vvm001, vvm005, vvm007, embedos FROM `4wardDevStatus` ORDER BY ID DESC LIMIT 1;")
 pastData = cur1.fetchone()
 faclon1 = pastData[0]
-status = {"faclon1":pastData[0],"wiman1":pastData[1],"wiman2":pastData[2], "vvm001":pastData[3], "vvm007":pastData[4], "embedos":pastData[5]}
+status = {"faclon1":pastData[0],"wiman1":pastData[1],"wiman2":pastData[2], "vvm001":pastData[3], "vvm005":pastData[4], "vvm007":pastData[5], "embedos":pastData[6]}
 print(status)
 #Faclon 869523055584990
 cur1.execute("SELECT receiveTime FROM `faclon` WHERE imei = 869523055584990 ORDER BY `faclon`.`receiveTime` DESC LIMIT 1;")
