@@ -10,7 +10,7 @@ def sendmessage(message):
 conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur1=conn1.cursor()
 wiman2=0
-cur1.execute("SELECT faclon1, wiman1, wiman2, vvm001, vvm007, embedos FROM `4wardDevStatus` ORDER BY ID DESC LIMIT 1;")
+cur1.execute("SELECT faclon1, wiman1, wiman2, vvm001, vvm005, vvm007, embedos FROM `4wardDevStatus` ORDER BY ID DESC LIMIT 1;")
 pastData = cur1.fetchone()
 faclon1 = pastData[0]
 status = {"faclon1":pastData[0],"wiman1":pastData[1],"wiman2":pastData[2], "vvm001":pastData[3], "vvm007":pastData[4], "embedos":pastData[5]}
@@ -167,9 +167,12 @@ if delta > 600:
 		embedos = status["embedos"]
 else:
 	embedos = 0
-status = {"faclon1":faclon1,"wiman1":wiman1,"wiman2":wiman2, "vvm001":vvm1, "vvm007":vvm7, "embedos":embedos}
+
+	
+status = {"faclon1":faclon1,"wiman1":wiman1,"wiman2":wiman2, "vvm001":vvm1, "vvm005":vvm5, "vvm007":vvm7, "embedos":embedos}
 print(status)
-cur1.execute("INSERT INTO `4wardDevStatus`(`faclon1`, `wiman1`, `wiman2`, `vvm001`, `vvm007`, `embedos`) VALUES (%(faclon1)s, %(wiman1)s, %(wiman2)s, %(vvm001)s, %(vvm007)s, %(embedos)s);",status)
+
+cur1.execute("INSERT INTO `4wardDevStatus`(`faclon1`, `wiman1`, `wiman2`, `vvm001`, `vvm005`, `vvm007`, `embedos`) VALUES (%(faclon1)s, %(wiman1)s, %(wiman2)s, %(vvm001)s, %(vvm005)s, %(vvm007)s, %(embedos)s);",status)
 conn1.commit()
 conn1.close()
 # sendmessage("test")
