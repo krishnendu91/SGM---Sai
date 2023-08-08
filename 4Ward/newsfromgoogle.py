@@ -21,8 +21,9 @@ def fetch_and_store_news():
         source = result['media']
         title = result['title']
         url = result['link']
+        
         insert_query = "INSERT INTO newsfromgoogle (date, source, title, url) VALUES (%s, %s, %s, %s)"
-        data = (date, source, title, URL)
+        data = (date, source, title, url)
         cursor.execute(insert_query, data)
         connection.commit()
         print("News articles fetched and stored successfully")
