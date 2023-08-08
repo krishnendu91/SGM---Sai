@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
-import mysql.connector
-from mysql.connector import Error
+import pymysql
+from pymysql import Error
 from GoogleNews import GoogleNews
 
 # Function to fetch news articles and store in MySQL table
 def fetch_and_store_news():
     try:
         # Establish a connection to the MySQL database
-        connection = mysql.connector.connect(
+        connection = pymysql.connect(
             host='localhost',
             database='4ward',
             user='admin',
