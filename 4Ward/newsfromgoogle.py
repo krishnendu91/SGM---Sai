@@ -14,8 +14,7 @@ def fetch_and_store_news():
             user='admin',
             password='admin'
         )
-
-         if connection.open:
+    if connection.open:
             
             print("Connected to MySQL database")
 
