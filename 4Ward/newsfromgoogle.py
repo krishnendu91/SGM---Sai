@@ -2,7 +2,7 @@
 
 import mysql.connector
 from mysql.connector import Error
-from googlenews import GoogleNews
+from GoogleNews import GoogleNews
 
 # Function to fetch news articles and store in MySQL table
 def fetch_and_store_news():
