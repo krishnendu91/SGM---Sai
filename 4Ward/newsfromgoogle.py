@@ -15,7 +15,8 @@ def fetch_and_store_news():
             password='admin'
         )
 
-        if connection.is_connected():
+         if connection.open:
+            
             print("Connected to MySQL database")
 
             # Create a cursor
