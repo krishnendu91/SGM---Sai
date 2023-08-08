@@ -13,9 +13,10 @@ def fetch_and_store_news():
    # Initialize GoogleNews instance
     gn = GoogleNews(lang='en')
     # Search for news articles related to water quality
-    gn.search('water quality')
+    gn.search('water quality in India')
     # Get search results
     search_results = gn.results()
+    print(search_results)
     for result in search_results:
         date = result['date']
         source = result['media']
