@@ -1,4 +1,4 @@
-# Code Documentation
+# Code Documentation for Datafetch Dimis
 
 This Python script collects real-time data from an Evoleo Dimis Energy Meter and publishes it using MQTT. 
 The script gathers data from different ports based on the configured node and meter types, processes it, and sends it to an MQTT broker for further analysis or visualization.
