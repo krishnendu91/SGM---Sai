@@ -15,5 +15,3 @@ To use this code, follow these steps:
 5. Run the script to collect data from the Inverters and Charge Controllers, insert it into the database, and publish it via MQTT.
 
 Make sure to adapt the code to your project's hardware setup and data collection needs.
-
-For any questions or issues, feel free to reach out to the project maintainers.
