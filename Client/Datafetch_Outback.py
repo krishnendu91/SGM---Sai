@@ -28,11 +28,11 @@ mate=json.loads(mate.decode())
 print("Connected to Inverter")
 #print(mate)
 
-#These lines extract data from the mate dictionary. It appears to be related to an inverter device. The device's node ID is set to 14.
+#These lines extract data from the mate dictionary. The device's node ID is set to 14.
 inv1= mate['devstatus']['ports'][0]
 inv1['nodeid']=14
 
-#These lines extract and assign values to variables error and warn from the inv1 dictionary. These variables are then assigned back to the inv1 dictionary with the same keys.
+#These lines extract and assign values to variables error and warn from the inverter1(inv1) dictionary. These variables are then assigned back to the inv1 dictionary with the same keys.
 error=inv1['Error'][0]
 warn=inv1['Warn'][0]
 inv1['Error']=error
@@ -48,7 +48,7 @@ mqttservice.mqtt_publish("192.168.112.110",1883,"datafetch_outback_inv_direct",i
 print("MQTT Success for inv1")
 time.sleep(0.5)
 
-#The code continues with similar patterns for inv2, inv3, cc1, cc2, and cc3, fetching data, inserting it into the database, and publishing it via MQTT.
+#The code continues with similar patterns for inverter2, inverter3, chargecontroller1, chargecontroller2, and chargecontroller3, fetching data, inserting it into the database, and publishing it via MQTT.
 inv2= mate['devstatus']['ports'][3]
 inv2['nodeid']=14
 error=inv2['Error'][0]
