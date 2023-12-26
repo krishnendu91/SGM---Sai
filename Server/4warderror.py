@@ -4,10 +4,11 @@ from datetime import datetime
 from datetime import timedelta
 bot = telebot.TeleBot(token='6607765727:AAH28KUmQUwPRVHxE-fIkqL3rQYZPS-b1sk')
 def sendmessage(message):
-	# chat_id =-663842076
+	# chat_id =-663842076 #Old Group with Sai's Bot
 	chat_id =-4029966222
 	bot.send_message(chat_id=chat_id, text=message)
 	return "Done!"
+
 conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur1=conn1.cursor()
 wiman2=0
