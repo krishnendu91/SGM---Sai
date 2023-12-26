@@ -2,7 +2,7 @@
 import telebot,pymysql,time
 from datetime import datetime
 from datetime import timedelta
-bot = telebot.TeleBot(token='813728431:AAEmpmT-UXIQQcdzwkih8k1XSdCbiMIFP2Q')
+bot = telebot.TeleBot(token='6607765727:AAH28KUmQUwPRVHxE-fIkqL3rQYZPS-b1sk')
 def sendmessage(message):
 	chat_id =-663842076
 	bot.send_message(chat_id=chat_id, text=message)
