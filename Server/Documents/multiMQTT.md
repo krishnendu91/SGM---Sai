@@ -1,4 +1,4 @@
-# AmritaSGM MQTT Server Code Summary Report
+# AmritaSGM MQTT Server Code Summary
 
 This document provides a summary of the key components and functionalities of the AmritaSGM MQTT server code.
 
