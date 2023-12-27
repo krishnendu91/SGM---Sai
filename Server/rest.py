@@ -1,41 +1,44 @@
 #!/usr/bin/python3
 
+# Import necessary modules
 import datetime,sys,os,io
 from datetime import datetime
 from urllib.request import urlopen
 from flask import Flask, render_template, request, redirect, session, jsonify, url_for
 from passlib.hash import bcrypt
 from flaskext.mysql import MySQL
-# import matplotlib.pyplot as plt
-# import matplotlib.dates as md
 import base64
 import pymysql
 from flask_cors import CORS
 from functools import wraps
 
-
-# import dispenserHelper as dh
-
-
+# Create a Flask application
 app = Flask(__name__)
 app.secret_key = 'intelinfra'
 
+# Enable Cross-Origin Resource Sharing (CORS)
 CORS(app)
+
+# Initialize MySQL
 mysql = MySQL()
+
+# Define URLs for favicon
 urls=("/favicon.ico","dummy")
-# MySQL configurations
+
+# Define MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
 app.config['MYSQL_DATABASE_DB'] = 'AmritaSGM'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
+# Define user credentials for authentication
 users = {'admin': bcrypt.hash('password123'), 'user': bcrypt.hash('123456')}
 
-
+# Initialize the MySQL connection with the Flask app
 mysql.init_app(app)
 
 
-
+# Define a dictionary of node IDs and their corresponding URLs
 nodeId={'1':{'url':"http://192.168.179.231:5000/"},
 	'2':{'url':"http://192.168.179.232:5000/"},
 	'3':{'url':"http://192.168.179.233:5000/"},
@@ -54,6 +57,7 @@ nodeId={'1':{'url':"http://192.168.179.231:5000/"},
 	'16':{'url':"http://192.168.190.142:5000/"},
 	'17':{'url':"http://192.168.190.143:5000/"},}
 
+# Define a decorator function to require login for certain routes
 def login_required(route_function):
     @wraps(route_function)
     def decorated_function(*args, **kwargs):
@@ -62,6 +66,7 @@ def login_required(route_function):
         return route_function(*args, **kwargs)
     return decorated_function
 
+# Define a security function to log API access
 def security(fname):
 	APILog={'clientAgent':str(request.headers.get('User-Agent')),
 		'clientIP':str(request.environ['REMOTE_ADDR']),
@@ -72,36 +77,7 @@ def security(fname):
 	cur.execute('INSERT INTO APILogs(clientAgent,clientIP,API)VALUES(%(clientAgent)s,%(clientIP)s,%(API)s); ',APILog)
 	conn.commit()
 
-# FOR DISPENSER
-# @app.route('/Dispenser/getAddress')
-# def getAddress():
-# 	security(str(sys._getframe().f_code.co_name))
-# 	address=dh.addressGen()
-
-# @app.route('/Dispenser/sendData/<address>/<data>')
-# def sendData(address,data):
-# 	security(str(sys._getframe().f_code.co_name))
-# 	rc=dh.sendData(address,data)
-# 	if rc==0:
-# 		return "Transaction failed"
-# 	elif rc==1:
-# 		return "Transaction success"
-# 	else:
-# 		return "Transaction not processed"
-
-# @app.route('/Dispenser/sendMoney/<address>/<data>/<money>')
-# def sendMoney(address,data,money):
-# 	security(str(sys._getframe().f_code.co_name))
-
-# 	rc=dh.sendMoney(address,data,int(money))
-# 	if rc==0:
-# 		return "Transaction failed"
-# 	elif rc==1:
-# 		return "Transaction success"
-# 	else:
-# 		return "Transaction not processed"
-
-
+# Define a route for user login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if request.method == 'POST':
@@ -123,13 +99,13 @@ def login():
 		else:
 			return render_template('index2.html')
 
+# Define a route for user logout
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     return redirect('/login')
 
-
-
+# Define a route to get the current time
 @app.route('/timenow')
 @login_required
 def timenow():
@@ -137,6 +113,7 @@ def timenow():
 	now = datetime.now()
 	return (now.strftime("%Y-%m-%d %H:%M:%S"))
 
+# Define a route to get temperature data
 @app.route('/temperature')
 @login_required
 def temperature():
@@ -147,6 +124,7 @@ def temperature():
 	r=cur.fetchall()
 	return jsonify({'Temperature' : r})
 
+# Define the home route
 @app.route('/')
 @login_required
 def home():
@@ -156,18 +134,7 @@ def home():
 	return "Welcome to Amrita Intelligent Infrastructure Data Management and Control Panel App. \n Use one of the options below."
 	#return render_template('/home/cs/SGM/Server/welcome.html')
 
-@app.route('/stp/test')
-@login_required
-def stptest():
-	security(str(sys._getframe().f_code.co_name))
-	#cur = mysql.connect().cursor()
-	cmd="/home/cs/SGM/Server/STPHour.py"
-	os.system(cmd)
-	#cur.execute("SET GLOBAL time_zone = '+05:30';")
-	#r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	#return jsonify({'STP Test Data' : r})
-	return 'done'
-
+# Define a route to get pumplist in STP
 @app.route('/stp/pumplist')
 @login_required
 def stppump():
@@ -177,6 +144,7 @@ def stppump():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'STP Data' : r})
 
+# Define a route to get metername in STP
 @app.route('/stp/<meterName>')
 @login_required
 def stpdata(meterName):
@@ -187,6 +155,7 @@ def stpdata(meterName):
 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'STP Data' : r})
 
+# Define a route to get the state of a meter in STP
 @app.route('/stp/state/<meterName>')
 @login_required
 def stpstate(meterName):
@@ -196,6 +165,7 @@ def stpstate(meterName):
 	s = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'STP Data' : s})
 
+# Define a route to get a list of dead node in StabilizE
 @app.route('/deadnodes')
 @login_required
 def deadnodes():
@@ -205,6 +175,7 @@ def deadnodes():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Dead Nodes' : r})
 
+# Define a route to generate XLS report of STP data and email it to necessary people
 @app.route('/xlgen')
 @login_required
 def xlgen():
@@ -213,6 +184,7 @@ def xlgen():
 	os.system(cmd)
 	return "Check Your Mailbox"
 
+# Define a route to reboot the server
 @app.route('/reboot')
 @login_required
 def rebootS():
@@ -221,15 +193,7 @@ def rebootS():
 	#os.system(cmd)
 	return "Server rebooting"
 
-
-@app.route('/updateserver')
-@login_required
-def serverupdate():
-	security(str(sys._getframe().f_code.co_name))
-	cmd="/home/cs/SGM_Local/gitpull.sh"
-	os.system(cmd)
-	return "Server Updation Complete"
-
+# Define a route to control the contactors in StabilizE
 @app.route('/switchname/<node>')
 @login_required
 def switchname(node):
@@ -241,37 +205,7 @@ def switchname(node):
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'mqtt Test data' : r})
 
-@app.route('/restart')
-@login_required
-def restart():
-	security(str(sys._getframe().f_code.co_name))
-	cmd="/home/cs/restartRest.sh"
-	os.system(cmd)
-	return "restart complete"
-@app.route('/mqttlog')
-@login_required
-def mqttlog():
-	security(str(sys._getframe().f_code.co_name))
-	conn = mysql.connect()
-	cur=conn.cursor()
-	cur.execute('select timestamp,log from mqttLog ORDER BY id DESC limit 15')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	return jsonify({'mqtt log' : r})
-
-@app.route('/dimis/update/<node>')
-@login_required
-def updatedimis(node):
-	security(str(sys._getframe().f_code.co_name))
-	sURL=str(nodeId[node]['url'])+'update'
-	try:	
-		api_page = urlopen(sURL) #Python 3
-		api=api_page.read()
-		message=api
-	except:
-		pass
-		message="Error accessing URL \n " + str(sURL)
-	return message
-
+# Define a route to control specific switch in stabilizE
 @app.route('/dimis/switchcontrol/<node>/<switch>')
 @login_required
 def switchcontrol(node,switch):
@@ -298,6 +232,7 @@ def switchcontrol(node,switch):
 	print("Switch State Updated in DB")
 	return message
 
+# Define a route to get the recent data from mqtttest topic
 @app.route('/mqtttest')
 @login_required
 def mqtttest():
@@ -308,47 +243,7 @@ def mqtttest():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'mqtt Test data' : r})
 
-@app.route('/alive/<id>')
-@login_required
-def alive_1(id):
-	security(str(sys._getframe().f_code.co_name))
-	conn = mysql.connect()
-	cur=conn.cursor()
-	cur.execute('select * from lastseen where nodeid=%s ORDER BY id DESC LIMIT 1 ',id)
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/100')
-@login_required
-def alive_100():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('SELECT * FROM `nodeHealth` WHERE aggId =1 ORDER BY `id` DESC limit 1')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/200')
-@login_required
-def alive_200():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('SELECT * FROM `nodeHealth` WHERE aggId =2 ORDER BY `id` DESC limit 1')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=(r[0]['timestamp'].timestamp())*1000
-	return jsonify({'Alive' : r})
-
-@app.route('/alive/300')
-@login_required
-def alive_300():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('SELECT * FROM `nodeHealth` WHERE aggId =3 ORDER BY `id` DESC limit 1')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Alive' : r})
-
+# Define a route to get the weather data
 @app.route('/weather')
 @login_required
 def weather():
@@ -358,15 +253,7 @@ def weather():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'current weather' : r})
 
-@app.route('/weathersummary')
-@login_required
-def weathersummary():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select summary,apparentTemperature,humidity from weather ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	return jsonify(r)
-
+# Define a route to get project locations
 @app.route('/site')
 @login_required
 def site():
@@ -376,6 +263,7 @@ def site():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Project Sites' : r})
 
+# Define a route to get different meter types in stabilizE
 @app.route('/metertype')
 @login_required
 def metertype():
@@ -385,6 +273,7 @@ def metertype():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Available Meters' : r})
 
+# Define a route to check the switch status in stabilizE
 @app.route('/dimis/switchstate/<id>')
 @login_required
 def n1switchState(id):
@@ -395,6 +284,7 @@ def n1switchState(id):
 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'switchState' : r})
 
+# Define a route to get the 
 @app.route('/dimis/recentgm1')
 @login_required
 def recentgm():
@@ -404,24 +294,7 @@ def recentgm():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	return jsonify({'Recent data' : r})
 
-@app.route('/dimis/recentlm')
-@login_required
-def recentlm1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where meterType=2 ORDER BY id DESC LIMIT 1')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	return jsonify({'Recent data' : r})
-
-@app.route('/dimis/recentgm2')
-@login_required
-def recentlm2():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from nodeData where meterType=3 ORDER BY id DESC LIMIT 1')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	return jsonify({'Recent data' : r})
-
+# Define a route to get the recent data from Outback Inverter
 @app.route('/outbackrecent')
 @login_required
 def outbackrecent():
@@ -442,7 +315,7 @@ def event():
 	r[0]['timestampEpoch']=r[0]['updateTime'].timestamp()
 	return jsonify({'Event Data' : r})
 
-#API for node level filtering
+# # Define a route for node level filtering with gm1 data
 @app.route('/dimis/<id>/gm1')
 @login_required
 def n1(id):
@@ -453,6 +326,7 @@ def n1(id):
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# # Define a route for node level filtering with gm2 data
 @app.route('/dimis/<id>/gm2')
 @login_required
 def n2(id):
@@ -463,6 +337,7 @@ def n2(id):
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# # Define a route for node level filtering wirh lm data
 @app.route('/dimis/<id>/lm')
 @login_required
 def n3(id):
@@ -473,6 +348,7 @@ def n3(id):
 	r[0]['timestampEpoch']=r[0]['Timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# # Define a route for maxim data
 @app.route('/maxim/1')
 @login_required
 def maxim():
@@ -533,6 +409,7 @@ def maxim5():
 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# # Define a route for outback inverter data
 @app.route('/outbackinv')
 @login_required
 def outbackinv():
@@ -543,6 +420,7 @@ def outbackinv():
 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# # Define a route for outback charge controller data
 @app.route('/outbackcc')
 @login_required
 def outbackcc():
@@ -552,18 +430,8 @@ def outbackcc():
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
-
-@app.route('/sch')
-@login_required
-def sch():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from schData ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify({'Recent data' : r})
-
 #4Ward
+# # Define a route for TRB 4G gateway
 @app.route('/4ward/trbdata')
 @login_required
 def trb():
@@ -571,9 +439,9 @@ def trb():
 	cur = mysql.connect().cursor()
 	cur.execute('select * from trbdata ORDER BY id DESC LIMIT 1 ')
 	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-# 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for TRB 4G gateway filtering with IMEI
 @app.route('/4ward/trbdata/<imei>')
 @login_required
 def trbimei(imei):
@@ -584,6 +452,7 @@ def trbimei(imei):
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for Faclon 4G gateway
 @app.route('/4ward/faclon')
 @login_required
 def faclon():
@@ -594,6 +463,7 @@ def faclon():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for Faclon 4G gateway with IMEI filtering
 @app.route('/4ward/faclon/<imei>')
 @login_required
 def faclonimei(imei):
@@ -604,6 +474,7 @@ def faclonimei(imei):
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for faclon 4G gateway with Raw data
 @app.route('/4ward/faclonRaw')
 @login_required
 def faclonRaw():
@@ -614,6 +485,7 @@ def faclonRaw():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for wiman 4G gateway
 @app.route('/4ward/wiman')
 @login_required
 def wiman():
@@ -624,6 +496,7 @@ def wiman():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for wiman 4G gateway with IMEI filtering
 @app.route('/4ward/wiman/<imei>')
 @login_required
 def wimanimei(imei):
@@ -634,6 +507,7 @@ def wimanimei(imei):
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for wiman 4G gateway Raw data
 @app.route('/4ward/wimanRaw')
 @login_required
 def wimanRaw():
@@ -644,6 +518,7 @@ def wimanRaw():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for embedos 4G gateway raw data
 @app.route('/4ward/embedosRaw')
 @login_required
 def embedosRaw():
@@ -654,6 +529,7 @@ def embedosRaw():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for embedos 4G gateway
 @app.route('/4ward/embedos')
 @login_required
 def embedos():
@@ -664,7 +540,7 @@ def embedos():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
-
+# Define a route for embedos 4G gateway with Dev ID as filter
 @app.route('/4ward/embedos/<devid>')
 @login_required
 def embedosID(devid):
@@ -675,6 +551,7 @@ def embedosID(devid):
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for VVM 4G gateway with Dev ID as filter
 @app.route('/4ward/VVM/<devID>')
 @login_required
 def VVMdev(devID):
@@ -685,6 +562,7 @@ def VVMdev(devID):
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
+# Define a route for VVM 4G gateway
 @app.route('/4ward/VVM')
 @login_required
 def VVM():
@@ -695,16 +573,7 @@ def VVM():
 # 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
 	return jsonify({'Recent data' : r})
 
-
-
-@app.route('/BIoT/API1')
-def biot1():
-	security(str(sys._getframe().f_code.co_name))
-	cur = mysql.connect().cursor()
-	cur.execute('select * from wiman ORDER BY id DESC LIMIT 1 ')
-	r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
-# 	r[0]['timestampEpoch']=r[0]['timestamp'].timestamp()*1000
-	return jsonify(r)
+# Add more routes and functionality as needed
 
 if __name__ == '__main__':
 	app.run(host="0.0.0.0",port=5000,debug=1)
