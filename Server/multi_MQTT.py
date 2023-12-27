@@ -11,15 +11,22 @@ from datetime import datetime
 global mqttclient;
 global broker;
 global port;
+
+# Establish a connection to the MySQL database
 conn =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 cur=conn.cursor()
+
+# Set up MQTT broker information
 broker = "0.0.0.0";
 port = 1883;
+
+# Get the process ID and create a unique MQTT client ID
 mypid = os.getpid()
 print("Process started at: " +str(mypid))
 client_uniq = "pubclient_"+str(mypid)
 mqttclient = paho.Client(client_uniq, True) #nocleanstart
 
+# Define callback function for the "test" MQTT topic
 def test(client, userdata, message):
 	print("Test Channel")
 	print("Received message '" + str(message.payload) + "' on topic '" + message.topic + "' with QoS " + str(message.qos))
@@ -30,79 +37,88 @@ def test(client, userdata, message):
 	conn1.commit()
 	conn1.close()
 	print("DB DUMP suceess for MQTT Test")
-	
+
+# Define callback function for the "datafetch_dimis_gm1_direct" MQTT topic
 def datafetch_dimis_gm1_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Dimis GM1")
 	payload=json.loads(msg.payload.decode())
 	#print(payload)
 	grabrest.todb(payload,1)
 
+# Define callback function for the "datafetch_dimis_lm1_direct" MQTT topic
 def datafetch_dimis_lm1_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Dimis LM")
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,1)
 	#print(payload)
 
+# Define callback function for the "datafetch_dimis_lm2_direct" MQTT topic
 def datafetch_dimis_lm2_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Dimis GM2")
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,1)
 	#print(payload)
 
+# Define callback function for the "datafetch_maxim_direct" MQTT topic
 def datafetch_maxim_direct(client, userdata, msg):
 	print("Maxim Data received")
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,2)
 
+# Define callback function for the "datafetch_sch_direct" MQTT topic
 def datafetch_sch_direct(client, userdata, msg):
 	print("Schneider Data received")
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,3)
 	
+# Define callback function for the "datafetch_stp_direct" MQTT topic
 def datafetch_stp_direct(client, userdata, msg):
 	print("Schneider Data received")
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,4)
 	
 	
+# Define callback function for the "datafetch_outback_inv_direct" MQTT topic
 def datafetch_outback_inv_direct(client, userdata, msg):
 	print("Outback Data received")
 	payload=json.loads(msg.payload.decode())
 	#print(payload)
 	grabrest.todb(payload,41)
 
+# Define callback function for the "datafetch_outback_cc_direct" MQTT topic
 def datafetch_outback_cc_direct(client, userdata, msg):
 	print("Outback Data received")
 	payload=json.loads(msg.payload.decode())
 	#print(payload)
 	grabrest.todb(payload,42)
 
+# Define callback function for the "datafetch_navsemi_direct" MQTT topic
 def datafetch_navsemi_direct(client, userdata, msg):
 	print("Navsemi Data received")
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,5)
 
-def datafetch_gsm_direct(client, userdata, msg):
-	print("GSM Data received")
-	#TBD
-
+# Define callback function for the "datafetch_events_direct" MQTT topic
 def datafetch_events_direct(client, userdata, msg):
 	print("Event Data received")
 	payload=json.loads(msg.payload.decode())
 	grabrest.todb(payload,0) 
 
+# Define callback function for the "node_alive_direct" MQTT topic
 def node_alive_direct(client, userdata, msg):
 	print("Alive beacon received")
 	payload=json.loads(msg.payload.decode())
 	#print(payload)
 	grabrest.todb(payload,100)
 	
+# Define callback function for the "datafetch_switch_direct" MQTT topic
 def datafetch_switch_direct(client, userdata, msg):
 	print("Direct MQTT Message received - Switch")
 	payload=json.loads(msg.payload.decode())
 	#print(payload)
 	grabrest.todb(payload,101)
 
+# Define callback function for the "agg_alive_direct" MQTT topic
 def agg_alive_direct(client, userdata, msg,):
 	print("Direct Alive beacon received from AGG")
 	payload=json.loads(msg.payload.decode())
@@ -110,6 +126,7 @@ def agg_alive_direct(client, userdata, msg,):
 	#print(payload)
 	grabrest.todb(payload,102)
 	
+# Define callback function for the "temperature" MQTT topic
 def temperature(client, userdata, msg,):
 	print("Temperature data recieved")
 	payload=json.loads(msg.payload.decode())
@@ -117,6 +134,7 @@ def temperature(client, userdata, msg,):
 	print(payload)
 	grabrest.todb(payload,5)
 	
+# Define callback function for the "powerstate" MQTT topic
 def powerstate(client, userdata, msg,):
 	conn1 =pymysql.connect(database="powerstatus",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
@@ -124,16 +142,8 @@ def powerstate(client, userdata, msg,):
 	cur1.execute("INSERT INTO measureData(deviceId,temperature,humidity,state) VALUES(%(deviceId)s,%(temperature)s,%(humidity)s,%(state)s);",payload)
 	conn1.commit()
 	conn1.close()
-	
-def onpiggyback(client, userdata, msg,):
-	conn1 =pymysql.connect(database="OceanNet",user="admin",password="admin",host="localhost")
-	cur1=conn1.cursor()
-	payload=json.loads(msg.payload.decode())
-	print(payload)
-	cur1.execute("INSERT INTO piggyback(TIME,boat,dir,ping_ms,ss,nf,rssi,pos,ccq,d,txrate,rxrate,freq,channel,bs_ip) VALUES(%(TIME)s,%(boat,%(dir)s,%(ping_ms)s,%(ss)s,%(nf)s,%(rssi)s,%(pos)s,%(ccq)s,%(d)s,%(txrate)s,%(rxrate)s,%(freq)s,%(channel)s,%(bs_ip)s);",payload)
-	conn1.commit()
-	conn1.close()
 
+# Define callback function for the "wiman" MQTT topic
 def wiman(client, userdata, msg,):
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
@@ -168,6 +178,7 @@ def wiman(client, userdata, msg,):
 	conn1.commit()
 	conn1.close()
 	
+# Define callback function for the "faclon" MQTT topic
 def faclon(client, userdata, msg,):
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
@@ -200,6 +211,7 @@ def faclon(client, userdata, msg,):
 	conn1.commit()
 	conn1.close()
 
+# Define callback function for the "trb" MQTT topic
 def trb(client, userdata, msg,):
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
@@ -218,6 +230,7 @@ def trb(client, userdata, msg,):
 	conn1.close()
 	print("DB Dump Success")
 	
+# Define callback function for the "embedos" MQTT topic
 def embedos(client, userdata, msg,):
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
@@ -243,6 +256,7 @@ def embedos(client, userdata, msg,):
 	conn1.close()
 	print("DB Dump Success")
 
+# Define callback function for the "vvmgateway" MQTT topic
 def vvmgateway(client, userdata, msg,):
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
@@ -254,12 +268,9 @@ def vvmgateway(client, userdata, msg,):
 	conn1.commit()
 	conn1.close()
 	print("DB Dump Success")
-	
+
+# Callback function for MQTT logging
 def on_log(client, userdata, level, buf):
-# 	print("log:",buf)
-# 	print(client)
-# 	print(userdata)
-# 	print(level)
 	conn1 =pymysql.connect(database="AmritaSGM",user="admin",password="admin",host="localhost")
 	cur1=conn1.cursor()
 	cur1.execute("INSERT INTO mqttLog(log) VALUES(%s);",buf)
@@ -268,17 +279,16 @@ def on_log(client, userdata, level, buf):
 
 	
 def _on_message(client, userdata, msg):
-# 	print("Received: Topic: %s Body: %s", msg.topic, msg.payload)
 	print(msg.topic+" "+str(msg.payload))
 	 
 #Subscribed Topics 
 def _on_connect(mqttclient, userdata, flags, rc):
-# 	print("New Client: "+str(mqttclient)+ " connected")
-# 	print(rc)
 	mqttclient.subscribe("SGM/#", qos=0)	
 	
-
+# Set up callback functions for MQTT client
 mqttclient.message_callback_add("SGM/test", test)
+
+# Callbacks for other MQTT topics
 mqttclient.message_callback_add("SGM/datafetch_dimis_gm1_direct", datafetch_dimis_gm1_direct)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm1_direct", datafetch_dimis_lm1_direct)
 mqttclient.message_callback_add("SGM/datafetch_dimis_lm2_direct", datafetch_dimis_lm2_direct)
@@ -295,25 +305,18 @@ mqttclient.message_callback_add("SGM/agg_alive_direct", agg_alive_direct)
 mqttclient.message_callback_add("SGM/datafetch_stp_direct", datafetch_stp_direct)
 mqttclient.message_callback_add("SGM/temperature", temperature)
 mqttclient.message_callback_add("SGM/powerstate", powerstate)
-mqttclient.message_callback_add("SGM/onpiggyback", onpiggyback)
+
+# Callbacks for 4Ward devices
 mqttclient.message_callback_add("SGM/wiman", wiman)
 mqttclient.message_callback_add("SGM/faclon", faclon)
 mqttclient.message_callback_add("SGM/trb", trb)
 mqttclient.message_callback_add("SGM/embedos", embedos)
 mqttclient.message_callback_add("SGM/vvm", vvmgateway)
 
-
-
-#mqttclient.message_callback_add("SGM/datafetch_switch_rest",datafetch_switch_rest_direct)
-
-	      
+# Connect to the MQTT broker and start the MQTT client loop
 mqttclient.connect(broker, port, keepalive=1, bind_address="")
-  
 mqttclient.on_log=on_log # set client logging	
-mqttclient.on_connect = _on_connect
-# mqttclient.on_message = _on_message	
-# mqttclient.loop_start()
-# mqttclient.subscribe("SGM/#",0)		      
+mqttclient.on_connect = _on_connect      
 mqttclient.loop_forever()
 
 
