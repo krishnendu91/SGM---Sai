@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#one click new server setup
+
 apt update
 apt upgrade
 
